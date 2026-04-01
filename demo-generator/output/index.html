@@ -1,729 +1,843 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>DLM Demo Library</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DLM Digital baut konvertierende Webseiten, Rechner & Konfiguratoren für Schweizer KMU — in 48 Stunden, mit messbarem ROI." />
+  <title>DLM Digital — Ihr Website-Upgrade. In 48 Stunden.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; color: #1a1a2e; }
-    h1 { font-size: 1.8rem; margin-bottom: .5rem; }
-    .meta { color: #666; font-size: .9rem; margin-bottom: 2rem; }
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    th { text-align: left; padding: .6rem .8rem; background: #f0f0f5; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; }
-    td { padding: .65rem .8rem; border-bottom: 1px solid #e8e8f0; }
-    tr:hover td { background: #fafafe; }
-    a { color: #4a5fd8; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .btn { display: inline-block; padding: .3rem .7rem; background: #4a5fd8; color: white; border-radius: 4px; font-size: .82rem; }
-    .btn:hover { background: #3348c0; text-decoration: none; }
-    code { font-size: .82rem; background: #f0f0f5; padding: .15rem .35rem; border-radius: 3px; }
+    :root {
+      --bg-base:          #07090F;
+      --bg-layer-1:       #0D1220;
+      --glass-01:         rgba(255,255,255,0.03);
+      --glass-02:         rgba(255,255,255,0.06);
+      --glass-03:         rgba(255,255,255,0.09);
+      --glass-border-sm:  rgba(255,255,255,0.08);
+      --glass-border-md:  rgba(255,255,255,0.13);
+      --accent:           #6366F1;
+      --accent-light:     #818CF8;
+      --accent-dark:      #4F46E5;
+      --accent-glow:      rgba(99,102,241,0.30);
+      --success:          #34D399;
+      --text-primary:     rgba(255,255,255,0.92);
+      --text-secondary:   rgba(255,255,255,0.52);
+      --text-tertiary:    rgba(255,255,255,0.28);
+      --text-accent:      #818CF8;
+      --shadow-sm:  0 2px 12px rgba(0,0,0,0.5);
+      --shadow-md:  0 4px 28px rgba(0,0,0,0.55);
+      --shadow-lg:  0 8px 48px rgba(0,0,0,0.6);
+      --shadow-xl:  0 16px 72px rgba(0,0,0,0.65);
+      --glow-accent: 0 0 28px rgba(99,102,241,0.32), 0 0 8px rgba(99,102,241,0.18);
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   16px;
+      --radius-xl:   24px;
+      --radius-2xl:  32px;
+      --radius-full: 9999px;
+    }
+
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes fadeIn   { from { opacity:0 } to { opacity:1 } }
+    @keyframes float    { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-10px) } }
+    @keyframes shimmer  { 0%{background-position:-200% center} 100%{background-position:200% center} }
+    @media (prefers-reduced-motion:reduce) { *{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+
+    *  { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--bg-base);
+      background-image:
+        radial-gradient(ellipse 90% 60% at 15% -5%, rgba(99,102,241,0.20) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 85% 105%, rgba(79,70,229,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(99,102,241,0.06) 0%, transparent 70%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--text-accent); text-decoration: none; }
+    img { max-width:100%; }
+
+    /* ── NAV ───────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 max(24px, calc(50vw - 600px));
+      height: 64px;
+      background: rgba(7,9,15,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border-sm);
+    }
+    .nav-brand {
+      font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .nav-brand span { color: var(--text-accent); }
+    .nav-links { display:flex; align-items:center; gap:28px; }
+    .nav-links a { font-size:14px; font-weight:500; color:var(--text-secondary); transition:color .15s; }
+    .nav-links a:hover { color:var(--text-primary); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff; border:none; border-radius: var(--radius-sm);
+      padding: 8px 18px; font-size:14px; font-weight:600;
+      cursor: pointer; font-family:inherit;
+      box-shadow: var(--glow-accent);
+      transition: all .2s ease;
+    }
+    .nav-cta:hover { filter:brightness(1.12); transform:translateY(-1px); }
+
+    /* ── WRAPPER ─────────────────────────────────────────────────────── */
+    .container { max-width:1200px; margin:0 auto; padding:0 24px; }
+
+    /* ── HERO ──────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center;
+      padding: 120px 24px 80px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items:center; gap:7px;
+      background: var(--glass-02);
+      border: 1px solid var(--glass-border-sm);
+      border-radius: var(--radius-full);
+      padding: 5px 14px;
+      font-size: 12px; font-weight:600; color: var(--text-accent);
+      letter-spacing: 0.04em; text-transform:uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp .5s .1s ease-out both;
+    }
+    .hero-badge::before {
+      content:''; width:7px; height:7px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.07;
+      color: var(--text-primary);
+      max-width: 820px;
+      margin-bottom: 24px;
+      animation: fadeUp .5s .2s ease-out both;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #818CF8 0%, #6366F1 40%, #34D399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.5;
+      animation: fadeUp .5s .3s ease-out both;
+    }
+    .hero-ctas {
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+      animation: fadeUp .5s .4s ease-out both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color:#fff; border:none; border-radius:var(--radius-sm);
+      padding:13px 26px; font-size:15px; font-weight:600;
+      cursor:pointer; font-family:inherit;
+      box-shadow: var(--glow-accent), var(--shadow-sm);
+      transition: all .2s ease;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn-primary:hover { filter:brightness(1.12); transform:translateY(-2px); box-shadow:0 0 40px rgba(99,102,241,0.45),var(--shadow-md); }
+    .btn-ghost {
+      background:var(--glass-02); color:var(--text-primary);
+      border:1px solid var(--glass-border-md); border-radius:var(--radius-sm);
+      padding:13px 26px; font-size:15px; font-weight:600;
+      cursor:pointer; font-family:inherit;
+      backdrop-filter:blur(8px);
+      transition:all .2s ease;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn-ghost:hover { background:var(--glass-03); border-color:rgba(255,255,255,0.2); transform:translateY(-1px); }
+
+    /* Floating mockup */
+    .hero-mockup {
+      margin-top: 72px;
+      animation: fadeUp .6s .5s ease-out both;
+      position: relative;
+    }
+    .hero-mockup::before {
+      content:''; position:absolute;
+      inset:-40px; border-radius:50%;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.18) 0%, transparent 70%);
+      filter:blur(40px); z-index:-1;
+    }
+    .mockup-frame {
+      background: var(--glass-02);
+      backdrop-filter:blur(16px);
+      border:1px solid var(--glass-border-md);
+      border-radius:var(--radius-xl);
+      padding:12px;
+      box-shadow: var(--shadow-xl);
+      max-width:860px; margin:0 auto;
+      animation: float 6s ease-in-out infinite;
+    }
+    .mockup-bar {
+      display:flex; align-items:center; gap:7px;
+      padding:0 0 10px 4px;
+    }
+    .mockup-dot { width:10px; height:10px; border-radius:50%; }
+    .mockup-dot.r { background:#F87171; }
+    .mockup-dot.y { background:#FBBF24; }
+    .mockup-dot.g { background:#34D399; }
+    .mockup-screen {
+      background: var(--bg-layer-1);
+      border-radius:var(--radius-md);
+      overflow:hidden;
+      height:420px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .mockup-inner {
+      width:100%; height:100%;
+      background:
+        linear-gradient(135deg, rgba(99,102,241,0.08) 0%, transparent 60%),
+        var(--bg-layer-1);
+      display:flex;
+    }
+    .mockup-sidebar {
+      width:160px; flex-shrink:0;
+      background:var(--glass-01);
+      border-right:1px solid var(--glass-border-sm);
+      padding:20px 12px;
+    }
+    .mock-logo { font-size:13px; font-weight:800; color:var(--text-accent); margin-bottom:20px; padding:0 4px; }
+    .mock-nav { display:flex; flex-direction:column; gap:3px; }
+    .mock-nav-item {
+      height:30px; border-radius:5px;
+      background:var(--glass-01);
+      display:flex; align-items:center; padding:0 10px;
+      font-size:11px; color:var(--text-secondary);
+    }
+    .mock-nav-item.active { background:rgba(99,102,241,0.15); color:var(--text-accent); }
+    .mockup-content { flex:1; padding:20px; display:flex; flex-direction:column; gap:14px; }
+    .mock-header { display:flex; justify-content:space-between; align-items:center; }
+    .mock-title { font-size:14px; font-weight:700; }
+    .mock-btn { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:#fff; border-radius:5px; padding:5px 12px; font-size:11px; font-weight:600; }
+    .mock-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .mock-card {
+      background:var(--glass-02); border:1px solid var(--glass-border-sm);
+      border-radius:10px; padding:12px; position:relative; overflow:hidden;
+    }
+    .mock-card::before {
+      content:''; position:absolute; top:-30px; right:-20px;
+      width:70px; height:70px; border-radius:50%;
+      background:var(--accent-glow); filter:blur(24px);
+    }
+    .mock-card-label { font-size:9px; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:.07em; font-weight:600; margin-bottom:5px; }
+    .mock-card-val { font-size:20px; font-weight:700; letter-spacing:-.02em; }
+    .mock-pipeline { display:flex; gap:8px; flex:1; overflow:hidden; }
+    .mock-pipe-col {
+      flex:1; background:var(--glass-01); border:1px solid var(--glass-border-sm);
+      border-radius:10px; padding:10px;
+    }
+    .mock-pipe-label { font-size:9px; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:.07em; font-weight:700; margin-bottom:8px; }
+    .mock-pipe-card {
+      background:var(--glass-02); border:1px solid var(--glass-border-sm);
+      border-radius:7px; padding:8px; margin-bottom:6px; font-size:10px; color:var(--text-secondary);
+    }
+    .mock-pipe-card strong { color:var(--text-primary); font-size:11px; display:block; margin-bottom:2px; }
+    .mock-pipe-card .val { color:var(--success); font-weight:600; margin-top:4px; font-size:10px; }
+
+    /* ── TRUST BAR ─────────────────────────────────────────────────── */
+    .trust-bar {
+      border-top:1px solid var(--glass-border-sm);
+      border-bottom:1px solid var(--glass-border-sm);
+      background:var(--glass-01);
+      backdrop-filter:blur(16px);
+      padding:18px 24px;
+    }
+    .trust-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; justify-content:center;
+      gap:48px; flex-wrap:wrap;
+    }
+    .trust-item {
+      display:flex; align-items:center; gap:9px;
+      font-size:13px; font-weight:500; color:var(--text-secondary);
+      white-space:nowrap;
+    }
+    .trust-item span:first-child { font-size:18px; }
+    .trust-sep { color:var(--glass-border-md); font-size:20px; }
+
+    /* ── SECTIONS ─────────────────────────────────────────────────────── */
+    section { padding:100px 24px; }
+    .section-label {
+      font-size:11px; font-weight:700; text-transform:uppercase;
+      letter-spacing:.1em; color:var(--text-accent);
+      margin-bottom:14px; text-align:center;
+    }
+    .section-title {
+      font-size:clamp(28px,4vw,46px); font-weight:800;
+      letter-spacing:-.03em; line-height:1.1;
+      text-align:center; margin-bottom:16px;
+    }
+    .section-sub {
+      font-size:17px; color:var(--text-secondary);
+      text-align:center; max-width:520px; margin:0 auto 56px;
+      line-height:1.55;
+    }
+
+    /* ── DEMO GALLERY ─────────────────────────────────────────────────── */
+    .gallery-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+      max-width:1100px; margin:0 auto;
+    }
+    .gallery-card {
+      position:relative; overflow:hidden;
+      background:var(--glass-02); backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border-sm); border-radius:var(--radius-lg);
+      transition:all .25s ease; cursor:pointer;
+    }
+    .gallery-card:hover { border-color:rgba(99,102,241,0.4); transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+    .gallery-thumb {
+      width:100%; aspect-ratio:16/10; overflow:hidden;
+      background:var(--bg-layer-1);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .gallery-thumb-mock {
+      width:100%; height:100%;
+      background:linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(52,211,153,0.06) 100%);
+      display:flex; align-items:center; justify-content:center;
+      font-size:32px;
+    }
+    .gallery-overlay {
+      position:absolute; inset:0; background:rgba(7,9,15,0.7);
+      backdrop-filter:blur(4px);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .2s;
+    }
+    .gallery-card:hover .gallery-overlay { opacity:1; }
+    .gallery-info { padding:14px 16px; }
+    .gallery-name { font-size:14px; font-weight:600; margin-bottom:3px; }
+    .gallery-type { font-size:12px; color:var(--text-secondary); }
+
+    /* ── HOW IT WORKS ──────────────────────────────────────────────────── */
+    .steps { display:flex; gap:24px; max-width:980px; margin:0 auto; }
+    .step {
+      flex:1;
+      background:var(--glass-02); backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border-sm); border-radius:var(--radius-lg);
+      padding:32px 28px;
+      position:relative; overflow:hidden;
+      transition:border-color .2s;
+    }
+    .step:hover { border-color:var(--glass-border-md); }
+    .step::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, var(--accent), var(--accent-light));
+    }
+    .step-num {
+      font-size:11px; font-weight:700; color:var(--text-accent);
+      text-transform:uppercase; letter-spacing:.1em;
+      margin-bottom:16px; display:block;
+    }
+    .step-icon {
+      width:48px; height:48px; border-radius:var(--radius-md);
+      background:rgba(99,102,241,0.14); border:1px solid rgba(99,102,241,0.2);
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; margin-bottom:20px;
+    }
+    .step h3 { font-size:18px; font-weight:700; margin-bottom:10px; letter-spacing:-.01em; }
+    .step p { font-size:14px; color:var(--text-secondary); line-height:1.6; }
+
+    /* ── PRICING ────────────────────────────────────────────────────────── */
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:980px; margin:0 auto; }
+    .pricing-card {
+      background:var(--glass-02); backdrop-filter:blur(16px);
+      border:1px solid var(--glass-border-sm); border-radius:var(--radius-xl);
+      padding:36px 32px;
+      transition:all .25s ease;
+    }
+    .pricing-card:hover { border-color:var(--glass-border-md); transform:translateY(-3px); }
+    .pricing-card.featured {
+      background:rgba(99,102,241,0.1);
+      border-color:rgba(99,102,241,0.35);
+      box-shadow: var(--glow-accent), var(--shadow-lg);
+    }
+    .pricing-tag {
+      display:inline-flex; padding:4px 12px; border-radius:var(--radius-full);
+      font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+      background:rgba(99,102,241,0.18); color:var(--text-accent);
+      margin-bottom:16px;
+    }
+    .pricing-name { font-size:18px; font-weight:700; margin-bottom:8px; }
+    .pricing-desc { font-size:13px; color:var(--text-secondary); line-height:1.5; margin-bottom:24px; }
+    .pricing-amount { font-size:42px; font-weight:800; letter-spacing:-.03em; margin-bottom:4px; }
+    .pricing-amount span { font-size:18px; font-weight:500; color:var(--text-secondary); }
+    .pricing-period { font-size:13px; color:var(--text-secondary); margin-bottom:28px; }
+    .pricing-features { list-style:none; margin-bottom:32px; display:flex; flex-direction:column; gap:10px; }
+    .pricing-features li {
+      display:flex; align-items:flex-start; gap:10px;
+      font-size:14px; color:var(--text-secondary);
+    }
+    .pricing-features li::before {
+      content:'✓'; color:var(--success); font-weight:700;
+      flex-shrink:0; margin-top:1px;
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────────────────────────────── */
+    .testimonials-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1000px; margin:0 auto; }
+    .testimonial {
+      background:var(--glass-02); backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border-sm); border-radius:var(--radius-lg);
+      padding:28px;
+    }
+    .testimonial-stars { color:#FBBF24; font-size:14px; margin-bottom:14px; letter-spacing:2px; }
+    .testimonial-text { font-size:14px; color:var(--text-secondary); line-height:1.65; margin-bottom:20px; font-style:italic; }
+    .testimonial-author { display:flex; align-items:center; gap:12px; }
+    .testimonial-avatar {
+      width:40px; height:40px; border-radius:var(--radius-full);
+      background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.25);
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; flex-shrink:0;
+    }
+    .testimonial-name { font-size:13px; font-weight:600; }
+    .testimonial-role { font-size:12px; color:var(--text-secondary); }
+
+    /* ── CTA BANNER ───────────────────────────────────────────────────── */
+    .cta-banner {
+      margin:0 24px;
+      background:linear-gradient(135deg, rgba(99,102,241,0.18) 0%, rgba(79,70,229,0.12) 100%);
+      border:1px solid rgba(99,102,241,0.25);
+      border-radius:var(--radius-2xl);
+      padding:72px 48px;
+      text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .cta-banner::before {
+      content:''; position:absolute;
+      top:-60%; left:-10%; width:500px; height:500px;
+      background:radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .cta-banner::after {
+      content:''; position:absolute;
+      bottom:-50%; right:-10%; width:400px; height:400px;
+      background:radial-gradient(circle, rgba(52,211,153,0.15) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .cta-banner h2 {
+      font-size:clamp(28px,4vw,48px); font-weight:800;
+      letter-spacing:-.03em; margin-bottom:16px;
+      position:relative; z-index:1;
+    }
+    .cta-banner p {
+      font-size:17px; color:var(--text-secondary);
+      margin-bottom:36px; position:relative; z-index:1;
+    }
+    .cta-banner .ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1; }
+
+    /* ── FOOTER ─────────────────────────────────────────────────────────── */
+    footer {
+      padding:48px 24px;
+      border-top:1px solid var(--glass-border-sm);
+    }
+    .footer-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      gap:24px; flex-wrap:wrap;
+    }
+    .footer-brand { font-size:16px; font-weight:800; letter-spacing:-.02em; }
+    .footer-brand span { color:var(--text-accent); }
+    .footer-links { display:flex; gap:24px; flex-wrap:wrap; }
+    .footer-links a { font-size:13px; color:var(--text-secondary); transition:color .15s; }
+    .footer-links a:hover { color:var(--text-primary); }
+    .footer-copy { font-size:12px; color:var(--text-tertiary); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display:none; }
+      .gallery-grid { grid-template-columns:1fr 1fr; }
+      .steps { flex-direction:column; }
+      .pricing-grid { grid-template-columns:1fr; max-width:420px; }
+      .testimonials-grid { grid-template-columns:1fr; max-width:480px; }
+      .mockup-sidebar { display:none; }
+    }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns:1fr; }
+      .trust-inner { gap:24px; }
+      .trust-sep { display:none; }
+      .footer-inner { flex-direction:column; text-align:center; }
+    }
   </style>
 </head>
 <body>
-  <h1>DLM Demo Library</h1>
-  <p class="meta">Generated: 1.4.2026, 11:51:32 · 100 demos</p>
-  <table>
-    <thead><tr><th>Firma</th><th>Branche</th><th>Ort</th><th>Demo-URL</th><th></th></tr></thead>
-    <tbody>
-    <tr>
-      <td><a href="kuechen-meier-zuerich/index.html" target="_blank">Küchen Meier AG</a></td>
-      <td>kueche</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/kuechen-meier-zuerich</code></td>
-      <td><a href="kuechen-meier-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuchenstudio-brunner-bern/index.html" target="_blank">Küchenstudio Brunner</a></td>
-      <td>kueche</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/kuchenstudio-brunner-bern</code></td>
-      <td><a href="kuchenstudio-brunner-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechenwerkstatt-keller-basel/index.html" target="_blank">Küchenwerkstatt Keller</a></td>
-      <td>kueche</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/kuechenwerkstatt-keller-basel</code></td>
-      <td><a href="kuechenwerkstatt-keller-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechen-huber-luzern/index.html" target="_blank">Küchen Huber GmbH</a></td>
-      <td>kueche</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/kuechen-huber-luzern</code></td>
-      <td><a href="kuechen-huber-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechenform-winterthur/index.html" target="_blank">KüchenForm AG</a></td>
-      <td>kueche</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/kuechenform-winterthur</code></td>
-      <td><a href="kuechenform-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechen-mueller-stgallen/index.html" target="_blank">Küchen Müller</a></td>
-      <td>kueche</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/kuechen-mueller-stgallen</code></td>
-      <td><a href="kuechen-mueller-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechenstudio-weber-thun/index.html" target="_blank">Küchenstudio Weber</a></td>
-      <td>kueche</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/kuechenstudio-weber-thun</code></td>
-      <td><a href="kuechenstudio-weber-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechen-schmid-aarau/index.html" target="_blank">Küchen Schmid</a></td>
-      <td>kueche</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/kuechen-schmid-aarau</code></td>
-      <td><a href="kuechen-schmid-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="muster-kuechenbau-frauenfeld/index.html" target="_blank">Muster Küchenbau</a></td>
-      <td>kueche</td>
-      <td>Frauenfeld</td>
-      <td><code>demo.dlm-digital.ch/muster-kuechenbau-frauenfeld</code></td>
-      <td><a href="muster-kuechenbau-frauenfeld/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kuechen-steiner-schaffhausen/index.html" target="_blank">Küchen Steiner</a></td>
-      <td>kueche</td>
-      <td>Schaffhausen</td>
-      <td><code>demo.dlm-digital.ch/kuechen-steiner-schaffhausen</code></td>
-      <td><a href="kuechen-steiner-schaffhausen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="sanitaer-vogel-zuerich/index.html" target="_blank">Sanitär Vogel AG</a></td>
-      <td>sanitaer</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/sanitaer-vogel-zuerich</code></td>
-      <td><a href="sanitaer-vogel-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="heizung-bauer-bern/index.html" target="_blank">Heizung Bauer GmbH</a></td>
-      <td>sanitaer</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/heizung-bauer-bern</code></td>
-      <td><a href="heizung-bauer-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="roth-sanitaer-basel/index.html" target="_blank">Sanitär & Heizung Roth</a></td>
-      <td>sanitaer</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/roth-sanitaer-basel</code></td>
-      <td><a href="roth-sanitaer-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="wasser-waerme-luzern/index.html" target="_blank">Wasser & Wärme AG</a></td>
-      <td>sanitaer</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/wasser-waerme-luzern</code></td>
-      <td><a href="wasser-waerme-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="sanitaer-marti-winterthur/index.html" target="_blank">Sanitär Marti</a></td>
-      <td>sanitaer</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/sanitaer-marti-winterthur</code></td>
-      <td><a href="sanitaer-marti-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="installationen-frei-stgallen/index.html" target="_blank">Installationen Frei</a></td>
-      <td>sanitaer</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/installationen-frei-stgallen</code></td>
-      <td><a href="installationen-frei-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="heizung-kunz-zug/index.html" target="_blank">Heizung Kunz GmbH</a></td>
-      <td>sanitaer</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/heizung-kunz-zug</code></td>
-      <td><a href="heizung-kunz-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="sanitaer-furrer-solothurn/index.html" target="_blank">Sanitär Furrer</a></td>
-      <td>sanitaer</td>
-      <td>Solothurn</td>
-      <td><code>demo.dlm-digital.ch/sanitaer-furrer-solothurn</code></td>
-      <td><a href="sanitaer-furrer-solothurn/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="waermeprofi-olten/index.html" target="_blank">WärmeProfi AG</a></td>
-      <td>sanitaer</td>
-      <td>Olten</td>
-      <td><code>demo.dlm-digital.ch/waermeprofi-olten</code></td>
-      <td><a href="waermeprofi-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="sanitaerplus-luethi-thun/index.html" target="_blank">SanitärPlus Lüthi</a></td>
-      <td>sanitaer</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/sanitaerplus-luethi-thun</code></td>
-      <td><a href="sanitaerplus-luethi-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solar-ag-zuerich/index.html" target="_blank">Solar AG Zürich</a></td>
-      <td>solar</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/solar-ag-zuerich</code></td>
-      <td><a href="solar-ag-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="photovoltaik-bern/index.html" target="_blank">Photovoltaik Bern</a></td>
-      <td>solar</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/photovoltaik-bern</code></td>
-      <td><a href="photovoltaik-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solarpower-basel/index.html" target="_blank">SolarPower Basel</a></td>
-      <td>solar</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/solarpower-basel</code></td>
-      <td><a href="solarpower-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solartechnik-ammann-luzern/index.html" target="_blank">Solartechnik Ammann</a></td>
-      <td>solar</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/solartechnik-ammann-luzern</code></td>
-      <td><a href="solartechnik-ammann-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="suntech-ag-winterthur/index.html" target="_blank">SunTech AG</a></td>
-      <td>solar</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/suntech-ag-winterthur</code></td>
-      <td><a href="suntech-ag-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solaranlage-ost-stgallen/index.html" target="_blank">Solaranlage Ost AG</a></td>
-      <td>solar</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/solaranlage-ost-stgallen</code></td>
-      <td><a href="solaranlage-ost-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solarexperte-zug/index.html" target="_blank">SolarExperte GmbH</a></td>
-      <td>solar</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/solarexperte-zug</code></td>
-      <td><a href="solarexperte-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="pv-nidwalden-stans/index.html" target="_blank">Photovoltaik Nidwalden</a></td>
-      <td>solar</td>
-      <td>Stans</td>
-      <td><code>demo.dlm-digital.ch/pv-nidwalden-stans</code></td>
-      <td><a href="pv-nidwalden-stans/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solarzentrum-frauenfeld/index.html" target="_blank">SolarZentrum AG</a></td>
-      <td>solar</td>
-      <td>Frauenfeld</td>
-      <td><code>demo.dlm-digital.ch/solarzentrum-frauenfeld</code></td>
-      <td><a href="solarzentrum-frauenfeld/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="greensun-schaffhausen/index.html" target="_blank">GreenSun GmbH</a></td>
-      <td>solar</td>
-      <td>Schaffhausen</td>
-      <td><code>demo.dlm-digital.ch/greensun-schaffhausen</code></td>
-      <td><a href="greensun-schaffhausen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="treuhand-meier-zuerich/index.html" target="_blank">Treuhand Meier AG</a></td>
-      <td>treuhand</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/treuhand-meier-zuerich</code></td>
-      <td><a href="treuhand-meier-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="buchhaltung-fischer-bern/index.html" target="_blank">Buchhaltung Fischer</a></td>
-      <td>treuhand</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/buchhaltung-fischer-bern</code></td>
-      <td><a href="buchhaltung-fischer-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="treuhandplus-basel/index.html" target="_blank">TreuhandPlus Basel</a></td>
-      <td>treuhand</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/treuhandplus-basel</code></td>
-      <td><a href="treuhandplus-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="steuer-recht-luzern/index.html" target="_blank">Steuer & Recht Luzern</a></td>
-      <td>treuhand</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/steuer-recht-luzern</code></td>
-      <td><a href="steuer-recht-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="finanzen-keller-winterthur/index.html" target="_blank">Finanzen Keller GmbH</a></td>
-      <td>treuhand</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/finanzen-keller-winterthur</code></td>
-      <td><a href="finanzen-keller-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="treuhand-zuest-stgallen/index.html" target="_blank">Treuhand Züst</a></td>
-      <td>treuhand</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/treuhand-zuest-stgallen</code></td>
-      <td><a href="treuhand-zuest-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="bdo-schaff-schaffhausen/index.html" target="_blank">BDO Schaffhausen</a></td>
-      <td>treuhand</td>
-      <td>Schaffhausen</td>
-      <td><code>demo.dlm-digital.ch/bdo-schaff-schaffhausen</code></td>
-      <td><a href="bdo-schaff-schaffhausen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="revisions-ag-zug/index.html" target="_blank">Revisions AG Zug</a></td>
-      <td>treuhand</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/revisions-ag-zug</code></td>
-      <td><a href="revisions-ag-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="buchhaltungsservice-mueller-aarau/index.html" target="_blank">Buchhaltungs-Service Müller</a></td>
-      <td>treuhand</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/buchhaltungsservice-mueller-aarau</code></td>
-      <td><a href="buchhaltungsservice-mueller-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="treuhandkompass-solothurn/index.html" target="_blank">TreuhandKompass AG</a></td>
-      <td>treuhand</td>
-      <td>Solothurn</td>
-      <td><code>demo.dlm-digital.ch/treuhandkompass-solothurn</code></td>
-      <td><a href="treuhandkompass-solothurn/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="fitlife-zuerich/index.html" target="_blank">FitLife Zürich</a></td>
-      <td>fitness</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/fitlife-zuerich</code></td>
-      <td><a href="fitlife-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="sportstudio-bern/index.html" target="_blank">SportStudio Bern</a></td>
-      <td>fitness</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/sportstudio-bern</code></td>
-      <td><a href="sportstudio-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="goldgym-basel/index.html" target="_blank">GoldGym Basel</a></td>
-      <td>fitness</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/goldgym-basel</code></td>
-      <td><a href="goldgym-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="crossfit-luzern/index.html" target="_blank">CrossFit Luzern</a></td>
-      <td>fitness</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/crossfit-luzern</code></td>
-      <td><a href="crossfit-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="fitcenter-winterthur/index.html" target="_blank">FitCenter Winterthur</a></td>
-      <td>fitness</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/fitcenter-winterthur</code></td>
-      <td><a href="fitcenter-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="activelife-stgallen/index.html" target="_blank">ActiveLife St. Gallen</a></td>
-      <td>fitness</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/activelife-stgallen</code></td>
-      <td><a href="activelife-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="sporthouse-zug/index.html" target="_blank">SportHouse Zug</a></td>
-      <td>fitness</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/sporthouse-zug</code></td>
-      <td><a href="sporthouse-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="pulsegym-olten/index.html" target="_blank">PulseGym Olten</a></td>
-      <td>fitness</td>
-      <td>Olten</td>
-      <td><code>demo.dlm-digital.ch/pulsegym-olten</code></td>
-      <td><a href="pulsegym-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kraftwerk-thun/index.html" target="_blank">KraftWerk Thun</a></td>
-      <td>fitness</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/kraftwerk-thun</code></td>
-      <td><a href="kraftwerk-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="studiofit-aarau/index.html" target="_blank">StudioFit Aarau</a></td>
-      <td>fitness</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/studiofit-aarau</code></td>
-      <td><a href="studiofit-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="garage-schneider-zuerich/index.html" target="_blank">Garage Schneider AG</a></td>
-      <td>autogarage</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/garage-schneider-zuerich</code></td>
-      <td><a href="garage-schneider-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="auto-meier-bern/index.html" target="_blank">Auto Meier Bern</a></td>
-      <td>autogarage</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/auto-meier-bern</code></td>
-      <td><a href="auto-meier-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="garage-huber-basel/index.html" target="_blank">Garage Huber Basel</a></td>
-      <td>autogarage</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/garage-huber-basel</code></td>
-      <td><a href="garage-huber-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="autotechnik-luzern/index.html" target="_blank">Auto Technik Luzern</a></td>
-      <td>autogarage</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/autotechnik-luzern</code></td>
-      <td><a href="autotechnik-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="garage-marti-winterthur/index.html" target="_blank">Garage Marti Winterthur</a></td>
-      <td>autogarage</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/garage-marti-winterthur</code></td>
-      <td><a href="garage-marti-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="autoprofi-stgallen/index.html" target="_blank">AutoProfi St. Gallen</a></td>
-      <td>autogarage</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/autoprofi-stgallen</code></td>
-      <td><a href="autoprofi-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="fahrzeugservice-zug/index.html" target="_blank">Fahrzeug-Service Zug</a></td>
-      <td>autogarage</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/fahrzeugservice-zug</code></td>
-      <td><a href="fahrzeugservice-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="garage-fischer-frauenfeld/index.html" target="_blank">Garage Fischer Frauenfeld</a></td>
-      <td>autogarage</td>
-      <td>Frauenfeld</td>
-      <td><code>demo.dlm-digital.ch/garage-fischer-frauenfeld</code></td>
-      <td><a href="garage-fischer-frauenfeld/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="tiptop-garage-thun/index.html" target="_blank">TipTop Garage Thun</a></td>
-      <td>autogarage</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/tiptop-garage-thun</code></td>
-      <td><a href="tiptop-garage-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="autoplus-aarau/index.html" target="_blank">AutoPlus Aarau</a></td>
-      <td>autogarage</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/autoplus-aarau</code></td>
-      <td><a href="autoplus-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="coiffeur-claudia-zuerich/index.html" target="_blank">Coiffeur Claudia</a></td>
-      <td>coiffeur</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/coiffeur-claudia-zuerich</code></td>
-      <td><a href="coiffeur-claudia-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="hairstyle-bern/index.html" target="_blank">HairStyle Bern</a></td>
-      <td>coiffeur</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/hairstyle-bern</code></td>
-      <td><a href="hairstyle-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="salon-glamour-basel/index.html" target="_blank">Salon Glamour Basel</a></td>
-      <td>coiffeur</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/salon-glamour-basel</code></td>
-      <td><a href="salon-glamour-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="coiffure-elite-luzern/index.html" target="_blank">Coiffure Élite Luzern</a></td>
-      <td>coiffeur</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/coiffure-elite-luzern</code></td>
-      <td><a href="coiffure-elite-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="tophair-winterthur/index.html" target="_blank">TopHair Winterthur</a></td>
-      <td>coiffeur</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/tophair-winterthur</code></td>
-      <td><a href="tophair-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="salon-bella-stgallen/index.html" target="_blank">Salon Bella St. Gallen</a></td>
-      <td>coiffeur</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/salon-bella-stgallen</code></td>
-      <td><a href="salon-bella-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="haar-stil-zug/index.html" target="_blank">Haar & Stil Zug</a></td>
-      <td>coiffeur</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/haar-stil-zug</code></td>
-      <td><a href="haar-stil-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="coiffeur-marcel-olten/index.html" target="_blank">Coiffeur Marcel Olten</a></td>
-      <td>coiffeur</td>
-      <td>Olten</td>
-      <td><code>demo.dlm-digital.ch/coiffeur-marcel-olten</code></td>
-      <td><a href="coiffeur-marcel-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="friseurwelt-thun/index.html" target="_blank">FriseurWelt Thun</a></td>
-      <td>coiffeur</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/friseurwelt-thun</code></td>
-      <td><a href="friseurwelt-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="hairart-aarau/index.html" target="_blank">HairArt Aarau</a></td>
-      <td>coiffeur</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/hairart-aarau</code></td>
-      <td><a href="hairart-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zahnarzt-keller-zuerich/index.html" target="_blank">Zahnarzt Dr. Keller</a></td>
-      <td>zahnarzt</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/zahnarzt-keller-zuerich</code></td>
-      <td><a href="zahnarzt-keller-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zahnarztpraxis-bern/index.html" target="_blank">Zahnarztpraxis Bern</a></td>
-      <td>zahnarzt</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/zahnarztpraxis-bern</code></td>
-      <td><a href="zahnarztpraxis-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="dentalclinic-basel/index.html" target="_blank">Dental Clinic Basel</a></td>
-      <td>zahnarzt</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/dentalclinic-basel</code></td>
-      <td><a href="dentalclinic-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zahnarzt-luzern-zentrum/index.html" target="_blank">Zahnarzt Luzern Zentrum</a></td>
-      <td>zahnarzt</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/zahnarzt-luzern-zentrum</code></td>
-      <td><a href="zahnarzt-luzern-zentrum/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="dentalcare-winterthur/index.html" target="_blank">Dental Care Winterthur</a></td>
-      <td>zahnarzt</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/dentalcare-winterthur</code></td>
-      <td><a href="dentalcare-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zahnarztpraxis-stgallen/index.html" target="_blank">Zahnarztpraxis St. Gallen</a></td>
-      <td>zahnarzt</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/zahnarztpraxis-stgallen</code></td>
-      <td><a href="zahnarztpraxis-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="smilecenter-zug/index.html" target="_blank">Smile Center Zug</a></td>
-      <td>zahnarzt</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/smilecenter-zug</code></td>
-      <td><a href="smilecenter-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zahnklinik-olten/index.html" target="_blank">ZahnKlinik Olten</a></td>
-      <td>zahnarzt</td>
-      <td>Olten</td>
-      <td><code>demo.dlm-digital.ch/zahnklinik-olten</code></td>
-      <td><a href="zahnklinik-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zahnarzt-stoeckli-thun/index.html" target="_blank">Zahnarzt Dr. Stöckli Thun</a></td>
-      <td>zahnarzt</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/zahnarzt-stoeckli-thun</code></td>
-      <td><a href="zahnarzt-stoeckli-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="prodent-aarau/index.html" target="_blank">ProDent Aarau</a></td>
-      <td>zahnarzt</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/prodent-aarau</code></td>
-      <td><a href="prodent-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="restaurant-seeblick-zuerich/index.html" target="_blank">Restaurant Seeblick</a></td>
-      <td>restaurant</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/restaurant-seeblick-zuerich</code></td>
-      <td><a href="restaurant-seeblick-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="gasthof-baeren-bern/index.html" target="_blank">Gasthof zum Bären Bern</a></td>
-      <td>restaurant</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/gasthof-baeren-bern</code></td>
-      <td><a href="gasthof-baeren-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="restaurant-rhein-basel/index.html" target="_blank">Restaurant Rhein Basel</a></td>
-      <td>restaurant</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/restaurant-rhein-basel</code></td>
-      <td><a href="restaurant-rhein-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="wirtshaus-pilatus-luzern/index.html" target="_blank">Wirtshaus Pilatus Luzern</a></td>
-      <td>restaurant</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/wirtshaus-pilatus-luzern</code></td>
-      <td><a href="wirtshaus-pilatus-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="alte-post-winterthur/index.html" target="_blank">Restaurant Alte Post Winterthur</a></td>
-      <td>restaurant</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/alte-post-winterthur</code></td>
-      <td><a href="alte-post-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="bistro-klostergarten-stgallen/index.html" target="_blank">Bistro am Klostergarten</a></td>
-      <td>restaurant</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/bistro-klostergarten-stgallen</code></td>
-      <td><a href="bistro-klostergarten-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="restaurant-zugerberg/index.html" target="_blank">Restaurant Zugerberg</a></td>
-      <td>restaurant</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/restaurant-zugerberg</code></td>
-      <td><a href="restaurant-zugerberg/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="gasthaus-sonne-olten/index.html" target="_blank">Gasthaus Sonne Olten</a></td>
-      <td>restaurant</td>
-      <td>Olten</td>
-      <td><code>demo.dlm-digital.ch/gasthaus-sonne-olten</code></td>
-      <td><a href="gasthaus-sonne-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="berggasthaus-niesen-thun/index.html" target="_blank">Berggasthaus Niesen</a></td>
-      <td>restaurant</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/berggasthaus-niesen-thun</code></td>
-      <td><a href="berggasthaus-niesen-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="kronengarten-aarau/index.html" target="_blank">Restaurant Kronengarten</a></td>
-      <td>restaurant</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/kronengarten-aarau</code></td>
-      <td><a href="kronengarten-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="immobilien-zuerich-ag/index.html" target="_blank">Immobilien Zürich AG</a></td>
-      <td>immobilien</td>
-      <td>Zürich</td>
-      <td><code>demo.dlm-digital.ch/immobilien-zuerich-ag</code></td>
-      <td><a href="immobilien-zuerich-ag/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="wohnraum-bern/index.html" target="_blank">Wohnraum Bern GmbH</a></td>
-      <td>immobilien</td>
-      <td>Bern</td>
-      <td><code>demo.dlm-digital.ch/wohnraum-bern</code></td>
-      <td><a href="wohnraum-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="immobasel-ag/index.html" target="_blank">ImmoBasel AG</a></td>
-      <td>immobilien</td>
-      <td>Basel</td>
-      <td><code>demo.dlm-digital.ch/immobasel-ag</code></td>
-      <td><a href="immobasel-ag/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="luzerner-immobilien/index.html" target="_blank">Luzerner Immobilien</a></td>
-      <td>immobilien</td>
-      <td>Luzern</td>
-      <td><code>demo.dlm-digital.ch/luzerner-immobilien</code></td>
-      <td><a href="luzerner-immobilien/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="immocenter-winterthur/index.html" target="_blank">ImmoCenter Winterthur</a></td>
-      <td>immobilien</td>
-      <td>Winterthur</td>
-      <td><code>demo.dlm-digital.ch/immocenter-winterthur</code></td>
-      <td><a href="immocenter-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="ostschweizimmo-stgallen/index.html" target="_blank">OstschweizImmo AG</a></td>
-      <td>immobilien</td>
-      <td>St. Gallen</td>
-      <td><code>demo.dlm-digital.ch/ostschweizimmo-stgallen</code></td>
-      <td><a href="ostschweizimmo-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="zugimmo-zug/index.html" target="_blank">ZugImmo GmbH</a></td>
-      <td>immobilien</td>
-      <td>Zug</td>
-      <td><code>demo.dlm-digital.ch/zugimmo-zug</code></td>
-      <td><a href="zugimmo-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="solothurnerwohnen/index.html" target="_blank">SolothurnerWohnen</a></td>
-      <td>immobilien</td>
-      <td>Solothurn</td>
-      <td><code>demo.dlm-digital.ch/solothurnerwohnen</code></td>
-      <td><a href="solothurnerwohnen/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="hausvermittlung-thun/index.html" target="_blank">Hausvermittlung Thun</a></td>
-      <td>immobilien</td>
-      <td>Thun</td>
-      <td><code>demo.dlm-digital.ch/hausvermittlung-thun</code></td>
-      <td><a href="hausvermittlung-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr>
-    <tr>
-      <td><a href="immoaarau-ag/index.html" target="_blank">ImmoAarau AG</a></td>
-      <td>immobilien</td>
-      <td>Aarau</td>
-      <td><code>demo.dlm-digital.ch/immoaarau-ag</code></td>
-      <td><a href="immoaarau-ag/index.html" target="_blank" class="btn">Öffnen →</a></td>
-    </tr></tbody>
-  </table>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-brand">DLM <span>Digital</span></div>
+  <div class="nav-links">
+    <a href="#demos">Demos</a>
+    <a href="#how-it-works">Ablauf</a>
+    <a href="#pricing">Preise</a>
+    <a href="/crm">CRM</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    Jetzt anfragen →
+  </button>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">Schweizer Digitalagentur · 100+ KMU Kunden</div>
+
+  <h1>
+    Ihr Website-Upgrade.<br/>
+    <span class="gradient">In 48 Stunden.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Wir bauen konvertierende Webseiten, Rechner &amp; Konfiguratoren für Schweizer KMU —
+    mit messbarem ROI und Vollkasko-Service.
+  </p>
+
+  <div class="hero-ctas">
+    <button class="btn-primary" onclick="document.getElementById('demos').scrollIntoView({behavior:'smooth'})">
+      Demos ansehen
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Kostenlos testen →
+    </button>
+  </div>
+
+  <!-- CRM Dashboard Mockup -->
+  <div class="hero-mockup">
+    <div class="mockup-frame">
+      <div class="mockup-bar">
+        <div class="mockup-dot r"></div>
+        <div class="mockup-dot y"></div>
+        <div class="mockup-dot g"></div>
+      </div>
+      <div class="mockup-screen">
+        <div class="mockup-inner">
+          <div class="mockup-sidebar">
+            <div class="mock-logo">DLM CRM</div>
+            <div class="mock-nav">
+              <div class="mock-nav-item active">Dashboard</div>
+              <div class="mock-nav-item">Pipeline</div>
+              <div class="mock-nav-item">Leads</div>
+              <div class="mock-nav-item">Kalender</div>
+            </div>
+          </div>
+          <div class="mockup-content">
+            <div class="mock-header">
+              <span class="mock-title">Dashboard</span>
+              <div class="mock-btn">+ Opportunity</div>
+            </div>
+            <div class="mock-grid">
+              <div class="mock-card"><div class="mock-card-label">Aktive Opps</div><div class="mock-card-val">24</div></div>
+              <div class="mock-card"><div class="mock-card-label">Gewonnen</div><div class="mock-card-val" style="color:var(--success)">8</div></div>
+              <div class="mock-card"><div class="mock-card-label">Conversion</div><div class="mock-card-val">33%</div></div>
+              <div class="mock-card"><div class="mock-card-label">Forecast</div><div class="mock-card-val">42k</div></div>
+            </div>
+            <div class="mock-pipeline">
+              <div class="mock-pipe-col">
+                <div class="mock-pipe-label">Kontakt</div>
+                <div class="mock-pipe-card"><strong>Solar Meier AG</strong>Hans Meier<div class="val">CHF 4'800</div></div>
+                <div class="mock-pipe-card"><strong>Küchen Huber</strong>Anna Huber<div class="val">CHF 3'200</div></div>
+              </div>
+              <div class="mock-pipe-col">
+                <div class="mock-pipe-label">Demo</div>
+                <div class="mock-pipe-card"><strong>Sanitär Müller</strong>Beat Müller<div class="val">CHF 5'500</div></div>
+              </div>
+              <div class="mock-pipe-col">
+                <div class="mock-pipe-label">Angebot</div>
+                <div class="mock-pipe-card"><strong>Elektro Fischer</strong>T. Fischer<div class="val">CHF 7'200</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ──────────────────────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span>🇨🇭</span><span>Schweizer Hosting</span></div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item"><span>🔒</span><span>DSGVO-konform</span></div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item"><span>⚡</span><span>Ø 48h Lieferzeit</span></div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item"><span>🏆</span><span>100+ KMU Kunden</span></div>
+    <div class="trust-sep">·</div>
+    <div class="trust-item"><span>💬</span><span>Persönlicher Support</span></div>
+  </div>
+</div>
+
+<!-- ── DEMO GALLERY ───────────────────────────────────────────────────── -->
+<section id="demos">
+  <div class="container">
+    <div class="section-label">Demo Galerie</div>
+    <h2 class="section-title">100+ Demos für Schweizer KMU</h2>
+    <p class="section-sub">Sehen Sie, wie Ihre neue Webseite aussehen könnte. Jede Demo ist in 48h lieferbar — personalisiert mit Ihrem Branding.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-card" onclick="window.open('kuechen-meier-zuerich/index.html','_blank')">
+        <div class="gallery-thumb"><div class="gallery-thumb-mock">🍳</div></div>
+        <div class="gallery-overlay"><button class="btn-primary" style="font-size:13px;padding:9px 18px;">Demo öffnen →</button></div>
+        <div class="gallery-info"><div class="gallery-name">Küchen Meier AG</div><div class="gallery-type">Küche · Zürich</div></div>
+      </div>
+      <div class="gallery-card" onclick="window.open('solar-mueller-bern/index.html','_blank')">
+        <div class="gallery-thumb"><div class="gallery-thumb-mock">☀️</div></div>
+        <div class="gallery-overlay"><button class="btn-primary" style="font-size:13px;padding:9px 18px;">Demo öffnen →</button></div>
+        <div class="gallery-info"><div class="gallery-name">Solar Müller Bern</div><div class="gallery-type">Solar · Bern</div></div>
+      </div>
+      <div class="gallery-card" onclick="window.open('sanitaer-huber-luzern/index.html','_blank')">
+        <div class="gallery-thumb"><div class="gallery-thumb-mock">🔧</div></div>
+        <div class="gallery-overlay"><button class="btn-primary" style="font-size:13px;padding:9px 18px;">Demo öffnen →</button></div>
+        <div class="gallery-info"><div class="gallery-name">Sanitär Huber Luzern</div><div class="gallery-type">Sanitär · Luzern</div></div>
+      </div>
+      <div class="gallery-card" onclick="window.open('coiffeur-claudia-zuerich/index.html','_blank')">
+        <div class="gallery-thumb"><div class="gallery-thumb-mock">✂️</div></div>
+        <div class="gallery-overlay"><button class="btn-primary" style="font-size:13px;padding:9px 18px;">Demo öffnen →</button></div>
+        <div class="gallery-info"><div class="gallery-name">Coiffeur Claudia</div><div class="gallery-type">Coiffeur · Zürich</div></div>
+      </div>
+      <div class="gallery-card" onclick="window.open('crossfit-luzern/index.html','_blank')">
+        <div class="gallery-thumb"><div class="gallery-thumb-mock">💪</div></div>
+        <div class="gallery-overlay"><button class="btn-primary" style="font-size:13px;padding:9px 18px;">Demo öffnen →</button></div>
+        <div class="gallery-info"><div class="gallery-name">CrossFit Luzern</div><div class="gallery-type">Fitness · Luzern</div></div>
+      </div>
+      <div class="gallery-card" onclick="window.open('rechner/','_blank')">
+        <div class="gallery-thumb"><div class="gallery-thumb-mock">🧮</div></div>
+        <div class="gallery-overlay"><button class="btn-primary" style="font-size:13px;padding:9px 18px;">Demo öffnen →</button></div>
+        <div class="gallery-info"><div class="gallery-name">Solar-Rechner Tool</div><div class="gallery-type">Konfigurator · Alle Branchen</div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <button class="btn-ghost" onclick="window.open('demos.html','_blank')">
+        Alle 100 Demos ansehen →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ────────────────────────────────────────────────────── -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-label">So funktioniert's</div>
+    <h2 class="section-title">In 3 Schritten zur neuen Webseite</h2>
+    <p class="section-sub">Kein technisches Know-how nötig. Sie liefern Ihren Business-Kontext — wir liefern die Webseite.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">Schritt 01</span>
+        <div class="step-icon">📋</div>
+        <h3>Briefing (15 Min)</h3>
+        <p>Sie teilen uns Ihre Branche, Zielgruppe und gewünschte Funktionen mit. Per WhatsApp, Telefon oder Formular — wie es Ihnen passt.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">Schritt 02</span>
+        <div class="step-icon">⚡</div>
+        <h3>Lieferung (48h)</h3>
+        <p>Unser KI-gestütztes Team baut Ihre Webseite. Sie erhalten eine Demo-URL zur Freigabe. Feedback-Schlaufe inklusive.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">Schritt 03</span>
+        <div class="step-icon">🚀</div>
+        <h3>Live &amp; Conversions</h3>
+        <p>Nach Ihrer Freigabe gehen wir live. Google Ads Setup, SEO-Grundlagen und Analytics werden direkt eingerichtet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ────────────────────────────────────────────────────────── -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">Preise</div>
+    <h2 class="section-title">Transparent. Fair. ROI-orientiert.</h2>
+    <p class="section-sub">Keine versteckten Kosten. Kein Abo-Zwang. Nur Ergebnisse.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tag">Starter</div>
+        <div class="pricing-name">Website</div>
+        <div class="pricing-desc">Professionelle Webseite für KMU, die online gefunden werden wollen.</div>
+        <div class="pricing-amount">CHF <span></span>890</div>
+        <div class="pricing-period">einmalig, inkl. 1 Jahr Hosting</div>
+        <ul class="pricing-features">
+          <li>5 Seiten inkl. Kontaktformular</li>
+          <li>Mobile-optimiert &amp; schnell</li>
+          <li>SEO-Grundoptimierung</li>
+          <li>Google Analytics Setup</li>
+          <li>48h Lieferzeit</li>
+        </ul>
+        <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="width:100%;justify-content:center;">Anfragen</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-tag">Beliebt</div>
+        <div class="pricing-name">Website + Konfigurator</div>
+        <div class="pricing-desc">Webseite mit interaktivem Rechner oder Konfigurator für maximale Lead-Qualität.</div>
+        <div class="pricing-amount">CHF <span></span>1'890</div>
+        <div class="pricing-period">einmalig, inkl. 1 Jahr Hosting</div>
+        <ul class="pricing-features">
+          <li>Alles aus Starter</li>
+          <li>Interaktiver Preisrechner</li>
+          <li>Lead-Capture Formular</li>
+          <li>Google Ads Setup &amp; Tracking</li>
+          <li>CRM-Integration</li>
+          <li>Priority Support</li>
+        </ul>
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="width:100%;justify-content:center;">
+          Jetzt anfragen →
+        </button>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tag">Premium</div>
+        <div class="pricing-name">Full-Service Paket</div>
+        <div class="pricing-desc">Komplette Digitalstrategie inkl. monatlicher Betreuung und Kampagnen-Management.</div>
+        <div class="pricing-amount">CHF <span></span>490</div>
+        <div class="pricing-period">/ Monat (min. 6 Monate)</div>
+        <ul class="pricing-features">
+          <li>Website + Konfigurator</li>
+          <li>Google Ads Management</li>
+          <li>Monatliches Reporting</li>
+          <li>Content-Updates</li>
+          <li>Persönlicher Account Manager</li>
+          <li>Performance-Garantie</li>
+        </ul>
+        <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="width:100%;justify-content:center;">Anfragen</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <div class="section-label">Kundenstimmen</div>
+    <h2 class="section-title">Was unsere Kunden sagen</h2>
+    <p class="section-sub">Echte Ergebnisse von echten Schweizer KMU-Inhabern.</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">„In 48 Stunden hatten wir eine professionelle Webseite mit Solarrechner. Seither kommen 3x mehr qualifizierte Anfragen über Google rein. Absolut empfehlenswert."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">☀️</div>
+          <div>
+            <div class="testimonial-name">Thomas Meier</div>
+            <div class="testimonial-role">Inhaber, Solar Meier AG · Bern</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">„Der Konfigurator hat alles verändert. Kunden konfigurieren ihre Küche online vor und kommen vorbereitet zum Gespräch. Unser Umsatz ist um 40% gestiegen."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">🍳</div>
+          <div>
+            <div class="testimonial-name">Sandra Huber</div>
+            <div class="testimonial-role">Inhaberin, Küchen Huber · Zürich</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">„Endlich eine Agentur, die versteht, was KMU brauchen. Schnell, unkompliziert, faire Preise. Unsere neue Webseite macht uns Freude und bringt Kunden."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">🔧</div>
+          <div>
+            <div class="testimonial-name">Beat Müller</div>
+            <div class="testimonial-role">Inhaber, Sanitär Müller · Luzern</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ────────────────────────────────────────────────────── -->
+<section id="contact" style="padding:80px 24px;">
+  <div class="cta-banner">
+    <h2>Bereit für Ihren digitalen Auftritt?</h2>
+    <p>Kostenlose Demo Ihrer Webseite in 48 Stunden — kein Risiko, keine Vorauszahlung.</p>
+    <div class="ctas">
+      <a href="mailto:sales@dlm-digital.ch" class="btn-primary">
+        Demo anfordern →
+      </a>
+      <a href="https://wa.me/41791234567" class="btn-ghost" style="text-decoration:none;">
+        💬 WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">DLM <span>Digital</span></div>
+      <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Schweizer KMU Digitalagentur · Zürich</div>
+    </div>
+    <div class="footer-links">
+      <a href="#demos">Demos</a>
+      <a href="#how-it-works">Ablauf</a>
+      <a href="#pricing">Preise</a>
+      <a href="/crm">CRM Login</a>
+      <a href="mailto:sales@dlm-digital.ch">Kontakt</a>
+    </div>
+    <div class="footer-copy">© 2026 DLM Digital · Alle Rechte vorbehalten</div>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll offset for fixed nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.animation = 'fadeUp 0.5s ease-out both';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.step, .gallery-card, .pricing-card, .testimonial').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+</script>
+
 </body>
 </html>
