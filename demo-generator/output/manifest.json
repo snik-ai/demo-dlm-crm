@@ -1,7 +1,7 @@
 {
-  "generated": "2026-04-01T09:51:32.609Z",
-  "total": 100,
-  "success": 100,
+  "generated": "2026-04-01T22:01:47.989Z",
+  "total": 102,
+  "success": 102,
   "failed": 0,
   "demos": [
     {
@@ -703,6 +703,20 @@
       "branche": "immobilien",
       "ort": "Aarau",
       "url": "demo.dlm-digital.ch/immoaarau-ag"
+    },
+    {
+      "slug": "sanitaer-huber-luzern",
+      "firmenname": "Sanitär Huber GmbH",
+      "branche": "sanitaer",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/sanitaer-huber-luzern"
+    },
+    {
+      "slug": "solar-mueller-bern",
+      "firmenname": "Solar Müller Bern",
+      "branche": "solar",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/solar-mueller-bern"
     }
   ]
 }

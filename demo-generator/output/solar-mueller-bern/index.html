@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Müller Bern – Photovoltaik & Solaranlage Bern</title>
+  <meta name="description" content="Solar Müller Bern – Solarstrom für Bern. Professionelle Photovoltaik-Anlagen, Solarstrom und Stromspeicher in Bern. Jetzt Förderung sichern." />
+
+  <!-- Google Ads Conversion Tracking Scaffold -->
+  <!-- REPLACE_WITH_GTAG_ID: Replace G-XXXXXXXXXX with your actual Google Tag ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    // Conversion tracking — call trackConversion() on form submit
+    function trackConversion() {
+      gtag('event', 'conversion', {
+        'send_to': 'G-XXXXXXXXXX/CONVERSION_LABEL', // REPLACE_WITH_CONVERSION_LABEL
+        'event_category': 'Lead',
+        'event_label': 'Offerte-Anfrage'
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sun:        #F5A623;
+      --sun-deep:   #E07B00;
+      --sun-light:  #FEF3DC;
+      --green:      #1A3C2D;
+      --green-mid:  #2D5C42;
+      --green-light:#3E7A58;
+      --green-pale: #EBF4EF;
+      --charcoal:   #1C1C1E;
+      --text:       #1C2B22;
+      --text-muted: #5A6E60;
+      --border:     rgba(26,60,45,.12);
+      --white:      #FFFFFF;
+      --off-white:  #F8FAF9;
+      --radius-sm:  4px;
+      --radius:     8px;
+      --radius-lg:  16px;
+      --shadow:     0 2px 16px rgba(26,60,45,.08);
+      --shadow-lg:  0 8px 48px rgba(26,60,45,.14);
+      --font:       'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --max-w:      1160px;
+      --section-py: clamp(60px, 8vw, 100px);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── UTILITIES ──────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(20px, 5vw, 60px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .badge--sun {
+      background: var(--sun-light);
+      color: var(--sun-deep);
+    }
+    .badge--green {
+      background: var(--green-pale);
+      color: var(--green);
+    }
+
+    .section-label {
+      display: block;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sun-deep);
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      color: var(--green);
+    }
+
+    h3 {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--green);
+    }
+
+    p { color: var(--text-muted); }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn--primary {
+      background: var(--sun);
+      color: var(--green);
+      box-shadow: 0 4px 20px rgba(245,166,35,.35);
+    }
+    .btn--primary:hover {
+      background: var(--sun-deep);
+      color: var(--white);
+      box-shadow: 0 6px 28px rgba(224,123,0,.45);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.6);
+    }
+    .btn--outline:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--white);
+    }
+
+    .btn--green {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(26,60,45,.25);
+    }
+    .btn--green:hover {
+      background: var(--green-mid);
+      box-shadow: 0 6px 28px rgba(26,60,45,.35);
+    }
+
+    .btn--lg {
+      padding: 18px 36px;
+      font-size: 1.05rem;
+      border-radius: var(--radius-lg);
+    }
+
+    /* ── NAVIGATION ─────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: -.01em;
+    }
+
+    .nav-brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--sun) 0%, var(--sun-deep) 100%);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+      transition: .2s;
+    }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: clamp(560px, 80vh, 820px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, #0f2318 0%, #1A3C2D 45%, #24502f 100%);
+    }
+
+    /* Decorative sun burst */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -100px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245,166,35,.22) 0%, rgba(245,166,35,.04) 55%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Subtle grid lines */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding-block: 80px;
+    }
+
+    .hero-content {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,166,35,.15);
+      border: 1px solid rgba(245,166,35,.3);
+      color: var(--sun);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--sun);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      color: var(--white);
+      letter-spacing: -.02em;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero h1 .accent {
+      color: var(--sun);
+    }
+
+    .hero-lead {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: rgba(255,255,255,.72);
+      margin-bottom: 36px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.6);
+      font-weight: 500;
+    }
+    .hero-trust-item svg { color: var(--sun); flex-shrink: 0; }
+
+    /* Hero visual panel */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-img-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #2d6a4f 0%, #40916c 40%, #74c69d 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    /* Solar panel grid overlay on hero image */
+    .hero-img-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
+      background-size: 28px 20px;
+      border-radius: var(--radius-lg);
+    }
+
+    .hero-img-main::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,40,22,.65) 100%);
+      border-radius: var(--radius-lg);
+    }
+
+    .hero-img-caption {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+    }
+
+    .hero-img-caption-label {
+      font-size: .7rem;
+      color: rgba(255,255,255,.65);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .hero-img-caption-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sun);
+    }
+
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-stat-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .hero-stat-card-val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--sun);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-card-label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.55);
+      font-weight: 500;
+    }
+
+    /* ── TRUST BAR ──────────────────────────────────────── */
+    .trust-bar {
+      background: var(--green);
+      padding: 20px 0;
+    }
+
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.85);
+      font-size: .85rem;
+      font-weight: 500;
+    }
+
+    .trust-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(245,166,35,.2);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-badge-icon svg { color: var(--sun); }
+
+    .trust-badge-text strong {
+      display: block;
+      color: var(--white);
+      font-weight: 600;
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,.15);
+    }
+
+    /* ── STATS ──────────────────────────────────────────── */
+    .stats {
+      padding-block: var(--section-py);
+      background: var(--off-white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-item {
+      background: var(--white);
+      padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 36px);
+      text-align: center;
+    }
+
+    .stat-item-num {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-item-num span { color: var(--sun-deep); }
+
+    .stat-item-label {
+      font-size: .82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      max-width: 140px;
+      margin-inline: auto;
+      line-height: 1.4;
+    }
+
+    /* ── SERVICES ───────────────────────────────────────── */
+    .services {
+      padding-block: var(--section-py);
+      background: var(--white);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin-inline: auto;
+      margin-bottom: clamp(40px, 6vw, 64px);
+    }
+
+    .section-header p {
+      margin-top: 14px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 3.5vw, 40px);
+      background: var(--white);
+      transition: box-shadow .2s, border-color .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sun) 0%, var(--sun-deep) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s ease;
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(245,166,35,.3);
+      transform: translateY(-3px);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius);
+      background: var(--green-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: background .2s;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--sun-light);
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .service-card p {
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    .service-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--green-mid);
+      transition: gap .15s, color .15s;
+    }
+
+    .service-card-link:hover {
+      gap: 10px;
+      color: var(--sun-deep);
+    }
+
+    /* ── CALCULATOR TEASER ──────────────────────────────── */
+    .calculator {
+      padding-block: var(--section-py);
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calculator::before {
+      content: '';
+      position: absolute;
+      top: -300px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245,166,35,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .calculator::after {
+      content: '';
+      position: absolute;
+      bottom: -300px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .calculator-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .calculator-content .section-label { color: var(--sun); }
+
+    .calculator-content h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .calculator-content p {
+      color: rgba(255,255,255,.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .calc-widget {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      backdrop-filter: blur(6px);
+    }
+
+    .calc-widget h4 {
+      color: var(--white);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .calc-field {
+      margin-bottom: 20px;
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.65);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 8px;
+    }
+
+    .calc-field input,
+    .calc-field select {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .15s, background .15s;
+    }
+
+    .calc-field input::placeholder { color: rgba(255,255,255,.35); }
+
+    .calc-field input:focus,
+    .calc-field select:focus {
+      border-color: var(--sun);
+      background: rgba(255,255,255,.14);
+    }
+
+    .calc-field select option { background: var(--green); color: var(--white); }
+
+    .calc-result {
+      margin-top: 24px;
+      background: rgba(245,166,35,.15);
+      border: 1px solid rgba(245,166,35,.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .calc-result-label {
+      font-size: .8rem;
+      color: rgba(255,255,255,.65);
+      font-weight: 500;
+    }
+
+    .calc-result-val {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--sun);
+    }
+
+    .calc-disclaimer {
+      font-size: .72rem;
+      color: rgba(255,255,255,.4);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* ── GALLERY ────────────────────────────────────────── */
+    .gallery {
+      padding-block: var(--section-py);
+      background: var(--off-white);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+      margin-top: clamp(32px, 5vw, 52px);
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .gallery-item:hover .gallery-img { transform: scale(1.04); }
+
+    .gallery-img-1 {
+      background: linear-gradient(145deg, #1b5e3b 0%, #2d9a5f 35%, #7ecba3 70%, #b7dfc8 100%);
+      min-height: 100%;
+      aspect-ratio: auto;
+    }
+
+    .gallery-img-2 {
+      background: linear-gradient(145deg, #0d3320 0%, #1e6040 40%, #3a9e6b 80%, #6ec49a 100%);
+      aspect-ratio: 3/2;
+    }
+
+    .gallery-img-3 {
+      background: linear-gradient(145deg, #2c4a20 0%, #4a7c35 40%, #7db356 80%, #aad080 100%);
+      aspect-ratio: 3/2;
+    }
+
+    .gallery-img-4 {
+      background: linear-gradient(145deg, #1a3c2d 0%, #2d6a4f 35%, #52a875 70%, #90cc9e 100%);
+      aspect-ratio: 4/3;
+      grid-column: span 2;
+    }
+
+    /* Solar panel grid overlay */
+    .gallery-panel-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.12) 1px, transparent 1px);
+      background-size: 32px 22px;
+      pointer-events: none;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,35,18,.7) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay-text {
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    /* ── ABOUT / TRUST ──────────────────────────────────── */
+    .about {
+      padding-block: var(--section-py);
+      background: var(--white);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #1b4d35 0%, #2d7a52 45%, #5aab7e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-img-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.1) 1px, transparent 1px);
+      background-size: 30px 22px;
+    }
+
+    .about-cert-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .about-cert-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--sun-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .about-cert-title {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.2;
+    }
+
+    .about-cert-sub {
+      font-size: .7rem;
+      color: var(--text-muted);
+    }
+
+    .about-years-badge {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 80px;
+      height: 80px;
+      background: var(--sun);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(245,166,35,.4);
+    }
+
+    .about-years-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .about-years-label {
+      font-size: .55rem;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      line-height: 1.3;
+    }
+
+    .about-content { }
+
+    .about-content h2 {
+      margin-bottom: 16px;
+    }
+
+    .about-content > p {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .trust-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .trust-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .92rem;
+      color: var(--text-muted);
+    }
+
+    .trust-list-check {
+      width: 22px;
+      height: 22px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .trust-list-check svg { color: var(--green); }
+
+    /* ── TESTIMONIALS ───────────────────────────────────── */
+    .testimonials {
+      padding-block: var(--section-py);
+      background: var(--off-white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: clamp(32px, 5vw, 52px);
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .testimonial-star {
+      color: var(--sun);
+      font-size: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.7;
+      flex: 1;
+      font-style: italic;
+    }
+
+    .testimonial-text::before { content: '\201C'; }
+    .testimonial-text::after  { content: '\201D'; }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .avatar-a { background: linear-gradient(135deg, #2d9a5f, #1a3c2d); }
+    .avatar-b { background: linear-gradient(135deg, #F5A623, #E07B00); }
+    .avatar-c { background: linear-gradient(135deg, #3E7A58, #1A3C2D); }
+
+    .testimonial-name {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonial-location {
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-savings {
+      margin-left: auto;
+      background: var(--green-pale);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ── CTA BAND ───────────────────────────────────────── */
+    .cta-band {
+      padding-block: clamp(48px, 7vw, 80px);
+      background: var(--sun);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .cta-band-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-band-content h2 {
+      color: var(--green);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin-bottom: 8px;
+    }
+
+    .cta-band-content p {
+      color: var(--green-mid);
+      font-size: 1rem;
+    }
+
+    /* ── CONTACT ────────────────────────────────────────── */
+    .contact {
+      padding-block: var(--section-py);
+      background: var(--white);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .contact-info { }
+
+    .contact-info h2 { margin-bottom: 14px; }
+
+    .contact-info > p {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-detail-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--green-pale);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-icon svg { color: var(--green); }
+
+    .contact-detail-label {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .contact-detail-val {
+      font-size: .98rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Contact form */
+    .contact-form-wrap {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px);
+    }
+
+    .contact-form-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .contact-form-subtitle {
+      font-size: .87rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 7px;
+    }
+
+    .form-group label .req {
+      color: var(--sun-deep);
+      margin-left: 3px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      font-family: var(--font);
+      font-size: .95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-light);
+      box-shadow: 0 0 0 3px rgba(62,122,88,.12);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #aab8b0;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-submit-wrap {
+      margin-top: 8px;
+    }
+
+    .form-submit-wrap .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .form-privacy {
+      font-size: .74rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,.6);
+    }
+
+    .footer-main {
+      padding-block: clamp(48px, 7vw, 80px);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .footer-brand {}
+
+    .footer-brand-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-brand-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--sun) 0%, var(--sun-deep) 100%);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-brand-desc {
+      font-size: .87rem;
+      line-height: 1.7;
+      max-width: 260px;
+      margin-bottom: 20px;
+    }
+
+    .footer-contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-contact-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .85rem;
+    }
+
+    .footer-col-title {
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.35);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: .88rem;
+      color: rgba(255,255,255,.55);
+      transition: color .15s;
+    }
+
+    .footer-links a:hover { color: var(--sun); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-block: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom-text {
+      font-size: .8rem;
+    }
+
+    .footer-bottom-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-bottom-badge {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: .72rem;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-phone { display: none; }
+
+      .nav-toggle { display: flex; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding-block: 60px;
+        gap: 40px;
+      }
+
+      .hero-visual { order: -1; }
+
+      .hero-img-main { aspect-ratio: 16/9; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .calculator-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-cert-badge {
+        bottom: -12px;
+        right: 12px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .trust-bar-inner {
+        justify-content: center;
+      }
+
+      .trust-divider { display: none; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item:first-child { grid-row: span 1; }
+
+      .gallery-img-4 { grid-column: span 1; }
+
+      .cta-band-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats-row { grid-template-columns: 1fr 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ── SCROLL REVEAL (CSS only, no JS) ────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: revealUp .55s ease forwards;
+      }
+      .reveal-delay-1 { animation-delay: .1s; }
+      .reveal-delay-2 { animation-delay: .2s; }
+      .reveal-delay-3 { animation-delay: .3s; }
+      .reveal-delay-4 { animation-delay: .4s; }
+
+      @keyframes revealUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ══════════════════════════════════════ -->
+  <nav aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand" aria-label="Solar Müller Bern Startseite">
+        <div class="nav-brand-icon" aria-hidden="true">
+          <!-- Sun / solar icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="5"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+            <line x1="2" y1="12" x2="5" y2="12"/>
+            <line x1="19" y1="12" x2="22" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        Solar Müller Bern
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="tel:031 508 33 44" class="nav-phone" aria-label="Anrufen 031 508 33 44">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          031 508 33 44
+        </a>
+        <a href="#kontakt" class="btn btn--primary" style="padding:10px 20px;font-size:.88rem;">Offerte anfragen</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ════════════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge" role="status">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          Aktuelle Fördergelder verfügbar
+        </div>
+
+        <h1 id="hero-heading">
+          Saubere Energie.<br>
+          <span class="accent">Mehr Unabhängigkeit.</span>
+        </h1>
+
+        <p class="hero-lead">
+          Solarstrom für Bern — Massgeschneiderte Photovoltaik-Anlagen und Stromspeicher für Ihr Zuhause und Ihr Unternehmen in Bern.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn--primary btn--lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Jetzt Förderung sichern
+          </a>
+          <a href="#leistungen" class="btn btn--outline">
+            Unsere Leistungen
+          </a>
+        </div>
+
+        <div class="hero-trust" role="list">
+          <div class="hero-trust-item" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Schweizer Qualität
+          </div>
+          <div class="hero-trust-item" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Suisse Garantie zertifiziert
+          </div>
+          <div class="hero-trust-item" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Subventionen inkl. Beratung
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero right column: visual cards -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-img-main">
+          <div class="hero-img-caption">
+            <div class="hero-img-caption-label">Aktuelle Anlage — Bern</div>
+            <div class="hero-img-caption-val">12,4 kWp &nbsp;·&nbsp; 28 Module</div>
+          </div>
+        </div>
+
+        <div class="hero-stats-row">
+          <div class="hero-stat-card">
+            <div class="hero-stat-card-val">−65<span style="font-size:1rem">%</span></div>
+            <div class="hero-stat-card-label">Stromkosten-Reduktion</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-card-val">25<span style="font-size:1rem"> J.</span></div>
+            <div class="hero-stat-card-label">Leistungsgarantie</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-card-val">3–7<span style="font-size:1rem"> J.</span></div>
+            <div class="hero-stat-card-label">Amortisationszeit</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-card-val">0<span style="font-size:.9rem"> CHF</span></div>
+            <div class="hero-stat-card-label">Offerte-Kosten</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TRUST BAR ═══════════════════════════════════════ -->
+  <div class="trust-bar" role="complementary" aria-label="Zertifizierungen und Mitgliedschaften">
+    <div class="container trust-bar-inner">
+      <div class="trust-badge">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="trust-badge-text">
+          <strong>Suisse Energie zertifiziert</strong>
+          Anerkannter Installateur
+        </div>
+      </div>
+
+      <div class="trust-divider" aria-hidden="true"></div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="trust-badge-text">
+          <strong>Swissolar Mitglied</strong>
+          Branchenverband PV Schweiz
+        </div>
+      </div>
+
+      <div class="trust-divider" aria-hidden="true"></div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="trust-badge-text">
+          <strong>Fördergelder Beratung</strong>
+          KEV / Einmalvergütung inkl.
+        </div>
+      </div>
+
+      <div class="trust-divider" aria-hidden="true"></div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="trust-badge-text">
+          <strong>Schnelle Montage</strong>
+          Terminzusage in 48 Stunden
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ KEY STATS ═══════════════════════════════════════ -->
+  <section class="stats" aria-labelledby="stats-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Zahlen, die überzeugen</span>
+        <h2 id="stats-heading">Ihr Beitrag zur Energiewende</h2>
+        <p>Photovoltaik-Anlagen sind die rentabelste Investition, die Sie heute für Ihre Energiezukunft tätigen können.</p>
+      </div>
+
+      <div class="stats-grid" role="list">
+        <div class="stat-item reveal" role="listitem">
+          <div class="stat-item-num">1&#8239;200<span>+</span></div>
+          <div class="stat-item-label">installierte Anlagen in der Schweiz</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1" role="listitem">
+          <div class="stat-item-num">4,8<span> Mio.</span></div>
+          <div class="stat-item-label">kWh sauberer Strom pro Jahr erzeugt</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2" role="listitem">
+          <div class="stat-item-num">2&#8239;400<span> t</span></div>
+          <div class="stat-item-label">CO₂ jährlich eingespart</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3" role="listitem">
+          <div class="stat-item-num">4,9<span>/5</span></div>
+          <div class="stat-item-label">Google-Bewertung unserer Kunden</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICES ════════════════════════════════════════ -->
+  <section class="services" id="leistungen" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Unsere Leistungen</span>
+        <h2 id="services-heading">Alles aus einer Hand</h2>
+        <p>Von der ersten Beratung bis zur Wartung — wir begleiten Sie durch jeden Schritt Ihres Solarprojekts.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Planung -->
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2D5C42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h3>Planung &amp; Beratung</h3>
+          <p>Individuelle Analyse Ihrer Dachfläche, des Stromverbrauchs und des Einsparpotenzials. Wir berechnen die optimale Anlagengrösse und prüfen alle verfügbaren Fördergelder und Subventionen für Sie.</p>
+          <a href="#kontakt" class="service-card-link" aria-label="Zur Beratung für Planung und Beratung">
+            Beratung anfragen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Installation -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2D5C42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Photovoltaik-Installation</h3>
+          <p>Professionelle Montage Ihrer Solaranlage durch erfahrene und zertifizierte Techniker. Wir arbeiten mit Premiumprodukten führender Hersteller und garantieren eine saubere, witterungsgeschützte Installation.</p>
+          <a href="#kontakt" class="service-card-link" aria-label="Mehr erfahren über Photovoltaik-Installation">
+            Offerte einholen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Stromspeicher -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2D5C42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </div>
+          <h3>Stromspeicher</h3>
+          <p>Mit einem modernen Batteriespeicher nutzen Sie Ihren selbst erzeugten Solarstrom auch nachts und bei schlechtem Wetter. Maximieren Sie Ihren Eigenverbrauch auf bis zu 80 % und machen Sie sich unabhängig vom Stromnetz.</p>
+          <a href="#kontakt" class="service-card-link" aria-label="Mehr erfahren über Stromspeicher">
+            Speicher anfragen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Wartung -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2D5C42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Wartung &amp; Service</h3>
+          <p>Regelmässige Inspektionen und professionelle Reinigung erhalten die Leistungsfähigkeit Ihrer Anlage auf höchstem Niveau. Unser Monitoring-Service überwacht Ihre Anlage rund um die Uhr — für maximalen Ertrag.</p>
+          <a href="#kontakt" class="service-card-link" aria-label="Mehr erfahren über Wartung und Service">
+            Servicevertrag anfragen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SAVINGS CALCULATOR TEASER ═══════════════════════ -->
+  <section class="calculator" aria-labelledby="calc-heading">
+    <div class="container calculator-inner">
+      <div class="calculator-content">
+        <span class="section-label">Einsparpotenzial</span>
+        <h2 id="calc-heading">Wie viel könnten Sie sparen?</h2>
+        <p>
+          Eine Photovoltaik-Anlage amortisiert sich in der Schweiz typischerweise innerhalb von 3 bis 7 Jahren — danach produzieren Sie für 20+ Jahre praktisch kostenlos Strom. Berechnen Sie Ihr persönliches Einsparpotenzial.
+        </p>
+        <a href="#kontakt" class="btn btn--primary btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Kostenlose Berechnung anfragen
+        </a>
+      </div>
+
+      <div class="calc-widget" role="form" aria-label="Einsparpotenzial-Rechner">
+        <h4>Schnellrechner — Ihre Ersparnis</h4>
+
+        <div class="calc-field">
+          <label for="dach-flaeche">Verfügbare Dachfläche (m²)</label>
+          <input type="number" id="dach-flaeche" name="dach-flaeche" placeholder="z.B. 40" min="10" max="500" />
+        </div>
+
+        <div class="calc-field">
+          <label for="jahresverbrauch">Jährlicher Stromverbrauch (kWh)</label>
+          <input type="number" id="jahresverbrauch" name="jahresverbrauch" placeholder="z.B. 5000" min="500" max="100000" />
+        </div>
+
+        <div class="calc-field">
+          <label for="dach-ausrichtung">Dachausrichtung</label>
+          <select id="dach-ausrichtung" name="dach-ausrichtung">
+            <option value="" disabled selected>Bitte wählen…</option>
+            <option value="sued">Süd (optimal)</option>
+            <option value="sued-ost">Süd-Ost</option>
+            <option value="sued-west">Süd-West</option>
+            <option value="ost-west">Ost-West</option>
+          </select>
+        </div>
+
+        <div class="calc-result" aria-live="polite">
+          <div>
+            <div class="calc-result-label">Geschätzte jährl. Ersparnis</div>
+          </div>
+          <div class="calc-result-val">Bis CHF 2&#8239;400.–</div>
+        </div>
+
+        <p class="calc-disclaimer">* Richtwert auf Basis Durchschnittswerte Schweiz. Exakte Berechnung kostenlos auf Anfrage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GALLERY ══════════════════════════════════════════ -->
+  <section class="gallery" id="referenzen" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Unsere Referenzen</span>
+        <h2 id="gallery-heading">Realisierte Projekte in Bern</h2>
+        <p>Jedes Projekt ist einzigartig. Unsere Anlagen sind massgeschneidert — von der Einfamilienhaus-Anlage bis zur Industrie-PV-Lösung.</p>
+      </div>
+
+      <div class="gallery-grid" aria-label="Fotogalerie realisierter Solaranlagen">
+        <div class="gallery-item">
+          <div class="gallery-img gallery-img-1" role="img" aria-label="Solaranlage Einfamilienhaus, Schrägdach Süd — 8 kWp"></div>
+          <div class="gallery-panel-overlay" aria-hidden="true"></div>
+          <div class="gallery-overlay" aria-hidden="true">
+            <div class="gallery-overlay-text">Einfamilienhaus — 8 kWp Schrägdach</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img gallery-img-2" role="img" aria-label="Solaranlage Mehrfamilienhaus — 24 kWp"></div>
+          <div class="gallery-panel-overlay" aria-hidden="true"></div>
+          <div class="gallery-overlay" aria-hidden="true">
+            <div class="gallery-overlay-text">Mehrfamilienhaus — 24 kWp Flachdach</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img gallery-img-3" role="img" aria-label="Solaranlage Gewerbegebäude — 60 kWp"></div>
+          <div class="gallery-panel-overlay" aria-hidden="true"></div>
+          <div class="gallery-overlay" aria-hidden="true">
+            <div class="gallery-overlay-text">Gewerbebau — 60 kWp + Speicher</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-img gallery-img-4" role="img" aria-label="Industriehalle mit Photovoltaik-Grossanlage — 200 kWp"></div>
+          <div class="gallery-panel-overlay" aria-hidden="true"></div>
+          <div class="gallery-overlay" aria-hidden="true">
+            <div class="gallery-overlay-text">Industriehalle — 200 kWp Grossanlage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT / TRUST ════════════════════════════════════ -->
+  <section class="about" id="ueber-uns" aria-labelledby="about-heading">
+    <div class="container about-inner">
+      <div class="about-visual" aria-hidden="true">
+        <div class="about-img-main"></div>
+        <div class="about-years-badge" aria-label="15 Jahre Erfahrung">
+          <span class="about-years-num">15</span>
+          <span class="about-years-label">Jahre<br>Erfahrung</span>
+        </div>
+        <div class="about-cert-badge">
+          <div class="about-cert-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E07B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="about-cert-title">ISO 9001:2015<br>zertifiziert</div>
+            <div class="about-cert-sub">Qualitätsmanagement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <span class="section-label">Über uns</span>
+        <h2 id="about-heading">Schweizer Solarenergie — mit Überzeugung</h2>
+        <p>
+          Solar Müller Bern ist Ihr kompetenter Ansprechpartner für Photovoltaik und Solarenergie in Bern und der ganzen Region. Wir verbinden technisches Fachwissen mit lokaler Verwurzelung — für Lösungen, die wirklich funktionieren.
+        </p>
+
+        <ul class="trust-list" role="list">
+          <li class="trust-list-item" role="listitem">
+            <div class="trust-list-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span><strong>Zertifizierter Installateur</strong> — anerkannt durch Swissolar und das Bundesamt für Energie SFOE</span>
+          </li>
+          <li class="trust-list-item" role="listitem">
+            <div class="trust-list-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span><strong>Vollständige Förderungsabwicklung</strong> — Einmalvergütung (EIV) und KEV werden durch uns eingereicht</span>
+          </li>
+          <li class="trust-list-item" role="listitem">
+            <div class="trust-list-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span><strong>25 Jahre Produktgarantie</strong> auf Module — 10 Jahre Arbeitsgarantie auf die Montage</span>
+          </li>
+          <li class="trust-list-item" role="listitem">
+            <div class="trust-list-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span><strong>Lokales Team</strong> — kurze Wege, persönliche Betreuung, Schweizer Arbeitsstandards</span>
+          </li>
+          <li class="trust-list-item" role="listitem">
+            <div class="trust-list-check" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span><strong>Transparente Offerte</strong> — keine versteckten Kosten, fixe Terminzusagen</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ═════════════════════════════════════ -->
+  <section class="testimonials" aria-labelledby="testimonials-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Kundenstimmen</span>
+        <h2 id="testimonials-heading">Das sagen unsere Kunden</h2>
+        <p>Über 1&#8239;200 realisierte Projekte — und ebenso viele zufriedene Kundinnen und Kunden.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="testimonial-card reveal">
+          <div class="testimonial-stars" aria-label="5 von 5 Sternen">
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+          </div>
+          <p class="testimonial-text">Die Beratung war top — kein Druck, keine versteckten Kosten. Die Anlage läuft seit zwei Jahren einwandfrei. Unser Stromverbrauch aus dem Netz ist um fast 70 % gesunken. Absolut empfehlenswert.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar avatar-a" aria-hidden="true">MH</div>
+            <div>
+              <div class="testimonial-name">Markus H.</div>
+              <div class="testimonial-location">Einfamilienhaus, Zürich</div>
+            </div>
+            <div class="testimonial-savings">−CHF 1'980/J.</div>
+          </div>
+        </article>
+
+        <article class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars" aria-label="5 von 5 Sternen">
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+          </div>
+          <p class="testimonial-text">Kompetentes Team, saubere Arbeit, pünktliche Lieferung. Die Förderungsabwicklung hat Solar Müller Bern komplett für uns übernommen — das war Gold wert. Wir sind begeistert.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar avatar-b" aria-hidden="true">SR</div>
+            <div>
+              <div class="testimonial-name">Sandra R.</div>
+              <div class="testimonial-location">Mehrfamilienhaus, Bern</div>
+            </div>
+            <div class="testimonial-savings">−CHF 4'200/J.</div>
+          </div>
+        </article>
+
+        <article class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars" aria-label="5 von 5 Sternen">
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+            <span class="testimonial-star" aria-hidden="true">★</span>
+          </div>
+          <p class="testimonial-text">Als Gewerbe-Betrieb war die Grossanlage mit 60 kWp ein grosser Schritt. Solar Müller Bern hat uns von Anfang an professionell begleitet — Planung, Genehmigung, Montage und Netzanschluss. Alles aus einer Hand, ohne Stress.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar avatar-c" aria-hidden="true">TK</div>
+            <div>
+              <div class="testimonial-name">Thomas K.</div>
+              <div class="testimonial-location">Gewerbe GmbH, Basel</div>
+            </div>
+            <div class="testimonial-savings">−CHF 18'000/J.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA BAND ══════════════════════════════════════════ -->
+  <section class="cta-band" aria-labelledby="cta-band-heading">
+    <div class="container cta-band-inner">
+      <div class="cta-band-content">
+        <h2 id="cta-band-heading">Fördergelder sind begrenzt — handeln Sie jetzt.</h2>
+        <p>Die Einmalvergütung (EIV) gilt nur für Anlagen, die noch in diesem Jahr angemeldet werden.</p>
+      </div>
+      <div>
+        <a href="#kontakt" class="btn btn--green btn--lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          Jetzt unverbindlich anfragen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══════════════════════════════════════════ -->
+  <section class="contact" id="kontakt" aria-labelledby="contact-heading">
+    <div class="container contact-inner">
+      <div class="contact-info">
+        <span class="section-label">Kontakt</span>
+        <h2 id="contact-heading">Unverbindliche Offerte anfordern</h2>
+        <p>
+          Sprechen Sie mit einem unserer Solarexperten. Wir analysieren Ihre Situation kostenlos und erstellen Ihnen ein massgeschneidertes Angebot — inklusive Förderungspotenzial.
+        </p>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-detail-label">Telefon</div>
+              <a href="tel:031 508 33 44" class="contact-detail-val">031 508 33 44</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-detail-label">E-Mail</div>
+              <a href="mailto:info@solar-mueller-bern.ch" class="contact-detail-val">info@solar-mueller-bern.ch</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-detail-label">Adresse</div>
+              <div class="contact-detail-val">Effingerstrasse 22, Bern</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <div class="contact-form-wrap">
+        <div class="contact-form-title">Kostenlose Offerte anfordern</div>
+        <p class="contact-form-subtitle">Antwort innerhalb von 24 Stunden — garantiert.</p>
+
+        <form
+          action="#"
+          method="post"
+          id="offerte-form"
+          novalidate
+          onsubmit="event.preventDefault(); trackConversion(); this.querySelector('.form-submit-btn').textContent = 'Anfrage gesendet ✓'; this.querySelector('.form-submit-btn').style.background = '#2D5C42';"
+          aria-label="Offerte-Anfrage Formular"
+        >
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vorname">Vorname<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="vorname" name="vorname" placeholder="Ihr Vorname" required autocomplete="given-name" />
+            </div>
+            <div class="form-group">
+              <label for="nachname">Nachname<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="nachname" name="nachname" placeholder="Ihr Nachname" required autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="form-telefon">Telefon<span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="form-telefon" name="telefon" placeholder="+41 79 000 00 00" required autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="form-email">E-Mail</label>
+              <input type="email" id="form-email" name="email" placeholder="ihre@email.ch" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="objekt-typ">Objekttyp<span class="req" aria-hidden="true">*</span></label>
+              <select id="objekt-typ" name="objekt-typ" required>
+                <option value="" disabled selected>Bitte wählen…</option>
+                <option value="efh">Einfamilienhaus</option>
+                <option value="mfh">Mehrfamilienhaus</option>
+                <option value="gewerbe">Gewerbe / Industrie</option>
+                <option value="landwirtschaft">Landwirtschaft</option>
+                <option value="andere">Andere</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="plz-ort">PLZ / Ort<span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="plz-ort" name="plz-ort" placeholder="8001 Zürich" required autocomplete="postal-code" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="interesse">Hauptinteresse</label>
+            <select id="interesse" name="interesse">
+              <option value="" disabled selected>Bitte wählen…</option>
+              <option value="pv-anlage">Photovoltaik-Anlage (neu)</option>
+              <option value="pv-speicher">PV-Anlage + Stromspeicher</option>
+              <option value="speicher">Nur Stromspeicher (Nachrüstung)</option>
+              <option value="wartung">Wartung / Inspektion bestehende Anlage</option>
+              <option value="beratung">Allgemeine Beratung</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nachricht">Nachricht</label>
+            <textarea id="nachricht" name="nachricht" placeholder="Beschreiben Sie Ihr Projekt — Dachfläche, Verbrauch, besondere Anforderungen…"></textarea>
+          </div>
+
+          <div class="form-submit-wrap">
+            <button type="submit" class="btn btn--primary btn--lg form-submit-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Unverbindliche Offerte anfordern
+            </button>
+          </div>
+
+          <p class="form-privacy">
+            Mit dem Absenden akzeptieren Sie unsere Datenschutzbestimmungen. Keine Weitergabe an Dritte.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer aria-label="Seitenfu&szlig;">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-brand-name">
+            <div class="footer-brand-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <line x1="12" y1="2" x2="12" y2="5"/>
+                <line x1="12" y1="19" x2="12" y2="22"/>
+                <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+                <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+                <line x1="2" y1="12" x2="5" y2="12"/>
+                <line x1="19" y1="12" x2="22" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+                <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+              </svg>
+            </div>
+            Solar Müller Bern
+          </div>
+          <p class="footer-brand-desc">
+            Ihr zuverlässiger Partner für Photovoltaik, Solaranlagen und Stromspeicher in Bern und der ganzen Region.
+          </p>
+          <div class="footer-contact-info">
+            <div class="footer-contact-line">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+              <a href="tel:031 508 33 44" style="color:inherit;">031 508 33 44</a>
+            </div>
+            <div class="footer-contact-line">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:info@solar-mueller-bern.ch" style="color:inherit;">info@solar-mueller-bern.ch</a>
+            </div>
+            <div class="footer-contact-line">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Effingerstrasse 22, Bern
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Leistungen</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#leistungen">Photovoltaik-Anlage</a></li>
+            <li><a href="#leistungen">Stromspeicher</a></li>
+            <li><a href="#leistungen">Planung &amp; Beratung</a></li>
+            <li><a href="#leistungen">Wartung &amp; Service</a></li>
+            <li><a href="#leistungen">Förderungsberatung</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Unternehmen</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#referenzen">Referenzen</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#">Karriere</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Rechtliches</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#">Datenschutz</a></li>
+            <li><a href="#">Impressum</a></li>
+            <li><a href="#">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-text">
+          &copy; <span id="footer-year">2026</span> Solar Müller Bern — Alle Rechte vorbehalten. Bern, Schweiz.
+        </div>
+        <div class="footer-bottom-badges">
+          <div class="footer-bottom-badge">Swissolar</div>
+          <div class="footer-bottom-badge">ISO 9001</div>
+          <div class="footer-bottom-badge">Suisse Energie</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Update footer year dynamically
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Simple savings calculator
+    (function() {
+      var flaecheEl = document.getElementById('dach-flaeche');
+      var verbrauchEl = document.getElementById('jahresverbrauch');
+      var ausrichtungEl = document.getElementById('dach-ausrichtung');
+      var resultEl = document.querySelector('.calc-result-val');
+
+      function calculate() {
+        var flaeche = parseFloat(flaecheEl.value) || 40;
+        var verbrauch = parseFloat(verbrauchEl.value) || 5000;
+        var ausrichtungFaktor = { 'sued': 1.0, 'sued-ost': 0.92, 'sued-west': 0.9, 'ost-west': 0.78 };
+        var faktor = ausrichtungFaktor[ausrichtungEl.value] || 0.95;
+
+        // Approx Swiss solar yield: ~1050 kWh/kWp, ~6 m² per kWp
+        var kwp = flaeche / 6;
+        var jahresertrag = kwp * 1050 * faktor;
+        // Eigenverbrauchsquote ~60%, Strompreis ~0.28 CHF/kWh
+        var eigenverbrauch = Math.min(jahresertrag * 0.6, verbrauch);
+        var einspeisung = jahresertrag - eigenverbrauch;
+        var ersparnis = (eigenverbrauch * 0.28) + (einspeisung * 0.08); // Einspeisevergütung ~0.08
+
+        if (ersparnis > 0) {
+          resultEl.textContent = 'Bis CHF ' + Math.round(ersparnis / 100) * 100 + '.–';
+        }
+      }
+
+      [flaecheEl, verbrauchEl, ausrichtungEl].forEach(function(el) {
+        el.addEventListener('input', calculate);
+        el.addEventListener('change', calculate);
+      });
+    })();
+
+    // Minimal mobile nav toggle (no external JS)
+    (function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      var phone = document.querySelector('.nav-phone');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', function() {
+        var open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+
+        if (!open) {
+          links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(255,255,255,.98);padding:16px 5vw 20px;gap:16px;border-bottom:1px solid rgba(26,60,45,.1);box-shadow:0 8px 32px rgba(0,0,0,.08);';
+          links.setAttribute('aria-hidden', 'false');
+        } else {
+          links.style.cssText = 'display:none;';
+          links.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Close on link click
+      links.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          toggle.setAttribute('aria-expanded', 'false');
+          links.style.cssText = 'display:none;';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
