@@ -2,7 +2,9 @@
 DLM Digital — Lead Scraper & Website Scorer
 Usage: python main.py [--max-leads 500] [--min-score 70] [--workers 5]
 
-Requires: GOOGLE_PLACES_API_KEY in environment or .env file
+No API key required — uses Playwright to scrape Google Maps directly.
+Setup: pip install playwright && playwright install chromium
+
 Output: leads_scored.csv (all), leads_qualified.csv (score >= min-score), leads_top100.csv
 """
 
@@ -83,12 +85,6 @@ def main():
                         help="Output directory (default: ./output)")
     args = parser.parse_args()
 
-    api_key = os.environ.get("GOOGLE_PLACES_API_KEY")
-    if not api_key:
-        raise SystemExit(
-            "ERROR: GOOGLE_PLACES_API_KEY not set. Copy .env.example to .env and add your key."
-        )
-
     output_dir = Path(args.output_dir)
     output_dir.mkdir(exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -96,7 +92,7 @@ def main():
     # --- Step 1: Scrape ---
     logger.info(f"Starting scrape (max {args.max_leads} leads with website)...")
     raw_leads = []
-    for lead in scrape_leads(api_key):
+    for lead in scrape_leads():
         raw_leads.append(lead)
         if len(raw_leads) % 50 == 0:
             logger.info(f"  Scraped {len(raw_leads)} leads so far...")
