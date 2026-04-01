@@ -1,7 +1,11 @@
 require('dotenv').config();
-// Allow disabling TLS verification for local dev (Docker on macOS)
+const crypto = require('crypto');
+// Allow disabling TLS verification for local dev (Docker on macOS SSL proxy)
 if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === '0') {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+  try {
+    const { setGlobalDispatcher, Agent } = require('undici');
+    setGlobalDispatcher(new Agent({ connect: { rejectUnauthorized: false } }));
+  } catch (_) {}
 }
 const express = require('express');
 const cors = require('cors');
@@ -330,6 +334,7 @@ app.patch('/api/opportunities/:id', (req, res) => {
 });
 
 app.delete('/api/opportunities/:id', (req, res) => {
+  db.prepare('DELETE FROM email_logs WHERE opportunity_id = ?').run(req.params.id);
   db.prepare('DELETE FROM appointments WHERE opportunity_id = ?').run(req.params.id);
   db.prepare('DELETE FROM notes WHERE opportunity_id = ?').run(req.params.id);
   db.prepare('DELETE FROM opportunities WHERE id = ?').run(req.params.id);
@@ -540,6 +545,323 @@ app.patch('/api/leads/:id', (req, res) => {
 app.delete('/api/leads/:id', (req, res) => {
   db.prepare('DELETE FROM leads WHERE id = ?').run(req.params.id);
   res.json({ ok: true });
+});
+
+// ── Campaigns ─────────────────────────────────────────────────────────────────
+
+const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+
+app.get('/api/campaigns', (req, res) => {
+  const rows = db.prepare(`
+    SELECT c.*,
+      (SELECT COUNT(*) FROM campaign_contacts cc WHERE cc.campaign_id = c.id) AS total_contacts,
+      (SELECT COUNT(*) FROM campaign_contacts cc WHERE cc.campaign_id = c.id AND cc.status = 'pending') AS pending_contacts
+    FROM campaigns c ORDER BY c.created_at DESC
+  `).all();
+  res.json(rows);
+});
+
+app.get('/api/campaigns/:id', (req, res) => {
+  const c = db.prepare('SELECT * FROM campaigns WHERE id = ?').get(req.params.id);
+  if (!c) return res.status(404).json({ error: 'Not found' });
+  const stats = db.prepare(`
+    SELECT
+      COUNT(*) AS total,
+      SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) AS pending,
+      SUM(CASE WHEN status = 'sent' THEN 1 ELSE 0 END) AS sent,
+      SUM(CASE WHEN status = 'opened' THEN 1 ELSE 0 END) AS opened,
+      SUM(CASE WHEN status = 'clicked' THEN 1 ELSE 0 END) AS clicked,
+      SUM(CASE WHEN status = 'bounced' THEN 1 ELSE 0 END) AS bounced,
+      SUM(CASE WHEN status = 'unsubscribed' THEN 1 ELSE 0 END) AS unsubscribed,
+      SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failed
+    FROM campaign_contacts WHERE campaign_id = ?
+  `).get(req.params.id);
+  res.json({ ...c, stats });
+});
+
+app.post('/api/campaigns', (req, res) => {
+  const { name, subject, from_name, from_email, reply_to, body_html, body_text, daily_limit, scheduled_at } = req.body;
+  if (!name || !subject) return res.status(400).json({ error: 'name and subject required' });
+  const id = uuidv4();
+  const now = new Date().toISOString();
+  db.prepare(`INSERT INTO campaigns (id, name, subject, from_name, from_email, reply_to, body_html, body_text, daily_limit, scheduled_at, created_at, updated_at)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`)
+    .run(id, name, subject,
+         from_name || 'DLM Digital',
+         from_email || 'hello@dlm-digital.ch',
+         reply_to || null, body_html || '', body_text || null,
+         daily_limit || 250, scheduled_at || null, now, now);
+  res.status(201).json({ id });
+});
+
+app.patch('/api/campaigns/:id', (req, res) => {
+  const c = db.prepare('SELECT id, status FROM campaigns WHERE id = ?').get(req.params.id);
+  if (!c) return res.status(404).json({ error: 'Not found' });
+  const fields = ['name', 'subject', 'from_name', 'from_email', 'reply_to', 'body_html', 'body_text', 'daily_limit', 'scheduled_at', 'status'];
+  const updates = []; const vals = [];
+  for (const f of fields) {
+    if (req.body[f] !== undefined) { updates.push(`${f} = ?`); vals.push(req.body[f]); }
+  }
+  if (!updates.length) return res.status(400).json({ error: 'No fields to update' });
+  updates.push('updated_at = ?'); vals.push(new Date().toISOString()); vals.push(req.params.id);
+  db.prepare(`UPDATE campaigns SET ${updates.join(', ')} WHERE id = ?`).run(...vals);
+  res.json({ ok: true });
+});
+
+// ── CSV Import ────────────────────────────────────────────────────────────────
+
+app.post('/api/campaigns/:id/import-csv', express.text({ type: 'text/csv', limit: '10mb' }), (req, res) => {
+  const c = db.prepare('SELECT id FROM campaigns WHERE id = ?').get(req.params.id);
+  if (!c) return res.status(404).json({ error: 'Campaign not found' });
+
+  const csvText = req.body;
+  if (!csvText) return res.status(400).json({ error: 'CSV body required (Content-Type: text/csv)' });
+
+  const lines = csvText.split(/\r?\n/).filter(Boolean);
+  if (lines.length < 2) return res.status(400).json({ error: 'CSV must have header + at least one row' });
+
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/[^a-z_]/g, '_'));
+  const emailIdx     = headers.findIndex(h => h.includes('email'));
+  const firstNameIdx = headers.findIndex(h => h.includes('first') || h === 'vorname');
+  const lastNameIdx  = headers.findIndex(h => h.includes('last') || h === 'nachname');
+  const companyIdx   = headers.findIndex(h => h.includes('company') || h.includes('firma'));
+  const phoneIdx     = headers.findIndex(h => h.includes('phone') || h.includes('tel'));
+
+  if (emailIdx === -1) return res.status(400).json({ error: 'CSV must contain an email column' });
+
+  const parseRow = (line) => {
+    const parts = []; let cur = ''; let inQ = false;
+    for (const ch of line) {
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { parts.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    parts.push(cur.trim());
+    return parts;
+  };
+
+  const insert = db.prepare(`INSERT OR IGNORE INTO campaign_contacts
+    (id, campaign_id, email, first_name, last_name, company, phone, unsubscribe_token, created_at)
+    VALUES (?,?,?,?,?,?,?,?,?)`);
+
+  let imported = 0; let skipped = 0;
+  const now = new Date().toISOString();
+
+  const insertMany = db.transaction(() => {
+    for (let i = 1; i < lines.length; i++) {
+      const cols = parseRow(lines[i]);
+      const email = cols[emailIdx]?.toLowerCase().trim();
+      if (!email || !email.includes('@')) { skipped++; continue; }
+
+      // Skip already globally unsubscribed
+      const unsub = db.prepare('SELECT 1 FROM unsubscribes WHERE email = ?').get(email);
+      if (unsub) { skipped++; continue; }
+
+      const token = crypto.randomBytes(24).toString('hex');
+      const result = insert.run(
+        uuidv4(), req.params.id, email,
+        firstNameIdx >= 0 ? cols[firstNameIdx] || null : null,
+        lastNameIdx  >= 0 ? cols[lastNameIdx]  || null : null,
+        companyIdx   >= 0 ? cols[companyIdx]   || null : null,
+        phoneIdx     >= 0 ? cols[phoneIdx]     || null : null,
+        token, now
+      );
+      if (result.changes > 0) imported++;
+      else skipped++;
+    }
+  });
+
+  insertMany();
+  res.json({ imported, skipped });
+});
+
+app.get('/api/campaigns/:id/contacts', (req, res) => {
+  const { status, limit = 100, offset = 0 } = req.query;
+  let q = 'SELECT * FROM campaign_contacts WHERE campaign_id = ?';
+  const params = [req.params.id];
+  if (status) { q += ' AND status = ?'; params.push(status); }
+  q += ' ORDER BY created_at ASC LIMIT ? OFFSET ?';
+  params.push(parseInt(limit), parseInt(offset));
+  res.json(db.prepare(q).all(...params));
+});
+
+// ── Campaign Sending (Resend) ─────────────────────────────────────────────────
+
+function buildEmailHtml(campaign, contact) {
+  const trackPixel  = `${BASE_URL}/track/o/${contact.id}`;
+  const unsub       = `${BASE_URL}/unsubscribe/${contact.unsubscribe_token}`;
+
+  // Personalise {first_name}, {company} etc.
+  let html = campaign.body_html
+    .replace(/\{first_name\}/gi, contact.first_name || '')
+    .replace(/\{last_name\}/gi,  contact.last_name  || '')
+    .replace(/\{company\}/gi,    contact.company    || '');
+
+  // Rewrite links through click tracker
+  html = html.replace(/href="(https?:\/\/[^"]+)"/gi, (_, url) => {
+    const tracked = `${BASE_URL}/track/c/${contact.id}?url=${encodeURIComponent(url)}`;
+    return `href="${tracked}"`;
+  });
+
+  const unsubLine = `<p style="font-size:11px;color:#999;text-align:center;margin-top:32px">
+    Sie erhalten diese E-Mail weil Sie als Schweizer KMU bei DLM Digital erfasst wurden.
+    <a href="${unsub}" style="color:#999">Abmelden</a>
+  </p>`;
+
+  return html + unsubLine + `<img src="${trackPixel}" width="1" height="1" style="display:none">`;
+}
+
+async function sendOneEmail(campaign, contact) {
+  const html = buildEmailHtml(campaign, contact);
+
+  const payload = {
+    from: `${campaign.from_name} <${campaign.from_email}>`,
+    to:   [contact.email],
+    subject: campaign.subject
+      .replace(/\{first_name\}/gi, contact.first_name || '')
+      .replace(/\{company\}/gi,    contact.company    || ''),
+    html,
+    ...(campaign.body_text ? { text: campaign.body_text } : {}),
+    ...(campaign.reply_to  ? { reply_to: campaign.reply_to } : {}),
+    headers: {
+      'List-Unsubscribe': `<${BASE_URL}/unsubscribe/${contact.unsubscribe_token}>`,
+      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+    },
+  };
+
+  const resp = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  const body = await resp.json();
+  if (!resp.ok) throw new Error(body.message || `Resend error ${resp.status}`);
+  return body.id; // resend_id
+}
+
+// POST /api/campaigns/:id/send-batch — send up to `batch_size` pending emails
+app.post('/api/campaigns/:id/send-batch', async (req, res) => {
+  if (!RESEND_API_KEY) return res.status(503).json({ error: 'RESEND_API_KEY not configured' });
+
+  const c = db.prepare('SELECT * FROM campaigns WHERE id = ?').get(req.params.id);
+  if (!c) return res.status(404).json({ error: 'Campaign not found' });
+
+  const batchSize = Math.min(parseInt(req.body?.batch_size || 50, 10), c.daily_limit);
+
+  const contacts = db.prepare(`
+    SELECT * FROM campaign_contacts
+    WHERE campaign_id = ? AND status = 'pending'
+    ORDER BY created_at ASC LIMIT ?
+  `).all(req.params.id, batchSize);
+
+  if (contacts.length === 0) {
+    db.prepare("UPDATE campaigns SET status='sent', completed_at=?, updated_at=? WHERE id=?")
+      .run(new Date().toISOString(), new Date().toISOString(), req.params.id);
+    return res.json({ sent: 0, failed: 0, message: 'No pending contacts — campaign complete' });
+  }
+
+  // Mark campaign as sending
+  db.prepare("UPDATE campaigns SET status='sending', started_at=COALESCE(started_at,?), updated_at=? WHERE id=?")
+    .run(new Date().toISOString(), new Date().toISOString(), req.params.id);
+
+  let sent = 0; let failed = 0;
+  const now = new Date().toISOString();
+
+  for (const contact of contacts) {
+    try {
+      const resendId = await sendOneEmail(c, contact);
+      db.prepare(`UPDATE campaign_contacts SET status='sent', resend_id=?, sent_at=? WHERE id=?`)
+        .run(resendId, now, contact.id);
+      sent++;
+    } catch (err) {
+      db.prepare(`UPDATE campaign_contacts SET status='failed', error_message=? WHERE id=?`)
+        .run(err.message?.slice(0, 255), contact.id);
+      failed++;
+    }
+    // 100 ms throttle between sends to avoid rate limits
+    await new Promise(r => setTimeout(r, 100));
+  }
+
+  db.prepare(`UPDATE campaigns SET sent_count = sent_count + ?, updated_at = ? WHERE id = ?`)
+    .run(sent, new Date().toISOString(), req.params.id);
+
+  res.json({ sent, failed, remaining: contacts.length - sent - failed });
+});
+
+// ── Tracking Endpoints ────────────────────────────────────────────────────────
+
+// Open pixel
+app.get('/track/o/:contactId', (req, res) => {
+  const contact = db.prepare('SELECT id, campaign_id, status FROM campaign_contacts WHERE id = ?').get(req.params.contactId);
+  if (contact && contact.status === 'sent') {
+    db.prepare("UPDATE campaign_contacts SET status='opened', opened_at=? WHERE id=?")
+      .run(new Date().toISOString(), contact.id);
+    db.prepare("UPDATE campaigns SET open_count = open_count + 1 WHERE id=?")
+      .run(contact.campaign_id);
+  }
+  // 1x1 transparent GIF
+  const gif = Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
+  res.setHeader('Content-Type', 'image/gif');
+  res.setHeader('Cache-Control', 'no-store, no-cache');
+  res.end(gif);
+});
+
+// Click redirect
+app.get('/track/c/:contactId', (req, res) => {
+  const dest = req.query.url;
+  if (!dest) return res.status(400).send('Missing url');
+
+  const contact = db.prepare('SELECT id, campaign_id, status FROM campaign_contacts WHERE id = ?').get(req.params.contactId);
+  if (contact && ['sent', 'opened'].includes(contact.status)) {
+    db.prepare("UPDATE campaign_contacts SET status='clicked', clicked_at=COALESCE(clicked_at,?) WHERE id=?")
+      .run(new Date().toISOString(), contact.id);
+    db.prepare("UPDATE campaigns SET click_count = click_count + 1 WHERE id=?")
+      .run(contact.campaign_id);
+  }
+
+  try { new URL(dest); } catch { return res.status(400).send('Invalid URL'); }
+  res.redirect(302, dest);
+});
+
+// ── Unsubscribe ───────────────────────────────────────────────────────────────
+
+app.get('/unsubscribe/:token', (req, res) => {
+  const contact = db.prepare('SELECT * FROM campaign_contacts WHERE unsubscribe_token = ?').get(req.params.token);
+  if (!contact) return res.status(404).send('Ungültiger Abmelde-Link.');
+
+  // Add to global unsubscribe list (idempotent)
+  const now = new Date().toISOString();
+  db.prepare('INSERT OR IGNORE INTO unsubscribes (id, email, source, created_at) VALUES (?,?,?,?)')
+    .run(uuidv4(), contact.email, `campaign:${contact.campaign_id}`, now);
+  db.prepare("UPDATE campaign_contacts SET status='unsubscribed' WHERE email=?")
+    .run(contact.email);
+  db.prepare("UPDATE campaigns SET unsubscribe_count = unsubscribe_count + 1 WHERE id = (SELECT campaign_id FROM campaign_contacts WHERE unsubscribe_token = ?)")
+    .run(req.params.token);
+
+  res.send(`<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Abgemeldet</title>
+    <style>body{font-family:sans-serif;text-align:center;padding:60px;color:#333}
+    h1{color:#2563eb}p{color:#666;margin-top:16px}</style></head>
+    <body><h1>Erfolgreich abgemeldet</h1>
+    <p>Die E-Mail-Adresse <strong>${contact.email}</strong> wurde von unserer Liste entfernt.</p>
+    <p>Sie erhalten keine weiteren E-Mails von DLM Digital.</p></body></html>`);
+});
+
+// One-Click Unsubscribe (RFC 8058)
+app.post('/unsubscribe/:token', express.urlencoded({ extended: false }), (req, res) => {
+  const contact = db.prepare('SELECT * FROM campaign_contacts WHERE unsubscribe_token = ?').get(req.params.token);
+  if (!contact) return res.status(404).json({ error: 'Not found' });
+  const now = new Date().toISOString();
+  db.prepare('INSERT OR IGNORE INTO unsubscribes (id, email, source, created_at) VALUES (?,?,?,?)')
+    .run(uuidv4(), contact.email, `campaign:${contact.campaign_id}`, now);
+  db.prepare("UPDATE campaign_contacts SET status='unsubscribed' WHERE email=?").run(contact.email);
+  res.status(200).send('unsubscribed');
+});
+
+app.get('/api/unsubscribes', (req, res) => {
+  const rows = db.prepare('SELECT * FROM unsubscribes ORDER BY created_at DESC').all();
+  res.json(rows);
 });
 
 // ── Catch-all → SPA ──────────────────────────────────────────────────────────

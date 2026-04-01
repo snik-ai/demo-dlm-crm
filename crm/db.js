@@ -94,6 +94,60 @@ function init() {
       screenshot_url   TEXT,
       score_breakdown  TEXT
     );
+
+    CREATE TABLE IF NOT EXISTS campaigns (
+      id               TEXT PRIMARY KEY,
+      name             TEXT NOT NULL,
+      subject          TEXT NOT NULL,
+      from_name        TEXT NOT NULL DEFAULT 'DLM Digital',
+      from_email       TEXT NOT NULL DEFAULT 'hello@dlm-digital.ch',
+      reply_to         TEXT,
+      body_html        TEXT NOT NULL DEFAULT '',
+      body_text        TEXT,
+      status           TEXT NOT NULL DEFAULT 'draft'
+                       CHECK(status IN ('draft','scheduled','sending','sent','paused')),
+      daily_limit      INTEGER NOT NULL DEFAULT 250,
+      sent_count       INTEGER NOT NULL DEFAULT 0,
+      open_count       INTEGER NOT NULL DEFAULT 0,
+      click_count      INTEGER NOT NULL DEFAULT 0,
+      unsubscribe_count INTEGER NOT NULL DEFAULT 0,
+      scheduled_at     TEXT,
+      started_at       TEXT,
+      completed_at     TEXT,
+      created_at       TEXT NOT NULL,
+      updated_at       TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS campaign_contacts (
+      id               TEXT PRIMARY KEY,
+      campaign_id      TEXT NOT NULL REFERENCES campaigns(id),
+      email            TEXT NOT NULL,
+      first_name       TEXT,
+      last_name        TEXT,
+      company          TEXT,
+      phone            TEXT,
+      custom_data      TEXT,
+      status           TEXT NOT NULL DEFAULT 'pending'
+                       CHECK(status IN ('pending','sent','opened','clicked','bounced','unsubscribed','failed')),
+      resend_id        TEXT,
+      unsubscribe_token TEXT NOT NULL,
+      sent_at          TEXT,
+      opened_at        TEXT,
+      clicked_at       TEXT,
+      error_message    TEXT,
+      created_at       TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_campaign_contacts_campaign ON campaign_contacts(campaign_id);
+    CREATE INDEX IF NOT EXISTS idx_campaign_contacts_email ON campaign_contacts(email);
+    CREATE INDEX IF NOT EXISTS idx_campaign_contacts_token ON campaign_contacts(unsubscribe_token);
+
+    CREATE TABLE IF NOT EXISTS unsubscribes (
+      id               TEXT PRIMARY KEY,
+      email            TEXT NOT NULL UNIQUE,
+      source           TEXT,
+      created_at       TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_unsubscribes_email ON unsubscribes(email);
   `);
   return Promise.resolve();
 }
