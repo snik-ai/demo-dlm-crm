@@ -1,0 +1,26 @@
+# Environment / secrets
+.env
+.env.local
+.env.production
+*.env
+
+# Node
+node_modules/
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Generated .csv outputs (keep leads source, not generated reports)
+demo-generator/output/demo-urls-ceo.csv
+
+# SQLite (local CRM dev DB)
+*.sqlite
+*.db

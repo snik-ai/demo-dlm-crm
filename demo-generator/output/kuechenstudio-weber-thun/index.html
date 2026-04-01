@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Küchenstudio Weber – Küchenbau & Küchenrenovation Thun</title>
+  <meta name="description" content="Küchenstudio Weber – Küchen mit Charakter. Professioneller Küchenbau und Küchenrenovation in Thun. Jetzt Beratung anfragen." />
+
+  <!-- Google Ads Conversion Tracking Scaffold -->
+  <!-- REPLACE_WITH_GTAG_ID: Replace G-XXXXXXXXXX with your actual Google Tag ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    // Conversion tracking function — call on form submit
+    function trackConversion() {
+      gtag('event', 'conversion', {
+        'send_to': 'G-XXXXXXXXXX/CONVERSION_LABEL', // REPLACE_WITH_CONVERSION_LABEL
+        'event_category': 'Lead',
+        'event_label': 'Kontaktformular'
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --walnut:     #3d2b1f;
+      --walnut-mid: #6b4226;
+      --oak:        #a0704a;
+      --sand:       #e8ddd0;
+      --cream:      #f7f2ec;
+      --offwhite:   #fdfaf7;
+      --accent:     #c6874f;
+      --text:       #2a1f17;
+      --text-muted: #7a6458;
+      --white:      #ffffff;
+      --radius:     4px;
+      --shadow:     0 2px 20px rgba(61,43,31,.10);
+      --shadow-lg:  0 8px 48px rgba(61,43,31,.15);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,250,247,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(160,112,74,.15);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--walnut);
+      text-decoration: none;
+      letter-spacing: -.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--walnut); }
+    .nav-cta {
+      background: var(--walnut);
+      color: var(--white) !important;
+      padding: .45rem 1.1rem;
+      border-radius: var(--radius);
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--oak) !important; color: var(--white) !important; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--walnut);
+      border-radius: 2px;
+      transition: .25s;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .hero-content {
+      padding: 6rem 5vw 6rem 8vw;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      font-weight: 700;
+      color: var(--walnut);
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--oak);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .875rem;
+      align-items: center;
+    }
+    .btn-primary {
+      background: var(--walnut);
+      color: var(--white);
+      padding: .85rem 1.8rem;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: .95rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background .2s, transform .15s;
+      letter-spacing: .02em;
+    }
+    .btn-primary:hover { background: var(--walnut-mid); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--walnut);
+      padding: .85rem 1.8rem;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: .95rem;
+      font-weight: 500;
+      border: 1.5px solid var(--oak);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-secondary:hover { border-color: var(--walnut); color: var(--walnut-mid); transform: translateY(-1px); }
+    .hero-image {
+      position: relative;
+      height: 100%;
+      min-height: 88vh;
+    }
+    .hero-image-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, #c8a882 0%, #8b5e3c 30%, #5a3520 60%, #3d2410 100%);
+    }
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--offwhite) 0%, transparent 12%);
+    }
+    /* Kitchen illustration via CSS */
+    .kitchen-visual {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      right: 5%;
+      height: 55%;
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .kv-cabinet {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 2px;
+      flex: 1;
+    }
+    .kv-tall  { height: 100%; }
+    .kv-upper { height: 55%; }
+    .kv-lower { height: 38%; }
+    .hero-badge {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2rem;
+      background: var(--white);
+      border-radius: 8px;
+      padding: .9rem 1.2rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: .82rem;
+    }
+    .badge-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--sand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .badge-text strong { display: block; font-size: .9rem; color: var(--walnut); }
+    .badge-text span   { color: var(--text-muted); }
+
+    /* ── STATS BAR ────────────────────────────────────── */
+    .stats-bar {
+      background: var(--walnut);
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; color: var(--white); }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-top: .3rem;
+    }
+
+    /* ── SECTION SHARED ───────────────────────────────── */
+    section { padding: 5rem 5vw; }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--walnut);
+      line-height: 1.2;
+      letter-spacing: -.015em;
+      max-width: 560px;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-top: .9rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ── SERVICES ─────────────────────────────────────── */
+    #leistungen { background: var(--cream); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 2rem;
+      border: 1px solid rgba(160,112,74,.12);
+      transition: box-shadow .25s, transform .2s;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--sand);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--walnut);
+      margin-bottom: .6rem;
+    }
+    .service-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── GALLERY ──────────────────────────────────────── */
+    #galerie { background: var(--offwhite); }
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 200px;
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      gap: .4rem;
+    }
+    .gallery-placeholder span { font-size: 1.4rem; }
+    .gi-1 { background: linear-gradient(145deg, #a07050 0%, #6b3f20 100%); }
+    .gi-2 { background: linear-gradient(145deg, #c8a882 0%, #9a6940 100%); }
+    .gi-3 { background: linear-gradient(145deg, #8a6045 0%, #5a3520 100%); }
+    .gi-4 { background: linear-gradient(145deg, #b89070 0%, #7a4e30 100%); }
+
+    /* ── ABOUT / TRUST ────────────────────────────────── */
+    #uber-uns {
+      background: var(--walnut);
+      color: var(--white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      height: 420px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .about-visual-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #c8a882 0%, #8b5e3c 50%, #5a3520 100%);
+    }
+    .about-visual-label {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: rgba(61,43,31,.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--white);
+      padding: .5rem .9rem;
+      border-radius: 4px;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    #uber-uns .section-title { color: var(--white); }
+    #uber-uns .section-label { color: rgba(198,135,79,1); }
+    #uber-uns .section-sub   { color: rgba(255,255,255,.65); max-width: 480px; }
+    .trust-points {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .trust-point {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+    }
+    .trust-check {
+      width: 22px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      flex-shrink: 0;
+      margin-top: .15rem;
+      color: var(--white);
+    }
+    .trust-point p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.55; }
+    .trust-point strong { color: var(--white); }
+
+    /* ── TESTIMONIAL ──────────────────────────────────── */
+    #referenzen { background: var(--sand); }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 2rem;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      color: var(--sand);
+      position: absolute;
+      top: .5rem;
+      left: 1.2rem;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-top: 1.5rem;
+      position: relative;
+    }
+    .testimonial-author {
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--walnut);
+      font-family: var(--font-serif);
+    }
+    .author-name { font-size: .875rem; font-weight: 500; color: var(--walnut); }
+    .author-loc  { font-size: .78rem; color: var(--text-muted); }
+    .stars { color: var(--accent); font-size: .85rem; margin-top: .3rem; }
+
+    /* ── CONTACT ──────────────────────────────────────── */
+    #kontakt { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    .contact-info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--walnut);
+      margin-bottom: 1rem;
+    }
+    .contact-info p { font-size: .9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.5rem; }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: .8rem;
+    }
+    .contact-detail-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--sand);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .contact-detail a { color: var(--walnut); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    /* Form */
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label { display: block; font-size: .8rem; font-weight: 500; color: var(--walnut); margin-bottom: .35rem; letter-spacing: .02em; }
+    input, select, textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid rgba(160,112,74,.25);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: .9rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--oak); }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-submit { margin-top: .5rem; }
+    .form-submit .btn-primary { width: 100%; text-align: center; font-size: 1rem; padding: 1rem; }
+    .form-note { font-size: .75rem; color: var(--text-muted); text-align: center; margin-top: .5rem; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--walnut);
+      color: rgba(255,255,255,.65);
+      padding: 3rem 5vw 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .7rem;
+    }
+    .footer-desc { font-size: .85rem; line-height: 1.65; max-width: 260px; }
+    footer h4 {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: .9rem;
+    }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: .5rem; }
+    footer a { color: rgba(255,255,255,.55); text-decoration: none; font-size: .875rem; transition: color .2s; }
+    footer a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      font-size: .78rem;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 4rem 5vw 3rem; }
+      .hero-image { min-height: 300px; height: 300px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-visual { height: 260px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 160px;
+      }
+      .gallery-item:first-child { grid-row: span 1; grid-column: span 2; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .stats-bar { gap: 2rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 180px);
+      }
+      .gallery-item:first-child { grid-column: span 1; }
+    }
+    /* Mobile nav open state */
+    nav.open .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--offwhite);
+      padding: 1.5rem 5vw;
+      border-bottom: 1px solid rgba(160,112,74,.15);
+      box-shadow: 0 8px 24px rgba(61,43,31,.08);
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────────────── -->
+<nav id="main-nav">
+  <a class="nav-brand" href="#">Küchenstudio Weber</a>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#uber-uns">Über uns</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#kontakt" class="nav-cta">Beratung anfragen</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="document.getElementById('main-nav').classList.toggle('open')" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Küchenbau &amp; Renovation</div>
+    <h1>Ihre Traumküche<br /><em>massgeschneidert</em><br />für Thun</h1>
+    <p class="hero-sub">Küchenstudio Weber – Küchen mit Charakter. Von der Planung bis zur Montage – alles aus einer Hand.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Kostenlose Beratung</a>
+      <a href="#galerie" class="btn-secondary">Projekte ansehen</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-image-bg"></div>
+    <div class="hero-image-overlay"></div>
+    <div class="kitchen-visual">
+      <div class="kv-cabinet kv-tall"></div>
+      <div style="display:flex;flex-direction:column;flex:2;gap:4px;height:100%;justify-content:flex-end;">
+        <div class="kv-cabinet kv-upper" style="height:45%;"></div>
+        <div class="kv-cabinet kv-lower" style="height:40%;"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;flex:2;gap:4px;height:100%;justify-content:flex-end;">
+        <div class="kv-cabinet kv-upper" style="height:45%;"></div>
+        <div class="kv-cabinet kv-lower" style="height:40%;"></div>
+      </div>
+      <div class="kv-cabinet kv-tall" style="flex:.6;"></div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-icon">🏆</div>
+      <div class="badge-text">
+        <strong>Schweizer Qualität</strong>
+        <span>Seit über 15 Jahren</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ─────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Projekte</span></div>
+  <div class="stat-item"><span class="stat-num">15</span><span class="stat-label">Jahre Erfahrung</span></div>
+  <div class="stat-item"><span class="stat-num">98%</span><span class="stat-label">Kundenzufriedenheit</span></div>
+  <div class="stat-item"><span class="stat-num">30</span><span class="stat-label">Tage Lieferzeit</span></div>
+</div>
+
+<!-- ── LEISTUNGEN ─────────────────────────────────────── -->
+<section id="leistungen">
+  <div class="section-label">Unsere Leistungen</div>
+  <h2 class="section-title">Alles für Ihre neue Küche</h2>
+  <p class="section-sub">Von der ersten Idee bis zum fertigen Einbau – wir begleiten Sie durch jeden Schritt.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📐</div>
+      <h3>Küchenplanung</h3>
+      <p>Individuelle 3D-Planung nach Ihren Wünschen. Wir berücksichtigen Raumgrösse, Lichtverhältnisse und Ihre Gewohnheiten.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔨</div>
+      <h3>Küchenbau</h3>
+      <p>Massgeschreinerte Fronten, robuste Korpusse und hochwertige Beschläge – verarbeitet mit Schweizer Sorgfalt.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Montage & Einbau</h3>
+      <p>Unser Team montiert Ihre Küche fachgerecht und sauber. Inkl. Elektro- und Sanitäranschlüsse auf Wunsch.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Renovation</h3>
+      <p>Bestehende Küche auffrischen? Frontwechsel, neue Arbeitsplatte oder komplette Erneuerung – wir machen es möglich.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3>Einbaugeräte</h3>
+      <p>Beratung und Lieferung aller namhaften Marken. Perfekt auf Ihre Küche abgestimmt und fachgerecht eingebaut.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>Garantie & Service</h3>
+      <p>5 Jahre Garantie auf Schreinerarbeit. Schneller Kundenservice und Ersatzteile aus eigenem Lager.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALERIE ────────────────────────────────────────── -->
+<section id="galerie">
+  <div class="gallery-header">
+    <div>
+      <div class="section-label">Referenzprojekte</div>
+      <h2 class="section-title">Unsere Küchen</h2>
+    </div>
+    <a href="#kontakt" class="btn-secondary">Projekt anfragen</a>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gi-1">
+        <div class="gallery-placeholder"><span>🖼️</span>Moderne Inselküche</div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-2">
+        <div class="gallery-placeholder"><span>🖼️</span>Landhaus-Küche</div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-3">
+        <div class="gallery-placeholder"><span>🖼️</span>Minimalistische Küche</div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gi-4">
+        <div class="gallery-placeholder"><span>🖼️</span>Offene Wohnküche</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ÜBER UNS ───────────────────────────────────────── -->
+<section id="uber-uns">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-visual-bg"></div>
+      <div class="about-visual-label">Thun · Seit 2008</div>
+    </div>
+    <div>
+      <div class="section-label">Über uns</div>
+      <h2 class="section-title">Familienunternehmen mit Leidenschaft für Küchen</h2>
+      <p class="section-sub">Küchenstudio Weber steht für handwerkliche Präzision, ehrliche Beratung und Küchen, die ein Leben lang halten.</p>
+      <div class="trust-points">
+        <div class="trust-point">
+          <div class="trust-check">✓</div>
+          <p><strong>Lokaler Handwerksbetrieb</strong> – Wir kennen die Region und sind persönlich für Sie da.</p>
+        </div>
+        <div class="trust-point">
+          <div class="trust-check">✓</div>
+          <p><strong>Transparente Festpreise</strong> – Kein versteckter Aufwand, kein böses Erwachen bei der Rechnung.</p>
+        </div>
+        <div class="trust-point">
+          <div class="trust-check">✓</div>
+          <p><strong>Nachhaltige Materialien</strong> – FSC-zertifizierte Hölzer und langlebige Schweizer Qualitätsfronten.</p>
+        </div>
+        <div class="trust-point">
+          <div class="trust-check">✓</div>
+          <p><strong>Termingarantie</strong> – Vereinbarte Liefertermine halten wir ein. Schriftlich zugesichert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────── -->
+<section id="referenzen">
+  <div class="section-label">Kundenstimmen</div>
+  <h2 class="section-title">Das sagen unsere Kunden</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Wir sind absolut begeistert von unserer neuen Küche. Von der Beratung bis zur Montage war alles perfekt organisiert. Sehr empfehlenswert!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">SM</div>
+        <div>
+          <div class="author-name">Sandra M.</div>
+          <div class="author-loc">Thun</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Professionelle Arbeit, pünktliche Lieferung und ein fantastisches Resultat. Die Küche ist genau das, was wir uns vorgestellt haben.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">TK</div>
+        <div>
+          <div class="author-name">Thomas K.</div>
+          <div class="author-loc">Thun</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAKT ────────────────────────────────────────── -->
+<section id="kontakt">
+  <div class="section-label">Kontakt</div>
+  <h2 class="section-title">Jetzt unverbindlich anfragen</h2>
+  <p class="section-sub">Wir melden uns innerhalb von 24 Stunden bei Ihnen zurück.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Persönliche Beratung</h3>
+      <p>Vereinbaren Sie einen kostenlosen Beratungstermin in unserem Showroom oder bei Ihnen zuhause.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div><a href="tel:033 221 30 10">033 221 30 10</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">✉️</div>
+        <div><a href="mailto:info@kuechenstudio-weber.ch">info@kuechenstudio-weber.ch</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div>Hauptgasse 7, Thun</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🕐</div>
+        <div>Mo–Fr: 08:00–12:00, 13:30–17:30<br />Sa: 09:00–12:00 (nach Vereinbarung)</div>
+      </div>
+    </div>
+    <form id="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div>
+          <label for="vorname">Vorname</label>
+          <input id="vorname" name="vorname" type="text" placeholder="Max" required />
+        </div>
+        <div>
+          <label for="nachname">Nachname</label>
+          <input id="nachname" name="nachname" type="text" placeholder="Muster" required />
+        </div>
+      </div>
+      <div>
+        <label for="email">E-Mail</label>
+        <input id="email" name="email" type="email" placeholder="max.muster@example.ch" required />
+      </div>
+      <div>
+        <label for="telefon">Telefon</label>
+        <input id="telefon" name="telefon" type="tel" placeholder="044 000 00 00" />
+      </div>
+      <div>
+        <label for="leistung">Gewünschte Leistung</label>
+        <select id="leistung" name="leistung">
+          <option value="">Bitte wählen…</option>
+          <option>Neue Küche planen</option>
+          <option>Küchenrenovation</option>
+          <option>Frontwechsel</option>
+          <option>Montage / Einbau</option>
+          <option>Beratungsgespräch</option>
+        </select>
+      </div>
+      <div>
+        <label for="nachricht">Nachricht</label>
+        <textarea id="nachricht" name="nachricht" placeholder="Kurze Beschreibung Ihres Projekts…"></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary">Anfrage absenden</button>
+      </div>
+      <p class="form-note">Ihre Daten werden vertraulich behandelt und nicht weitergegeben.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Küchenstudio Weber</div>
+      <p class="footer-desc">Ihr lokaler Partner für Küchenbau und Küchenrenovation in Thun und Umgebung. Qualität, die man sieht und fühlt.</p>
+    </div>
+    <div>
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="#leistungen">Küchenplanung</a></li>
+        <li><a href="#leistungen">Küchenbau</a></li>
+        <li><a href="#leistungen">Renovation</a></li>
+        <li><a href="#leistungen">Montage &amp; Einbau</a></li>
+        <li><a href="#leistungen">Einbaugeräte</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:033 221 30 10">033 221 30 10</a></li>
+        <li><a href="mailto:info@kuechenstudio-weber.ch">info@kuechenstudio-weber.ch</a></li>
+        <li>Hauptgasse 7</li>
+        <li>Thun</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Küchenstudio Weber. Alle Rechte vorbehalten.</span>
+    <span><a href="#">Datenschutz</a> · <a href="#">Impressum</a></span>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    trackConversion(); // Google Ads conversion tracking
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Anfrage gesendet ✓';
+    btn.style.background = '#5a8a4a';
+    btn.disabled = true;
+    // TODO: Replace with actual form submission (Formspree, Netlify, backend endpoint)
+    // fetch('/api/contact', { method: 'POST', body: new FormData(e.target) })
+  }
+</script>
+
+</body>
+</html>

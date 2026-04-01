@@ -1,0 +1,167 @@
+<!-- Deploy: rechner.dlm-digital.ch | DLM Digital AG -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLM Digital — Rechner & Konfiguratoren</title>
+  <style>
+    :root {
+      --blue: #1a4f9c;
+      --amber: #f59e0b;
+      --gray: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--gray);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header svg { flex-shrink: 0; }
+    header h1 { font-size: 1.25rem; font-weight: 700; }
+    header p { font-size: 0.85rem; opacity: 0.75; margin-top: 0.15rem; }
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); margin-bottom: 2rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 4px 24px rgba(26,79,156,0.15); }
+    .card-icon {
+      width: 52px; height: 52px;
+      background: #eff6ff;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-icon svg { width: 28px; height: 28px; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; }
+    .card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .tag.amber { background: #fffbeb; color: #92400e; }
+    .cta {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <rect width="36" height="36" rx="8" fill="rgba(255,255,255,0.15)"/>
+      <path d="M8 22L18 10L28 22" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6 22H30" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h1>DLM Digital — Rechner & Konfiguratoren</h1>
+      <p>Professionelle Tools für Ihre Kunden</p>
+    </div>
+  </header>
+
+  <main>
+    <h2>Verfügbare Tools</h2>
+    <p class="subtitle">Wählen Sie einen Rechner oder Konfigurator für Ihre Demo</p>
+
+    <div class="grid">
+      <a href="solar-rechner.html" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="#1a4f9c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="14" r="5"/>
+            <line x1="14" y1="3" x2="14" y2="6"/>
+            <line x1="14" y1="22" x2="14" y2="25"/>
+            <line x1="3" y1="14" x2="6" y2="14"/>
+            <line x1="22" y1="14" x2="25" y2="14"/>
+            <line x1="6.2" y1="6.2" x2="8.3" y2="8.3"/>
+            <line x1="19.7" y1="19.7" x2="21.8" y2="21.8"/>
+            <line x1="6.2" y1="21.8" x2="8.3" y2="19.7"/>
+            <line x1="19.7" y1="8.3" x2="21.8" y2="6.2"/>
+          </svg>
+        </div>
+        <div>
+          <span class="tag">Solar</span>
+        </div>
+        <h3>Solaranlage-Kostenrechner</h3>
+        <p>Berechnet Kosten, Einsparungen, Amortisierungszeit und CO₂-Reduktion für Solaranlagen — mit Lead-Capture für Offerten-Anfragen.</p>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+          <span class="tag">4 Schritte</span>
+          <span class="tag amber">Lead-Capture</span>
+          <span class="tag">Alle 26 Kantone</span>
+        </div>
+        <span class="cta">Demo öffnen →</span>
+      </a>
+
+      <a href="konfigurator-template.html" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="#1a4f9c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="10" height="10" rx="2"/>
+            <rect x="15" y="3" width="10" height="10" rx="2"/>
+            <rect x="3" y="15" width="10" height="10" rx="2"/>
+            <path d="M15 20h10M20 15v10" stroke="#f59e0b"/>
+          </svg>
+        </div>
+        <div>
+          <span class="tag">Template</span>
+        </div>
+        <h3>Konfigurator-Template</h3>
+        <p>Wiederverwendbarer Step-by-Step Wizard für Küche, Bad, Boden, Heizung — vollständig konfigurierbar via CONFIG-Objekt.</p>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+          <span class="tag">5 Schritte</span>
+          <span class="tag amber">Preisindikation</span>
+          <span class="tag">Branchen-agnostisch</span>
+        </div>
+        <span class="cta">Demo öffnen →</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>© 2024 DLM Digital AG | demo.dlm-digital.ch</footer>
+</body>
+</html>

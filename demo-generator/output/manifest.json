@@ -1,0 +1,708 @@
+{
+  "generated": "2026-04-01T09:51:32.609Z",
+  "total": 100,
+  "success": 100,
+  "failed": 0,
+  "demos": [
+    {
+      "slug": "kuechen-meier-zuerich",
+      "firmenname": "Küchen Meier AG",
+      "branche": "kueche",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/kuechen-meier-zuerich"
+    },
+    {
+      "slug": "kuchenstudio-brunner-bern",
+      "firmenname": "Küchenstudio Brunner",
+      "branche": "kueche",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/kuchenstudio-brunner-bern"
+    },
+    {
+      "slug": "kuechenwerkstatt-keller-basel",
+      "firmenname": "Küchenwerkstatt Keller",
+      "branche": "kueche",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/kuechenwerkstatt-keller-basel"
+    },
+    {
+      "slug": "kuechen-huber-luzern",
+      "firmenname": "Küchen Huber GmbH",
+      "branche": "kueche",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/kuechen-huber-luzern"
+    },
+    {
+      "slug": "kuechenform-winterthur",
+      "firmenname": "KüchenForm AG",
+      "branche": "kueche",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/kuechenform-winterthur"
+    },
+    {
+      "slug": "kuechen-mueller-stgallen",
+      "firmenname": "Küchen Müller",
+      "branche": "kueche",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/kuechen-mueller-stgallen"
+    },
+    {
+      "slug": "kuechenstudio-weber-thun",
+      "firmenname": "Küchenstudio Weber",
+      "branche": "kueche",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/kuechenstudio-weber-thun"
+    },
+    {
+      "slug": "kuechen-schmid-aarau",
+      "firmenname": "Küchen Schmid",
+      "branche": "kueche",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/kuechen-schmid-aarau"
+    },
+    {
+      "slug": "muster-kuechenbau-frauenfeld",
+      "firmenname": "Muster Küchenbau",
+      "branche": "kueche",
+      "ort": "Frauenfeld",
+      "url": "demo.dlm-digital.ch/muster-kuechenbau-frauenfeld"
+    },
+    {
+      "slug": "kuechen-steiner-schaffhausen",
+      "firmenname": "Küchen Steiner",
+      "branche": "kueche",
+      "ort": "Schaffhausen",
+      "url": "demo.dlm-digital.ch/kuechen-steiner-schaffhausen"
+    },
+    {
+      "slug": "sanitaer-vogel-zuerich",
+      "firmenname": "Sanitär Vogel AG",
+      "branche": "sanitaer",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/sanitaer-vogel-zuerich"
+    },
+    {
+      "slug": "heizung-bauer-bern",
+      "firmenname": "Heizung Bauer GmbH",
+      "branche": "sanitaer",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/heizung-bauer-bern"
+    },
+    {
+      "slug": "roth-sanitaer-basel",
+      "firmenname": "Sanitär & Heizung Roth",
+      "branche": "sanitaer",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/roth-sanitaer-basel"
+    },
+    {
+      "slug": "wasser-waerme-luzern",
+      "firmenname": "Wasser & Wärme AG",
+      "branche": "sanitaer",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/wasser-waerme-luzern"
+    },
+    {
+      "slug": "sanitaer-marti-winterthur",
+      "firmenname": "Sanitär Marti",
+      "branche": "sanitaer",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/sanitaer-marti-winterthur"
+    },
+    {
+      "slug": "installationen-frei-stgallen",
+      "firmenname": "Installationen Frei",
+      "branche": "sanitaer",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/installationen-frei-stgallen"
+    },
+    {
+      "slug": "heizung-kunz-zug",
+      "firmenname": "Heizung Kunz GmbH",
+      "branche": "sanitaer",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/heizung-kunz-zug"
+    },
+    {
+      "slug": "sanitaer-furrer-solothurn",
+      "firmenname": "Sanitär Furrer",
+      "branche": "sanitaer",
+      "ort": "Solothurn",
+      "url": "demo.dlm-digital.ch/sanitaer-furrer-solothurn"
+    },
+    {
+      "slug": "waermeprofi-olten",
+      "firmenname": "WärmeProfi AG",
+      "branche": "sanitaer",
+      "ort": "Olten",
+      "url": "demo.dlm-digital.ch/waermeprofi-olten"
+    },
+    {
+      "slug": "sanitaerplus-luethi-thun",
+      "firmenname": "SanitärPlus Lüthi",
+      "branche": "sanitaer",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/sanitaerplus-luethi-thun"
+    },
+    {
+      "slug": "solar-ag-zuerich",
+      "firmenname": "Solar AG Zürich",
+      "branche": "solar",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/solar-ag-zuerich"
+    },
+    {
+      "slug": "photovoltaik-bern",
+      "firmenname": "Photovoltaik Bern",
+      "branche": "solar",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/photovoltaik-bern"
+    },
+    {
+      "slug": "solarpower-basel",
+      "firmenname": "SolarPower Basel",
+      "branche": "solar",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/solarpower-basel"
+    },
+    {
+      "slug": "solartechnik-ammann-luzern",
+      "firmenname": "Solartechnik Ammann",
+      "branche": "solar",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/solartechnik-ammann-luzern"
+    },
+    {
+      "slug": "suntech-ag-winterthur",
+      "firmenname": "SunTech AG",
+      "branche": "solar",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/suntech-ag-winterthur"
+    },
+    {
+      "slug": "solaranlage-ost-stgallen",
+      "firmenname": "Solaranlage Ost AG",
+      "branche": "solar",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/solaranlage-ost-stgallen"
+    },
+    {
+      "slug": "solarexperte-zug",
+      "firmenname": "SolarExperte GmbH",
+      "branche": "solar",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/solarexperte-zug"
+    },
+    {
+      "slug": "pv-nidwalden-stans",
+      "firmenname": "Photovoltaik Nidwalden",
+      "branche": "solar",
+      "ort": "Stans",
+      "url": "demo.dlm-digital.ch/pv-nidwalden-stans"
+    },
+    {
+      "slug": "solarzentrum-frauenfeld",
+      "firmenname": "SolarZentrum AG",
+      "branche": "solar",
+      "ort": "Frauenfeld",
+      "url": "demo.dlm-digital.ch/solarzentrum-frauenfeld"
+    },
+    {
+      "slug": "greensun-schaffhausen",
+      "firmenname": "GreenSun GmbH",
+      "branche": "solar",
+      "ort": "Schaffhausen",
+      "url": "demo.dlm-digital.ch/greensun-schaffhausen"
+    },
+    {
+      "slug": "treuhand-meier-zuerich",
+      "firmenname": "Treuhand Meier AG",
+      "branche": "treuhand",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/treuhand-meier-zuerich"
+    },
+    {
+      "slug": "buchhaltung-fischer-bern",
+      "firmenname": "Buchhaltung Fischer",
+      "branche": "treuhand",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/buchhaltung-fischer-bern"
+    },
+    {
+      "slug": "treuhandplus-basel",
+      "firmenname": "TreuhandPlus Basel",
+      "branche": "treuhand",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/treuhandplus-basel"
+    },
+    {
+      "slug": "steuer-recht-luzern",
+      "firmenname": "Steuer & Recht Luzern",
+      "branche": "treuhand",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/steuer-recht-luzern"
+    },
+    {
+      "slug": "finanzen-keller-winterthur",
+      "firmenname": "Finanzen Keller GmbH",
+      "branche": "treuhand",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/finanzen-keller-winterthur"
+    },
+    {
+      "slug": "treuhand-zuest-stgallen",
+      "firmenname": "Treuhand Züst",
+      "branche": "treuhand",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/treuhand-zuest-stgallen"
+    },
+    {
+      "slug": "bdo-schaff-schaffhausen",
+      "firmenname": "BDO Schaffhausen",
+      "branche": "treuhand",
+      "ort": "Schaffhausen",
+      "url": "demo.dlm-digital.ch/bdo-schaff-schaffhausen"
+    },
+    {
+      "slug": "revisions-ag-zug",
+      "firmenname": "Revisions AG Zug",
+      "branche": "treuhand",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/revisions-ag-zug"
+    },
+    {
+      "slug": "buchhaltungsservice-mueller-aarau",
+      "firmenname": "Buchhaltungs-Service Müller",
+      "branche": "treuhand",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/buchhaltungsservice-mueller-aarau"
+    },
+    {
+      "slug": "treuhandkompass-solothurn",
+      "firmenname": "TreuhandKompass AG",
+      "branche": "treuhand",
+      "ort": "Solothurn",
+      "url": "demo.dlm-digital.ch/treuhandkompass-solothurn"
+    },
+    {
+      "slug": "fitlife-zuerich",
+      "firmenname": "FitLife Zürich",
+      "branche": "fitness",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/fitlife-zuerich"
+    },
+    {
+      "slug": "sportstudio-bern",
+      "firmenname": "SportStudio Bern",
+      "branche": "fitness",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/sportstudio-bern"
+    },
+    {
+      "slug": "goldgym-basel",
+      "firmenname": "GoldGym Basel",
+      "branche": "fitness",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/goldgym-basel"
+    },
+    {
+      "slug": "crossfit-luzern",
+      "firmenname": "CrossFit Luzern",
+      "branche": "fitness",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/crossfit-luzern"
+    },
+    {
+      "slug": "fitcenter-winterthur",
+      "firmenname": "FitCenter Winterthur",
+      "branche": "fitness",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/fitcenter-winterthur"
+    },
+    {
+      "slug": "activelife-stgallen",
+      "firmenname": "ActiveLife St. Gallen",
+      "branche": "fitness",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/activelife-stgallen"
+    },
+    {
+      "slug": "sporthouse-zug",
+      "firmenname": "SportHouse Zug",
+      "branche": "fitness",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/sporthouse-zug"
+    },
+    {
+      "slug": "pulsegym-olten",
+      "firmenname": "PulseGym Olten",
+      "branche": "fitness",
+      "ort": "Olten",
+      "url": "demo.dlm-digital.ch/pulsegym-olten"
+    },
+    {
+      "slug": "kraftwerk-thun",
+      "firmenname": "KraftWerk Thun",
+      "branche": "fitness",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/kraftwerk-thun"
+    },
+    {
+      "slug": "studiofit-aarau",
+      "firmenname": "StudioFit Aarau",
+      "branche": "fitness",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/studiofit-aarau"
+    },
+    {
+      "slug": "garage-schneider-zuerich",
+      "firmenname": "Garage Schneider AG",
+      "branche": "autogarage",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/garage-schneider-zuerich"
+    },
+    {
+      "slug": "auto-meier-bern",
+      "firmenname": "Auto Meier Bern",
+      "branche": "autogarage",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/auto-meier-bern"
+    },
+    {
+      "slug": "garage-huber-basel",
+      "firmenname": "Garage Huber Basel",
+      "branche": "autogarage",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/garage-huber-basel"
+    },
+    {
+      "slug": "autotechnik-luzern",
+      "firmenname": "Auto Technik Luzern",
+      "branche": "autogarage",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/autotechnik-luzern"
+    },
+    {
+      "slug": "garage-marti-winterthur",
+      "firmenname": "Garage Marti Winterthur",
+      "branche": "autogarage",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/garage-marti-winterthur"
+    },
+    {
+      "slug": "autoprofi-stgallen",
+      "firmenname": "AutoProfi St. Gallen",
+      "branche": "autogarage",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/autoprofi-stgallen"
+    },
+    {
+      "slug": "fahrzeugservice-zug",
+      "firmenname": "Fahrzeug-Service Zug",
+      "branche": "autogarage",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/fahrzeugservice-zug"
+    },
+    {
+      "slug": "garage-fischer-frauenfeld",
+      "firmenname": "Garage Fischer Frauenfeld",
+      "branche": "autogarage",
+      "ort": "Frauenfeld",
+      "url": "demo.dlm-digital.ch/garage-fischer-frauenfeld"
+    },
+    {
+      "slug": "tiptop-garage-thun",
+      "firmenname": "TipTop Garage Thun",
+      "branche": "autogarage",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/tiptop-garage-thun"
+    },
+    {
+      "slug": "autoplus-aarau",
+      "firmenname": "AutoPlus Aarau",
+      "branche": "autogarage",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/autoplus-aarau"
+    },
+    {
+      "slug": "coiffeur-claudia-zuerich",
+      "firmenname": "Coiffeur Claudia",
+      "branche": "coiffeur",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/coiffeur-claudia-zuerich"
+    },
+    {
+      "slug": "hairstyle-bern",
+      "firmenname": "HairStyle Bern",
+      "branche": "coiffeur",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/hairstyle-bern"
+    },
+    {
+      "slug": "salon-glamour-basel",
+      "firmenname": "Salon Glamour Basel",
+      "branche": "coiffeur",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/salon-glamour-basel"
+    },
+    {
+      "slug": "coiffure-elite-luzern",
+      "firmenname": "Coiffure Élite Luzern",
+      "branche": "coiffeur",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/coiffure-elite-luzern"
+    },
+    {
+      "slug": "tophair-winterthur",
+      "firmenname": "TopHair Winterthur",
+      "branche": "coiffeur",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/tophair-winterthur"
+    },
+    {
+      "slug": "salon-bella-stgallen",
+      "firmenname": "Salon Bella St. Gallen",
+      "branche": "coiffeur",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/salon-bella-stgallen"
+    },
+    {
+      "slug": "haar-stil-zug",
+      "firmenname": "Haar & Stil Zug",
+      "branche": "coiffeur",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/haar-stil-zug"
+    },
+    {
+      "slug": "coiffeur-marcel-olten",
+      "firmenname": "Coiffeur Marcel Olten",
+      "branche": "coiffeur",
+      "ort": "Olten",
+      "url": "demo.dlm-digital.ch/coiffeur-marcel-olten"
+    },
+    {
+      "slug": "friseurwelt-thun",
+      "firmenname": "FriseurWelt Thun",
+      "branche": "coiffeur",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/friseurwelt-thun"
+    },
+    {
+      "slug": "hairart-aarau",
+      "firmenname": "HairArt Aarau",
+      "branche": "coiffeur",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/hairart-aarau"
+    },
+    {
+      "slug": "zahnarzt-keller-zuerich",
+      "firmenname": "Zahnarzt Dr. Keller",
+      "branche": "zahnarzt",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/zahnarzt-keller-zuerich"
+    },
+    {
+      "slug": "zahnarztpraxis-bern",
+      "firmenname": "Zahnarztpraxis Bern",
+      "branche": "zahnarzt",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/zahnarztpraxis-bern"
+    },
+    {
+      "slug": "dentalclinic-basel",
+      "firmenname": "Dental Clinic Basel",
+      "branche": "zahnarzt",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/dentalclinic-basel"
+    },
+    {
+      "slug": "zahnarzt-luzern-zentrum",
+      "firmenname": "Zahnarzt Luzern Zentrum",
+      "branche": "zahnarzt",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/zahnarzt-luzern-zentrum"
+    },
+    {
+      "slug": "dentalcare-winterthur",
+      "firmenname": "Dental Care Winterthur",
+      "branche": "zahnarzt",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/dentalcare-winterthur"
+    },
+    {
+      "slug": "zahnarztpraxis-stgallen",
+      "firmenname": "Zahnarztpraxis St. Gallen",
+      "branche": "zahnarzt",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/zahnarztpraxis-stgallen"
+    },
+    {
+      "slug": "smilecenter-zug",
+      "firmenname": "Smile Center Zug",
+      "branche": "zahnarzt",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/smilecenter-zug"
+    },
+    {
+      "slug": "zahnklinik-olten",
+      "firmenname": "ZahnKlinik Olten",
+      "branche": "zahnarzt",
+      "ort": "Olten",
+      "url": "demo.dlm-digital.ch/zahnklinik-olten"
+    },
+    {
+      "slug": "zahnarzt-stoeckli-thun",
+      "firmenname": "Zahnarzt Dr. Stöckli Thun",
+      "branche": "zahnarzt",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/zahnarzt-stoeckli-thun"
+    },
+    {
+      "slug": "prodent-aarau",
+      "firmenname": "ProDent Aarau",
+      "branche": "zahnarzt",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/prodent-aarau"
+    },
+    {
+      "slug": "restaurant-seeblick-zuerich",
+      "firmenname": "Restaurant Seeblick",
+      "branche": "restaurant",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/restaurant-seeblick-zuerich"
+    },
+    {
+      "slug": "gasthof-baeren-bern",
+      "firmenname": "Gasthof zum Bären Bern",
+      "branche": "restaurant",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/gasthof-baeren-bern"
+    },
+    {
+      "slug": "restaurant-rhein-basel",
+      "firmenname": "Restaurant Rhein Basel",
+      "branche": "restaurant",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/restaurant-rhein-basel"
+    },
+    {
+      "slug": "wirtshaus-pilatus-luzern",
+      "firmenname": "Wirtshaus Pilatus Luzern",
+      "branche": "restaurant",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/wirtshaus-pilatus-luzern"
+    },
+    {
+      "slug": "alte-post-winterthur",
+      "firmenname": "Restaurant Alte Post Winterthur",
+      "branche": "restaurant",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/alte-post-winterthur"
+    },
+    {
+      "slug": "bistro-klostergarten-stgallen",
+      "firmenname": "Bistro am Klostergarten",
+      "branche": "restaurant",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/bistro-klostergarten-stgallen"
+    },
+    {
+      "slug": "restaurant-zugerberg",
+      "firmenname": "Restaurant Zugerberg",
+      "branche": "restaurant",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/restaurant-zugerberg"
+    },
+    {
+      "slug": "gasthaus-sonne-olten",
+      "firmenname": "Gasthaus Sonne Olten",
+      "branche": "restaurant",
+      "ort": "Olten",
+      "url": "demo.dlm-digital.ch/gasthaus-sonne-olten"
+    },
+    {
+      "slug": "berggasthaus-niesen-thun",
+      "firmenname": "Berggasthaus Niesen",
+      "branche": "restaurant",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/berggasthaus-niesen-thun"
+    },
+    {
+      "slug": "kronengarten-aarau",
+      "firmenname": "Restaurant Kronengarten",
+      "branche": "restaurant",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/kronengarten-aarau"
+    },
+    {
+      "slug": "immobilien-zuerich-ag",
+      "firmenname": "Immobilien Zürich AG",
+      "branche": "immobilien",
+      "ort": "Zürich",
+      "url": "demo.dlm-digital.ch/immobilien-zuerich-ag"
+    },
+    {
+      "slug": "wohnraum-bern",
+      "firmenname": "Wohnraum Bern GmbH",
+      "branche": "immobilien",
+      "ort": "Bern",
+      "url": "demo.dlm-digital.ch/wohnraum-bern"
+    },
+    {
+      "slug": "immobasel-ag",
+      "firmenname": "ImmoBasel AG",
+      "branche": "immobilien",
+      "ort": "Basel",
+      "url": "demo.dlm-digital.ch/immobasel-ag"
+    },
+    {
+      "slug": "luzerner-immobilien",
+      "firmenname": "Luzerner Immobilien",
+      "branche": "immobilien",
+      "ort": "Luzern",
+      "url": "demo.dlm-digital.ch/luzerner-immobilien"
+    },
+    {
+      "slug": "immocenter-winterthur",
+      "firmenname": "ImmoCenter Winterthur",
+      "branche": "immobilien",
+      "ort": "Winterthur",
+      "url": "demo.dlm-digital.ch/immocenter-winterthur"
+    },
+    {
+      "slug": "ostschweizimmo-stgallen",
+      "firmenname": "OstschweizImmo AG",
+      "branche": "immobilien",
+      "ort": "St. Gallen",
+      "url": "demo.dlm-digital.ch/ostschweizimmo-stgallen"
+    },
+    {
+      "slug": "zugimmo-zug",
+      "firmenname": "ZugImmo GmbH",
+      "branche": "immobilien",
+      "ort": "Zug",
+      "url": "demo.dlm-digital.ch/zugimmo-zug"
+    },
+    {
+      "slug": "solothurnerwohnen",
+      "firmenname": "SolothurnerWohnen",
+      "branche": "immobilien",
+      "ort": "Solothurn",
+      "url": "demo.dlm-digital.ch/solothurnerwohnen"
+    },
+    {
+      "slug": "hausvermittlung-thun",
+      "firmenname": "Hausvermittlung Thun",
+      "branche": "immobilien",
+      "ort": "Thun",
+      "url": "demo.dlm-digital.ch/hausvermittlung-thun"
+    },
+    {
+      "slug": "immoaarau-ag",
+      "firmenname": "ImmoAarau AG",
+      "branche": "immobilien",
+      "ort": "Aarau",
+      "url": "demo.dlm-digital.ch/immoaarau-ag"
+    }
+  ]
+}

@@ -1,0 +1,1902 @@
+<!-- Deploy: demo.dlm-digital.ch/{slug} | DLM Digital AG -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konfigurator | DLM Digital</title>
+  <meta name="description" content="Konfigurieren Sie Ihr Projekt in wenigen Schritten und erhalten Sie ein persönliches Angebot." />
+
+  <!-- Google Analytics scaffold -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // gtag('config', 'G-XXXXXXXXXX'); // Replace with client GA4 ID
+  </script>
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS — override via CONFIG injection
+       ============================================= */
+    :root {
+      --primary:      #1a4f9c;
+      --primary-dark: #133b78;
+      --primary-light:#e8eef8;
+      --accent:       #f59e0b;
+      --accent-dark:  #d97706;
+      --accent-light: #fef3c7;
+      --success:      #10b981;
+      --error:        #ef4444;
+      --text-primary: #111827;
+      --text-secondary:#6b7280;
+      --text-muted:   #9ca3af;
+      --bg:           #f8fafc;
+      --bg-card:      #ffffff;
+      --border:       #e5e7eb;
+      --border-focus: #1a4f9c;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --shadow-md:    0 4px 12px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
+      --shadow-lg:    0 10px 30px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.07);
+      --shadow-xl:    0 20px 50px rgba(0,0,0,.14), 0 8px 20px rgba(0,0,0,.08);
+      --radius-sm:    8px;
+      --radius-md:    12px;
+      --radius-lg:    16px;
+      --radius-xl:    24px;
+      --font:         -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --transition:   .22s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       HEADER
+       ============================================= */
+    .site-header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--primary);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -.5px;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -.3px;
+    }
+
+    .header-price-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary-light);
+      border: 1.5px solid var(--primary);
+      border-radius: 100px;
+      padding: 6px 16px 6px 12px;
+      cursor: default;
+    }
+
+    .price-pill-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      white-space: nowrap;
+    }
+
+    .price-pill-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      transition: transform .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    .price-pill-value.bump {
+      transform: scale(1.12);
+      color: var(--accent-dark);
+    }
+
+    /* =============================================
+       HERO BAND
+       ============================================= */
+    .hero-band {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 48px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 400px at 20% 50%, rgba(255,255,255,.04) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 300px at 80% 20%, rgba(245,158,11,.08) 0%, transparent 70%);
+    }
+
+    .hero-band h1 {
+      position: relative;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: -.5px;
+      margin-bottom: 10px;
+    }
+
+    .hero-band p {
+      position: relative;
+      font-size: clamp(14px, 2vw, 17px);
+      opacity: .82;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* =============================================
+       MAIN WRAPPER
+       ============================================= */
+    .configurator-wrapper {
+      max-width: 860px;
+      margin: -28px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .configurator-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+    }
+
+    /* =============================================
+       PROGRESS BAR
+       ============================================= */
+    .progress-section {
+      padding: 28px 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .progress-track {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+      padding-bottom: 24px;
+    }
+
+    .progress-track::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .progress-fill {
+      position: absolute;
+      top: 16px;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      z-index: 1;
+      transition: width .4s cubic-bezier(.4,0,.2,1);
+      border-radius: 2px;
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .progress-step.done .step-dot {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .progress-step.active .step-dot {
+      background: var(--bg-card);
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-light);
+    }
+
+    .step-dot-check {
+      display: none;
+      width: 14px;
+      height: 14px;
+    }
+
+    .progress-step.done .step-dot-check { display: block; }
+    .progress-step.done .step-dot-num { display: none; }
+
+    .step-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 72px;
+      line-height: 1.3;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+
+    .progress-step.active .step-label,
+    .progress-step.done .step-label {
+      color: var(--primary);
+    }
+
+    /* =============================================
+       STEP BODY
+       ============================================= */
+    .step-body {
+      padding: 36px 32px;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-title {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: -.4px;
+    }
+
+    .step-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    /* --- Step Slide Transitions --- */
+    .step-panel {
+      position: absolute;
+      inset: 0;
+      padding: 36px 32px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(40px);
+      transition: opacity .3s ease, transform .3s ease;
+      overflow-y: auto;
+    }
+
+    .step-panel.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+      position: relative;
+    }
+
+    .step-panel.exit-left {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    /* =============================================
+       CARD GRID
+       ============================================= */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .option-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+      background: var(--bg-card);
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .option-card.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(26,79,156,.12), var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .option-card-check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(.5);
+      transition: all .2s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    .option-card.selected .option-card-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .option-card-check svg {
+      width: 11px;
+      height: 11px;
+      stroke: #fff;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    .option-card-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      display: block;
+      line-height: 1;
+    }
+
+    .option-card-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .option-card-price {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .option-card.selected .option-card-label {
+      color: var(--primary);
+    }
+
+    /* =============================================
+       SLIDER
+       ============================================= */
+    .slider-container {
+      max-width: 520px;
+    }
+
+    .slider-value-display {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+
+    .slider-big-number {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -2px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      transition: transform .1s;
+    }
+
+    .slider-big-number.bump {
+      transform: scale(1.06);
+    }
+
+    .slider-unit {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .slider-track-wrap {
+      position: relative;
+      padding: 10px 0;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--border);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(26,79,156,.3);
+      margin-top: -10px;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover,
+    input[type="range"]:active::-webkit-slider-thumb {
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(26,79,156,.4);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(26,79,156,.3);
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .slider-hint {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--primary-light);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       CHECKBOXES
+       ============================================= */
+    .checkbox-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 540px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .checkbox-item:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .checkbox-item.checked {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .checkbox-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      background: #fff;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .checkbox-item.checked .checkbox-box {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .checkbox-box svg {
+      width: 12px;
+      height: 12px;
+      stroke: #fff;
+      stroke-width: 2.5;
+      fill: none;
+      opacity: 0;
+      transform: scale(.5);
+      transition: all .2s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    .checkbox-item.checked .checkbox-box svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .checkbox-text {
+      flex: 1;
+    }
+
+    .checkbox-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .checkbox-item.checked .checkbox-label {
+      color: var(--primary);
+    }
+
+    .checkbox-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .checkbox-item.checked .checkbox-price {
+      color: var(--primary);
+    }
+
+    /* =============================================
+       LEAD FORM
+       ============================================= */
+    .lead-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .lead-layout { grid-template-columns: 1fr; }
+    }
+
+    .lead-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .form-input {
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-family: var(--font);
+      color: var(--text-primary);
+      background: var(--bg-card);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      width: 100%;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .form-input.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(239,68,68,.08);
+    }
+
+    .form-error-msg {
+      font-size: 12px;
+      color: var(--error);
+      font-weight: 500;
+    }
+
+    .form-consent {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding-top: 4px;
+    }
+
+    .form-consent a { color: var(--primary); }
+
+    /* --- Price Summary Card --- */
+    .price-summary-card {
+      background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      color: #fff;
+    }
+
+    .price-summary-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      opacity: .75;
+      margin-bottom: 16px;
+    }
+
+    .price-summary-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .price-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .price-summary-row .label { opacity: .8; }
+    .price-summary-row .amount { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    .price-summary-divider {
+      height: 1px;
+      background: rgba(255,255,255,.2);
+      margin: 12px 0;
+    }
+
+    .price-summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price-summary-total .label {
+      font-size: 13px;
+      font-weight: 700;
+      opacity: .9;
+    }
+
+    .price-summary-total .amount {
+      font-size: 22px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
+
+    .price-note {
+      font-size: 11px;
+      opacity: .6;
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* =============================================
+       SUBMIT BUTTON
+       ============================================= */
+    .btn-submit {
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 800;
+      font-family: var(--font);
+      cursor: pointer;
+      letter-spacing: .2px;
+      box-shadow: 0 4px 14px rgba(245,158,11,.35);
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(245,158,11,.45);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-submit .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-text { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =============================================
+       NAVIGATION
+       ============================================= */
+    .step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px 28px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      gap: 12px;
+    }
+
+    .btn-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 700;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+      letter-spacing: .2px;
+    }
+
+    .btn-back {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 2px solid var(--border);
+    }
+
+    .btn-back:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-back:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+    .btn-next {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      padding: 12px 28px;
+      box-shadow: 0 4px 12px rgba(26,79,156,.25);
+    }
+
+    .btn-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26,79,156,.35);
+    }
+
+    .btn-next:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .nav-step-counter {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      flex: 1;
+    }
+
+    /* =============================================
+       SUCCESS STATE
+       ============================================= */
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 64px 40px;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .success-panel.active {
+      display: flex;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--success), #059669);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(16,185,129,.3);
+      animation: pop-in .5s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    .success-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: #fff;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    @keyframes pop-in {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -.5px;
+    }
+
+    .success-text {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 440px;
+      line-height: 1.6;
+    }
+
+    .success-ref {
+      font-size: 13px;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+    }
+
+    .success-ref strong {
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* =============================================
+       TRUST STRIP
+       ============================================= */
+    .trust-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+      padding: 20px 32px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .trust-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--success);
+      stroke-width: 2;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .site-footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .site-footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* =============================================
+       RESPONSIVE ADJUSTMENTS
+       ============================================= */
+    @media (max-width: 640px) {
+      .configurator-wrapper { margin-top: -16px; padding: 0 12px; }
+      .progress-section { padding: 20px 16px 0; }
+      .step-panel { padding: 24px 16px; }
+      .step-nav { padding: 16px; }
+      .step-label { display: none; }
+      .hero-band { padding: 32px 16px 44px; }
+      .header-inner { padding: 0 16px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .trust-strip { padding: 16px; gap: 14px 20px; }
+      .price-pill-label { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .card-grid { grid-template-columns: 1fr 1fr; }
+      .option-card { padding: 16px 10px; }
+      .option-card-icon { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =============================================
+     SITE HEADER
+     ============================================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="brand">
+      <div class="brand-logo" id="headerLogo"></div>
+      <span class="brand-name" id="headerBrandName"></span>
+    </a>
+    <div class="header-price-pill" id="headerPricePill" style="display:none">
+      <span class="price-pill-label">Geschätzt ab</span>
+      <span class="price-pill-value" id="headerPriceValue">CHF 0</span>
+    </div>
+  </div>
+</header>
+
+<!-- =============================================
+     HERO BAND
+     ============================================= -->
+<div class="hero-band">
+  <h1 id="heroTitle"></h1>
+  <p id="heroSubtitle"></p>
+</div>
+
+<!-- =============================================
+     CONFIGURATOR CARD
+     ============================================= -->
+<main class="configurator-wrapper">
+  <div class="configurator-card">
+
+    <!-- Progress -->
+    <div class="progress-section" id="progressSection">
+      <div class="progress-track" id="progressTrack">
+        <div class="progress-fill" id="progressFill"></div>
+        <!-- Steps injected by JS -->
+      </div>
+    </div>
+
+    <!-- Step panels — injected by JS -->
+    <div id="stepContainer" style="position:relative;"></div>
+
+    <!-- Success panel -->
+    <div class="success-panel" id="successPanel">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="success-title" id="successTitle"></h2>
+      <p class="success-text" id="successText"></p>
+      <div class="success-ref">Referenz: <strong id="successRef"></strong></div>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="trust-strip" id="trustStrip">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Kostenlos & unverbindlich
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Antwort innerhalb 24h
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Persönliche Beratung
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Fixpreisgarantie
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="step-nav" id="stepNav">
+      <button class="btn-nav btn-back" id="btnBack" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Zurück
+      </button>
+      <span class="nav-step-counter" id="navCounter"></span>
+      <button class="btn-nav btn-next" id="btnNext">
+        Weiter
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- =============================================
+     FOOTER
+     ============================================= -->
+<footer class="site-footer">
+  &copy; 2024 <a href="https://dlm-digital.ch" target="_blank">DLM Digital AG</a> &nbsp;|&nbsp; <a href="https://demo.dlm-digital.ch" target="_blank">demo.dlm-digital.ch</a>
+</footer>
+
+<!-- =============================================
+     CONFIGURATION OBJECT
+     Edit only this section for each client.
+     ============================================= -->
+<script>
+const CONFIG = {
+  brand: {
+    name: "Muster AG",
+    logo: "M",
+    primaryColor: "#1a4f9c",
+    accentColor:  "#f59e0b"
+  },
+  title:    "Ihr persönlicher Konfigurator",
+  subtitle: "Konfigurieren Sie Ihr Projekt in wenigen Schritten und erhalten Sie ein unverbindliches Angebot.",
+  steps: [
+    {
+      id: "category",
+      title:    "Was möchten Sie erneuern?",
+      subtitle: "Wählen Sie den Bereich, den wir für Sie gestalten dürfen.",
+      type: "cards",
+      required: true,
+      options: [
+        { value: "kueche",  label: "Küche",       icon: "🍳", basePrice: 8000 },
+        { value: "bad",     label: "Badezimmer",   icon: "🚿", basePrice: 6000 },
+        { value: "boden",   label: "Boden",        icon: "⬛", basePrice: 3000 },
+        { value: "heizung", label: "Heizung",      icon: "🔥", basePrice: 5000 }
+      ]
+    },
+    {
+      id: "size",
+      title:    "Wie gross ist der Raum?",
+      subtitle: "Bewegen Sie den Schieberegler auf die ungefähre Grösse.",
+      type: "slider",
+      min: 5, max: 80, default: 20, unit: "m²",
+      pricePerUnit: 150
+    },
+    {
+      id: "style",
+      title:    "Welcher Stil gefällt Ihnen?",
+      subtitle: "Ihr Geschmack bestimmt die Materialauswahl und den Umfang.",
+      type: "cards",
+      required: true,
+      options: [
+        { value: "modern",  label: "Modern",  icon: "◻", priceFactor: 1.0, desc: "Schlicht & funktional" },
+        { value: "premium", label: "Premium", icon: "◆", priceFactor: 1.3, desc: "Hochwertige Materialien" },
+        { value: "luxury",  label: "Luxus",   icon: "★", priceFactor: 1.6, desc: "Das Beste vom Besten" }
+      ]
+    },
+    {
+      id: "extras",
+      title:    "Zusatzoptionen",
+      subtitle: "Wählen Sie weitere Leistungen, die wir übernehmen sollen.",
+      type: "checkboxes",
+      options: [
+        { value: "montage",    label: "Inkl. Montage",    desc: "Fachgerechte Montage durch unser Team", price: 1200 },
+        { value: "entsorgung", label: "Entsorgung",       desc: "Wir entsorgen Ihr altes Material",      price: 300  },
+        { value: "planung",    label: "3D-Planung",       desc: "Visualisierung vor dem Kauf",            price: 450  }
+      ]
+    },
+    {
+      id: "lead",
+      title:    "Ihr persönliches Angebot",
+      subtitle: "Kostenloses, unverbindliches Angebot — in 24 Stunden in Ihrem Postfach.",
+      type: "lead_form",
+      fields: ["name", "email", "phone", "zip"]
+    }
+  ],
+  leadWebhook:  "/api/leads",
+  successTitle: "Vielen Dank!",
+  successText:  "Wir melden uns innerhalb von 24 Stunden mit Ihrem persönlichen Angebot."
+};
+</script>
+
+<!-- =============================================
+     CONFIGURATOR ENGINE
+     ============================================= -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---- Apply CSS vars from CONFIG ---- */
+  (function applyTheme() {
+    const r = document.documentElement.style;
+    r.setProperty('--primary',      CONFIG.brand.primaryColor);
+    r.setProperty('--primary-dark', darken(CONFIG.brand.primaryColor, 20));
+    r.setProperty('--primary-light',lighten(CONFIG.brand.primaryColor, 92));
+    r.setProperty('--accent',       CONFIG.brand.accentColor);
+    r.setProperty('--accent-dark',  darken(CONFIG.brand.accentColor, 15));
+    r.setProperty('--accent-light', lighten(CONFIG.brand.accentColor, 92));
+  })();
+
+  function darken(hex, pct) {
+    const n = parseInt(hex.replace('#',''), 16);
+    const f = 1 - pct/100;
+    const r = Math.round(((n >> 16) & 0xff) * f);
+    const g = Math.round(((n >>  8) & 0xff) * f);
+    const b = Math.round(( n        & 0xff) * f);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function lighten(hex, pct) {
+    const n = parseInt(hex.replace('#',''), 16);
+    const r = (n >> 16) & 0xff;
+    const g = (n >>  8) & 0xff;
+    const b =  n        & 0xff;
+    const f = pct / 100;
+    const nr = Math.round(r + (255 - r) * f);
+    const ng = Math.round(g + (255 - g) * f);
+    const nb = Math.round(b + (255 - b) * f);
+    return `rgb(${nr},${ng},${nb})`;
+  }
+
+  /* ---- Populate static text ---- */
+  document.getElementById('headerLogo').textContent        = CONFIG.brand.logo;
+  document.getElementById('headerBrandName').textContent   = CONFIG.brand.name;
+  document.getElementById('heroTitle').textContent         = CONFIG.title;
+  document.getElementById('heroSubtitle').textContent      = CONFIG.subtitle;
+  document.getElementById('successTitle').textContent      = CONFIG.successTitle;
+  document.getElementById('successText').textContent       = CONFIG.successText;
+
+  /* ---- State ---- */
+  const state = {
+    currentStep: 0,
+    selections:  {},  // stepId → value / array / number
+    totalPrice:  0
+  };
+
+  /* ---- Price Calculation ---- */
+  function calcPrice() {
+    const steps = CONFIG.steps;
+    let base    = 0;
+    let factor  = 1;
+    let addons  = 0;
+    let sizeVal = 0;
+    let ppu     = 0;
+
+    steps.forEach(step => {
+      const sel = state.selections[step.id];
+      if (step.type === 'cards') {
+        const opt = (step.options || []).find(o => o.value === sel);
+        if (opt) {
+          if (opt.basePrice  !== undefined) base   = opt.basePrice;
+          if (opt.priceFactor !== undefined) factor = opt.priceFactor;
+        }
+      }
+      if (step.type === 'slider') {
+        sizeVal = sel !== undefined ? sel : step.default;
+        ppu = step.pricePerUnit || 0;
+      }
+      if (step.type === 'checkboxes' && Array.isArray(sel)) {
+        sel.forEach(v => {
+          const opt = (step.options || []).find(o => o.value === v);
+          if (opt && opt.price) addons += opt.price;
+        });
+      }
+    });
+
+    return Math.round((base + sizeVal * ppu) * factor + addons);
+  }
+
+  /* ---- Format CHF ---- */
+  function fmtChf(n) {
+    return 'CHF\u00a0' + n.toLocaleString('de-CH');
+  }
+
+  /* ---- Animated price bump ---- */
+  function updatePriceDisplay() {
+    const p = calcPrice();
+    state.totalPrice = p;
+
+    const pill = document.getElementById('headerPricePill');
+    const val  = document.getElementById('headerPriceValue');
+
+    if (p > 0) {
+      pill.style.display = 'flex';
+      val.textContent = fmtChf(p);
+      val.classList.add('bump');
+      setTimeout(() => val.classList.remove('bump'), 300);
+    }
+
+    // Update lead form summary if rendered
+    renderPriceSummary();
+  }
+
+  /* ---- Build Progress Bar ---- */
+  function buildProgress() {
+    const track = document.getElementById('progressTrack');
+    // Clear existing step dots (keep fill div)
+    Array.from(track.querySelectorAll('.progress-step')).forEach(el => el.remove());
+
+    CONFIG.steps.forEach((step, i) => {
+      const div = document.createElement('div');
+      div.className = 'progress-step';
+      div.dataset.index = i;
+      div.innerHTML = `
+        <div class="step-dot">
+          <span class="step-dot-num">${i + 1}</span>
+          <svg class="step-dot-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="step-label">${getStepShortLabel(step)}</span>
+      `;
+      track.appendChild(div);
+    });
+
+    updateProgress();
+  }
+
+  function getStepShortLabel(step) {
+    const map = {
+      cards:      step.title.split(' ').slice(-1)[0].replace('?',''),
+      slider:     'Grösse',
+      checkboxes: 'Extras',
+      lead_form:  'Angebot'
+    };
+    return map[step.type] || step.title;
+  }
+
+  function updateProgress() {
+    const dots = document.querySelectorAll('.progress-step');
+    const fill = document.getElementById('progressFill');
+    const n    = CONFIG.steps.length;
+    const cur  = state.currentStep;
+
+    dots.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i < cur)  d.classList.add('done');
+      if (i === cur) d.classList.add('active');
+    });
+
+    // Fill width: from first dot to current dot center
+    const pct = n <= 1 ? 0 : (cur / (n - 1)) * 100;
+    fill.style.width = pct + '%';
+
+    // Nav counter
+    document.getElementById('navCounter').textContent =
+      `Schritt ${cur + 1} von ${n}`;
+
+    // Buttons
+    document.getElementById('btnBack').disabled = cur === 0;
+    const isLead = CONFIG.steps[cur].type === 'lead_form';
+    const btn = document.getElementById('btnNext');
+    if (isLead) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'flex';
+      btn.innerHTML = (cur === n - 2)
+        ? 'Angebot anfordern <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>'
+        : 'Weiter <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>';
+    }
+  }
+
+  /* ---- Render Steps ---- */
+  function buildSteps() {
+    const container = document.getElementById('stepContainer');
+    container.innerHTML = '';
+    container.style.minHeight = '380px';
+
+    CONFIG.steps.forEach((step, i) => {
+      const panel = document.createElement('div');
+      panel.className = 'step-panel' + (i === 0 ? ' active' : '');
+      panel.id = 'step-' + i;
+      panel.innerHTML = renderStep(step, i);
+      container.appendChild(panel);
+      attachStepHandlers(panel, step, i);
+    });
+  }
+
+  function renderStep(step, i) {
+    const header = `
+      <h2 class="step-title">${step.title}</h2>
+      ${step.subtitle ? `<p class="step-subtitle">${step.subtitle}</p>` : ''}
+    `;
+
+    if (step.type === 'cards')      return header + renderCards(step);
+    if (step.type === 'slider')     return header + renderSlider(step);
+    if (step.type === 'checkboxes') return header + renderCheckboxes(step);
+    if (step.type === 'lead_form')  return header + renderLeadForm(step);
+    return header + '<p>Unbekannter Schritt-Typ.</p>';
+  }
+
+  /* --- Cards --- */
+  function renderCards(step) {
+    const opts = step.options.map(opt => {
+      const priceTag = opt.basePrice != null
+        ? `<span class="option-card-price">ab ${fmtChf(opt.basePrice)}</span>`
+        : opt.priceFactor != null
+          ? `<span class="option-card-price">${opt.priceFactor === 1 ? 'Standard' : 'x' + opt.priceFactor.toFixed(1)}</span>`
+          : opt.desc ? `<span class="option-card-price">${opt.desc}</span>` : '';
+      return `
+        <div class="option-card" data-value="${opt.value}" role="button" tabindex="0" aria-pressed="false">
+          <div class="option-card-check">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="option-card-icon">${opt.icon}</span>
+          <div class="option-card-label">${opt.label}</div>
+          ${priceTag}
+        </div>`;
+    }).join('');
+    return `<div class="card-grid">${opts}</div>`;
+  }
+
+  /* --- Slider --- */
+  function renderSlider(step) {
+    const val = state.selections[step.id] !== undefined
+      ? state.selections[step.id] : step.default;
+    return `
+      <div class="slider-container">
+        <div class="slider-value-display">
+          <span class="slider-big-number" id="sliderNum-${step.id}">${val}</span>
+          <span class="slider-unit">${step.unit}</span>
+        </div>
+        <div class="slider-track-wrap">
+          <input
+            type="range"
+            id="slider-${step.id}"
+            min="${step.min}" max="${step.max}"
+            value="${val}"
+            step="1"
+            style="background: linear-gradient(to right, var(--primary) 0%, var(--primary) ${pct(val, step.min, step.max)}%, var(--border) ${pct(val, step.min, step.max)}%, var(--border) 100%)"
+          />
+        </div>
+        <div class="slider-labels">
+          <span>${step.min} ${step.unit}</span>
+          <span>${step.max} ${step.unit}</span>
+        </div>
+        <div class="slider-hint" id="sliderHint-${step.id}">
+          Bei ${val} ${step.unit}: geschätzt +${fmtChf(Math.round(val * (step.pricePerUnit || 0)))}
+        </div>
+      </div>`;
+  }
+
+  function pct(val, min, max) {
+    return Math.round(((val - min) / (max - min)) * 100);
+  }
+
+  /* --- Checkboxes --- */
+  function renderCheckboxes(step) {
+    const items = step.options.map(opt => `
+      <div class="checkbox-item" data-value="${opt.value}" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checkbox-box">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="checkbox-text">
+          <div class="checkbox-label">${opt.label}</div>
+          ${opt.desc ? `<div class="checkbox-price" style="color:var(--text-muted);font-weight:400;font-size:12px">${opt.desc}</div>` : ''}
+        </div>
+        <div class="checkbox-price">+${fmtChf(opt.price)}</div>
+      </div>
+    `).join('');
+    return `<div class="checkbox-list">${items}</div>`;
+  }
+
+  /* --- Lead Form --- */
+  function renderLeadForm(step) {
+    const fieldMap = {
+      name:  { label: 'Vor- & Nachname', type: 'text',  placeholder: 'Maria Muster', required: true },
+      email: { label: 'E-Mail-Adresse',  type: 'email', placeholder: 'maria@beispiel.ch', required: true },
+      phone: { label: 'Telefon',         type: 'tel',   placeholder: '+41 79 123 45 67', required: false },
+      zip:   { label: 'Postleitzahl',    type: 'text',  placeholder: '8001', required: false }
+    };
+
+    const fields = (step.fields || ['name','email']).map(f => {
+      const fd = fieldMap[f] || { label: f, type: 'text', placeholder: '', required: false };
+      return `
+        <div class="form-group">
+          <label class="form-label" for="field-${f}">${fd.label}${fd.required ? ' *' : ''}</label>
+          <input
+            class="form-input"
+            type="${fd.type}"
+            id="field-${f}"
+            name="${f}"
+            placeholder="${fd.placeholder}"
+            autocomplete="${f === 'zip' ? 'postal-code' : f === 'phone' ? 'tel' : f}"
+            ${fd.required ? 'required' : ''}
+          />
+          <span class="form-error-msg" id="err-${f}" style="display:none"></span>
+        </div>`;
+    }).join('');
+
+    // Group into rows of 2
+    const fieldArr = (step.fields || ['name','email']);
+    let rows = '';
+    for (let i = 0; i < fieldArr.length; i += 2) {
+      const pair = fieldArr.slice(i, i+2);
+      if (pair.length === 2) {
+        const a = fieldMap[pair[0]] || { label: pair[0], type:'text', placeholder:'', required:false };
+        const b = fieldMap[pair[1]] || { label: pair[1], type:'text', placeholder:'', required:false };
+        rows += `<div class="form-row">
+          ${buildField(pair[0], a)}
+          ${buildField(pair[1], b)}
+        </div>`;
+      } else {
+        const a = fieldMap[pair[0]] || { label: pair[0], type:'text', placeholder:'', required:false };
+        rows += buildField(pair[0], a);
+      }
+    }
+
+    return `
+      <div class="lead-layout">
+        <form class="lead-form" id="leadForm" novalidate>
+          ${rows}
+          <p class="form-consent">
+            Mit dem Absenden stimmen Sie unserer <a href="#">Datenschutzerklärung</a> zu.
+            Ihre Daten werden nicht an Dritte weitergegeben.
+          </p>
+          <button type="submit" class="btn-submit" id="btnSubmit">
+            <div class="spinner"></div>
+            <span class="btn-text">Kostenloses Angebot erhalten &rarr;</span>
+          </button>
+        </form>
+        <div>
+          <div class="price-summary-card" id="priceSummaryCard">
+            <div class="price-summary-title">Ihre Kostenschätzung</div>
+            <div class="price-summary-rows" id="priceSummaryRows"></div>
+            <div class="price-summary-divider"></div>
+            <div class="price-summary-total">
+              <span class="label">Gesamt (ca.)</span>
+              <span class="amount" id="priceSummaryTotal">${fmtChf(calcPrice())}</span>
+            </div>
+            <p class="price-note">* Unverbindliche Schätzung. Der endgültige Preis wird nach der Beratung festgelegt.</p>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function buildField(name, fd) {
+    return `
+      <div class="form-group">
+        <label class="form-label" for="field-${name}">${fd.label}${fd.required ? ' *' : ''}</label>
+        <input
+          class="form-input"
+          type="${fd.type}"
+          id="field-${name}"
+          name="${name}"
+          placeholder="${fd.placeholder}"
+          ${fd.required ? 'required' : ''}
+        />
+        <span class="form-error-msg" id="err-${name}" style="display:none"></span>
+      </div>`;
+  }
+
+  /* ---- Price Summary (lead step) ---- */
+  function renderPriceSummary() {
+    const el = document.getElementById('priceSummaryRows');
+    const tot = document.getElementById('priceSummaryTotal');
+    if (!el) return;
+
+    let rows = '';
+    CONFIG.steps.forEach(step => {
+      const sel = state.selections[step.id];
+      if (step.type === 'cards' && sel) {
+        const opt = step.options.find(o => o.value === sel);
+        if (opt) {
+          const amt = opt.basePrice != null ? fmtChf(opt.basePrice) :
+                      opt.priceFactor != null ? 'x' + opt.priceFactor.toFixed(1) : '';
+          rows += `<div class="price-summary-row">
+            <span class="label">${opt.label}</span>
+            <span class="amount">${amt}</span>
+          </div>`;
+        }
+      }
+      if (step.type === 'slider') {
+        const v = sel !== undefined ? sel : step.default;
+        rows += `<div class="price-summary-row">
+          <span class="label">Fläche ${v} ${step.unit}</span>
+          <span class="amount">+${fmtChf(Math.round(v * (step.pricePerUnit||0)))}</span>
+        </div>`;
+      }
+      if (step.type === 'checkboxes' && Array.isArray(sel)) {
+        sel.forEach(v => {
+          const opt = step.options.find(o => o.value === v);
+          if (opt) rows += `<div class="price-summary-row">
+            <span class="label">${opt.label}</span>
+            <span class="amount">+${fmtChf(opt.price)}</span>
+          </div>`;
+        });
+      }
+    });
+
+    el.innerHTML = rows || '<div class="price-summary-row"><span class="label" style="opacity:.7">Konfiguration unvollständig</span></div>';
+    if (tot) tot.textContent = fmtChf(calcPrice());
+  }
+
+  /* ---- Attach Handlers ---- */
+  function attachStepHandlers(panel, step, stepIdx) {
+    if (step.type === 'cards') {
+      const cards = panel.querySelectorAll('.option-card');
+      cards.forEach(card => {
+        const activate = () => {
+          cards.forEach(c => {
+            c.classList.remove('selected');
+            c.setAttribute('aria-pressed', 'false');
+          });
+          card.classList.add('selected');
+          card.setAttribute('aria-pressed', 'true');
+          state.selections[step.id] = card.dataset.value;
+          updatePriceDisplay();
+          // Restore previously selected
+        };
+        card.addEventListener('click', activate);
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+        });
+
+        // Restore selection if revisiting
+        if (state.selections[step.id] === card.dataset.value) {
+          card.classList.add('selected');
+          card.setAttribute('aria-pressed', 'true');
+        }
+      });
+    }
+
+    if (step.type === 'slider') {
+      const input   = panel.querySelector(`#slider-${step.id}`);
+      const numEl   = panel.querySelector(`#sliderNum-${step.id}`);
+      const hintEl  = panel.querySelector(`#sliderHint-${step.id}`);
+      if (!input) return;
+
+      // Init state
+      if (state.selections[step.id] === undefined) {
+        state.selections[step.id] = step.default;
+      }
+
+      input.addEventListener('input', () => {
+        const v = parseInt(input.value);
+        state.selections[step.id] = v;
+        numEl.textContent = v;
+        numEl.classList.add('bump');
+        setTimeout(() => numEl.classList.remove('bump'), 200);
+        hintEl.textContent = `Bei ${v} ${step.unit}: geschätzt +${fmtChf(Math.round(v * (step.pricePerUnit||0)))}`;
+        // Update track fill
+        const p = pct(v, step.min, step.max);
+        input.style.background = `linear-gradient(to right, var(--primary) 0%, var(--primary) ${p}%, var(--border) ${p}%, var(--border) 100%)`;
+        updatePriceDisplay();
+      });
+    }
+
+    if (step.type === 'checkboxes') {
+      if (!state.selections[step.id]) state.selections[step.id] = [];
+      const items = panel.querySelectorAll('.checkbox-item');
+      items.forEach(item => {
+        // Restore
+        if (state.selections[step.id].includes(item.dataset.value)) {
+          item.classList.add('checked');
+          item.setAttribute('aria-checked', 'true');
+        }
+        const toggle = () => {
+          const v = item.dataset.value;
+          item.classList.toggle('checked');
+          const checked = item.classList.contains('checked');
+          item.setAttribute('aria-checked', String(checked));
+          if (checked) {
+            state.selections[step.id].push(v);
+          } else {
+            state.selections[step.id] = state.selections[step.id].filter(x => x !== v);
+          }
+          updatePriceDisplay();
+        };
+        item.addEventListener('click', toggle);
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+    }
+
+    if (step.type === 'lead_form') {
+      const form = panel.querySelector('#leadForm');
+      if (!form) return;
+      form.addEventListener('submit', handleLeadSubmit);
+    }
+  }
+
+  /* ---- Lead Form Submission ---- */
+  async function handleLeadSubmit(e) {
+    e.preventDefault();
+    const form   = e.target;
+    const btn    = document.getElementById('btnSubmit');
+    let valid    = true;
+
+    // Validate required
+    form.querySelectorAll('input[required]').forEach(input => {
+      const errEl = document.getElementById('err-' + input.name);
+      if (!input.value.trim()) {
+        input.classList.add('error');
+        if (errEl) { errEl.textContent = 'Dieses Feld ist erforderlich.'; errEl.style.display = 'block'; }
+        valid = false;
+      } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+        input.classList.add('error');
+        if (errEl) { errEl.textContent = 'Bitte geben Sie eine gültige E-Mail ein.'; errEl.style.display = 'block'; }
+        valid = false;
+      } else {
+        input.classList.remove('error');
+        if (errEl) errEl.style.display = 'none';
+      }
+    });
+
+    if (!valid) return;
+
+    // Collect form data
+    const formData = {};
+    new FormData(form).forEach((v, k) => formData[k] = v);
+
+    const payload = {
+      ...formData,
+      selections:     state.selections,
+      estimatedPrice: state.totalPrice,
+      brand:          CONFIG.brand.name,
+      timestamp:      new Date().toISOString(),
+      referrer:       document.referrer || '',
+      url:            window.location.href
+    };
+
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(CONFIG.leadWebhook, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      });
+      // Accept 2xx as success; also treat network error gracefully
+      showSuccess(payload);
+    } catch (err) {
+      // Demo mode: show success anyway
+      showSuccess(payload);
+    }
+
+    // gtag event
+    try {
+      gtag('event', 'configurator_complete', {
+        value:    state.totalPrice,
+        currency: 'CHF',
+        brand:    CONFIG.brand.name
+      });
+    } catch (_) {}
+  }
+
+  function showSuccess(payload) {
+    document.getElementById('stepContainer').style.display   = 'none';
+    document.getElementById('stepNav').style.display         = 'none';
+    document.getElementById('progressSection').style.display = 'none';
+    document.getElementById('trustStrip').style.display      = 'none';
+
+    const sp = document.getElementById('successPanel');
+    sp.classList.add('active');
+
+    // Generate reference number
+    const ref = 'DLM-' + Date.now().toString(36).toUpperCase().slice(-6);
+    document.getElementById('successRef').textContent = ref;
+    document.getElementById('successTitle').textContent = CONFIG.successTitle;
+    document.getElementById('successText').textContent  = CONFIG.successText;
+  }
+
+  /* ---- Navigation ---- */
+  document.getElementById('btnNext').addEventListener('click', () => {
+    if (!canProceed()) return;
+    goToStep(state.currentStep + 1);
+  });
+
+  document.getElementById('btnBack').addEventListener('click', () => {
+    goToStep(state.currentStep - 1);
+  });
+
+  function canProceed() {
+    const step = CONFIG.steps[state.currentStep];
+    if (step.required && step.type === 'cards') {
+      if (!state.selections[step.id]) {
+        // Briefly shake unselected cards
+        document.querySelectorAll(`#step-${state.currentStep} .card-grid`).forEach(g => {
+          g.style.animation = 'none';
+          g.style.outline = '2px solid var(--error)';
+          g.style.borderRadius = 'var(--radius-md)';
+          setTimeout(() => { g.style.outline = 'none'; }, 1200);
+        });
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function goToStep(idx) {
+    if (idx < 0 || idx >= CONFIG.steps.length) return;
+
+    const cur  = document.getElementById('step-' + state.currentStep);
+    const next = document.getElementById('step-' + idx);
+    const dir  = idx > state.currentStep ? 1 : -1;
+
+    // Animate out
+    cur.style.transition  = 'opacity .25s ease, transform .25s ease';
+    cur.style.opacity     = '0';
+    cur.style.transform   = dir > 0 ? 'translateX(-40px)' : 'translateX(40px)';
+    cur.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+      cur.classList.remove('active');
+      cur.style.cssText = '';
+      cur.style.position = 'absolute';
+      cur.style.opacity  = '0';
+
+      state.currentStep = idx;
+      updateProgress();
+
+      next.style.cssText  = '';
+      next.style.opacity  = '0';
+      next.style.transform = dir > 0 ? 'translateX(40px)' : 'translateX(-40px)';
+      next.style.transition = 'none';
+      next.classList.add('active');
+
+      // Force reflow
+      void next.offsetWidth;
+
+      next.style.transition = 'opacity .28s ease, transform .28s ease';
+      next.style.opacity    = '1';
+      next.style.transform  = 'translateX(0)';
+
+      // If entering lead step: render summary
+      if (CONFIG.steps[idx].type === 'lead_form') {
+        renderPriceSummary();
+      }
+
+      // If entering slider: re-init to make sure it's showing
+      if (CONFIG.steps[idx].type === 'slider') {
+        updatePriceDisplay();
+      }
+
+      setTimeout(() => {
+        next.style.transition = '';
+        next.style.opacity    = '';
+        next.style.transform  = '';
+      }, 300);
+
+    }, 220);
+  }
+
+  /* ---- Init ---- */
+  function init() {
+    buildProgress();
+    buildSteps();
+    // Set default slider values
+    CONFIG.steps.forEach(step => {
+      if (step.type === 'slider' && state.selections[step.id] === undefined) {
+        state.selections[step.id] = step.default;
+      }
+    });
+    updateProgress();
+  }
+
+  init();
+
+})();
+</script>
+
+</body>
+</html>

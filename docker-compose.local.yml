@@ -1,0 +1,23 @@
+version: "3.9"
+
+# DLM Digital — Local Development Stack
+# Start: docker compose -f docker-compose.local.yml up
+# CRM läuft auf: http://localhost:3002
+
+services:
+
+  crm:
+    build: ./crm
+    restart: unless-stopped
+    environment:
+      PORT: 3002
+      DB_PATH: /data/crm.db
+      # Local dev only: bypass macOS Docker SSL proxy
+      NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    ports:
+      - "3002:3002"
+    volumes:
+      - crm_data:/data
+
+volumes:
+  crm_data:

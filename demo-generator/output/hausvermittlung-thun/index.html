@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hausvermittlung Thun – Immobilien Thun | Verkauf & Vermietung</title>
+  <meta name="description" content="Hausvermittlung Thun – Ihr Eigenheim im Berner Oberland. Immobilien kaufen, verkaufen und vermieten in Thun. Jetzt kostenlose Immobilienbewertung anfragen." />
+
+  <!-- Google Ads Conversion Tracking Scaffold -->
+  <!-- REPLACE_WITH_GTAG_ID: Replace G-XXXXXXXXXX with your actual Google Tag ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX'); /* REPLACE_WITH_GTAG_ID */
+    function trackConversion(label) {
+      gtag('event', 'conversion', {
+        'send_to': 'G-XXXXXXXXXX/CONVERSION_LABEL', /* REPLACE_WITH_CONVERSION_LABEL */
+        'event_category': 'Lead',
+        'event_label': label || 'Kontaktformular'
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Palette */
+      --slate:         #1c2331;
+      --slate-mid:     #28334a;
+      --slate-light:   #36485f;
+      --slate-muted:   #4a607a;
+      --gold:          #b8953a;
+      --gold-bright:   #cda94e;
+      --gold-light:    #ddc47a;
+      --gold-pale:     #f0e4c0;
+      --champagne:     #f8f3e8;
+      --offwhite:      #fafaf8;
+      --white:         #ffffff;
+      --text:          #1c2331;
+      --text-mid:      #36485f;
+      --text-muted:    #5e788f;
+      --border:        rgba(184,149,58,.18);
+      --border-light:  rgba(184,149,58,.09);
+      --radius:        2px;
+      --radius-md:     5px;
+      --shadow:        0 2px 20px rgba(28,35,49,.07);
+      --shadow-lg:     0 16px 60px rgba(28,35,49,.13);
+      --font-serif:    'Cormorant Garamond', 'Georgia', serif;
+      --font-sans:     'Inter', system-ui, -apple-system, sans-serif;
+      --transition:    .22s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button, input, select, textarea { font-family: inherit; }
+
+    /* ── UTILITIES ────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+    .section { padding: 96px 0; }
+    .section--alt { background: var(--white); }
+    .section--dark { background: var(--slate); color: var(--white); }
+    .section--champagne { background: var(--champagne); }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      opacity: .6;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--slate);
+      margin-bottom: 18px;
+    }
+    .section-title--light { color: var(--white); }
+
+    .section-subtitle {
+      font-size: .975rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.72;
+    }
+    .section-subtitle--light { color: rgba(255,255,255,.65); }
+
+    .section-header { margin-bottom: 56px; }
+    .section-header--center { text-align: center; }
+    .section-header--center .section-subtitle { margin: 0 auto; }
+    .section-header--center .eyebrow { justify-content: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      border-radius: var(--radius);
+      white-space: nowrap;
+    }
+    .btn--gold {
+      background: var(--gold);
+      color: var(--white);
+    }
+    .btn--gold:hover {
+      background: var(--gold-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(184,149,58,.35);
+    }
+    .btn--outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.4);
+    }
+    .btn--outline:hover {
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+    .btn--outline-dark {
+      background: transparent;
+      color: var(--slate);
+      border: 1px solid var(--border);
+    }
+    .btn--outline-dark:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── NAVIGATION ───────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(28,35,49,.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,149,58,.15);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav__logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .nav__logo-name {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: .01em;
+      line-height: 1.1;
+    }
+    .nav__logo-sub {
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav__links a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+      transition: color var(--transition);
+    }
+    .nav__links a:hover { color: var(--gold-light); }
+    .nav__cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav__phone {
+      font-size: .8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.55);
+      transition: color var(--transition);
+      display: none;
+    }
+    .nav__phone:hover { color: var(--gold-light); }
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: rgba(255,255,255,.75);
+      transition: var(--transition);
+    }
+    .nav__mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--slate);
+      border-top: 1px solid rgba(184,149,58,.12);
+    }
+    .nav__mobile a {
+      display: block;
+      padding: 15px 5vw;
+      font-size: .85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.8);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      letter-spacing: .04em;
+    }
+    .nav__mobile a:hover { color: var(--gold-light); background: rgba(255,255,255,.03); }
+    .nav__mobile--open { display: flex; }
+
+    @media (max-width: 900px) {
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+    @media (min-width: 640px) {
+      .nav__phone { display: block; }
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--slate);
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(28,35,49,.92) 0%, rgba(28,35,49,.70) 50%, rgba(40,51,74,.80) 100%),
+        linear-gradient(180deg, #2a3a52 0%, #1c2331 100%);
+      z-index: 0;
+    }
+    /* Decorative architectural grid lines */
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(184,149,58,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,149,58,.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero__accent {
+      position: absolute;
+      bottom: -120px;
+      right: -80px;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,149,58,.12) 0%, transparent 70%);
+      z-index: 0;
+    }
+    .hero__accent2 {
+      position: absolute;
+      top: -100px;
+      left: -60px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,149,58,.06) 0%, transparent 70%);
+      z-index: 0;
+    }
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 80px 0 60px;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 8px;
+      border: 1px solid rgba(184,149,58,.3);
+      border-radius: 100px;
+      margin-bottom: 28px;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 22px;
+      max-width: 760px;
+    }
+    .hero__title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero__subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,.62);
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+    .hero__cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+    /* Search bar */
+    .hero__search {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(184,149,58,.22);
+      border-radius: var(--radius-md);
+      padding: 6px 6px 6px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 640px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero__search-icon {
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .hero__search input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--white);
+      font-size: .9rem;
+      padding: 10px 0;
+      min-width: 0;
+    }
+    .hero__search input::placeholder { color: rgba(255,255,255,.38); }
+    .hero__search select {
+      background: rgba(255,255,255,.08);
+      border: none;
+      border-left: 1px solid rgba(184,149,58,.2);
+      outline: none;
+      color: rgba(255,255,255,.7);
+      font-size: .78rem;
+      padding: 10px 14px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .hero__search select option { background: var(--slate-mid); color: var(--white); }
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero__stat {}
+    .hero__stat-num {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero__stat-num span { color: var(--gold); }
+    .hero__stat-label {
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-top: 4px;
+    }
+    .hero__divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,.15);
+      align-self: center;
+    }
+    .hero__scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 1;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    .hero__scroll-label {
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: .4; }
+      50% { opacity: 1; }
+    }
+
+    /* ── TRUST BAR ────────────────────────────────────────── */
+    .trustbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-light);
+      padding: 20px 0;
+    }
+    .trustbar__inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .trustbar__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 28px;
+      border-right: 1px solid var(--border-light);
+    }
+    .trustbar__item:last-child { border-right: none; }
+    .trustbar__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: .9rem;
+    }
+    .trustbar__text {}
+    .trustbar__text strong {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .trustbar__text span {
+      font-size: .72rem;
+      color: var(--text-muted);
+    }
+
+    /* ── LISTINGS ─────────────────────────────────────────── */
+    .listings__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      border: 1px solid var(--border-light);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .card__image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .card__image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card__image-placeholder--1 {
+      background: linear-gradient(135deg, #2d3e55 0%, #4a617d 50%, #354f6a 100%);
+    }
+    .card__image-placeholder--2 {
+      background: linear-gradient(135deg, #3a4a5c 0%, #5a7090 50%, #2e4060 100%);
+    }
+    .card__image-placeholder--3 {
+      background: linear-gradient(135deg, #253347 0%, #3d5570 50%, #1e3050 100%);
+    }
+    .card__image-icon {
+      opacity: .18;
+    }
+    .card__image-icon svg { width: 64px; height: 64px; fill: var(--white); }
+    .card__badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 4px 10px;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+    }
+    .card__badge--new { background: var(--gold); color: var(--white); }
+    .card__badge--rent { background: var(--slate); color: var(--white); }
+    .card__badge--exclusive {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.6);
+      color: var(--white);
+    }
+    .card__fav {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: .85rem;
+      color: rgba(255,255,255,.75);
+      transition: background var(--transition);
+    }
+    .card__fav:hover { background: rgba(255,255,255,.28); }
+    .card__body { padding: 22px 22px 20px; }
+    .card__price {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .card__title {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .card__location {
+      font-size: .78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+    .card__location::before {
+      content: '◈';
+      color: var(--gold);
+      font-size: .65rem;
+    }
+    .card__specs {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--border-light);
+      padding-top: 14px;
+    }
+    .card__spec {
+      flex: 1;
+      text-align: center;
+      border-right: 1px solid var(--border-light);
+    }
+    .card__spec:last-child { border-right: none; }
+    .card__spec-val {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+    .card__spec-label {
+      font-size: .66rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .card__footer {
+      padding: 0 22px 20px;
+    }
+    .card__btn {
+      display: block;
+      width: 100%;
+      padding: 11px;
+      text-align: center;
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+      cursor: pointer;
+      background: none;
+    }
+    .card__btn:hover {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+    .listings__cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .listings__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .listings__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 36px 28px;
+      transition: background var(--transition);
+      position: relative;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 28px;
+      right: 28px;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+      transform-origin: left;
+    }
+    .service-card:hover { background: var(--champagne); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      background: var(--gold-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    .service-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 10px;
+    }
+    .service-card__text {
+      font-size: .83rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .service-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: gap var(--transition);
+    }
+    .service-card__link:hover { gap: 10px; }
+    .service-card__link::after { content: '→'; }
+
+    @media (max-width: 900px) {
+      .services__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .services__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ABOUT ────────────────────────────────────────────── */
+    .about__layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about__visual {
+      position: relative;
+    }
+    .about__img-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-md);
+      background: linear-gradient(160deg, #2e4060 0%, #1c2f48 50%, #253045 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .about__img-placeholder {
+      text-align: center;
+    }
+    .about__img-placeholder p {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin-top: 10px;
+    }
+    .about__img-placeholder svg { width: 48px; height: 48px; fill: rgba(255,255,255,.2); }
+    .about__card {
+      position: absolute;
+      bottom: 28px;
+      right: -28px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
+      min-width: 180px;
+    }
+    .about__card-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .about__card-label {
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .about__list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .about__list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .about__list-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      border: 1px solid var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: .65rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .about__list-text {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .about__team-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .about__team-member {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .about__avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--slate-light), var(--slate-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .about__member-name {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .about__member-role {
+      font-size: .72rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 860px) {
+      .about__layout { grid-template-columns: 1fr; gap: 48px; }
+      .about__visual { max-width: 480px; margin: 0 auto; }
+      .about__card { right: 0; }
+    }
+
+    /* ── MARKET STATS ─────────────────────────────────────── */
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.1);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .stat-block {
+      padding: 44px 32px;
+      background: rgba(255,255,255,.04);
+      text-align: center;
+      transition: background var(--transition);
+    }
+    .stat-block:hover { background: rgba(255,255,255,.08); }
+    .stat-block__num {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-block__num sup {
+      font-size: 1.4rem;
+      vertical-align: super;
+    }
+    .stat-block__label {
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      line-height: 1.5;
+    }
+    .stat-block__sublabel {
+      font-size: .72rem;
+      color: rgba(255,255,255,.28);
+      margin-top: 4px;
+    }
+    .stats__note {
+      margin-top: 24px;
+      text-align: center;
+      font-size: .75rem;
+      color: rgba(255,255,255,.3);
+      font-style: italic;
+    }
+
+    @media (max-width: 860px) {
+      .stats__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .stats__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────────────────── */
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .testimonial::before {
+      content: '\201C';
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      line-height: .6;
+      color: var(--gold-pale);
+      position: absolute;
+      top: 24px;
+      left: 22px;
+    }
+    .testimonial__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+      padding-top: 8px;
+    }
+    .testimonial__star { color: var(--gold); font-size: .85rem; }
+    .testimonial__text {
+      font-size: .88rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 22px;
+    }
+    .testimonial__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border-light);
+      padding-top: 18px;
+    }
+    .testimonial__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--slate-light), var(--slate-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .testimonial__name {
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .testimonial__meta {
+      font-size: .72rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 860px) {
+      .testimonials__grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+    }
+    @media (min-width: 600px) and (max-width: 860px) {
+      .testimonials__grid { grid-template-columns: 1fr 1fr; max-width: 100%; }
+    }
+
+    /* ── VALUATION BAND ───────────────────────────────────── */
+    .valuation-band {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 50%, #c9a33e 100%);
+      padding: 64px 0;
+    }
+    .valuation-band__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .valuation-band__text {}
+    .valuation-band__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .valuation-band__sub {
+      font-size: .9rem;
+      color: rgba(255,255,255,.78);
+    }
+    .valuation-band__btn {
+      background: var(--white);
+      color: var(--gold);
+      border: none;
+      padding: 16px 36px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+    .valuation-band__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.18);
+    }
+
+    /* ── CONTACT ──────────────────────────────────────────── */
+    .contact__layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact__info {}
+    .contact__info-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 14px;
+    }
+    .contact__info-text {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .contact__details {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact__detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .contact__detail-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      background: var(--gold-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: .9rem;
+    }
+    .contact__detail-label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .contact__detail-val {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .contact__detail-val a:hover { color: var(--gold); }
+    .contact__form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
+    }
+    .form__title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+    .form__subtitle {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form__group--full { grid-column: 1 / -1; }
+    .form__label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+    .form__input,
+    .form__select,
+    .form__textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: .88rem;
+      color: var(--text);
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      outline: none;
+      transition: border-color var(--transition), background var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form__input:focus,
+    .form__select:focus,
+    .form__textarea:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+    .form__textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+    .form__select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235e788f' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form__checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .form__checkbox {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+    }
+    .form__checkbox-label {
+      font-size: .78rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .form__submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .form__submit:hover {
+      background: var(--gold-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(184,149,58,.35);
+    }
+    .form__note {
+      text-align: center;
+      font-size: .72rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+    .form__note span { color: var(--gold); }
+
+    @media (max-width: 860px) {
+      .contact__layout { grid-template-columns: 1fr; gap: 48px; }
+      .contact__form-wrap { padding: 28px 24px; }
+    }
+    @media (max-width: 480px) {
+      .form__row { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .footer {
+      background: var(--slate);
+      color: rgba(255,255,255,.65);
+      padding-top: 72px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer__brand {}
+    .footer__logo-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .footer__logo-sub {
+      font-size: .65rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .footer__brand-text {
+      font-size: .82rem;
+      line-height: 1.75;
+      max-width: 280px;
+      margin-bottom: 24px;
+    }
+    .footer__social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer__social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.6);
+      transition: border-color var(--transition), color var(--transition);
+      letter-spacing: 0;
+    }
+    .footer__social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer__col-title {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .footer__links a {
+      font-size: .82rem;
+      color: rgba(255,255,255,.5);
+      transition: color var(--transition);
+    }
+    .footer__links a:hover { color: var(--gold-light); }
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+    }
+    .footer__copy {
+      font-size: .75rem;
+      color: rgba(255,255,255,.3);
+    }
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer__legal a {
+      font-size: .75rem;
+      color: rgba(255,255,255,.3);
+      transition: color var(--transition);
+    }
+    .footer__legal a:hover { color: var(--gold-light); }
+
+    @media (max-width: 860px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 480px) {
+      .footer__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── MISC HELPERS ─────────────────────────────────────── */
+    .gold-line {
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+    .gold-line--center { margin: 0 auto 24px; }
+
+    @media (max-width: 640px) {
+      .section { padding: 64px 0; }
+      .trustbar__item { padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ════════════════════════════════════════ -->
+  <header>
+    <nav class="nav">
+      <div class="container">
+        <div class="nav__inner">
+          <a href="#" class="nav__logo">
+            <span class="nav__logo-name">Hausvermittlung Thun</span>
+            <span class="nav__logo-sub">Immobilien · Thun</span>
+          </a>
+
+          <ul class="nav__links">
+            <li><a href="#angebote">Angebote</a></li>
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#bewertungen">Referenzen</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+
+          <div class="nav__cta">
+            <a href="tel:033 224 20 30" class="nav__phone">033 224 20 30</a>
+            <a href="#bewertung" class="btn btn--gold" onclick="trackConversion('Nav CTA')">Kostenlose Bewertung</a>
+            <button class="nav__hamburger" aria-label="Menü" onclick="document.querySelector('.nav__mobile').classList.toggle('nav__mobile--open')">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="nav__mobile">
+        <a href="#angebote">Angebote</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#bewertungen">Referenzen</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="tel:033 224 20 30" style="color: var(--gold-light);">033 224 20 30</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__accent"></div>
+    <div class="hero__accent2"></div>
+
+    <div class="container hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Ihr Immobilienexperte in Thun
+      </div>
+
+      <h1 class="hero__title">
+        Ihre Immobilie.<br>
+        <em>Bestens begleitet.</em>
+      </h1>
+      <p class="hero__subtitle">Ihr Eigenheim im Berner Oberland — Mit lokalem Marktgespür, persönlicher Beratung und über zwei Jahrzehnten Erfahrung im Schweizer Immobilienmarkt.</p>
+
+      <div class="hero__cta-row">
+        <a href="#bewertung" class="btn btn--gold" onclick="trackConversion('Hero Bewertung')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><polyline points="21 21 16.65 16.65"/></svg>
+          Kostenlose Bewertung
+        </a>
+        <a href="#angebote" class="btn btn--outline">Alle Objekte ansehen</a>
+      </div>
+
+      <!-- Search bar -->
+      <div class="hero__search">
+        <span class="hero__search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input type="text" placeholder="Ort, Gemeinde oder Objektbezeichnung eingeben …" />
+        <select>
+          <option>Kaufen</option>
+          <option>Mieten</option>
+          <option>Gewerbe</option>
+        </select>
+        <button class="btn btn--gold" style="border-radius: 3px; padding: 11px 20px;">Suchen</button>
+      </div>
+
+      <div style="margin-top: 48px;" class="hero__stats">
+        <div class="hero__stat">
+          <div class="hero__stat-num">450<span>+</span></div>
+          <div class="hero__stat-label">Verkaufte Objekte</div>
+        </div>
+        <div class="hero__divider"></div>
+        <div class="hero__stat">
+          <div class="hero__stat-num">22<span> J.</span></div>
+          <div class="hero__stat-label">Markterfahrung</div>
+        </div>
+        <div class="hero__divider"></div>
+        <div class="hero__stat">
+          <div class="hero__stat-num">98<span>%</span></div>
+          <div class="hero__stat-label">Kundenzufriedenheit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <div class="hero__scroll-line"></div>
+      <span class="hero__scroll-label">Entdecken</span>
+    </div>
+  </section>
+
+  <!-- ══ TRUST BAR ══════════════════════════════════════════ -->
+  <div class="trustbar">
+    <div class="container">
+      <div class="trustbar__inner">
+        <div class="trustbar__item">
+          <div class="trustbar__icon">🏛️</div>
+          <div class="trustbar__text">
+            <strong>SVIT Mitglied</strong>
+            <span>Zertifizierter Immobilientreuhänder</span>
+          </div>
+        </div>
+        <div class="trustbar__item">
+          <div class="trustbar__icon">🔒</div>
+          <div class="trustbar__text">
+            <strong>Diskrete Abwicklung</strong>
+            <span>Vollständige Vertraulichkeit</span>
+          </div>
+        </div>
+        <div class="trustbar__item">
+          <div class="trustbar__icon">📍</div>
+          <div class="trustbar__text">
+            <strong>Lokale Expertise</strong>
+            <span>Thun & Umgebung</span>
+          </div>
+        </div>
+        <div class="trustbar__item">
+          <div class="trustbar__icon">⭐</div>
+          <div class="trustbar__text">
+            <strong>Top Bewertung</strong>
+            <span>4.9 / 5 – über 180 Rezensionen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FEATURED LISTINGS ═══════════════════════════════════ -->
+  <section class="section section--alt" id="angebote">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Aktuelle Angebote</span>
+        <h2 class="section-title">Ausgewählte Objekte</h2>
+        <p class="section-subtitle">Eine Selektion hochwertiger Liegenschaften — sorgfältig geprüft und persönlich empfohlen von unserem Team.</p>
+      </div>
+
+      <div class="listings__grid">
+
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="card__image">
+            <div class="card__image-placeholder card__image-placeholder--1">
+              <div class="card__image-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3l9 6.5V21H3V9.5z"/><path d="M9 21V12h6v9"/></svg>
+              </div>
+            </div>
+            <span class="card__badge card__badge--new">Neu</span>
+            <button class="card__fav">♡</button>
+          </div>
+          <div class="card__body">
+            <div class="card__price">CHF 1'290'000</div>
+            <div class="card__title">Elegantes Einfamilienhaus mit Seesicht</div>
+            <div class="card__location">Thun, ruhige Wohnlage</div>
+            <div class="card__specs">
+              <div class="card__spec">
+                <span class="card__spec-val">5.5</span>
+                <span class="card__spec-label">Zimmer</span>
+              </div>
+              <div class="card__spec">
+                <span class="card__spec-val">172 m²</span>
+                <span class="card__spec-label">Wohnfläche</span>
+              </div>
+              <div class="card__spec">
+                <span class="card__spec-val">620 m²</span>
+                <span class="card__spec-label">Grundstück</span>
+              </div>
+            </div>
+          </div>
+          <div class="card__footer">
+            <button class="card__btn">Details &amp; Besichtigung</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="card__image">
+            <div class="card__image-placeholder card__image-placeholder--2">
+              <div class="card__image-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+            </div>
+            <span class="card__badge card__badge--exclusive">Exclusiv</span>
+            <button class="card__fav">♡</button>
+          </div>
+          <div class="card__body">
+            <div class="card__price">CHF 895'000</div>
+            <div class="card__title">Moderne 4.5-Zimmer-Eigentumswohnung</div>
+            <div class="card__location">Thun, zentrale Lage</div>
+            <div class="card__specs">
+              <div class="card__spec">
+                <span class="card__spec-val">4.5</span>
+                <span class="card__spec-label">Zimmer</span>
+              </div>
+              <div class="card__spec">
+                <span class="card__spec-val">118 m²</span>
+                <span class="card__spec-label">Wohnfläche</span>
+              </div>
+              <div class="card__spec">
+                <span class="card__spec-val">2012</span>
+                <span class="card__spec-label">Baujahr</span>
+              </div>
+            </div>
+          </div>
+          <div class="card__footer">
+            <button class="card__btn">Details &amp; Besichtigung</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="card__image">
+            <div class="card__image-placeholder card__image-placeholder--3">
+              <div class="card__image-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+              </div>
+            </div>
+            <span class="card__badge card__badge--rent">Miete</span>
+            <button class="card__fav">♡</button>
+          </div>
+          <div class="card__body">
+            <div class="card__price">CHF 3'200 / Mt.</div>
+            <div class="card__title">Lichtdurchflutetes Stadthaus mit Terrasse</div>
+            <div class="card__location">Thun, gepflegte Wohnlage</div>
+            <div class="card__specs">
+              <div class="card__spec">
+                <span class="card__spec-val">6.5</span>
+                <span class="card__spec-label">Zimmer</span>
+              </div>
+              <div class="card__spec">
+                <span class="card__spec-val">195 m²</span>
+                <span class="card__spec-label">Wohnfläche</span>
+              </div>
+              <div class="card__spec">
+                <span class="card__spec-val">280 m²</span>
+                <span class="card__spec-label">Grundstück</span>
+              </div>
+            </div>
+          </div>
+          <div class="card__footer">
+            <button class="card__btn">Details &amp; Besichtigung</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="listings__cta">
+        <a href="#" class="btn btn--outline-dark">
+          Alle Objekte anzeigen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICES ══════════════════════════════════════════ -->
+  <section class="section section--champagne" id="leistungen">
+    <div class="container">
+      <div class="section-header section-header--center">
+        <span class="eyebrow">Unsere Leistungen</span>
+        <h2 class="section-title">Was wir für Sie tun</h2>
+        <p class="section-subtitle">Von der ersten Beratung bis zur Schlüsselübergabe — kompetent, diskret und mit vollem Einsatz für Ihre Interessen.</p>
+      </div>
+
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__icon">🏡</div>
+          <h3 class="service-card__title">Verkauf</h3>
+          <p class="service-card__text">Professionelle Vermarktung Ihrer Liegenschaft: marktgerechte Bewertung, qualitatives Marketing und diskretes Käufernetzwerk.</p>
+          <a href="#" class="service-card__link">Mehr erfahren</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">🔑</div>
+          <h3 class="service-card__title">Vermietung</h3>
+          <p class="service-card__text">Wir finden solvente Mieter, erstellen Mietverträge und übernehmen die gesamte Abwicklung — zuverlässig und rechtskonform.</p>
+          <a href="#" class="service-card__link">Mehr erfahren</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">📊</div>
+          <h3 class="service-card__title">Bewertung</h3>
+          <p class="service-card__text">Fundierte Marktwertanalyse Ihrer Immobilie — kostenlos, unverbindlich und basierend auf aktuellen Transaktionsdaten.</p>
+          <a href="#bewertung" class="service-card__link">Jetzt anfragen</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">💼</div>
+          <h3 class="service-card__title">Beratung</h3>
+          <p class="service-card__text">Strategische Anlageberatung, Portfoliooptimierung und Standortanalysen für private wie institutionelle Investoren.</p>
+          <a href="#kontakt" class="service-card__link">Gespräch anfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══════════════════════════════════════════════ -->
+  <section class="section section--alt" id="ueber-uns">
+    <div class="container">
+      <div class="about__layout">
+        <div class="about__visual">
+          <div class="about__img-main">
+            <div class="about__img-placeholder">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <p>Ihr Team-Foto</p>
+            </div>
+          </div>
+          <div class="about__card">
+            <div class="about__card-num">22</div>
+            <div class="about__card-label">Jahre Erfahrung<br>in Thun</div>
+          </div>
+        </div>
+
+        <div class="about__text">
+          <span class="eyebrow">Über uns</span>
+          <h2 class="section-title">Bodenständig.<br>Kompetent. Diskret.</h2>
+          <p class="section-subtitle">Hausvermittlung Thun steht für persönliche Betreuung auf höchstem Niveau. Als unabhängiges Immobilienbüro kennen wir den Markt in Thun wie kein anderer — und setzen uns vollständig für Ihre Ziele ein.</p>
+
+          <ul class="about__list">
+            <li class="about__list-item">
+              <span class="about__list-dot">✓</span>
+              <span class="about__list-text">Zertifizierter Immobilientreuhänder (SVIT) mit umfassender Marktkenntnis</span>
+            </li>
+            <li class="about__list-item">
+              <span class="about__list-dot">✓</span>
+              <span class="about__list-text">Individuelles Mandat — kein Call-Center, persönlicher Ansprechpartner</span>
+            </li>
+            <li class="about__list-item">
+              <span class="about__list-dot">✓</span>
+              <span class="about__list-text">Diskretes Käufer- und Mietnetzwerk für exklusive Off-Market-Objekte</span>
+            </li>
+            <li class="about__list-item">
+              <span class="about__list-dot">✓</span>
+              <span class="about__list-text">Transparente Honorarstruktur — kein Erfolg, keine Kosten beim Verkauf</span>
+            </li>
+          </ul>
+
+          <div class="about__team-row">
+            <div class="about__team-member">
+              <div class="about__avatar">MM</div>
+              <div>
+                <div class="about__member-name">M. Müller</div>
+                <div class="about__member-role">Geschäftsführer, Immobilientreuhänder</div>
+              </div>
+            </div>
+            <div class="about__team-member">
+              <div class="about__avatar">AK</div>
+              <div>
+                <div class="about__member-name">A. Keller</div>
+                <div class="about__member-role">Beraterin Vermietung</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px;">
+            <a href="#kontakt" class="btn btn--gold" onclick="trackConversion('About CTA')">Unverbindliches Gespräch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MARKET STATS ════════════════════════════════════════ -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header section-header--center">
+        <span class="eyebrow">Marktdaten</span>
+        <h2 class="section-title section-title--light">Der Immobilienmarkt Thun</h2>
+        <p class="section-subtitle section-subtitle--light">Aktuelle Kennzahlen aus unserem lokalen Marktmonitoring — Grundlage jeder fundierten Kauf- und Verkaufsentscheidung.</p>
+      </div>
+
+      <div class="stats__grid">
+        <div class="stat-block">
+          <div class="stat-block__num">+6.2<sup>%</sup></div>
+          <div class="stat-block__label">Preiswachstum<br>Einfamilienhäuser</div>
+          <div class="stat-block__sublabel">Ø letzte 12 Monate</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block__num">42</div>
+          <div class="stat-block__label">Tage durchschnittl.<br>Vermarktungsdauer</div>
+          <div class="stat-block__sublabel">Aktuelle Marktlage</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block__num">98<sup>%</sup></div>
+          <div class="stat-block__label">Erzielter Preis<br>vs. Angebotspreis</div>
+          <div class="stat-block__sublabel">Unsere Verkaufsergebnisse</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block__num">1.8<sup>%</sup></div>
+          <div class="stat-block__label">Leerstandsquote<br>Wohnobjekte</div>
+          <div class="stat-block__sublabel">Region Thun</div>
+        </div>
+      </div>
+
+      <p class="stats__note">Marktdaten basierend auf internen Transaktionsdaten und öffentlich zugänglichen Quellen. Stand: aktuell.</p>
+    </div>
+  </section>
+
+  <!-- ══ VALUATION BAND ═════════════════════════════════════ -->
+  <div class="valuation-band" id="bewertung-band">
+    <div class="container">
+      <div class="valuation-band__inner">
+        <div class="valuation-band__text">
+          <h3 class="valuation-band__title">Was ist Ihre Immobilie wert?</h3>
+          <p class="valuation-band__sub">Erhalten Sie eine fundierte Marktwerteinschätzung — kostenlos, unverbindlich und ohne Verkaufsdruck.</p>
+        </div>
+        <a href="#bewertung" class="valuation-band__btn" onclick="trackConversion('Band CTA')">Jetzt kostenlos bewerten lassen</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TESTIMONIALS ═══════════════════════════════════════ -->
+  <section class="section section--champagne" id="bewertungen">
+    <div class="container">
+      <div class="section-header section-header--center">
+        <span class="eyebrow">Kundenstimmen</span>
+        <h2 class="section-title">Was unsere Kunden sagen</h2>
+        <p class="section-subtitle">Vertrauen, das durch Resultate entsteht — lesen Sie, was Verkäufer und Käufer über die Zusammenarbeit berichten.</p>
+      </div>
+
+      <div class="testimonials__grid">
+        <div class="testimonial">
+          <div class="testimonial__stars">
+            <span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span>
+          </div>
+          <p class="testimonial__text">„Der Verkauf unseres Hauses war dank Hausvermittlung Thun völlig stressfrei. Innerhalb von sechs Wochen hatten wir drei ernsthafte Käufer — und am Ende sogar über dem Schätzwert verkauft. Absolut empfehlenswert."</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">RS</div>
+            <div>
+              <div class="testimonial__name">R. &amp; S. Zimmermann</div>
+              <div class="testimonial__meta">Verkäufer · Einfamilienhaus · Thun</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial__stars">
+            <span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span>
+          </div>
+          <p class="testimonial__text">„Als Erstkäufer war ich froh über die geduldige und kompetente Beratung. Das Team hat uns durch jeden Schritt begleitet — von der Suche bis zur Finanzierungsberatung. Wir haben unsere Traumwohnung gefunden."</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">LB</div>
+            <div>
+              <div class="testimonial__name">L. Baumann</div>
+              <div class="testimonial__meta">Käufer · Eigentumswohnung · Thun</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial__stars">
+            <span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span><span class="testimonial__star">★</span>
+          </div>
+          <p class="testimonial__text">„Professionell, diskret und absolut zuverlässig. Die Bewertung war marktgerecht, die Vermarktung kreativ und das Ergebnis überzeugend. Hausvermittlung Thun ist unser Immobilienpartner für alle zukünftigen Projekte."</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">TH</div>
+            <div>
+              <div class="testimonial__name">T. Hofmann</div>
+              <div class="testimonial__meta">Investor · Mehrfamilienhaus · Thun</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT + FREE VALUATION FORM ═════════════════════ -->
+  <section class="section section--alt" id="kontakt">
+    <div class="container">
+      <div class="contact__layout">
+
+        <div class="contact__info">
+          <span class="eyebrow">Kontakt</span>
+          <h2 class="contact__info-title">Sprechen wir über Ihre Immobilie.</h2>
+          <p class="contact__info-text">Nutzen Sie das Formular für eine kostenlose Bewertungsanfrage oder eine unverbindliche Erstberatung. Wir melden uns innerhalb eines Werktages bei Ihnen.</p>
+
+          <div class="contact__details">
+            <div class="contact__detail">
+              <div class="contact__detail-icon">📞</div>
+              <div>
+                <div class="contact__detail-label">Telefon</div>
+                <div class="contact__detail-val"><a href="tel:033 224 20 30">033 224 20 30</a></div>
+              </div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon">✉️</div>
+              <div>
+                <div class="contact__detail-label">E-Mail</div>
+                <div class="contact__detail-val"><a href="mailto:info@hausvermittlung-thun.ch">info@hausvermittlung-thun.ch</a></div>
+              </div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon">📍</div>
+              <div>
+                <div class="contact__detail-label">Adresse</div>
+                <div class="contact__detail-val">Gwattstrasse 4<br>Thun</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px; padding: 24px; background: var(--champagne); border-radius: var(--radius-md); border-left: 3px solid var(--gold);">
+            <div style="font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;">Öffnungszeiten</div>
+            <div style="font-size: .85rem; color: var(--text-mid); line-height: 2;">
+              Mo – Fr: 08:30 – 12:00 / 13:30 – 17:30<br>
+              Sa: 09:00 – 12:00 (nach Vereinbarung)<br>
+              <span style="color: var(--gold); font-weight: 500;">Ausserhalb der Bürozeiten: 033 224 20 30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__form-wrap" id="bewertung">
+          <h3 class="form__title">Kostenlose Bewertung</h3>
+          <p class="form__subtitle">Füllen Sie das Formular aus — wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung.</p>
+
+          <form onsubmit="event.preventDefault(); trackConversion('Bewertungsformular'); this.innerHTML='<div style=\'text-align:center;padding:40px 0\'><div style=\'font-size:2.5rem;margin-bottom:12px\'>✓</div><div style=\'font-family:var(--font-serif);font-size:1.3rem;font-weight:600;color:var(--slate);margin-bottom:8px\'>Anfrage erhalten</div><p style=\'font-size:.88rem;color:var(--text-muted)\'>Vielen Dank! Wir melden uns innerhalb eines Werktages bei Ihnen.</p></div>'">
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="vorname">Vorname</label>
+                <input class="form__input" id="vorname" type="text" placeholder="Max" required />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="nachname">Nachname</label>
+                <input class="form__input" id="nachname" type="text" placeholder="Muster" required />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="email">E-Mail</label>
+                <input class="form__input" id="email" type="email" placeholder="max.muster@beispiel.ch" required />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="tel">Telefon</label>
+                <input class="form__input" id="tel" type="tel" placeholder="+41 79 000 00 00" />
+              </div>
+              <div class="form__group form__group--full">
+                <label class="form__label" for="objekt-typ">Objekttyp</label>
+                <select class="form__select" id="objekt-typ">
+                  <option value="">Bitte wählen …</option>
+                  <option>Einfamilienhaus</option>
+                  <option>Eigentumswohnung</option>
+                  <option>Mehrfamilienhaus</option>
+                  <option>Gewerbe / Büro</option>
+                  <option>Bauland</option>
+                  <option>Anderes</option>
+                </select>
+              </div>
+              <div class="form__group form__group--full">
+                <label class="form__label" for="adresse-obj">Adresse des Objekts</label>
+                <input class="form__input" id="adresse-obj" type="text" placeholder="Strasse, Nr., PLZ, Ort" />
+              </div>
+              <div class="form__group form__group--full">
+                <label class="form__label" for="anliegen">Ihr Anliegen</label>
+                <select class="form__select" id="anliegen">
+                  <option value="">Bitte wählen …</option>
+                  <option>Kostenlose Bewertung</option>
+                  <option>Verkauf meiner Immobilie</option>
+                  <option>Vermieten meiner Liegenschaft</option>
+                  <option>Immobilie kaufen / suchen</option>
+                  <option>Allgemeine Beratung</option>
+                </select>
+              </div>
+              <div class="form__group form__group--full">
+                <label class="form__label" for="nachricht">Nachricht (optional)</label>
+                <textarea class="form__textarea" id="nachricht" placeholder="Ergänzende Informationen zu Ihrer Immobilie oder Ihrem Anliegen …"></textarea>
+              </div>
+            </div>
+
+            <div class="form__checkbox-row">
+              <input class="form__checkbox" type="checkbox" id="datenschutz" required />
+              <label class="form__checkbox-label" for="datenschutz">Ich habe die <a href="#" style="color:var(--gold)">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.</label>
+            </div>
+
+            <button type="submit" class="form__submit">Anfrage kostenlos senden →</button>
+            <p class="form__note">100% kostenlos und unverbindlich · <span>Diskretion garantiert</span></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo-name">Hausvermittlung Thun</div>
+          <div class="footer__logo-sub">Immobilien · Thun</div>
+          <p class="footer__brand-text">Ihr verlässlicher Immobilienpartner in Thun und Umgebung. Persönlich. Diskret. Erfolgreich.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">ig</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Leistungen</div>
+          <ul class="footer__links">
+            <li><a href="#">Immobilien kaufen</a></li>
+            <li><a href="#">Immobilien mieten</a></li>
+            <li><a href="#">Immobilien verkaufen</a></li>
+            <li><a href="#">Kostenlose Bewertung</a></li>
+            <li><a href="#">Anlageberatung</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Objekte</div>
+          <ul class="footer__links">
+            <li><a href="#">Einfamilienhäuser</a></li>
+            <li><a href="#">Eigentumswohnungen</a></li>
+            <li><a href="#">Mehrfamilienhäuser</a></li>
+            <li><a href="#">Gewerbeobjekte</a></li>
+            <li><a href="#">Bauland</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:033 224 20 30">033 224 20 30</a></li>
+            <li><a href="mailto:info@hausvermittlung-thun.ch">info@hausvermittlung-thun.ch</a></li>
+            <li style="color:rgba(255,255,255,.35); font-size:.82rem; line-height:1.6;">Gwattstrasse 4<br>Thun</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__copy">© 2026 Hausvermittlung Thun. Alle Rechte vorbehalten.</div>
+        <div class="footer__legal">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">AGB</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

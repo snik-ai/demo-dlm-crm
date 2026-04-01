@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLM CRM</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --accent: #6366f1;
+      --accent-hover: #4f52e8;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --blue: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* Layout */
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 220px; background: var(--surface); border-right: 1px solid var(--border); padding: 24px 0; flex-shrink: 0; }
+    .sidebar-logo { padding: 0 20px 24px; font-size: 18px; font-weight: 700; color: var(--accent); }
+    .sidebar-logo span { color: var(--text); }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; cursor: pointer; color: var(--muted); transition: all .15s; border-left: 3px solid transparent; }
+    .nav-item:hover { color: var(--text); background: rgba(99,102,241,.08); }
+    .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(99,102,241,.1); }
+    .nav-item svg { width: 16px; height: 16px; }
+    .main { flex: 1; overflow: auto; }
+    .header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .header h1 { font-size: 18px; font-weight: 600; }
+    .page { padding: 28px; display: none; }
+    .page.active { display: block; }
+
+    /* Buttons */
+    .btn { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .15s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+    .btn-danger { background: var(--red); color: #fff; }
+
+    /* Cards */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+    .card-title { font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+    .card-value { font-size: 28px; font-weight: 700; }
+    .card-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* Grid */
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 900px) { .grid-4 { grid-template-columns: 1fr 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+
+    /* Pipeline */
+    .pipeline { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin-top: 20px; }
+    .pipeline-col { min-width: 220px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+    .pipeline-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .pipeline-stage { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+    .pipeline-count { font-size: 11px; background: var(--border); padding: 2px 7px; border-radius: 9999px; color: var(--muted); }
+    .opp-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: border-color .15s; }
+    .opp-card:hover { border-color: var(--accent); }
+    .opp-name { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+    .opp-contact { font-size: 12px; color: var(--muted); }
+    .opp-value { font-size: 12px; color: var(--green); margin-top: 6px; font-weight: 500; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* Status badge */
+    .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 9999px; font-size: 11px; font-weight: 500; }
+    .badge-contact { background: rgba(100,116,139,.2); color: #94a3b8; }
+    .badge-demo { background: rgba(59,130,246,.2); color: #93c5fd; }
+    .badge-offer { background: rgba(245,158,11,.2); color: #fcd34d; }
+    .badge-negotiation { background: rgba(168,85,247,.2); color: #d8b4fe; }
+    .badge-won { background: rgba(34,197,94,.2); color: #86efac; }
+    .badge-lost { background: rgba(239,68,68,.2); color: #fca5a5; }
+    .badge-new { background: rgba(100,116,139,.2); color: #94a3b8; }
+    .badge-contacted { background: rgba(59,130,246,.2); color: #93c5fd; }
+    /* score bar */
+    .score-bar { display:inline-block; width:60px; height:6px; border-radius:3px; background:var(--border); vertical-align:middle; margin-left:6px; overflow:hidden; }
+    .score-bar-fill { height:100%; border-radius:3px; }
+    /* screenshot */
+    .screenshot-thumb { width:100%; border-radius:8px; border:1px solid var(--border); margin-bottom:12px; display:block; cursor:zoom-in; }
+    .score-breakdown-item { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border); font-size:12px; }
+    .score-breakdown-item:last-child { border-bottom:none; }
+    .score-tag-green { color:var(--green); }
+    .score-tag-red { color:var(--red); }
+    .btn-score { background:rgba(99,102,241,.15); color:var(--accent); border:1px solid rgba(99,102,241,.3); }
+    .btn-score:hover { background:rgba(99,102,241,.25); }
+    .btn-score.loading { opacity:.6; cursor:not-allowed; }
+
+    /* Modal */
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 100; display: none; }
+    .modal-backdrop.open { display: flex; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; width: 560px; max-height: 90vh; overflow-y: auto; padding: 24px; }
+    .modal h2 { font-size: 16px; margin-bottom: 20px; }
+
+    /* Form */
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text);
+      padding: 8px 12px; font-size: 13px; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+    /* Calendar */
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 16px; }
+    .cal-header { font-size: 11px; font-weight: 600; color: var(--muted); text-align: center; padding: 6px; }
+    .cal-day { min-height: 80px; border: 1px solid var(--border); border-radius: 6px; padding: 6px; background: var(--surface); }
+    .cal-day-num { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .cal-day.today .cal-day-num { color: var(--accent); font-weight: 700; }
+    .cal-day.other-month { opacity: .35; }
+    .cal-event { background: rgba(99,102,241,.25); border-left: 2px solid var(--accent); padding: 2px 5px; border-radius: 3px; font-size: 10px; margin-bottom: 2px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .section-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+    .mt-20 { margin-top: 20px; }
+    .flex-between { display: flex; align-items: center; justify-content: space-between; }
+
+    .note-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .note-item:last-child { border-bottom: none; }
+    .note-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">DLM <span>CRM</span></div>
+    <div class="nav-item active" onclick="navigate('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item" onclick="navigate('pipeline')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18M3 9h14M3 15h10M3 21h6"/></svg>
+      Pipeline
+    </div>
+    <div class="nav-item" onclick="navigate('opportunities')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M6.5 17.5c0-2.5 2.5-4.5 5.5-4.5s5.5 2 5.5 4.5"/></svg>
+      Opportunities
+    </div>
+    <div class="nav-item" onclick="navigate('calendar')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Kalender
+    </div>
+    <div class="nav-item" onclick="navigate('leads')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Leads
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header">
+      <h1 id="page-title">Dashboard</h1>
+      <button class="btn btn-primary" onclick="openNewOpp()">+ Opportunity</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="page active" id="page-dashboard">
+      <div class="grid-4" id="dash-stats"></div>
+      <div class="grid-2 mt-20">
+        <div class="card">
+          <div class="section-title">Upcoming Termine</div>
+          <div id="upcoming-list"></div>
+        </div>
+        <div class="card">
+          <div class="section-title">Letzte Aktivität</div>
+          <div id="recent-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="page" id="page-pipeline">
+      <div class="section-title">Sales Pipeline</div>
+      <div class="pipeline" id="pipeline-board"></div>
+    </div>
+
+    <!-- Opportunities -->
+    <div class="page" id="page-opportunities">
+      <div class="section-title flex-between">
+        <span>Alle Opportunities</span>
+        <input type="text" id="opp-search" placeholder="Suchen..." style="width:200px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:6px;font-size:13px;outline:none;" oninput="filterOpps()" />
+      </div>
+      <div class="card mt-20">
+        <table>
+          <thead>
+            <tr>
+              <th>Firma</th><th>Ansprechpartner</th><th>Status</th><th>Wert (CHF)</th><th>Aktualisiert</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="opp-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="page" id="page-calendar">
+      <div class="flex-between" style="margin-bottom:16px;">
+        <div class="section-title" id="cal-month-label"></div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost" onclick="changeMonth(-1)">‹</button>
+          <button class="btn btn-ghost" onclick="changeMonth(1)">›</button>
+          <button class="btn btn-primary" onclick="openNewAppt()">+ Termin</button>
+        </div>
+      </div>
+      <div class="calendar-grid" id="calendar-grid"></div>
+      <div class="card mt-20">
+        <div class="section-title">Anstehende Termine</div>
+        <div id="upcoming-appts"></div>
+      </div>
+    </div>
+
+    <!-- Leads -->
+    <div class="page" id="page-leads">
+      <div class="flex-between" style="margin-bottom:16px;">
+        <div class="section-title" style="margin-bottom:0;">Leads</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="lead-search" placeholder="Suchen..." style="width:180px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:6px;font-size:13px;outline:none;" oninput="filterLeads()" />
+          <select id="lead-filter-status" onchange="filterLeads()" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px;outline:none;">
+            <option value="">Alle Status</option>
+            <option value="new">Neu</option>
+            <option value="contacted">Kontaktiert</option>
+            <option value="demo">Demo</option>
+            <option value="offer">Angebot</option>
+            <option value="won">Gewonnen</option>
+            <option value="lost">Verloren</option>
+          </select>
+          <select id="lead-filter-industry" onchange="filterLeads()" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px;outline:none;">
+            <option value="">Alle Branchen</option>
+            <option value="Solar">Solar</option>
+            <option value="Sanitär">Sanitär</option>
+            <option value="Gastronomie">Gastronomie</option>
+            <option value="Elektro">Elektro</option>
+            <option value="Bau">Bau</option>
+            <option value="Immobilien">Immobilien</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Handel">Handel</option>
+            <option value="Dienstleistung">Dienstleistung</option>
+            <option value="Sonstiges">Sonstiges</option>
+          </select>
+          <select id="lead-sort" onchange="filterLeads()" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:13px;outline:none;">
+            <option value="">Sortierung</option>
+            <option value="lead_score_desc">Lead-Score ↓</option>
+            <option value="lead_score_asc">Lead-Score ↑</option>
+            <option value="design_score_desc">Design-Score ↓</option>
+            <option value="created_desc">Neueste zuerst</option>
+          </select>
+          <button class="btn btn-ghost" onclick="openScraper()" style="border-color:var(--accent);color:var(--accent);">🔍 Per URL scrapen</button>
+          <button class="btn btn-primary" onclick="openNewLead()">+ Lead</button>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Firma</th><th>Website</th><th>Ansprechpartner</th><th>Branche</th><th>Status</th><th>Lead-Score</th><th>Design-Score</th><th>Quelle</th><th>Letzter Kontakt</th><th>Analyse</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="leads-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Opportunity Modal -->
+<div class="modal-backdrop" id="modal-opp">
+  <div class="modal">
+    <h2 id="modal-opp-title">Neue Opportunity</h2>
+    <input type="hidden" id="opp-id" />
+    <div class="form-row">
+      <div class="form-group"><label>Firmenname *</label><input id="f-company" placeholder="Müller GmbH" /></div>
+      <div class="form-group"><label>Ansprechpartner</label><input id="f-contact" placeholder="Hans Müller" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>E-Mail</label><input id="f-email" type="email" placeholder="hans@muellerag.ch" /></div>
+      <div class="form-group"><label>Telefon</label><input id="f-phone" placeholder="+41 79 123 45 67" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Status</label>
+        <select id="f-status">
+          <option value="contact">Kontakt</option>
+          <option value="demo">Demo</option>
+          <option value="offer">Angebot</option>
+          <option value="negotiation">Verhandlung</option>
+          <option value="won">Gewonnen</option>
+          <option value="lost">Verloren</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Wert (CHF)</label><input id="f-value" type="number" placeholder="5000" /></div>
+    </div>
+    <div class="form-group"><label>Quelle</label><input id="f-source" placeholder="Google Ads, Kaltakquise, Empfehlung..." /></div>
+    <div class="form-group"><label>Notiz</label><textarea id="f-notes" placeholder="Details zum Lead..."></textarea></div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-opp')">Abbrechen</button>
+      <button class="btn btn-primary" onclick="saveOpp()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- Opportunity Detail Modal -->
+<div class="modal-backdrop" id="modal-detail">
+  <div class="modal" style="width:680px;">
+    <div class="flex-between" style="margin-bottom:16px;">
+      <h2 id="detail-title"></h2>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-ghost" onclick="editCurrentOpp()">Bearbeiten</button>
+        <button class="btn btn-ghost" onclick="closeModal('modal-detail')">✕</button>
+      </div>
+    </div>
+    <!-- Tab navigation -->
+    <div id="detail-tabs" style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:16px;">
+      <button id="dtab-overview" onclick="setDetailTab('overview')" style="padding:8px 18px;border:none;background:none;color:var(--accent);border-bottom:2px solid var(--accent);cursor:pointer;font-size:13px;font-weight:500;">Übersicht</button>
+      <button id="dtab-emails" onclick="setDetailTab('emails')" style="padding:8px 18px;border:none;background:none;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;font-size:13px;font-weight:500;">E-Mails</button>
+    </div>
+    <!-- Overview tab -->
+    <div id="dtab-panel-overview">
+      <div id="detail-content"></div>
+      <div style="margin-top:20px;">
+        <div class="section-title">Notiz hinzufügen</div>
+        <textarea id="new-note" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 12px;font-size:13px;min-height:70px;resize:vertical;" placeholder="Notiz..."></textarea>
+        <button class="btn btn-primary" style="margin-top:8px;" onclick="addNote()">Speichern</button>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="section-title">Termin buchen</div>
+        <div class="form-row">
+          <div class="form-group"><label>Titel</label><input id="appt-title" placeholder="Demo-Call" /></div>
+          <div class="form-group"><label>Datum & Zeit</label><input id="appt-date" type="datetime-local" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Dauer (Min)</label><input id="appt-duration" type="number" value="60" /></div>
+          <div class="form-group"><label>Ort / Link</label><input id="appt-location" placeholder="Zoom / Büro" /></div>
+        </div>
+        <button class="btn btn-primary" onclick="addAppt()">Termin hinzufügen</button>
+      </div>
+    </div>
+    <!-- E-Mails tab -->
+    <div id="dtab-panel-emails" style="display:none;">
+      <div id="email-log-list"></div>
+      <div style="margin-top:20px;border-top:1px solid var(--border);padding-top:16px;">
+        <div class="section-title">E-Mail loggen</div>
+        <div class="form-row">
+          <div class="form-group"><label>Betreff *</label><input id="el-subject" placeholder="Angebot DLM-Webseite" /></div>
+          <div class="form-group"><label>Richtung</label>
+            <select id="el-direction" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 12px;font-size:13px;">
+              <option value="outbound">Ausgehend</option>
+              <option value="inbound">Eingehend</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>An / Von</label><input id="el-addr" placeholder="kunde@firma.ch" /></div>
+          <div class="form-group"><label>Status</label>
+            <select id="el-status" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 12px;font-size:13px;">
+              <option value="sent">Gesendet</option>
+              <option value="opened">Geöffnet</option>
+              <option value="clicked">Geklickt</option>
+              <option value="bounced">Bounced</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Inhalt (Kurzfassung)</label><textarea id="el-snippet" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 12px;font-size:13px;min-height:60px;resize:vertical;" placeholder="Kurzbeschreibung des E-Mail-Inhalts..."></textarea></div>
+        <button class="btn btn-primary" onclick="logEmail()">E-Mail speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Appointment Modal -->
+<div class="modal-backdrop" id="modal-appt">
+  <div class="modal">
+    <h2>Neuer Termin</h2>
+    <div class="form-group">
+      <label>Opportunity</label>
+      <select id="appt-opp-id"></select>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Titel *</label><input id="appt2-title" placeholder="Demo-Call" /></div>
+      <div class="form-group"><label>Datum & Zeit *</label><input id="appt2-date" type="datetime-local" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Dauer (Min)</label><input id="appt2-duration" type="number" value="60" /></div>
+      <div class="form-group"><label>Ort / Link</label><input id="appt2-location" placeholder="Zoom / Büro" /></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-appt')">Abbrechen</button>
+      <button class="btn btn-primary" onclick="saveAppt2()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scraper Modal -->
+<div class="modal-backdrop" id="modal-scraper">
+  <div class="modal" style="width:640px;">
+    <div class="flex-between" style="margin-bottom:20px;">
+      <h2>Lead per URL scrapen</h2>
+      <button class="btn btn-ghost" onclick="closeModal('modal-scraper')">✕</button>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px;">
+      <button id="tab-single" onclick="setScraperTab('single')" style="padding:8px 20px;border:none;background:none;color:var(--accent);border-bottom:2px solid var(--accent);cursor:pointer;font-size:13px;font-weight:500;">Einzelne URL</button>
+      <button id="tab-bulk" onclick="setScraperTab('bulk')" style="padding:8px 20px;border:none;background:none;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;font-size:13px;font-weight:500;">Bulk-Import</button>
+    </div>
+
+    <!-- Single URL tab -->
+    <div id="scraper-single">
+      <div class="form-group">
+        <label>Website-URL</label>
+        <div style="display:flex;gap:8px;">
+          <input id="scrape-url" placeholder="https://mueller-solar.ch" style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 12px;font-size:13px;outline:none;" onkeydown="if(event.key==='Enter')scrapePreview()" />
+          <button class="btn btn-primary" onclick="scrapePreview()" id="btn-scrape-preview">Scrapen</button>
+        </div>
+      </div>
+      <div id="scrape-preview-result" style="display:none;">
+        <div style="padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">Vorschau</div>
+          <div class="form-row">
+            <div class="form-group"><label>Firmenname</label><input id="sp-company" /></div>
+            <div class="form-group"><label>Website</label><input id="sp-website" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>E-Mail</label><input id="sp-email" /></div>
+            <div class="form-group"><label>Telefon</label><input id="sp-phone" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Branche</label>
+              <select id="sp-industry">
+                <option value="">— wählen —</option>
+                <option>Solar</option><option>Sanitär</option><option>Gastronomie</option>
+                <option>Elektro</option><option>Bau</option><option>Immobilien</option>
+                <option>Fitness</option><option>Handel</option><option>Dienstleistung</option>
+                <option>Coiffeur</option><option>Autogewerbe</option><option>Sonstiges</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Lead-Score</label><input id="sp-score" type="number" min="0" max="100" /></div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-ghost" onclick="closeModal('modal-scraper')">Abbrechen</button>
+          <button class="btn btn-primary" onclick="saveScrapePreview()">Als Lead speichern</button>
+        </div>
+      </div>
+      <div id="scrape-preview-error" style="display:none;color:var(--red);font-size:13px;margin-top:8px;"></div>
+    </div>
+
+    <!-- Bulk tab -->
+    <div id="scraper-bulk" style="display:none;">
+      <div class="form-group">
+        <label>URLs eingeben (eine pro Zeile) oder CSV hochladen</label>
+        <textarea id="bulk-urls" style="width:100%;min-height:140px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 12px;font-size:13px;resize:vertical;" placeholder="https://mueller-solar.ch&#10;https://sanitaer-meier.ch&#10;https://elektro-huber.ch"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Oder CSV hochladen (Spalte mit URLs)</label>
+        <input type="file" id="bulk-csv" accept=".csv,.txt" onchange="loadCsvUrls()" style="background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:6px 10px;font-size:13px;width:100%;" />
+      </div>
+
+      <!-- Progress -->
+      <div id="bulk-progress" style="display:none;margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+          <span id="bulk-status-text" style="font-size:13px;color:var(--muted);">Scraping…</span>
+          <span id="bulk-count" style="font-size:13px;color:var(--muted);">0 / 0</span>
+        </div>
+        <div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden;">
+          <div id="bulk-progress-bar" style="height:100%;width:0%;background:var(--accent);border-radius:3px;transition:width .3s;"></div>
+        </div>
+        <div id="bulk-result-list" style="margin-top:12px;max-height:160px;overflow-y:auto;font-size:12px;"></div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost" onclick="closeModal('modal-scraper')">Schliessen</button>
+        <button class="btn btn-primary" id="btn-bulk-scrape" onclick="startBulkScrape()">Alle scrapen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lead Detail / Score Modal -->
+<div class="modal-backdrop" id="modal-lead-detail">
+  <div class="modal" style="width:660px;">
+    <div class="flex-between" style="margin-bottom:20px;">
+      <h2 id="lead-detail-title">Lead</h2>
+      <button class="btn btn-ghost" onclick="closeModal('modal-lead-detail')">✕</button>
+    </div>
+    <div id="lead-detail-content"></div>
+  </div>
+</div>
+
+<!-- Lead Modal -->
+<div class="modal-backdrop" id="modal-lead">
+  <div class="modal" style="width:620px;">
+    <h2 id="modal-lead-title">Neuer Lead</h2>
+    <input type="hidden" id="lead-id" />
+    <div class="form-row">
+      <div class="form-group"><label>Firmenname *</label><input id="lf-company" placeholder="Müller Solar GmbH" /></div>
+      <div class="form-group"><label>Website</label><input id="lf-website" placeholder="https://mueller-solar.ch" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Ansprechpartner</label><input id="lf-contact" placeholder="Hans Müller" /></div>
+      <div class="form-group"><label>E-Mail</label><input id="lf-email" type="email" placeholder="hans@muellerag.ch" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Telefon</label><input id="lf-phone" placeholder="+41 79 123 45 67" /></div>
+      <div class="form-group">
+        <label>Branche</label>
+        <select id="lf-industry">
+          <option value="">— Branche wählen —</option>
+          <option value="Solar">Solar</option>
+          <option value="Sanitär">Sanitär</option>
+          <option value="Gastronomie">Gastronomie</option>
+          <option value="Elektro">Elektro</option>
+          <option value="Bau">Bau</option>
+          <option value="Immobilien">Immobilien</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Handel">Handel</option>
+          <option value="Dienstleistung">Dienstleistung</option>
+          <option value="Sonstiges">Sonstiges</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Status</label>
+        <select id="lf-status">
+          <option value="new">Neu</option>
+          <option value="contacted">Kontaktiert</option>
+          <option value="demo">Demo</option>
+          <option value="offer">Angebot</option>
+          <option value="won">Gewonnen</option>
+          <option value="lost">Verloren</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Quelle</label>
+        <select id="lf-source">
+          <option value="manual">Manuell</option>
+          <option value="google_maps">Google Maps</option>
+          <option value="ads">Ads</option>
+          <option value="referral">Referral</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Lead-Score (0–100)</label><input id="lf-lead-score" type="number" min="0" max="100" placeholder="0" /></div>
+      <div class="form-group"><label>Design-Score (0–100)</label><input id="lf-design-score" type="number" min="0" max="100" placeholder="0" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Letzter Kontakt</label><input id="lf-last-contact" type="date" /></div>
+    </div>
+    <div class="form-group"><label>Notizen</label><textarea id="lf-notes" placeholder="Details zum Lead..."></textarea></div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-lead')">Abbrechen</button>
+      <button class="btn btn-primary" onclick="saveLead()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '';
+let allOpps = [];
+let allAppts = [];
+let allLeads = [];
+let calMonth = new Date();
+calMonth.setDate(1);
+let currentDetailId = null;
+
+const STAGES = ['contact','demo','offer','negotiation','won','lost'];
+const STAGE_LABELS = { contact:'Kontakt', demo:'Demo', offer:'Angebot', negotiation:'Verhandlung', won:'Gewonnen', lost:'Verloren' };
+const LEAD_STATUS_LABELS = { new:'Neu', contacted:'Kontaktiert', demo:'Demo', offer:'Angebot', won:'Gewonnen', lost:'Verloren' };
+const SOURCE_LABELS = { google_maps:'Google Maps', manual:'Manuell', ads:'Ads', referral:'Referral' };
+
+async function api(path, opts={}) {
+  const r = await fetch(API + '/api' + path, { headers: {'Content-Type':'application/json'}, ...opts });
+  return r.json();
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function navigate(view) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-'+view).classList.add('active');
+  document.querySelector(`[onclick="navigate('${view}')"]`).classList.add('active');
+  const titles = { dashboard:'Dashboard', pipeline:'Pipeline', opportunities:'Opportunities', calendar:'Kalender', leads:'Leads' };
+  document.getElementById('page-title').textContent = titles[view];
+  if (view === 'dashboard') loadDashboard();
+  if (view === 'pipeline') loadPipeline();
+  if (view === 'opportunities') loadOpps();
+  if (view === 'calendar') renderCalendar();
+  if (view === 'leads') loadLeads();
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+async function loadDashboard() {
+  const d = await api('/dashboard');
+  const s = d.stats;
+  document.getElementById('dash-stats').innerHTML = `
+    <div class="card"><div class="card-title">Aktive Opps</div><div class="card-value">${s.active}</div><div class="card-sub">Total: ${s.total}</div></div>
+    <div class="card"><div class="card-title">Gewonnen</div><div class="card-value" style="color:var(--green)">${s.won}</div><div class="card-sub">CHF ${fmt(s.wonValue)}</div></div>
+    <div class="card"><div class="card-title">Conversion</div><div class="card-value">${s.conversionRate}%</div><div class="card-sub">Abschlussrate</div></div>
+    <div class="card"><div class="card-title">Forecast</div><div class="card-value">CHF ${fmt(s.forecast)}</div><div class="card-sub">Gewichtet</div></div>
+  `;
+  document.getElementById('upcoming-list').innerHTML = d.upcoming.length
+    ? d.upcoming.map(a => `<div class="note-item"><div>${a.title}</div><div class="note-meta">${a.company_name} · ${fmtDate(a.date)}</div></div>`).join('')
+    : '<div style="color:var(--muted);font-size:13px;">Keine Termine</div>';
+  document.getElementById('recent-list').innerHTML = d.recentActivity
+    .map(o => `<div class="note-item" style="cursor:pointer" onclick="openDetail('${o.id}')"><div>${o.company_name}</div><div class="note-meta"><span class="badge badge-${o.status}">${STAGE_LABELS[o.status]}</span> · CHF ${fmt(o.value_chf)}</div></div>`).join('');
+}
+
+// ── Pipeline ──────────────────────────────────────────────────────────────────
+async function loadPipeline() {
+  allOpps = await api('/opportunities');
+  const board = document.getElementById('pipeline-board');
+  board.innerHTML = STAGES.map(stage => {
+    const cards = allOpps.filter(o => o.status === stage);
+    return `<div class="pipeline-col">
+      <div class="pipeline-header">
+        <span class="pipeline-stage">${STAGE_LABELS[stage]}</span>
+        <span class="pipeline-count">${cards.length}</span>
+      </div>
+      ${cards.map(o => `<div class="opp-card" onclick="openDetail('${o.id}')">
+        <div class="opp-name">${o.company_name}</div>
+        <div class="opp-contact">${o.contact_name || '—'}</div>
+        <div class="opp-value">CHF ${fmt(o.value_chf)}</div>
+      </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+// ── Opportunities List ────────────────────────────────────────────────────────
+async function loadOpps() {
+  allOpps = await api('/opportunities');
+  renderOppTable(allOpps);
+}
+function filterOpps() {
+  const q = document.getElementById('opp-search').value.toLowerCase();
+  renderOppTable(allOpps.filter(o => o.company_name.toLowerCase().includes(q) || (o.contact_name||'').toLowerCase().includes(q)));
+}
+function renderOppTable(opps) {
+  document.getElementById('opp-table-body').innerHTML = opps.map(o => `
+    <tr>
+      <td style="font-weight:600;cursor:pointer;color:var(--accent)" onclick="openDetail('${o.id}')">${o.company_name}</td>
+      <td>${o.contact_name || '—'}</td>
+      <td><span class="badge badge-${o.status}">${STAGE_LABELS[o.status]}</span></td>
+      <td>CHF ${fmt(o.value_chf)}</td>
+      <td style="color:var(--muted)">${fmtDate(o.updated_at)}</td>
+      <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px;" onclick="deleteOpp('${o.id}')">Löschen</button></td>
+    </tr>
+  `).join('');
+}
+
+// ── Opportunity Detail ────────────────────────────────────────────────────────
+const EMAIL_STATUS_ICON = { sent:'📤', opened:'👁️', clicked:'🔗', bounced:'⚠️', spam:'🚫', inbound:'📥' };
+
+function setDetailTab(tab) {
+  const tabs = ['overview', 'emails'];
+  tabs.forEach(t => {
+    const btn   = document.getElementById('dtab-' + t);
+    const panel = document.getElementById('dtab-panel-' + t);
+    const active = t === tab;
+    btn.style.color = active ? 'var(--accent)' : 'var(--muted)';
+    btn.style.borderBottomColor = active ? 'var(--accent)' : 'transparent';
+    panel.style.display = active ? '' : 'none';
+  });
+}
+
+function renderEmailLog(emailLogs) {
+  const el = document.getElementById('email-log-list');
+  if (!emailLogs.length) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:12px 0;">Noch keine E-Mails geloggt.</div>';
+    return;
+  }
+  el.innerHTML = `<div class="section-title">E-Mail-Verlauf (${emailLogs.length})</div>` +
+    emailLogs.map(e => {
+      const icon = e.direction === 'inbound' ? EMAIL_STATUS_ICON.inbound : (EMAIL_STATUS_ICON[e.status] || '📤');
+      const addr = e.direction === 'inbound' ? (e.from_addr || '?') : (e.to_addr || '?');
+      const ts   = fmtDate(e.received_at || e.sent_at || e.created_at);
+      const snippet = e.body_snippet ? `<div style="color:var(--muted);font-size:12px;margin-top:2px;">${e.body_snippet.slice(0,120)}${e.body_snippet.length>120?'…':''}</div>` : '';
+      const statusBadge = e.direction === 'outbound'
+        ? `<span style="font-size:11px;margin-left:6px;color:var(--muted);">${e.status||'sent'}</span>` : '';
+      return `<div class="note-item">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span>${icon}</span>
+          <strong style="font-size:13px;">${escHtml(e.subject)}</strong>${statusBadge}
+        </div>
+        <div class="note-meta">${e.direction === 'inbound' ? 'Von' : 'An'}: ${escHtml(addr)} · ${ts}</div>
+        ${snippet}
+      </div>`;
+    }).join('');
+}
+
+async function openDetail(id) {
+  currentDetailId = id;
+  const [d, emailLogs] = await Promise.all([
+    api('/opportunities/' + id),
+    api('/opportunities/' + id + '/emails').catch(() => []),
+  ]);
+  document.getElementById('detail-title').textContent = d.company_name;
+
+  document.getElementById('detail-content').innerHTML = `
+    <div class="grid-2">
+      <div>
+        <div style="margin-bottom:12px;"><span style="color:var(--muted);font-size:12px;">Status</span><br/><span class="badge badge-${d.status}" style="margin-top:4px;">${STAGE_LABELS[d.status]}</span></div>
+        <div style="margin-bottom:12px;"><span style="color:var(--muted);font-size:12px;">Kontakt</span><br/>${d.contact_name||'—'}</div>
+        <div style="margin-bottom:12px;"><span style="color:var(--muted);font-size:12px;">E-Mail</span><br/>${d.contact_email||'—'}</div>
+        <div><span style="color:var(--muted);font-size:12px;">Telefon</span><br/>${d.contact_phone||'—'}</div>
+      </div>
+      <div>
+        <div style="margin-bottom:12px;"><span style="color:var(--muted);font-size:12px;">Wert</span><br/><strong style="color:var(--green)">CHF ${fmt(d.value_chf)}</strong></div>
+        <div style="margin-bottom:12px;"><span style="color:var(--muted);font-size:12px;">Quelle</span><br/>${d.source||'—'}</div>
+        <div><span style="color:var(--muted);font-size:12px;">Erstellt</span><br/>${fmtDate(d.created_at)}</div>
+      </div>
+    </div>
+    ${d.appointments.length ? `<div style="margin-top:16px;"><div class="section-title">Termine</div>${d.appointments.map(a=>`<div class="note-item"><strong>${a.title}</strong> · ${fmtDate(a.date)}<br/><span style="color:var(--muted);font-size:12px;">${a.location||''} ${a.duration_min} Min</span></div>`).join('')}</div>` : ''}
+    ${d.notes.length ? `<div style="margin-top:16px;"><div class="section-title">Notizen</div>${d.notes.map(n=>`<div class="note-item">${n.body}<div class="note-meta">${fmtDate(n.created_at)}</div></div>`).join('')}</div>` : ''}
+  `;
+
+  renderEmailLog(emailLogs);
+  setDetailTab('overview');
+  document.getElementById('modal-detail').classList.add('open');
+}
+
+async function logEmail() {
+  const subject = document.getElementById('el-subject').value.trim();
+  if (!subject) return alert('Betreff benötigt');
+  const direction = document.getElementById('el-direction').value;
+  const addr = document.getElementById('el-addr').value.trim();
+  const status = document.getElementById('el-status').value;
+  const bodySnippet = document.getElementById('el-snippet').value.trim();
+  await api('/opportunities/' + currentDetailId + '/emails', {
+    method: 'POST',
+    body: JSON.stringify({
+      subject, direction, status, bodySnippet,
+      to: direction === 'outbound' ? addr : null,
+      from: direction === 'inbound' ? addr : null,
+      sentAt: new Date().toISOString(),
+    })
+  });
+  document.getElementById('el-subject').value = '';
+  document.getElementById('el-addr').value = '';
+  document.getElementById('el-snippet').value = '';
+  const emailLogs = await api('/opportunities/' + currentDetailId + '/emails').catch(() => []);
+  renderEmailLog(emailLogs);
+}
+
+function editCurrentOpp() {
+  closeModal('modal-detail');
+  const o = allOpps.find(x => x.id === currentDetailId);
+  if (!o) return;
+  document.getElementById('opp-id').value = o.id;
+  document.getElementById('modal-opp-title').textContent = 'Opportunity bearbeiten';
+  document.getElementById('f-company').value = o.company_name;
+  document.getElementById('f-contact').value = o.contact_name || '';
+  document.getElementById('f-email').value = o.contact_email || '';
+  document.getElementById('f-phone').value = o.contact_phone || '';
+  document.getElementById('f-status').value = o.status;
+  document.getElementById('f-value').value = o.value_chf;
+  document.getElementById('f-source').value = o.source || '';
+  document.getElementById('f-notes').value = '';
+  document.getElementById('modal-opp').classList.add('open');
+}
+
+async function addNote() {
+  const body = document.getElementById('new-note').value.trim();
+  if (!body) return;
+  await api('/opportunities/' + currentDetailId + '/notes', { method:'POST', body: JSON.stringify({ body }) });
+  document.getElementById('new-note').value = '';
+  openDetail(currentDetailId);
+}
+
+async function addAppt() {
+  const title = document.getElementById('appt-title').value.trim();
+  const date = document.getElementById('appt-date').value;
+  if (!title || !date) return alert('Titel und Datum benötigt');
+  await api('/appointments', { method:'POST', body: JSON.stringify({
+    opportunity_id: currentDetailId,
+    title,
+    date,
+    duration_min: parseInt(document.getElementById('appt-duration').value) || 60,
+    location: document.getElementById('appt-location').value
+  })});
+  document.getElementById('appt-title').value = '';
+  document.getElementById('appt-date').value = '';
+  document.getElementById('appt-location').value = '';
+  openDetail(currentDetailId);
+  allAppts = await api('/appointments');
+}
+
+// ── New/Save Opportunity ──────────────────────────────────────────────────────
+function openNewOpp() {
+  document.getElementById('opp-id').value = '';
+  document.getElementById('modal-opp-title').textContent = 'Neue Opportunity';
+  ['f-company','f-contact','f-email','f-phone','f-value','f-source','f-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-status').value = 'contact';
+  document.getElementById('modal-opp').classList.add('open');
+}
+
+async function saveOpp() {
+  const id = document.getElementById('opp-id').value;
+  const data = {
+    company_name: document.getElementById('f-company').value.trim(),
+    contact_name: document.getElementById('f-contact').value.trim(),
+    contact_email: document.getElementById('f-email').value.trim(),
+    contact_phone: document.getElementById('f-phone').value.trim(),
+    status: document.getElementById('f-status').value,
+    value_chf: parseFloat(document.getElementById('f-value').value) || 0,
+    source: document.getElementById('f-source').value.trim(),
+    notes: document.getElementById('f-notes').value.trim()
+  };
+  if (!data.company_name) return alert('Firmenname benötigt');
+  if (id) {
+    await api('/opportunities/' + id, { method:'PATCH', body: JSON.stringify(data) });
+  } else {
+    await api('/opportunities', { method:'POST', body: JSON.stringify(data) });
+  }
+  closeModal('modal-opp');
+  allOpps = await api('/opportunities');
+  loadDashboard();
+  renderOppTable(allOpps);
+}
+
+async function deleteOpp(id) {
+  if (!confirm('Opportunity löschen?')) return;
+  await api('/opportunities/' + id, { method:'DELETE' });
+  allOpps = await api('/opportunities');
+  renderOppTable(allOpps);
+}
+
+// ── Calendar ──────────────────────────────────────────────────────────────────
+async function renderCalendar() {
+  allAppts = await api('/appointments');
+  const year = calMonth.getFullYear();
+  const month = calMonth.getMonth();
+  document.getElementById('cal-month-label').textContent = calMonth.toLocaleDateString('de-CH', { month:'long', year:'numeric' });
+  const firstDay = new Date(year, month, 1).getDay();
+  const offset = (firstDay + 6) % 7; // Mon start
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
+
+  let html = ['Mo','Di','Mi','Do','Fr','Sa','So'].map(d => `<div class="cal-header">${d}</div>`).join('');
+  for (let i = 0; i < offset; i++) html += '<div class="cal-day other-month"></div>';
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const isToday = today.getFullYear()===year && today.getMonth()===month && today.getDate()===day;
+    const dayAppts = allAppts.filter(a => a.date.startsWith(dateStr));
+    html += `<div class="cal-day${isToday?' today':''}">
+      <div class="cal-day-num">${day}</div>
+      ${dayAppts.map(a=>`<div class="cal-event" title="${a.title} — ${a.company_name}">${a.title}</div>`).join('')}
+    </div>`;
+  }
+  document.getElementById('calendar-grid').innerHTML = html;
+
+  const upcoming = allAppts.filter(a => new Date(a.date) >= new Date()).slice(0, 10);
+  document.getElementById('upcoming-appts').innerHTML = upcoming.length
+    ? upcoming.map(a => `<div class="note-item"><strong>${a.title}</strong> — ${a.company_name}<br/><span class="note-meta">${fmtDate(a.date)} · ${a.duration_min} Min · ${a.location||'—'}</span></div>`).join('')
+    : '<div style="color:var(--muted);">Keine anstehenden Termine</div>';
+}
+
+function changeMonth(dir) { calMonth.setMonth(calMonth.getMonth() + dir); renderCalendar(); }
+
+async function openNewAppt() {
+  const opps = await api('/opportunities');
+  document.getElementById('appt-opp-id').innerHTML = opps.map(o => `<option value="${o.id}">${o.company_name}</option>`).join('');
+  document.getElementById('modal-appt').classList.add('open');
+}
+async function saveAppt2() {
+  const title = document.getElementById('appt2-title').value.trim();
+  const date = document.getElementById('appt2-date').value;
+  if (!title || !date) return alert('Titel und Datum benötigt');
+  await api('/appointments', { method:'POST', body: JSON.stringify({
+    opportunity_id: document.getElementById('appt-opp-id').value,
+    title, date,
+    duration_min: parseInt(document.getElementById('appt2-duration').value) || 60,
+    location: document.getElementById('appt2-location').value
+  })});
+  closeModal('modal-appt');
+  allAppts = await api('/appointments');
+  renderCalendar();
+}
+
+// ── Leads ─────────────────────────────────────────────────────────────────────
+async function loadLeads() {
+  allLeads = await api('/leads');
+  renderLeadsTable(allLeads);
+}
+
+function filterLeads() {
+  const q = document.getElementById('lead-search').value.toLowerCase();
+  const status = document.getElementById('lead-filter-status').value;
+  const industry = document.getElementById('lead-filter-industry').value;
+  const sort = document.getElementById('lead-sort').value;
+  let filtered = allLeads;
+  if (q) filtered = filtered.filter(l =>
+    l.company_name.toLowerCase().includes(q) ||
+    (l.contact_name||'').toLowerCase().includes(q) ||
+    (l.email||'').toLowerCase().includes(q)
+  );
+  if (status) filtered = filtered.filter(l => l.status === status);
+  if (industry) filtered = filtered.filter(l => l.industry === industry);
+  if (sort === 'lead_score_desc') filtered = [...filtered].sort((a,b) => (b.lead_score||0)-(a.lead_score||0));
+  else if (sort === 'lead_score_asc') filtered = [...filtered].sort((a,b) => (a.lead_score||0)-(b.lead_score||0));
+  else if (sort === 'design_score_desc') filtered = [...filtered].sort((a,b) => (b.design_score||0)-(a.design_score||0));
+  else if (sort === 'created_desc') filtered = [...filtered].sort((a,b) => new Date(b.created_at)-new Date(a.created_at));
+  renderLeadsTable(filtered);
+}
+
+function scoreBar(score) {
+  const pct = Math.min(100, Math.max(0, score || 0));
+  const color = pct >= 70 ? 'var(--green)' : pct >= 40 ? 'var(--yellow)' : 'var(--red)';
+  return `${pct}<div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${color};"></div></div>`;
+}
+
+function renderLeadsTable(leads) {
+  document.getElementById('leads-table-body').innerHTML = leads.length
+    ? leads.map(l => `
+    <tr>
+      <td style="font-weight:600;cursor:pointer;color:var(--accent)" onclick="openLeadDetail('${l.id}')">${escHtml(l.company_name)}</td>
+      <td>${l.website_url ? `<a href="${escHtml(l.website_url)}" target="_blank" style="color:var(--muted);font-size:12px;" onclick="event.stopPropagation()">${escHtml(l.website_url.replace(/^https?:\/\//,'').slice(0,30))}</a>` : '—'}</td>
+      <td>${escHtml(l.contact_name||'—')}</td>
+      <td>${escHtml(l.industry||'—')}</td>
+      <td><span class="badge badge-${l.status}">${LEAD_STATUS_LABELS[l.status]||l.status}</span></td>
+      <td>${scoreBar(l.lead_score)}</td>
+      <td>${scoreBar(l.design_score)}</td>
+      <td>${SOURCE_LABELS[l.source]||l.source}</td>
+      <td style="color:var(--muted)">${l.last_contact_at ? fmtDate(l.last_contact_at) : '—'}</td>
+      <td>${l.website_url ? `<button class="btn btn-score" id="score-btn-${l.id}" style="padding:4px 10px;font-size:11px;" onclick="event.stopPropagation();runScore('${l.id}')">📸 Analyse</button>` : '—'}</td>
+      <td style="display:flex;gap:4px;">
+        <button class="btn btn-ghost" style="padding:4px 8px;font-size:11px;" onclick="event.stopPropagation();openEditLead('${l.id}')">✏️</button>
+        <button class="btn btn-danger" style="padding:4px 8px;font-size:11px;" onclick="event.stopPropagation();deleteLead('${l.id}')">✕</button>
+      </td>
+    </tr>`).join('')
+    : '<tr><td colspan="11" style="text-align:center;color:var(--muted);padding:32px;">Keine Leads vorhanden. Klicke auf «+ Lead» um den ersten hinzuzufügen.</td></tr>';
+}
+
+function openNewLead() {
+  document.getElementById('lead-id').value = '';
+  document.getElementById('modal-lead-title').textContent = 'Neuer Lead';
+  ['lf-company','lf-website','lf-contact','lf-email','lf-phone','lf-notes','lf-last-contact'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('lf-industry').value = '';
+  document.getElementById('lf-status').value = 'new';
+  document.getElementById('lf-source').value = 'manual';
+  document.getElementById('lf-lead-score').value = '0';
+  document.getElementById('lf-design-score').value = '0';
+  document.getElementById('modal-lead').classList.add('open');
+}
+
+function openEditLead(id) {
+  const l = allLeads.find(x => x.id === id);
+  if (!l) return;
+  document.getElementById('lead-id').value = l.id;
+  document.getElementById('modal-lead-title').textContent = 'Lead bearbeiten';
+  document.getElementById('lf-company').value = l.company_name;
+  document.getElementById('lf-website').value = l.website_url || '';
+  document.getElementById('lf-contact').value = l.contact_name || '';
+  document.getElementById('lf-email').value = l.email || '';
+  document.getElementById('lf-phone').value = l.phone || '';
+  document.getElementById('lf-industry').value = l.industry || '';
+  document.getElementById('lf-status').value = l.status;
+  document.getElementById('lf-source').value = l.source;
+  document.getElementById('lf-lead-score').value = l.lead_score || 0;
+  document.getElementById('lf-design-score').value = l.design_score || 0;
+  document.getElementById('lf-notes').value = l.notes || '';
+  document.getElementById('lf-last-contact').value = l.last_contact_at ? l.last_contact_at.slice(0,10) : '';
+  document.getElementById('modal-lead').classList.add('open');
+}
+
+async function saveLead() {
+  const id = document.getElementById('lead-id').value;
+  const data = {
+    company_name: document.getElementById('lf-company').value.trim(),
+    website_url: document.getElementById('lf-website').value.trim() || null,
+    contact_name: document.getElementById('lf-contact').value.trim() || null,
+    email: document.getElementById('lf-email').value.trim() || null,
+    phone: document.getElementById('lf-phone').value.trim() || null,
+    industry: document.getElementById('lf-industry').value || null,
+    status: document.getElementById('lf-status').value,
+    source: document.getElementById('lf-source').value,
+    lead_score: parseInt(document.getElementById('lf-lead-score').value) || 0,
+    design_score: parseInt(document.getElementById('lf-design-score').value) || 0,
+    notes: document.getElementById('lf-notes').value.trim() || null,
+    last_contact_at: document.getElementById('lf-last-contact').value || null,
+  };
+  if (!data.company_name) return alert('Firmenname benötigt');
+  if (id) {
+    await api('/leads/' + id, { method:'PATCH', body: JSON.stringify(data) });
+  } else {
+    await api('/leads', { method:'POST', body: JSON.stringify(data) });
+  }
+  closeModal('modal-lead');
+  await loadLeads();
+}
+
+async function deleteLead(id) {
+  if (!confirm('Lead löschen?')) return;
+  await api('/leads/' + id, { method:'DELETE' });
+  await loadLeads();
+}
+
+// ── Lead Detail & Scoring ────────────────────────────────────────────────────
+
+function openLeadDetail(id) {
+  const l = allLeads.find(x => x.id === id);
+  if (!l) return;
+  document.getElementById('lead-detail-title').textContent = l.company_name;
+
+  const scoreClass = (s) => (s||0) >= 70 ? 'score-tag-green' : (s||0) >= 40 ? '' : 'score-tag-red';
+  const breakdownHtml = l.score_breakdown
+    ? Object.entries(l.score_breakdown).map(([k,v]) => `
+        <div class="score-breakdown-item">
+          <span style="color:var(--muted)">${k}</span>
+          <span>${escHtml(String(v))}</span>
+        </div>`).join('')
+    : '<div style="color:var(--muted);font-size:13px;">Noch keine Analyse durchgeführt.</div>';
+
+  const screenshotHtml = l.screenshot_url
+    ? `<img src="${escHtml(l.screenshot_url)}" class="screenshot-thumb" alt="Screenshot" onclick="window.open('${escHtml(l.website_url||'#')}','_blank')" />`
+    : `<div style="height:140px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--muted);font-size:13px;">Kein Screenshot — Analyse starten</div>`;
+
+  document.getElementById('lead-detail-content').innerHTML = `
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div>
+        <div style="margin-bottom:10px;"><span style="color:var(--muted);font-size:12px;">Website</span><br/>
+          ${l.website_url ? `<a href="${escHtml(l.website_url)}" target="_blank">${escHtml(l.website_url)}</a>` : '—'}
+        </div>
+        <div style="margin-bottom:10px;"><span style="color:var(--muted);font-size:12px;">Branche</span><br/>${escHtml(l.industry||'—')}</div>
+        <div style="margin-bottom:10px;"><span style="color:var(--muted);font-size:12px;">Status</span><br/><span class="badge badge-${l.status}">${LEAD_STATUS_LABELS[l.status]||l.status}</span></div>
+        <div><span style="color:var(--muted);font-size:12px;">Quelle</span><br/>${SOURCE_LABELS[l.source]||l.source}</div>
+      </div>
+      <div>
+        <div style="margin-bottom:10px;"><span style="color:var(--muted);font-size:12px;">Lead-Score</span><br/>
+          <span style="font-size:24px;font-weight:700;" class="${scoreClass(l.lead_score)}">${l.lead_score||0}</span><span style="color:var(--muted);font-size:12px;">/100</span>
+        </div>
+        <div style="margin-bottom:10px;"><span style="color:var(--muted);font-size:12px;">Design-Score</span><br/>
+          <span style="font-size:24px;font-weight:700;" class="${scoreClass(l.design_score)}">${l.design_score||0}</span><span style="color:var(--muted);font-size:12px;">/100</span>
+        </div>
+        <button class="btn btn-score" id="detail-score-btn-${l.id}" onclick="runScore('${l.id}', true)" style="margin-top:8px;">📸 Neu analysieren</button>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Screenshot</div>
+        ${screenshotHtml}
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Score-Aufschlüsselung</div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;">
+          ${breakdownHtml}
+        </div>
+      </div>
+    </div>
+    ${l.notes ? `<div style="margin-top:16px;"><div class="section-title">Notizen</div><div style="color:var(--muted);font-size:13px;">${escHtml(l.notes)}</div></div>` : ''}
+  `;
+  document.getElementById('modal-lead-detail').classList.add('open');
+}
+
+async function runScore(id, fromDetail = false) {
+  const btn = document.getElementById(`score-btn-${id}`) || document.getElementById(`detail-score-btn-${id}`);
+  if (btn) { btn.textContent = '⏳ …'; btn.disabled = true; btn.classList.add('loading'); }
+
+  try {
+    const result = await api('/leads/' + id + '/score', { method: 'POST' });
+    if (result.error) throw new Error(result.error);
+
+    // Update local cache
+    const idx = allLeads.findIndex(l => l.id === id);
+    if (idx >= 0) {
+      allLeads[idx] = { ...allLeads[idx], design_score: result.design_score, lead_score: result.lead_score,
+        screenshot_url: result.screenshot_url, score_breakdown: result.breakdown };
+    }
+    filterLeads();
+    if (fromDetail) openLeadDetail(id);
+  } catch (err) {
+    alert('Analyse fehlgeschlagen: ' + (err.message || 'Unbekannter Fehler'));
+    if (btn) { btn.textContent = '📸 Analyse'; btn.disabled = false; btn.classList.remove('loading'); }
+  }
+}
+
+// ── Scraper ───────────────────────────────────────────────────────────────────
+function openScraper() {
+  setScraperTab('single');
+  document.getElementById('scrape-url').value = '';
+  document.getElementById('scrape-preview-result').style.display = 'none';
+  document.getElementById('scrape-preview-error').style.display = 'none';
+  document.getElementById('bulk-urls').value = '';
+  document.getElementById('bulk-progress').style.display = 'none';
+  document.getElementById('modal-scraper').classList.add('open');
+  setTimeout(() => document.getElementById('scrape-url').focus(), 80);
+}
+
+function setScraperTab(tab) {
+  const isSingle = tab === 'single';
+  document.getElementById('scraper-single').style.display = isSingle ? '' : 'none';
+  document.getElementById('scraper-bulk').style.display  = isSingle ? 'none' : '';
+  document.getElementById('tab-single').style.color       = isSingle ? 'var(--accent)' : 'var(--muted)';
+  document.getElementById('tab-single').style.borderBottomColor = isSingle ? 'var(--accent)' : 'transparent';
+  document.getElementById('tab-bulk').style.color         = isSingle ? 'var(--muted)' : 'var(--accent)';
+  document.getElementById('tab-bulk').style.borderBottomColor   = isSingle ? 'transparent' : 'var(--accent)';
+}
+
+async function scrapePreview() {
+  const url = document.getElementById('scrape-url').value.trim();
+  if (!url) return;
+  const btn = document.getElementById('btn-scrape-preview');
+  btn.textContent = '…';
+  btn.disabled = true;
+  document.getElementById('scrape-preview-result').style.display = 'none';
+  document.getElementById('scrape-preview-error').style.display = 'none';
+  try {
+    const data = await api('/leads/scrape-preview', { method:'POST', body: JSON.stringify({ url }) });
+    if (data.error) throw new Error(data.error);
+    document.getElementById('sp-company').value  = data.company_name || '';
+    document.getElementById('sp-website').value  = data.website_url  || url;
+    document.getElementById('sp-email').value    = data.email        || '';
+    document.getElementById('sp-phone').value    = data.phone        || '';
+    document.getElementById('sp-industry').value = data.industry     || '';
+    document.getElementById('sp-score').value    = data.lead_score   || 0;
+    document.getElementById('scrape-preview-result').style.display = '';
+  } catch (err) {
+    document.getElementById('scrape-preview-error').textContent = 'Fehler: ' + (err.message || 'Scraping fehlgeschlagen');
+    document.getElementById('scrape-preview-error').style.display = '';
+  } finally {
+    btn.textContent = 'Scrapen';
+    btn.disabled = false;
+  }
+}
+
+async function saveScrapePreview() {
+  const data = {
+    company_name: document.getElementById('sp-company').value.trim(),
+    website_url:  document.getElementById('sp-website').value.trim() || null,
+    email:        document.getElementById('sp-email').value.trim()   || null,
+    phone:        document.getElementById('sp-phone').value.trim()   || null,
+    industry:     document.getElementById('sp-industry').value       || null,
+    lead_score:   parseInt(document.getElementById('sp-score').value) || 0,
+    source: 'manual', status: 'new',
+  };
+  if (!data.company_name) return alert('Firmenname benötigt');
+  await api('/leads', { method:'POST', body: JSON.stringify(data) });
+  closeModal('modal-scraper');
+  await loadLeads();
+}
+
+function loadCsvUrls() {
+  const file = document.getElementById('bulk-csv').files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const lines = e.target.result.split(/\r?\n/);
+    const urls  = lines
+      .map(l => l.split(',')[0].trim().replace(/^["']|["']$/g, ''))
+      .filter(l => l.includes('.'));
+    document.getElementById('bulk-urls').value = urls.join('\n');
+  };
+  reader.readAsText(file);
+}
+
+let bulkPollTimer = null;
+
+async function startBulkScrape() {
+  const raw = document.getElementById('bulk-urls').value.trim();
+  if (!raw) return;
+  const urls = raw.split(/\r?\n/).map(u => u.trim()).filter(u => u.includes('.'));
+  if (!urls.length) return alert('Keine gültigen URLs gefunden');
+
+  document.getElementById('btn-bulk-scrape').disabled = true;
+  document.getElementById('bulk-progress').style.display = '';
+  document.getElementById('bulk-result-list').innerHTML = '';
+  document.getElementById('bulk-progress-bar').style.width = '0%';
+  document.getElementById('bulk-count').textContent = `0 / ${urls.length}`;
+  document.getElementById('bulk-status-text').textContent = 'Scraping läuft…';
+
+  const { jobId } = await api('/leads/scrape', { method:'POST', body: JSON.stringify({ urls }) });
+
+  if (bulkPollTimer) clearInterval(bulkPollTimer);
+  bulkPollTimer = setInterval(async () => {
+    const job = await api('/leads/scrape/status/' + jobId);
+    const pct = job.total > 0 ? Math.round((job.done / job.total) * 100) : 0;
+    document.getElementById('bulk-progress-bar').style.width = pct + '%';
+    document.getElementById('bulk-count').textContent = `${job.done} / ${job.total}`;
+
+    // Show rolling results
+    document.getElementById('bulk-result-list').innerHTML = job.results.slice(-8).reverse().map(r =>
+      `<div style="padding:3px 0;border-bottom:1px solid var(--border);color:${r.ok?'var(--text)':'var(--red)'};">
+        ${r.ok ? '✓' : '✗'} ${escHtml(r.url)} ${r.ok ? '— ' + escHtml(r.company_name||'') : '— ' + escHtml(r.error||'')}
+      </div>`
+    ).join('');
+
+    if (job.status === 'done') {
+      clearInterval(bulkPollTimer);
+      bulkPollTimer = null;
+      const ok = job.results.filter(r => r.ok).length;
+      document.getElementById('bulk-status-text').textContent = `Fertig — ${ok} von ${job.total} Leads erstellt`;
+      document.getElementById('btn-bulk-scrape').disabled = false;
+      await loadLeads();
+    }
+  }, 800);
+}
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function fmt(n) { return Number(n||0).toLocaleString('de-CH'); }
+function fmtDate(s) { return s ? new Date(s).toLocaleString('de-CH', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '—'; }
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Close on backdrop click
+document.querySelectorAll('.modal-backdrop').forEach(el => el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); }));
+
+// Init
+loadDashboard();
+api('/opportunities').then(d => { allOpps = d; });
+api('/appointments').then(d => { allAppts = d; });
+api('/leads').then(d => { allLeads = d; });
+</script>
+</body>
+</html>

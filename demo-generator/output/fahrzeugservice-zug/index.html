@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fahrzeug-Service Zug – Autogarage & Werkstatt Zug</title>
+  <meta name="description" content="Fahrzeug-Service Zug – Ihr Servicepartner. Service, Reparaturen, MFK-Vorbereitung und Occasionen in Zug. Termin online buchen." />
+
+  <!-- Google Ads Conversion Tracking Scaffold -->
+  <!-- REPLACE_WITH_GTAG_ID: Replace G-XXXXXXXXXX with your actual Google Tag ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    function trackConversion(label) {
+      gtag('event', 'conversion', {
+        'send_to': 'G-XXXXXXXXXX/CONVERSION_LABEL', // REPLACE_WITH_CONVERSION_LABEL
+        'event_category': 'Lead',
+        'event_label': label || 'Terminbuchung'
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --graphite:     #1a1d20;
+      --graphite-mid: #252930;
+      --graphite-light:#2f3540;
+      --graphite-pale: #3a4150;
+      --orange:       #e85d04;
+      --orange-deep:  #c44c00;
+      --orange-light: #ff7b2e;
+      --orange-glow:  rgba(232,93,4,.15);
+      --smoke:        #6b7280;
+      --smoke-light:  #9ca3af;
+      --silver:       #d1d5db;
+      --offwhite:     #f4f4f5;
+      --white:        #ffffff;
+      --text:         #111317;
+      --text-muted:   #6b7280;
+      --border:       rgba(255,255,255,.08);
+      --border-light: #e5e7eb;
+      --radius-sm:    4px;
+      --radius:       6px;
+      --radius-lg:    12px;
+      --shadow:       0 2px 12px rgba(0,0,0,.18);
+      --shadow-md:    0 6px 32px rgba(0,0,0,.22);
+      --shadow-lg:    0 16px 64px rgba(0,0,0,.28);
+      --font:         'Barlow', system-ui, -apple-system, sans-serif;
+      --font-cond:    'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+      --max-w:        1180px;
+      --nav-h:        68px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── UTILITIES ──────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section { padding-block: clamp(4rem, 8vw, 6.5rem); }
+    .section--alt { background: var(--offwhite); }
+    .section--dark { background: var(--graphite); color: var(--white); }
+    .section--darker { background: var(--graphite-mid); color: var(--white); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-cond);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+    .badge::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-cond);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.01em;
+    }
+    .section-sub {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-top: .75rem;
+      line-height: 1.65;
+    }
+    .section--dark .section-sub,
+    .section--darker .section-sub { color: var(--smoke-light); }
+    .section--dark .section-title,
+    .section--darker .section-title { color: var(--white); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--font);
+      font-size: .9375rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      padding: .8125rem 1.75rem;
+      border-radius: var(--radius);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: background .18s, color .18s, border-color .18s, transform .12s, box-shadow .18s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .btn--primary {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+    }
+    .btn--primary:hover {
+      background: var(--orange-light);
+      border-color: var(--orange-light);
+      box-shadow: 0 4px 20px rgba(232,93,4,.4);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.4);
+    }
+    .btn--ghost:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,.08);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+    .btn--outline:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .btn--dark {
+      background: var(--graphite);
+      color: var(--white);
+      border-color: var(--graphite);
+    }
+    .btn--dark:hover {
+      background: var(--graphite-light);
+      border-color: var(--graphite-light);
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--orange);
+      margin-bottom: 1.5rem;
+      border-radius: 2px;
+    }
+
+    /* ── NAV ────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(26,29,32,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-shrink: 0;
+    }
+    .nav__logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--orange);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav__logo-mark svg { width: 20px; height: 20px; fill: var(--white); }
+    .nav__logo-text {
+      font-family: var(--font-cond);
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: var(--white);
+      letter-spacing: .01em;
+      line-height: 1.2;
+    }
+    .nav__logo-text small {
+      display: block;
+      font-size: .6875rem;
+      font-weight: 500;
+      color: var(--smoke-light);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav__links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--silver);
+      letter-spacing: .02em;
+      transition: color .15s;
+      position: relative;
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transition: transform .18s;
+    }
+    .nav__links a:hover { color: var(--white); }
+    .nav__links a:hover::after { transform: scaleX(1); }
+
+    .nav__cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav__phone {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--orange);
+      transition: color .15s;
+    }
+    .nav__phone:hover { color: var(--orange-light); }
+    .nav__phone svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .nav__burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav__burger span {
+      display: block;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: var(--graphite);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 1.5rem clamp(1.25rem, 5vw, 3rem);
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .nav__mobile.is-open { display: flex; }
+    .nav__mobile a {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--silver);
+      padding-block: .25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__mobile a:last-child { border-bottom: none; }
+
+    @media (max-width: 900px) {
+      .nav__links { display: none; }
+      .nav__cta .btn { display: none; }
+      .nav__burger { display: flex; }
+    }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding-top: var(--nav-h);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      background: var(--graphite);
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(26,29,32,.95) 0%, rgba(26,29,32,.75) 55%, rgba(26,29,32,.3) 100%),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+
+    .hero__accent {
+      position: absolute;
+      top: 50%;
+      right: 8%;
+      transform: translateY(-50%);
+      width: clamp(180px, 25vw, 320px);
+      height: clamp(180px, 25vw, 320px);
+      background: radial-gradient(circle, rgba(232,93,4,.22) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      padding-block: clamp(4rem, 10vh, 7rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero__eyebrow {
+      font-family: var(--font-cond);
+      font-size: .8125rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .hero__title {
+      font-family: var(--font-cond);
+      font-size: clamp(2.75rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      color: var(--white);
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+    }
+    .hero__title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .hero__sub {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      color: rgba(255,255,255,.7);
+      line-height: 1.65;
+      margin-bottom: 2.25rem;
+      max-width: 500px;
+    }
+
+    .hero__cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .hero__trust-item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8125rem;
+      color: rgba(255,255,255,.55);
+      font-weight: 500;
+    }
+    .hero__trust-item svg {
+      width: 14px; height: 14px;
+      fill: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .hero__card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero__card-head {
+      background: var(--graphite-mid);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .hero__card-head-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+    .hero__card-head-title {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--white);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .hero__card-body {
+      padding: 1.75rem 1.5rem;
+    }
+    .hero__card-body .form-group { margin-bottom: 1rem; }
+    .hero__card-body label {
+      display: block;
+      font-size: .8125rem;
+      font-weight: 600;
+      color: var(--graphite-light);
+      margin-bottom: .375rem;
+      letter-spacing: .02em;
+    }
+    .hero__card-body input,
+    .hero__card-body select {
+      width: 100%;
+      padding: .6875rem .875rem;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: .9375rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .15s, box-shadow .15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .hero__card-body input:focus,
+    .hero__card-body select:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--orange-glow);
+    }
+    .hero__card-body .btn { width: 100%; justify-content: center; font-size: 1rem; }
+
+    .hero__emergency {
+      margin-top: 1.25rem;
+      background: var(--offwhite);
+      border-radius: var(--radius);
+      padding: .875rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .hero__emergency svg {
+      width: 18px; height: 18px;
+      fill: var(--orange);
+      flex-shrink: 0;
+    }
+    .hero__emergency-text {
+      font-size: .8125rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .hero__emergency-text strong {
+      display: block;
+      font-size: .9375rem;
+      color: var(--graphite);
+    }
+
+    @media (max-width: 800px) {
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hero__card { max-width: 100%; }
+      .hero__bg {
+        background:
+          linear-gradient(180deg, rgba(26,29,32,.88) 0%, rgba(26,29,32,.72) 100%),
+          url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;
+      }
+    }
+
+    /* ── STATS BAR ──────────────────────────────────── */
+    .statsbar {
+      background: var(--orange);
+      padding-block: 1.25rem;
+    }
+    .statsbar__inner {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+    .statsbar__item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex: 1;
+      min-width: 160px;
+    }
+    .statsbar__icon {
+      width: 40px; height: 40px;
+      background: rgba(0,0,0,.15);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .statsbar__icon svg { width: 20px; height: 20px; fill: var(--white); }
+    .statsbar__num {
+      font-family: var(--font-cond);
+      font-size: 1.625rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .statsbar__label {
+      font-size: .8125rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.8);
+      margin-top: .1rem;
+    }
+
+    /* ── SERVICES ───────────────────────────────────── */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--border-light);
+      transition: background .2s;
+    }
+    .service-card:hover {
+      border-color: rgba(232,93,4,.35);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .service-card:hover::before { background: var(--orange); }
+
+    .service-card__icon {
+      width: 52px; height: 52px;
+      background: var(--offwhite);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      transition: background .2s;
+    }
+    .service-card:hover .service-card__icon { background: var(--orange-glow); }
+    .service-card__icon svg { width: 26px; height: 26px; fill: var(--orange); }
+
+    .service-card__title {
+      font-family: var(--font-cond);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--graphite);
+      margin-bottom: .5rem;
+      letter-spacing: .01em;
+    }
+    .service-card__desc {
+      font-size: .9375rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .service-card__list {
+      display: flex;
+      flex-direction: column;
+      gap: .375rem;
+    }
+    .service-card__list li {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .875rem;
+      color: var(--text);
+    }
+    .service-card__list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── GALLERY ────────────────────────────────────── */
+    .gallery__intro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 1rem;
+    }
+    .gallery__item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--graphite-light);
+    }
+    .gallery__item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .gallery__item:hover img { transform: scale(1.05); }
+    .gallery__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,29,32,.7) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .25s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .gallery__item:hover .gallery__overlay { opacity: 1; }
+    .gallery__overlay-label {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--white);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* placeholder for gallery images */
+    .gallery__placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--graphite-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      color: var(--smoke-light);
+    }
+    .gallery__placeholder svg { width: 32px; height: 32px; fill: currentColor; opacity: .4; }
+    .gallery__placeholder span { font-size: .8125rem; font-weight: 500; opacity: .5; }
+
+    @media (max-width: 700px) {
+      .gallery__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery__item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+        height: 200px;
+      }
+      .gallery__item { height: 150px; }
+    }
+
+    /* ── ABOUT / TRUST ──────────────────────────────── */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about__img {
+      position: relative;
+    }
+    .about__img-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      background: var(--graphite-light);
+    }
+    .about__img-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--orange);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .about__img-badge-num {
+      font-family: var(--font-cond);
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .about__img-badge-label {
+      font-size: .8125rem;
+      font-weight: 600;
+      opacity: .9;
+      margin-top: .25rem;
+    }
+
+    .about__content { padding-bottom: 2rem; }
+
+    .about__features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+      margin-top: 2rem;
+    }
+    .about__feature {
+      display: flex;
+      gap: .875rem;
+      align-items: flex-start;
+    }
+    .about__feature-icon {
+      width: 40px; height: 40px;
+      background: var(--orange-glow);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .125rem;
+    }
+    .about__feature-icon svg { width: 20px; height: 20px; fill: var(--orange); }
+    .about__feature-title {
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--graphite);
+      margin-bottom: .25rem;
+    }
+    .about__feature-desc {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 800px) {
+      .about__grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about__img-badge { right: 0; bottom: -1rem; }
+      .about__features { grid-template-columns: 1fr; }
+    }
+
+    /* ── TESTIMONIALS ───────────────────────────────── */
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testi-card {
+      background: var(--graphite-mid);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .testi-card__stars {
+      display: flex;
+      gap: 3px;
+    }
+    .testi-card__stars svg {
+      width: 16px; height: 16px;
+      fill: var(--orange);
+    }
+
+    .testi-card__text {
+      font-size: 1rem;
+      color: rgba(255,255,255,.8);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .testi-card__text::before { content: '\201C'; }
+    .testi-card__text::after  { content: '\201D'; }
+
+    .testi-card__author {
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .testi-card__avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--graphite-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+    .testi-card__name {
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--white);
+    }
+    .testi-card__meta {
+      font-size: .8125rem;
+      color: var(--smoke-light);
+      margin-top: .125rem;
+    }
+
+    /* ── BOOKING FORM ───────────────────────────────── */
+    .booking {
+      background: var(--graphite);
+      color: var(--white);
+    }
+
+    .booking__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .booking__info-title {
+      font-family: var(--font-cond);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .booking__info-sub {
+      color: rgba(255,255,255,.6);
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+
+    .booking__steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .booking__step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .booking__step-num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(232,93,4,.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-cond);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+    .booking__step-title {
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--white);
+    }
+    .booking__step-desc {
+      font-size: .875rem;
+      color: rgba(255,255,255,.5);
+      margin-top: .25rem;
+    }
+
+    .booking__contact {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+    }
+    .booking__contact-label {
+      font-size: .8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--smoke-light);
+      margin-bottom: .875rem;
+    }
+    .booking__contact a {
+      display: flex;
+      align-items: center;
+      gap: .625rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      transition: color .15s;
+      margin-bottom: .5rem;
+    }
+    .booking__contact a:last-child { margin-bottom: 0; }
+    .booking__contact a:hover { color: var(--orange); }
+    .booking__contact a svg {
+      width: 16px; height: 16px;
+      fill: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* Form card */
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .form-card__head {
+      background: var(--graphite-mid);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .form-card__head svg {
+      width: 20px; height: 20px;
+      fill: var(--orange);
+    }
+    .form-card__head-title {
+      font-family: var(--font-cond);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .form-card__body { padding: 2rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group:last-child { margin-bottom: 0; }
+
+    .form-group label {
+      font-size: .8125rem;
+      font-weight: 600;
+      color: var(--graphite-light);
+      letter-spacing: .02em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: .9375rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .15s, box-shadow .15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--orange-glow);
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%236b7280' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right .75rem center;
+      background-size: 16px;
+      padding-right: 2.5rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: .9375rem;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .625rem;
+      transition: background .18s, box-shadow .18s, transform .12s;
+      margin-top: 1.25rem;
+    }
+    .form-submit:hover {
+      background: var(--orange-light);
+      box-shadow: 0 4px 20px rgba(232,93,4,.4);
+    }
+    .form-submit:active { transform: translateY(1px); }
+    .form-submit svg { width: 18px; height: 18px; fill: var(--white); }
+
+    .form-note {
+      text-align: center;
+      font-size: .8125rem;
+      color: var(--text-muted);
+      margin-top: .875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .375rem;
+    }
+    .form-note svg { width: 13px; height: 13px; fill: var(--text-muted); }
+
+    @media (max-width: 900px) {
+      .booking__inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    .footer {
+      background: #111315;
+      color: rgba(255,255,255,.6);
+      padding-block: 3.5rem 2rem;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer__brand-name {
+      font-family: var(--font-cond);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-top: .75rem;
+      margin-bottom: .5rem;
+    }
+    .footer__brand-desc {
+      font-size: .875rem;
+      line-height: 1.65;
+      max-width: 280px;
+    }
+
+    .footer__col-title {
+      font-family: var(--font-cond);
+      font-size: .8125rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: .625rem;
+    }
+    .footer__links a {
+      font-size: .875rem;
+      color: rgba(255,255,255,.5);
+      transition: color .15s;
+    }
+    .footer__links a:hover { color: var(--orange); }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .625rem;
+      font-size: .875rem;
+      color: rgba(255,255,255,.5);
+      margin-bottom: .75rem;
+    }
+    .footer__contact-item svg {
+      width: 14px; height: 14px;
+      fill: var(--orange);
+      flex-shrink: 0;
+      margin-top: .15rem;
+    }
+    .footer__contact-item a { color: rgba(255,255,255,.5); transition: color .15s; }
+    .footer__contact-item a:hover { color: var(--orange); }
+
+    .footer__hours { font-size: .875rem; }
+    .footer__hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: .3125rem;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      color: rgba(255,255,255,.5);
+    }
+    .footer__hours-row:last-child { border-bottom: none; }
+    .footer__hours-row span:last-child { color: rgba(255,255,255,.8); }
+
+    .footer__bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: .8125rem;
+    }
+    .footer__bottom a { color: rgba(255,255,255,.4); transition: color .15s; }
+    .footer__bottom a:hover { color: var(--orange); }
+
+    @media (max-width: 900px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 560px) {
+      .footer__grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    }
+
+    /* ── SCROLL REVEAL ──────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ─────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="Fahrzeug-Service Zug – Startseite">
+        <div class="nav__logo-mark">
+          <!-- Wrench icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+        </div>
+        <div class="nav__logo-text">
+          Fahrzeug-Service Zug
+          <small>Autogarage &amp; Werkstatt</small>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#bewertungen">Bewertungen</a></li>
+        <li><a href="#termin">Kontakt</a></li>
+      </ul>
+
+      <div class="nav__cta">
+        <a href="tel:041 713 32 77" class="nav__phone" aria-label="Anrufen: 041 713 32 77">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          041 713 32 77
+        </a>
+        <a href="#termin" class="btn btn--primary">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+          Termin buchen
+        </a>
+        <button class="nav__burger" aria-label="Menü öffnen" aria-expanded="false" onclick="toggleMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav__mobile" id="mobileMenu" role="dialog" aria-label="Mobilmenü">
+    <a href="#leistungen" onclick="closeMobileMenu()">Leistungen</a>
+    <a href="#galerie" onclick="closeMobileMenu()">Galerie</a>
+    <a href="#ueber-uns" onclick="closeMobileMenu()">Über uns</a>
+    <a href="#bewertungen" onclick="closeMobileMenu()">Bewertungen</a>
+    <a href="#termin" onclick="closeMobileMenu()">Termin buchen</a>
+    <a href="tel:041 713 32 77" style="color:var(--orange); font-weight:700;">
+      &#9742; 041 713 32 77
+    </a>
+  </div>
+
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <section class="hero" id="start" aria-label="Hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__accent" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <!-- Left: headline + CTA -->
+      <div class="hero__content">
+        <p class="hero__eyebrow">Autogarage &amp; Werkstatt · Zug</p>
+        <h1 class="hero__title">
+          Ihr Fahrzeug.<br>
+          <em>Unsere Leidenschaft.</em>
+        </h1>
+        <p class="hero__sub">Ihr Servicepartner — Professionelle Fahrzeugreparaturen, Serviceleistungen und MFK-Vorbereitung. Zuverlässig, transparent, termingerecht.</p>
+        <div class="hero__cta">
+          <a href="#termin" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+            Termin online buchen
+          </a>
+          <a href="tel:041 713 32 77" class="btn btn--ghost" onclick="trackConversion('Telefon-Klick-Hero')">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            Jetzt anrufen
+          </a>
+        </div>
+        <div class="hero__trust">
+          <span class="hero__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            TCS-zugelassen
+          </span>
+          <span class="hero__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Alle Marken
+          </span>
+          <span class="hero__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Fixpreis-Garantie
+          </span>
+          <span class="hero__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            Kostenloser Kostenvoranschlag
+          </span>
+        </div>
+      </div>
+
+      <!-- Right: quick booking card -->
+      <div class="hero__right">
+        <div class="hero__card">
+          <div class="hero__card-head">
+            <div class="hero__card-head-dot"></div>
+            <div class="hero__card-head-title">Schnelltermin anfragen</div>
+          </div>
+          <div class="hero__card-body">
+            <div class="form-group">
+              <label for="hq-name">Ihr Name</label>
+              <input type="text" id="hq-name" placeholder="Max Mustermann" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="hq-phone">Telefon</label>
+              <input type="tel" id="hq-phone" placeholder="+41 79 000 00 00" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="hq-service">Gewünschter Service</label>
+              <select id="hq-service">
+                <option value="">Bitte wählen …</option>
+                <option>Service / Inspektion</option>
+                <option>Reparatur</option>
+                <option>MFK-Vorbereitung</option>
+                <option>Reifenwechsel</option>
+                <option>Occasion kaufen</option>
+                <option>Anderes</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn--primary" onclick="submitHeroForm()">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+              Jetzt anfragen
+            </button>
+          </div>
+        </div>
+
+        <div class="hero__emergency" role="note" aria-label="Notfallkontakt">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <div class="hero__emergency-text">
+            Pannenhilfe / Notfall?
+            <strong>Jetzt anrufen: <a href="tel:041 713 32 77" style="color:var(--orange);">041 713 32 77</a></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ──────────────────────────────────── -->
+  <div class="statsbar" aria-label="Kennzahlen">
+    <div class="container">
+      <div class="statsbar__inner">
+        <div class="statsbar__item">
+          <div class="statsbar__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div>
+            <div class="statsbar__num">20+</div>
+            <div class="statsbar__label">Jahre Erfahrung</div>
+          </div>
+        </div>
+        <div class="statsbar__item">
+          <div class="statsbar__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+          </div>
+          <div>
+            <div class="statsbar__num">2'500+</div>
+            <div class="statsbar__label">Fahrzeuge pro Jahr</div>
+          </div>
+        </div>
+        <div class="statsbar__item">
+          <div class="statsbar__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+          </div>
+          <div>
+            <div class="statsbar__num">4.9 ★</div>
+            <div class="statsbar__label">Google Bewertung</div>
+          </div>
+        </div>
+        <div class="statsbar__item">
+          <div class="statsbar__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <div>
+            <div class="statsbar__num">98%</div>
+            <div class="statsbar__label">MFK bestanden</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ───────────────────────────────────── -->
+  <section class="section" id="leistungen" aria-labelledby="leistungen-title">
+    <div class="container">
+      <div class="reveal">
+        <p class="badge">Leistungen</p>
+        <h2 class="section-title" id="leistungen-title">Was wir für Sie tun</h2>
+        <p class="section-sub">Vom Ölwechsel bis zur Motorrevision — wir betreuen Ihr Fahrzeug mit Fachkompetenz und modernster Diagnosetechnik.</p>
+      </div>
+
+      <div class="services__grid">
+        <!-- Service 1 -->
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+          </div>
+          <div class="service-card__title">Service &amp; Inspektion</div>
+          <p class="service-card__desc">Regelmässige Wartung nach Herstellervorgaben erhält den Wert und die Sicherheit Ihres Fahrzeugs.</p>
+          <ul class="service-card__list">
+            <li>Ölwechsel &amp; Filterwechsel</li>
+            <li>Bremsinspektion</li>
+            <li>Computerdiagnose</li>
+            <li>Beleuchtungsprüfung</li>
+          </ul>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2c-5.629 0-10.212 4.436-10.475 10h-3.025l4.537 5.917 4.463-5.917h-2.975c.26-3.902 3.508-7 7.475-7 4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5c-2.381 0-4.502-1.119-5.876-2.854l-1.847 2.449c1.919 2.088 4.664 3.405 7.723 3.405 5.798 0 10.5-4.702 10.5-10.5s-4.702-10.5-10.5-10.5z"/></svg>
+          </div>
+          <div class="service-card__title">Reparaturen</div>
+          <p class="service-card__desc">Motorschäden, Getriebeprobleme oder Elektrik — wir diagnostizieren präzise und reparieren dauerhaft.</p>
+          <ul class="service-card__list">
+            <li>Motor &amp; Getriebe</li>
+            <li>Kupplung &amp; Bremsen</li>
+            <li>Elektrik &amp; Elektronik</li>
+            <li>Auspuff &amp; Abgasanlage</li>
+          </ul>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <div class="service-card__title">MFK-Vorbereitung</div>
+          <p class="service-card__desc">Wir bereiten Ihr Fahrzeug gezielt auf die Motorfahrzeugkontrolle vor — damit Sie auf Anhieb bestehen.</p>
+          <ul class="service-card__list">
+            <li>Vorprüfung nach MFK-Katalog</li>
+            <li>Lichteinstellung</li>
+            <li>Abgasmessung</li>
+            <li>Mängelprotokoll &amp; Behebung</li>
+          </ul>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          </div>
+          <div class="service-card__title">Reifenwechsel &amp; Einlagerung</div>
+          <p class="service-card__desc">Saisonaler Reifenwechsel schnell und sauber — auf Wunsch mit Einlagerung und Reifenhotel.</p>
+          <ul class="service-card__list">
+            <li>Sommer- / Winterreifen</li>
+            <li>Wuchten &amp; Montieren</li>
+            <li>RDKS-Sensor-Service</li>
+            <li>Reifenhotel ab CHF 49/Saison</li>
+          </ul>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card reveal">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/></svg>
+          </div>
+          <div class="service-card__title">Occasionen</div>
+          <p class="service-card__desc">Geprüfte Gebrauchtwagen mit transparenter Fahrzeuggeschichte — direkt vom Fachbetrieb.</p>
+          <ul class="service-card__list">
+            <li>Technikgeprüfte Occasion</li>
+            <li>MFK-frisch oder mit Garantie</li>
+            <li>Inzahlungnahme möglich</li>
+            <li>Finanzierung auf Anfrage</li>
+          </ul>
+        </div>
+
+        <!-- Service 6: CTA card -->
+        <div class="service-card reveal" style="background:var(--graphite);border-color:var(--graphite);display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div class="service-card__icon" style="background:rgba(232,93,4,.2);">
+              <svg viewBox="0 0 24 24" style="fill:var(--orange);" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <div class="service-card__title" style="color:var(--white);">Nichts dabei?</div>
+            <p class="service-card__desc" style="color:rgba(255,255,255,.55);">Wir beraten Sie kostenlos und erstellen einen individuellen Kostenvoranschlag.</p>
+          </div>
+          <a href="#termin" class="btn btn--primary" style="align-self:flex-start; margin-top:1.5rem;">Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ────────────────────────────────────── -->
+  <section class="section section--alt" id="galerie" aria-labelledby="galerie-title">
+    <div class="container">
+      <div class="gallery__intro reveal">
+        <div>
+          <p class="badge">Unsere Arbeit</p>
+          <h2 class="section-title" id="galerie-title">Einblick in den Betrieb</h2>
+        </div>
+        <a href="#termin" class="btn btn--dark">Termin vereinbaren</a>
+      </div>
+
+      <div class="gallery__grid reveal">
+        <!-- Large feature image -->
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Werkstattfoto einfügen</span>
+          </div>
+          <div class="gallery__overlay">
+            <span class="gallery__overlay-label">Werkstatt</span>
+          </div>
+        </div>
+        <!-- Small images -->
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Fahrzeugfoto</span>
+          </div>
+          <div class="gallery__overlay">
+            <span class="gallery__overlay-label">Reparatur</span>
+          </div>
+        </div>
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Teamfoto</span>
+          </div>
+          <div class="gallery__overlay">
+            <span class="gallery__overlay-label">Unser Team</span>
+          </div>
+        </div>
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Occasionen</span>
+          </div>
+          <div class="gallery__overlay">
+            <span class="gallery__overlay-label">Occasionen</span>
+          </div>
+        </div>
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Aussenbereich</span>
+          </div>
+          <div class="gallery__overlay">
+            <span class="gallery__overlay-label">Betrieb</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT / TRUST ──────────────────────────────── -->
+  <section class="section" id="ueber-uns" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__img reveal">
+          <div class="about__img-main gallery__placeholder" style="aspect-ratio:4/3;border-radius:12px;">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Teamfoto einfügen</span>
+          </div>
+          <div class="about__img-badge">
+            <div class="about__img-badge-num">20+</div>
+            <div class="about__img-badge-label">Jahre<br>Erfahrung</div>
+          </div>
+        </div>
+
+        <div class="about__content reveal">
+          <p class="badge">Über uns</p>
+          <h2 class="section-title" id="about-title">Ihr Vertrauen ist unser Antrieb</h2>
+          <p class="section-sub">Fahrzeug-Service Zug ist ein familiengeführter Fachbetrieb in Zug. Seit über 20 Jahren betreuen wir Privatpersonen und Flottenkunden mit Leidenschaft und Präzision.</p>
+
+          <div class="about__features">
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+              </div>
+              <div>
+                <div class="about__feature-title">Qualitätsgarantie</div>
+                <p class="about__feature-desc">Alle Arbeiten mit 12 Monate / 20'000 km Garantie.</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+              </div>
+              <div>
+                <div class="about__feature-title">Eidg. Fachausweis</div>
+                <p class="about__feature-desc">Unser Team hält sich durch regelmässige Weiterbildungen aktuell.</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+              </div>
+              <div>
+                <div class="about__feature-title">Transparente Preise</div>
+                <p class="about__feature-desc">Kostenvoranschlag immer kostenlos und schriftlich.</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              </div>
+              <div>
+                <div class="about__feature-title">Erreichbarkeit</div>
+                <p class="about__feature-desc">Mo–Fr 07:30–17:30, Sa nach Vereinbarung.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────── -->
+  <section class="section section--darker" id="bewertungen" aria-labelledby="testi-title">
+    <div class="container">
+      <div class="reveal" style="text-align:center;max-width:640px;margin-inline:auto;">
+        <p class="badge" style="justify-content:center;">Kundenstimmen</p>
+        <h2 class="section-title" id="testi-title">Was unsere Kunden sagen</h2>
+        <p class="section-sub" style="margin-inline:auto;">Über 500 begeisterte Kunden in Zug und Umgebung vertrauen Fahrzeug-Service Zug für die Betreuung ihrer Fahrzeuge.</p>
+      </div>
+
+      <div class="testimonials__grid">
+        <div class="testi-card reveal">
+          <div class="testi-card__stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testi-card__text">Kompetente Beratung, faire Preise und die Arbeit war punktgenau fertig. MFK beim ersten Mal bestanden. Komme immer wieder!</p>
+          <div class="testi-card__author">
+            <div class="testi-card__avatar">TM</div>
+            <div>
+              <div class="testi-card__name">Thomas M.</div>
+              <div class="testi-card__meta">VW Passat · Zug</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-card__stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testi-card__text">Mein Auto hatte eine mysteriöse Motorleuchte. Innerhalb eines Tages diagnostiziert und repariert. Sehr professionell und transparent.</p>
+          <div class="testi-card__author">
+            <div class="testi-card__avatar">SK</div>
+            <div>
+              <div class="testi-card__name">Sandra K.</div>
+              <div class="testi-card__meta">BMW 3er · Umgebung Zug</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-card__stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testi-card__text">Reifenwechsel in unter 30 Minuten ohne Termin. Günstiger als die Markenwerkstatt und viel persönlicher. Sehr empfehlenswert!</p>
+          <div class="testi-card__author">
+            <div class="testi-card__avatar">MR</div>
+            <div>
+              <div class="testi-card__name">Marco R.</div>
+              <div class="testi-card__meta">Toyota RAV4 · Zug</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOOKING FORM ───────────────────────────────── -->
+  <section class="section booking" id="termin" aria-labelledby="termin-title">
+    <div class="container">
+      <div class="booking__inner">
+        <!-- Left info -->
+        <div class="reveal">
+          <p class="badge">Termin buchen</p>
+          <h2 class="booking__info-title" id="termin-title">Termin online anfragen</h2>
+          <p class="booking__info-sub">Füllen Sie das Formular aus — wir melden uns innerhalb von 2 Stunden (während Öffnungszeiten) mit einer Terminbestätigung.</p>
+
+          <div class="booking__steps">
+            <div class="booking__step">
+              <div class="booking__step-num">1</div>
+              <div>
+                <div class="booking__step-title">Formular ausfüllen</div>
+                <p class="booking__step-desc">Fahrzeug, Service und Wunschtermin angeben.</p>
+              </div>
+            </div>
+            <div class="booking__step">
+              <div class="booking__step-num">2</div>
+              <div>
+                <div class="booking__step-title">Bestätigung erhalten</div>
+                <p class="booking__step-desc">Wir kontaktieren Sie per Telefon oder E-Mail.</p>
+              </div>
+            </div>
+            <div class="booking__step">
+              <div class="booking__step-num">3</div>
+              <div>
+                <div class="booking__step-title">Fahrzeug vorbeibringen</div>
+                <p class="booking__step-desc">Pünktlich und stressfrei — wir kümmern uns um den Rest.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking__contact">
+            <div class="booking__contact-label">Direkt kontaktieren</div>
+            <a href="tel:041 713 32 77" onclick="trackConversion('Telefon-Klick-Booking')">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              041 713 32 77
+            </a>
+            <a href="mailto:info@fahrzeugservice-zug.ch">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              info@fahrzeugservice-zug.ch
+            </a>
+            <a href="https://maps.google.com/?q=Lorzenstrasse 12" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Lorzenstrasse 12
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: form card -->
+        <div class="reveal">
+          <div class="form-card">
+            <div class="form-card__head">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+              <div class="form-card__head-title">Terminanfrage</div>
+            </div>
+            <div class="form-card__body">
+              <form id="bookingForm" novalidate onsubmit="submitBookingForm(event)">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="f-vorname">Vorname *</label>
+                    <input type="text" id="f-vorname" name="vorname" placeholder="Max" required autocomplete="given-name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-nachname">Nachname *</label>
+                    <input type="text" id="f-nachname" name="nachname" placeholder="Mustermann" required autocomplete="family-name" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="f-telefon">Telefon *</label>
+                    <input type="tel" id="f-telefon" name="telefon" placeholder="+41 79 000 00 00" required autocomplete="tel" />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-email">E-Mail</label>
+                    <input type="email" id="f-email" name="email" placeholder="name@beispiel.ch" autocomplete="email" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="f-marke">Fahrzeugmarke *</label>
+                    <input type="text" id="f-marke" name="marke" placeholder="z.B. VW, BMW, Toyota" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-kennzeichen">Kennzeichen</label>
+                    <input type="text" id="f-kennzeichen" name="kennzeichen" placeholder="z.B. ZH 123456" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="f-service">Gewünschter Service *</label>
+                  <select id="f-service" name="service" required>
+                    <option value="">Bitte wählen …</option>
+                    <option>Service / Inspektion</option>
+                    <option>Motorenreparatur</option>
+                    <option>Bremsensystem</option>
+                    <option>MFK-Vorbereitung</option>
+                    <option>Reifenwechsel / Einlagerung</option>
+                    <option>Elektrik / Diagnose</option>
+                    <option>Getriebe / Kupplung</option>
+                    <option>Occasion kaufen</option>
+                    <option>Anderes</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="f-datum">Wunschtermin</label>
+                    <input type="date" id="f-datum" name="datum" />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-zeit">Wunschzeit</label>
+                    <select id="f-zeit" name="zeit">
+                      <option value="">Beliebig</option>
+                      <option>Morgens (07:30–10:00)</option>
+                      <option>Vormittag (10:00–12:00)</option>
+                      <option>Nachmittag (13:00–16:00)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="f-nachricht">Beschreibung / Bemerkungen</label>
+                  <textarea id="f-nachricht" name="nachricht" placeholder="Kurze Beschreibung des Problems oder Wunsches …"></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  Termin anfragen
+                </button>
+                <p class="form-note">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                  Ihre Daten werden vertraulich behandelt und nicht weitergegeben.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand -->
+        <div>
+          <div style="display:flex;align-items:center;gap:.625rem;">
+            <div style="width:32px;height:32px;background:var(--orange);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+            </div>
+          </div>
+          <div class="footer__brand-name">Fahrzeug-Service Zug</div>
+          <p class="footer__brand-desc">Ihr zuverlässiger Fachbetrieb für Reparaturen, Service und MFK in Zug seit über 20 Jahren.</p>
+        </div>
+
+        <!-- Leistungen -->
+        <div>
+          <div class="footer__col-title">Leistungen</div>
+          <ul class="footer__links">
+            <li><a href="#leistungen">Service &amp; Inspektion</a></li>
+            <li><a href="#leistungen">Reparaturen</a></li>
+            <li><a href="#leistungen">MFK-Vorbereitung</a></li>
+            <li><a href="#leistungen">Reifenwechsel</a></li>
+            <li><a href="#leistungen">Occasionen</a></li>
+          </ul>
+        </div>
+
+        <!-- Kontakt -->
+        <div>
+          <div class="footer__col-title">Kontakt</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Lorzenstrasse 12
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <a href="tel:041 713 32 77">041 713 32 77</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <a href="mailto:info@fahrzeugservice-zug.ch">info@fahrzeugservice-zug.ch</a>
+          </div>
+        </div>
+
+        <!-- Öffnungszeiten -->
+        <div>
+          <div class="footer__col-title">Öffnungszeiten</div>
+          <div class="footer__hours">
+            <div class="footer__hours-row"><span>Mo–Fr</span><span>07:30–17:30</span></div>
+            <div class="footer__hours-row"><span>Samstag</span><span>n. Vereinbarung</span></div>
+            <div class="footer__hours-row"><span>Sonntag</span><span>Geschlossen</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2025 Fahrzeug-Service Zug · Zug</span>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+          <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
+          <a href="#">AGB</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Mobile menu ──────────────────────────────────
+    function toggleMenu(btn) {
+      const menu = document.getElementById('mobileMenu');
+      const open = menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('is-open');
+      const btn = document.querySelector('.nav__burger');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+
+    // ── Scroll reveal ────────────────────────────────
+    (function() {
+      const items = document.querySelectorAll('.reveal');
+      if (!items.length) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('is-visible'), i * 60);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(el => io.observe(el));
+    })();
+
+    // ── Hero quick form ──────────────────────────────
+    function submitHeroForm() {
+      const name = document.getElementById('hq-name').value.trim();
+      const phone = document.getElementById('hq-phone').value.trim();
+      const service = document.getElementById('hq-service').value;
+      if (!name || !phone || !service) {
+        alert('Bitte füllen Sie alle Felder aus.');
+        return;
+      }
+      trackConversion('Hero-Schnelltermin');
+      alert('Danke, ' + name + '! Wir melden uns so schnell wie möglich unter ' + phone + '.');
+    }
+
+    // ── Main booking form ────────────────────────────
+    function submitBookingForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(el => {
+        if (!el.value.trim()) {
+          valid = false;
+          el.style.borderColor = '#e53e3e';
+          el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+        }
+      });
+      if (!valid) {
+        alert('Bitte füllen Sie alle Pflichtfelder aus (*).');
+        return;
+      }
+      trackConversion('Terminbuchung-Formular');
+      // Replace this block with your actual form submission / API call
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = '✓ Anfrage gesendet!';
+      btn.style.background = '#2d7d46';
+      btn.disabled = true;
+    }
+
+    // ── Nav scroll styling ───────────────────────────
+    (function() {
+      const nav = document.querySelector('.nav');
+      window.addEventListener('scroll', () => {
+        nav.style.borderBottomColor = window.scrollY > 10
+          ? 'rgba(232,93,4,.25)'
+          : 'rgba(255,255,255,.08)';
+      }, { passive: true });
+    })();
+
+    // ── Set min date for date input ──────────────────
+    (function() {
+      const dateInput = document.getElementById('f-datum');
+      if (dateInput) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().split('T')[0];
+      }
+    })();
+  </script>
+</body>
+</html>

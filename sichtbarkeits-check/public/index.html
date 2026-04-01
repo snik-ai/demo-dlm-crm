@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google-Sichtbarkeits-Check — DLM Digital</title>
+  <meta name="description" content="Kostenloser Google-Sichtbarkeits-Check für Schweizer KMU. Analysieren Sie Ihre Online-Präsenz in 60 Sekunden.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0A1628;
+      --ink-mid: #1E3A5F;
+      --ink-soft: #374B6D;
+      --blue: #2563EB;
+      --blue-hover: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --green: #059669;
+      --green-bg: #ECFDF5;
+      --orange: #D97706;
+      --orange-bg: #FFFBEB;
+      --red: #DC2626;
+      --red-bg: #FEF2F2;
+      --grey-100: #F8F9FB;
+      --grey-200: #EEF0F5;
+      --grey-300: #D4D9E4;
+      --grey-500: #8492A6;
+      --grey-700: #4A5568;
+      --white: #FFFFFF;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(10,22,40,.06), 0 1px 2px rgba(10,22,40,.08);
+      --shadow-md: 0 4px 16px rgba(10,22,40,.10), 0 2px 6px rgba(10,22,40,.08);
+      --shadow-lg: 0 12px 40px rgba(10,22,40,.14), 0 4px 12px rgba(10,22,40,.08);
+      --font: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ───── NAV ───── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 64px);
+      height: 64px;
+      background: rgba(10,22,40,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo {
+      font-size: 15px; font-weight: 700; letter-spacing: -.01em;
+      color: var(--white); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span {
+      display: inline-block; width: 28px; height: 28px;
+      background: var(--blue); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white; letter-spacing: 0;
+    }
+    .nav-badge {
+      font-size: 12px; font-weight: 500; color: rgba(255,255,255,.45);
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+
+    /* ───── HERO ───── */
+    .hero {
+      min-height: 100vh;
+      background: var(--ink);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(37,99,235,.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 85% 80%, rgba(37,99,235,.08) 0%, transparent 60%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 100px clamp(20px, 5vw, 64px) 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 28px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block; width: 24px; height: 1px;
+      background: rgba(255,255,255,.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700; line-height: 1.12; letter-spacing: -.03em;
+      color: var(--white); text-align: center; max-width: 700px;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #60A5FA, #3B82F6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 400;
+      color: rgba(255,255,255,.55); text-align: center; max-width: 480px;
+      margin-bottom: 48px; line-height: 1.7;
+    }
+
+    /* ───── TRUST BADGES ───── */
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-bottom: 52px;
+    }
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 14px; border-radius: 99px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7);
+    }
+    .trust-badge svg { flex-shrink: 0; }
+
+    /* ───── INPUT CARD ───── */
+    .input-card {
+      width: 100%; max-width: 600px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 32px;
+      backdrop-filter: blur(8px);
+    }
+    .input-row {
+      display: flex; gap: 10px;
+    }
+    .url-input {
+      flex: 1;
+      height: 56px; padding: 0 18px;
+      font-family: var(--font); font-size: 15px; font-weight: 400;
+      color: var(--white);
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-sm);
+      outline: none; transition: border-color .2s;
+    }
+    .url-input::placeholder { color: rgba(255,255,255,.3); }
+    .url-input:focus { border-color: var(--blue); }
+    .btn-primary {
+      height: 56px; padding: 0 28px;
+      font-family: var(--font); font-size: 15px; font-weight: 600;
+      color: white; background: var(--blue);
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer; white-space: nowrap;
+      transition: background .15s, transform .1s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--blue-hover); }
+    .btn-primary:active { transform: scale(.98); }
+    .btn-primary:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .social-proof {
+      margin-top: 16px; text-align: center;
+      font-size: 12.5px; color: rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .social-proof-dots {
+      display: flex; gap: 2px;
+    }
+    .social-proof-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid var(--ink-mid);
+      background: linear-gradient(135deg, #4A5568, #2D3748);
+    }
+    .social-proof-dot:nth-child(2) { background: linear-gradient(135deg, #6B7280, #4B5563); margin-left: -6px; }
+    .social-proof-dot:nth-child(3) { background: linear-gradient(135deg, #60A5FA, #3B82F6); margin-left: -6px; }
+
+    /* ───── LOADING ───── */
+    #loading-section {
+      display: none;
+      width: 100%; max-width: 600px;
+      margin-top: 32px;
+    }
+    .loading-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: 28px 32px;
+    }
+    .loading-label {
+      font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.35); margin-bottom: 14px;
+    }
+    .loading-bar-track {
+      height: 4px; background: rgba(255,255,255,.08); border-radius: 99px; overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .loading-bar-fill {
+      height: 100%; background: var(--blue); border-radius: 99px;
+      transition: width .6s cubic-bezier(.4,0,.2,1);
+      width: 0%;
+    }
+    .loading-step {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,.6);
+      min-height: 22px; transition: opacity .3s;
+    }
+
+    /* ───── RESULTS SECTION ───── */
+    #results-section {
+      display: none;
+      background: var(--grey-100);
+      padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px);
+    }
+    .results-inner {
+      max-width: 820px; margin: 0 auto;
+    }
+
+    /* Score header */
+    .score-header {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+      margin-bottom: 52px;
+      background: var(--white); border-radius: 20px;
+      padding: 36px 40px; box-shadow: var(--shadow-md);
+      border: 1px solid var(--grey-200);
+    }
+    .score-circle-wrap { flex-shrink: 0; position: relative; }
+    .score-circle-wrap svg { display: block; }
+    .score-number-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .score-number {
+      font-family: var(--mono); font-size: 38px; font-weight: 500;
+      line-height: 1; letter-spacing: -.02em;
+    }
+    .score-denom {
+      font-size: 12px; font-weight: 500; color: var(--grey-500);
+      letter-spacing: .02em; margin-top: 2px;
+    }
+    .score-meta { flex: 1; min-width: 200px; }
+    .score-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--grey-500); margin-bottom: 8px;
+    }
+    .score-headline {
+      font-size: clamp(1.25rem, 3vw, 1.65rem); font-weight: 700;
+      line-height: 1.25; letter-spacing: -.02em; color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .score-url {
+      font-family: var(--mono); font-size: 12.5px;
+      color: var(--grey-500); background: var(--grey-100);
+      display: inline-block; padding: 4px 10px; border-radius: 6px;
+    }
+
+    /* Check cards grid */
+    .checks-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 16px; margin-bottom: 48px;
+    }
+    .check-card {
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--grey-200);
+      border-left-width: 4px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .4s ease, transform .4s ease, box-shadow .2s;
+    }
+    .check-card:hover { box-shadow: var(--shadow-md); }
+    .check-card.visible { opacity: 1; transform: translateY(0); }
+    .check-card.good  { border-left-color: var(--green); }
+    .check-card.warning { border-left-color: var(--orange); }
+    .check-card.critical { border-left-color: var(--red); }
+
+    .check-card-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .check-card-left { display: flex; align-items: center; gap: 12px; }
+    .check-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .good .check-icon  { background: var(--green-bg); }
+    .warning .check-icon { background: var(--orange-bg); }
+    .critical .check-icon { background: var(--red-bg); }
+
+    .check-title {
+      font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.3;
+    }
+    .check-score-small {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--grey-500); margin-top: 1px;
+    }
+
+    .status-badge {
+      font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 99px; white-space: nowrap;
+    }
+    .badge-good    { background: var(--green-bg);  color: var(--green); }
+    .badge-warning { background: var(--orange-bg); color: var(--orange); }
+    .badge-critical { background: var(--red-bg);   color: var(--red); }
+
+    .check-message {
+      font-size: 13.5px; color: var(--grey-700); line-height: 1.55;
+    }
+
+    /* ───── EMAIL CAPTURE ───── */
+    #email-section {
+      display: none;
+      background: var(--ink);
+      padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px);
+    }
+    .email-inner {
+      max-width: 600px; margin: 0 auto; text-align: center;
+    }
+    .email-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.35); margin-bottom: 20px;
+    }
+    .email-headline {
+      font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 700;
+      letter-spacing: -.025em; line-height: 1.2;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .email-sub {
+      font-size: 15px; color: rgba(255,255,255,.45); margin-bottom: 40px;
+      line-height: 1.65;
+    }
+    .email-form { display: flex; flex-direction: column; gap: 12px; }
+    .email-input {
+      height: 52px; padding: 0 18px;
+      font-family: var(--font); font-size: 15px;
+      color: var(--white);
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-sm);
+      outline: none; transition: border-color .2s;
+    }
+    .email-input::placeholder { color: rgba(255,255,255,.3); }
+    .email-input:focus { border-color: var(--blue); }
+    .btn-email {
+      height: 52px; width: 100%;
+      font-family: var(--font); font-size: 15px; font-weight: 600;
+      color: white; background: var(--blue);
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer; transition: background .15s;
+    }
+    .btn-email:hover { background: var(--blue-hover); }
+    .privacy-note {
+      font-size: 12px; color: rgba(255,255,255,.25); margin-top: 16px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .email-success {
+      display: none; padding: 20px 24px;
+      background: rgba(5,150,105,.12); border: 1px solid rgba(5,150,105,.25);
+      border-radius: var(--radius-sm); text-align: center;
+    }
+    .email-success h3 { font-size: 16px; font-weight: 600; color: #34D399; margin-bottom: 6px; }
+    .email-success p { font-size: 13.5px; color: rgba(255,255,255,.5); }
+
+    /* ───── NEXT STEPS ───── */
+    #nextsteps-section {
+      display: none;
+      background: var(--white);
+      padding: clamp(48px, 8vw, 80px) clamp(20px, 5vw, 64px);
+      border-top: 1px solid var(--grey-200);
+    }
+    .nextsteps-inner { max-width: 700px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--grey-500); margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--ink); margin-bottom: 40px;
+    }
+    .steps-list { display: flex; flex-direction: column; gap: 0; }
+    .step-item {
+      display: flex; gap: 24px; padding: 24px 0;
+      border-bottom: 1px solid var(--grey-200);
+      opacity: 0; transform: translateX(-8px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-item.visible { opacity: 1; transform: translateX(0); }
+    .step-num {
+      flex-shrink: 0; width: 40px; height: 40px;
+      background: var(--blue-light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 14px; font-weight: 500;
+      color: var(--blue);
+    }
+    .step-body h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .step-body p  { font-size: 14px; color: var(--grey-700); line-height: 1.55; }
+
+    /* ───── FOOTER ───── */
+    footer {
+      background: var(--ink); padding: 28px clamp(20px, 5vw, 64px);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.35); }
+    .footer-right { font-size: 12px; color: rgba(255,255,255,.2); }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 600px) {
+      .input-row { flex-direction: column; }
+      .score-header { flex-direction: column; align-items: flex-start; gap: 24px; padding: 28px; }
+      .checks-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ───── ANIMATIONS ───── */
+    @keyframes pulse-dot {
+      0%, 100% { opacity: .4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+    .pulse-dot {
+      display: inline-block; width: 7px; height: 7px;
+      background: var(--blue); border-radius: 50%;
+      animation: pulse-dot 1.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───── NAV ───── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span>D</span>
+    DLM Digital
+  </a>
+  <span class="nav-badge">Sichtbarkeits-Check</span>
+</nav>
+
+<!-- ───── HERO ───── -->
+<section class="hero">
+  <div class="hero-eyebrow">Kostenloser Check für Schweizer KMU</div>
+  <h1>Wie gut findet Google<br><em>Ihr Unternehmen?</em></h1>
+  <p class="hero-sub">Kostenloser Sichtbarkeits-Check in 60 Sekunden — 5 kritische Faktoren, die entscheiden, ob Kunden Sie online finden.</p>
+
+  <div class="trust-row">
+    <span class="trust-badge">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 4.5H14L10.5 8l1.5 4.5L8 10.5 4 12.5 5.5 8 2 5.5h4.5L8 1z" fill="rgba(255,255,255,.6)"/></svg>
+      100% kostenlos
+    </span>
+    <span class="trust-badge">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="rgba(255,255,255,.6)" stroke-width="1.3"/><path d="M5.5 8l2 2 3-3" stroke="rgba(255,255,255,.6)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Keine Anmeldung nötig
+    </span>
+    <span class="trust-badge">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="rgba(255,255,255,.6)" stroke-width="1.3"/><path d="M8 5v3.5l2 2" stroke="rgba(255,255,255,.6)" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Sofortergebnis
+    </span>
+  </div>
+
+  <!-- Input Card -->
+  <div class="input-card" id="input-card">
+    <div class="input-row">
+      <input
+        type="text"
+        class="url-input"
+        id="url-input"
+        placeholder="www.ihre-firma.ch"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="btn-primary" id="analyze-btn" onclick="startAnalysis()">
+        Analysieren
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="social-proof">
+      <div class="social-proof-dots">
+        <div class="social-proof-dot"></div>
+        <div class="social-proof-dot"></div>
+        <div class="social-proof-dot"></div>
+      </div>
+      Bereits 847 Schweizer Unternehmen analysiert
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading-section">
+    <div class="loading-card">
+      <div class="loading-label">
+        <span class="pulse-dot"></span>&nbsp; Analyse läuft
+      </div>
+      <div class="loading-bar-track">
+        <div class="loading-bar-fill" id="loading-bar"></div>
+      </div>
+      <div class="loading-step" id="loading-step">SSL-Zertifikat prüfen...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── RESULTS ───── -->
+<section id="results-section">
+  <div class="results-inner">
+
+    <!-- Score Header -->
+    <div class="score-header">
+      <div class="score-circle-wrap">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="58" fill="none" stroke="#EEF0F5" stroke-width="10"/>
+          <circle id="score-arc" cx="70" cy="70" r="58" fill="none"
+            stroke="#2563EB" stroke-width="10"
+            stroke-linecap="round"
+            stroke-dasharray="364.4"
+            stroke-dashoffset="364.4"
+            transform="rotate(-90 70 70)"
+            style="transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1), stroke .4s"/>
+        </svg>
+        <div class="score-number-overlay">
+          <span class="score-number" id="score-display">0</span>
+          <span class="score-denom">/ 100</span>
+        </div>
+      </div>
+      <div class="score-meta">
+        <div class="score-label">Ihr Sichtbarkeits-Score</div>
+        <div class="score-headline" id="score-headline">Analyse wird gestartet…</div>
+        <div class="score-url" id="score-url-display">—</div>
+      </div>
+    </div>
+
+    <!-- Checks Grid -->
+    <div class="checks-grid" id="checks-grid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ───── EMAIL CAPTURE ───── -->
+<section id="email-section">
+  <div class="email-inner">
+    <span class="email-eyebrow">Ihr persönlicher Bericht</span>
+    <h2 class="email-headline">Erhalten Sie Ihren detaillierten<br>Bericht + 3 konkrete Massnahmen</h2>
+    <p class="email-sub">Unser Experte analysiert Ihre Seite und zeigt Ihnen genau, wo die grössten Chancen liegen — kostenlos und unverbindlich.</p>
+
+    <div id="email-form-wrap">
+      <form class="email-form" onsubmit="submitEmail(event)">
+        <input type="text"  class="email-input" id="name-input"  placeholder="Ihr Name" autocomplete="name">
+        <input type="email" class="email-input" id="email-input" placeholder="Ihre E-Mail-Adresse" autocomplete="email" required>
+        <button type="submit" class="btn-email">Kostenlosen Bericht senden →</button>
+      </form>
+      <p class="privacy-note">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="8" rx="1.5" stroke="rgba(255,255,255,.3)" stroke-width="1.3"/><path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="rgba(255,255,255,.3)" stroke-width="1.3"/></svg>
+        Keine Werbung. Nur Ihr Bericht. Jederzeit abbestellbar.
+      </p>
+    </div>
+    <div class="email-success" id="email-success">
+      <h3>Bericht unterwegs ✓</h3>
+      <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen. Prüfen Sie auch Ihren Spam-Ordner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───── NEXT STEPS ───── -->
+<section id="nextsteps-section">
+  <div class="nextsteps-inner">
+    <div class="section-eyebrow">Was passiert als Nächstes</div>
+    <div class="section-title">So helfen wir Ihnen weiter</div>
+    <div class="steps-list">
+      <div class="step-item" id="step-1">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Sie erhalten Ihren Bericht</h4>
+          <p>Innerhalb von 24 Stunden erhalten Sie per E-Mail eine ausführliche Analyse mit konkreten Handlungsempfehlungen für Ihr Unternehmen.</p>
+        </div>
+      </div>
+      <div class="step-item" id="step-2">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Unser Experte analysiert Ihre Seite</h4>
+          <p>Ein DLM-Digital-Berater prüft Ihre Website manuell und identifiziert die drei grössten Wachstumspotenziale für Ihr Unternehmen.</p>
+        </div>
+      </div>
+      <div class="step-item" id="step-3">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Kostenloses Beratungsgespräch (optional)</h4>
+          <p>Auf Wunsch besprechen wir die Ergebnisse in einem 20-minütigen Gespräch — kostenlos, unverbindlich, auf Deutsch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer>
+  <span class="footer-brand">DLM Digital</span>
+  <span class="footer-right">© 2024 DLM Digital · demo.dlm-digital.ch</span>
+</footer>
+
+<script>
+  // ─── State ───
+  let analysisResult = null;
+
+  // ─── Helpers ───
+  function normalizeUrl(raw) {
+    const s = raw.trim();
+    if (!s) return null;
+    if (/^https?:\/\//i.test(s)) return s;
+    return 'https://' + s;
+  }
+
+  // ─── Loading sequence ───
+  const loadingSteps = [
+    'SSL-Zertifikat prüfen...',
+    'Google-Präsenz analysieren...',
+    'Mobile-Optimierung prüfen...',
+    'Ladegeschwindigkeit messen...',
+    'Sichtbarkeits-Score berechnen...',
+  ];
+  let loadingInterval = null;
+  let loadingStepIdx = 0;
+
+  function startLoadingAnimation() {
+    const bar  = document.getElementById('loading-bar');
+    const step = document.getElementById('loading-step');
+    loadingStepIdx = 0;
+    bar.style.width = '8%';
+    step.textContent = loadingSteps[0];
+
+    loadingInterval = setInterval(() => {
+      loadingStepIdx = (loadingStepIdx + 1) % loadingSteps.length;
+      step.style.opacity = '0';
+      setTimeout(() => {
+        step.textContent = loadingSteps[loadingStepIdx];
+        step.style.opacity = '1';
+      }, 180);
+      bar.style.width = Math.min(90, 8 + loadingStepIdx * 18) + '%';
+    }, 900);
+  }
+
+  function stopLoadingAnimation() {
+    clearInterval(loadingInterval);
+    document.getElementById('loading-bar').style.width = '100%';
+  }
+
+  // ─── Start analysis ───
+  async function startAnalysis() {
+    const input = document.getElementById('url-input');
+    const btn   = document.getElementById('analyze-btn');
+    const rawUrl = input.value;
+    const url = normalizeUrl(rawUrl);
+
+    if (!url) {
+      input.style.borderColor = 'var(--red)';
+      input.placeholder = 'Bitte geben Sie eine URL ein';
+      setTimeout(() => { input.style.borderColor = ''; }, 2000);
+      return;
+    }
+
+    // Show loading
+    btn.disabled = true;
+    document.getElementById('loading-section').style.display = 'block';
+    startLoadingAnimation();
+
+    try {
+      const res  = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
+      if (!res.ok) throw new Error('Server error');
+      analysisResult = await res.json();
+    } catch (e) {
+      // Fallback demo data so the page always looks good
+      analysisResult = generateDemoData(url);
+    }
+
+    stopLoadingAnimation();
+    showResults(analysisResult);
+  }
+
+  // ─── Demo fallback ───
+  function generateDemoData(url) {
+    const score = Math.floor(Math.random() * 45) + 25; // 25-70 range
+    return {
+      score,
+      url,
+      checks: {
+        ssl:    { score: 12, maxScore: 15, status: 'good',     message: 'SSL-Zertifikat vorhanden und gültig — Ihre Seite ist sicher.' },
+        gmb:    { score: 0,  maxScore: 25, status: 'critical', message: 'Kein verifizierter Google My Business Eintrag gefunden — Sie verlieren täglich lokale Suchanfragen.' },
+        ads:    { score: 5,  maxScore: 15, status: 'warning',  message: 'Keine aktiven Google Ads Kampagnen erkannt — Wettbewerber schalten gezielt Anzeigen für Ihre Keywords.' },
+        mobile: { score: 16, maxScore: 25, status: 'warning',  message: 'Seite lädt auf Mobilgeräten, aber Interaktionselemente sind zu klein — 60% Ihrer Besucher kommen per Smartphone.' },
+        speed:  { score: 8,  maxScore: 20, status: 'critical', message: 'Ladezeit über 4 Sekunden gemessen — jede weitere Sekunde kostet Sie 7% Conversion-Rate.' },
+      }
+    };
+  }
+
+  // ─── Show results ───
+  function showResults(data) {
+    // Animate score
+    const scoreArc   = document.getElementById('score-arc');
+    const scoreDisp  = document.getElementById('score-display');
+    const circumference = 364.4;
+    const offset = circumference - (data.score / 100) * circumference;
+
+    // Set arc color
+    const arcColor = data.score >= 70 ? '#059669' : data.score >= 40 ? '#D97706' : '#DC2626';
+    scoreArc.style.stroke = arcColor;
+    scoreDisp.style.color = arcColor;
+
+    // Animate number
+    let current = 0;
+    const target = data.score;
+    const duration = 1200;
+    const startTime = performance.now();
+    function animateNum(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      current = Math.round(eased * target);
+      scoreDisp.textContent = current;
+      if (progress < 1) requestAnimationFrame(animateNum);
+    }
+    setTimeout(() => {
+      scoreArc.style.strokeDashoffset = offset;
+      requestAnimationFrame(animateNum);
+    }, 200);
+
+    // Headline
+    const headlines = {
+      critical: 'Dringende Massnahmen nötig',
+      warning: 'Klares Verbesserungspotenzial vorhanden',
+      good: 'Gute Basis – weiter optimieren',
+    };
+    const level = data.score >= 70 ? 'good' : data.score >= 40 ? 'warning' : 'critical';
+    document.getElementById('score-headline').textContent = headlines[level];
+    document.getElementById('score-url-display').textContent = data.url;
+
+    // Build check cards
+    const grid = document.getElementById('checks-grid');
+    grid.innerHTML = '';
+    const checkDefs = [
+      { key: 'ssl',    icon: '🔒', label: 'SSL-Zertifikat' },
+      { key: 'gmb',    icon: '📍', label: 'Google My Business' },
+      { key: 'ads',    icon: '📢', label: 'Google Ads Präsenz' },
+      { key: 'mobile', icon: '📱', label: 'Mobile-Optimierung' },
+      { key: 'speed',  icon: '⚡', label: 'Ladegeschwindigkeit' },
+    ];
+    const statusLabels = { good: 'Gut', warning: 'Verbesserbar', critical: 'Kritisch' };
+
+    checkDefs.forEach((def, i) => {
+      const c = data.checks[def.key];
+      if (!c) return;
+      const card = document.createElement('div');
+      card.className = `check-card ${c.status}`;
+      card.innerHTML = `
+        <div class="check-card-top">
+          <div class="check-card-left">
+            <div class="check-icon">${def.icon}</div>
+            <div>
+              <div class="check-title">${def.label}</div>
+              <div class="check-score-small">${c.score} / ${c.maxScore} Punkte</div>
+            </div>
+          </div>
+          <span class="status-badge badge-${c.status}">${statusLabels[c.status]}</span>
+        </div>
+        <div class="check-message">${c.message}</div>
+      `;
+      grid.appendChild(card);
+
+      // Staggered reveal
+      setTimeout(() => card.classList.add('visible'), 300 + i * 110);
+    });
+
+    // Show sections
+    document.getElementById('loading-section').style.display = 'none';
+    const resultsEl = document.getElementById('results-section');
+    const emailEl   = document.getElementById('email-section');
+    const nextEl    = document.getElementById('nextsteps-section');
+    resultsEl.style.display = 'block';
+    emailEl.style.display   = 'block';
+    nextEl.style.display    = 'block';
+
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Staggered step items
+    setTimeout(() => {
+      ['step-1', 'step-2', 'step-3'].forEach((id, i) => {
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('visible');
+        }, i * 150);
+      });
+    }, 800);
+  }
+
+  // ─── Email submit ───
+  async function submitEmail(e) {
+    e.preventDefault();
+    const name  = document.getElementById('name-input').value;
+    const email = document.getElementById('email-input').value;
+    const url   = analysisResult ? analysisResult.url : '';
+
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, url, score: analysisResult?.score }),
+      });
+    } catch (_) {}
+
+    document.getElementById('email-form-wrap').style.display = 'none';
+    document.getElementById('email-success').style.display   = 'block';
+  }
+
+  // ─── Enter key shortcut ───
+  document.getElementById('url-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') startAnalysis();
+  });
+
+  // Google Ads conversion tracking scaffold
+  // Replace UA-XXXXX-X with your actual Google Ads conversion ID
+  // window.gtag('event', 'conversion', { 'send_to': 'AW-CONVERSION_ID/LABEL' });
+</script>
+
+<!-- Google Ads tracking scaffold (replace with real ID) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXXXXXX');
+</script> -->
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLM Digital — CEO Dashboard</title>
+<style>
+  :root {
+    --blue: #1a4f9c;
+    --blue-dark: #123a75;
+    --green: #059669;
+    --red: #dc2626;
+    --amber: #d97706;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --white: #ffffff;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-50); color: var(--gray-800); }
+  header { background: var(--blue); color: white; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+  header h1 { font-size: 18px; font-weight: 700; }
+  header span { font-size: 13px; opacity: .7; }
+  .stats { display: flex; gap: 12px; padding: 20px 24px 0; flex-wrap: wrap; }
+  .stat { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px 20px; min-width: 120px; }
+  .stat-num { font-size: 28px; font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--gray-500); margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
+  .stat-num.green { color: var(--green); }
+  .stat-num.red { color: var(--red); }
+  .stat-num.amber { color: var(--amber); }
+  .stat-num.blue { color: var(--blue); }
+  .filters { display: flex; gap: 8px; padding: 16px 24px 8px; flex-wrap: wrap; align-items: center; }
+  .filter-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--gray-300); background: white; font-size: 13px; cursor: pointer; transition: all .15s; }
+  .filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .filter-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+  .email-list { padding: 8px 24px 40px; display: flex; flex-direction: column; gap: 10px; max-width: 900px; }
+  .email-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .email-card.approved { border-left: 4px solid var(--green); }
+  .email-card.rejected { border-left: 4px solid var(--red); opacity: .6; }
+  .email-card.sent { border-left: 4px solid var(--blue); }
+  .email-card.opened { border-left: 4px solid #7c3aed; }
+  .email-card.pending { border-left: 4px solid var(--amber); }
+  .card-header { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px 10px; }
+  .card-meta { flex: 1; min-width: 0; }
+  .card-company { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-to { font-size: 13px; color: var(--gray-500); }
+  .card-subject { font-size: 13px; margin-top: 2px; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; flex-shrink: 0; }
+  .badge.pending  { background: #fef3c7; color: var(--amber); }
+  .badge.approved { background: #d1fae5; color: var(--green); }
+  .badge.rejected { background: #fee2e2; color: var(--red); }
+  .badge.sent     { background: #dbeafe; color: var(--blue); }
+  .badge.opened   { background: #ede9fe; color: #7c3aed; }
+  .badge.bounced  { background: #fee2e2; color: var(--red); }
+  .card-body { padding: 0 16px 10px; }
+  .body-preview { font-size: 13px; color: var(--gray-700); line-height: 1.5; max-height: 80px; overflow: hidden; position: relative; }
+  .body-preview.expanded { max-height: none; }
+  .demo-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue); text-decoration: none; margin-top: 6px; }
+  .demo-link:hover { text-decoration: underline; }
+  .card-actions { display: flex; gap: 8px; padding: 10px 16px 14px; border-top: 1px solid var(--gray-100); flex-wrap: wrap; }
+  .btn { padding: 7px 16px; border-radius: 8px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-approve { background: var(--green); color: white; }
+  .btn-approve:hover { background: #047857; }
+  .btn-reject  { background: white; border: 1px solid var(--red); color: var(--red); }
+  .btn-reject:hover  { background: #fee2e2; }
+  .btn-edit    { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); }
+  .btn-edit:hover    { border-color: var(--blue); color: var(--blue); }
+  .btn-preview { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); }
+  .btn-preview:hover { border-color: var(--blue); color: var(--blue); }
+  .edit-panel { padding: 0 16px 14px; }
+  .edit-panel textarea { width: 100%; height: 180px; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px; font-size: 13px; font-family: monospace; resize: vertical; }
+  .edit-panel textarea:focus { outline: 2px solid var(--blue); border-color: transparent; }
+  .edit-panel .save-row { display: flex; gap: 8px; margin-top: 8px; }
+  .btn-save { background: var(--blue); color: white; }
+  .btn-save:hover { background: var(--blue-dark); }
+  .btn-cancel { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); }
+  .empty { text-align: center; padding: 60px 24px; color: var(--gray-500); }
+  .empty h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--gray-800); color: white; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 999; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>DLM Digital — CEO Dashboard</h1>
+    <span id="header-stats">Lade...</span>
+  </div>
+</header>
+
+<div class="stats" id="stats-row"></div>
+
+<div class="filters">
+  <span style="font-size:13px;color:var(--gray-500);font-weight:600;">Filter:</span>
+  <button class="filter-btn active" data-status="">Alle</button>
+  <button class="filter-btn" data-status="pending">Pending</button>
+  <button class="filter-btn" data-status="sent">Versendet</button>
+  <button class="filter-btn" data-status="opened">Geöffnet</button>
+  <button class="filter-btn" data-status="rejected">Abgelehnt</button>
+  <button class="filter-btn" data-status="bounced">Bounced</button>
+</div>
+
+<div class="email-list" id="email-list">
+  <div class="empty"><h3>Lade E-Mails...</h3></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '/api';
+let currentFilter = '';
+let allEmails = [];
+
+async function loadStats() {
+  const r = await fetch(`${API}/stats`);
+  const s = await r.json();
+  document.getElementById('header-stats').textContent =
+    `${s.total || 0} E-Mails · ${s.sent || 0} versendet · ${s.opened || 0} geöffnet`;
+  const row = document.getElementById('stats-row');
+  const items = [
+    { label: 'Pending',   num: s.pending  || 0, cls: 'amber' },
+    { label: 'Versendet', num: s.sent     || 0, cls: 'blue'  },
+    { label: 'Geöffnet',  num: s.opened   || 0, cls: 'green' },
+    { label: 'Geklickt',  num: s.clicked  || 0, cls: 'green' },
+    { label: 'Bounced',   num: s.bounced  || 0, cls: 'red'   },
+    { label: 'Abgelehnt', num: s.rejected || 0, cls: 'red'   },
+  ];
+  row.innerHTML = items.map(i =>
+    `<div class="stat"><div class="stat-num ${i.cls}">${i.num}</div><div class="stat-label">${i.label}</div></div>`
+  ).join('');
+}
+
+async function loadEmails(status = '') {
+  const url = status ? `${API}/emails?status=${status}` : `${API}/emails`;
+  const r = await fetch(url);
+  allEmails = await r.json();
+  renderEmails(allEmails);
+}
+
+function renderEmails(emails) {
+  const list = document.getElementById('email-list');
+  if (!emails.length) {
+    list.innerHTML = '<div class="empty"><h3>Keine E-Mails</h3><p>Noch keine E-Mails in dieser Kategorie.</p></div>';
+    return;
+  }
+  list.innerHTML = emails.map(e => emailCard(e)).join('');
+  attachHandlers();
+}
+
+function emailCard(e) {
+  const body = (e.editedBody || e.bodyHtml || '').replace(/<[^>]+>/g, ' ').trim().slice(0, 200);
+  const isPending = e.status === 'pending';
+  return `
+  <div class="email-card ${e.status}" data-id="${e.id}">
+    <div class="card-header">
+      <div class="card-meta">
+        <div class="card-company">${esc(e.company || e.toName || e.to)}</div>
+        <div class="card-to">${esc(e.to)}${e.toName ? ` · ${esc(e.toName)}` : ''}</div>
+        <div class="card-subject">${esc(e.subject)}</div>
+      </div>
+      <span class="badge ${e.status}">${statusLabel(e.status)}</span>
+    </div>
+    <div class="card-body">
+      <div class="body-preview" id="preview-${e.id}">${esc(body)}…</div>
+      ${e.demoUrl ? `<a class="demo-link" href="${esc(e.demoUrl)}" target="_blank">↗ Demo-Seite öffnen</a>` : ''}
+    </div>
+    <div class="edit-panel" id="edit-${e.id}" style="display:none">
+      <textarea id="edit-body-${e.id}">${esc(e.editedBody || e.bodyHtml || '')}</textarea>
+      <div class="save-row">
+        <button class="btn btn-save" onclick="saveEdit('${e.id}')">Speichern</button>
+        <button class="btn btn-cancel" onclick="toggleEdit('${e.id}', false)">Abbrechen</button>
+      </div>
+    </div>
+    ${isPending ? `
+    <div class="card-actions">
+      <button class="btn btn-approve" onclick="action('${e.id}','approve')">✓ Senden</button>
+      <button class="btn btn-reject"  onclick="action('${e.id}','reject')">✗ Ablehnen</button>
+      <button class="btn btn-edit"    onclick="toggleEdit('${e.id}', true)">✎ Bearbeiten</button>
+      ${e.demoUrl ? `<button class="btn btn-preview" onclick="window.open('${esc(e.demoUrl)}','_blank')">↗ Demo</button>` : ''}
+    </div>` : ''}
+  </div>`;
+}
+
+function statusLabel(s) {
+  return { pending:'Pending', approved:'Genehmigt', rejected:'Abgelehnt',
+    sent:'Versendet', opened:'Geöffnet', clicked:'Geklickt', bounced:'Bounced', spam:'Spam' }[s] || s;
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function attachHandlers() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.status;
+      loadEmails(currentFilter);
+    };
+  });
+}
+
+function toggleEdit(id, show) {
+  document.getElementById(`edit-${id}`).style.display = show ? 'block' : 'none';
+}
+
+async function saveEdit(id) {
+  const body = document.getElementById(`edit-body-${id}`).value;
+  await fetch(`${API}/emails/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'edit', bodyHtml: body }),
+  });
+  toggleEdit(id, false);
+  showToast('Änderungen gespeichert');
+  await refresh();
+}
+
+async function action(id, act) {
+  const label = act === 'approve' ? 'Wird versendet…' : 'Wird abgelehnt…';
+  showToast(label);
+  const r = await fetch(`${API}/emails/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: act }),
+  });
+  if (!r.ok) {
+    const err = await r.json();
+    showToast(`Fehler: ${err.error}`, true);
+    return;
+  }
+  showToast(act === 'approve' ? '✓ E-Mail versendet!' : '✗ Abgelehnt');
+  await refresh();
+}
+
+async function refresh() {
+  await Promise.all([loadStats(), loadEmails(currentFilter)]);
+}
+
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = isError ? '#dc2626' : '#1f2937';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Init
+refresh();
+setInterval(refresh, 30000); // auto-refresh every 30s
+</script>
+</body>
+</html>

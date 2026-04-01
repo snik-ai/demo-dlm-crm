@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>DLM Demo Library</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; color: #1a1a2e; }
+    h1 { font-size: 1.8rem; margin-bottom: .5rem; }
+    .meta { color: #666; font-size: .9rem; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th { text-align: left; padding: .6rem .8rem; background: #f0f0f5; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; }
+    td { padding: .65rem .8rem; border-bottom: 1px solid #e8e8f0; }
+    tr:hover td { background: #fafafe; }
+    a { color: #4a5fd8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .btn { display: inline-block; padding: .3rem .7rem; background: #4a5fd8; color: white; border-radius: 4px; font-size: .82rem; }
+    .btn:hover { background: #3348c0; text-decoration: none; }
+    code { font-size: .82rem; background: #f0f0f5; padding: .15rem .35rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>DLM Demo Library</h1>
+  <p class="meta">Generated: 1.4.2026, 11:51:32 · 100 demos</p>
+  <table>
+    <thead><tr><th>Firma</th><th>Branche</th><th>Ort</th><th>Demo-URL</th><th></th></tr></thead>
+    <tbody>
+    <tr>
+      <td><a href="kuechen-meier-zuerich/index.html" target="_blank">Küchen Meier AG</a></td>
+      <td>kueche</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/kuechen-meier-zuerich</code></td>
+      <td><a href="kuechen-meier-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuchenstudio-brunner-bern/index.html" target="_blank">Küchenstudio Brunner</a></td>
+      <td>kueche</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/kuchenstudio-brunner-bern</code></td>
+      <td><a href="kuchenstudio-brunner-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechenwerkstatt-keller-basel/index.html" target="_blank">Küchenwerkstatt Keller</a></td>
+      <td>kueche</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/kuechenwerkstatt-keller-basel</code></td>
+      <td><a href="kuechenwerkstatt-keller-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechen-huber-luzern/index.html" target="_blank">Küchen Huber GmbH</a></td>
+      <td>kueche</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/kuechen-huber-luzern</code></td>
+      <td><a href="kuechen-huber-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechenform-winterthur/index.html" target="_blank">KüchenForm AG</a></td>
+      <td>kueche</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/kuechenform-winterthur</code></td>
+      <td><a href="kuechenform-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechen-mueller-stgallen/index.html" target="_blank">Küchen Müller</a></td>
+      <td>kueche</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/kuechen-mueller-stgallen</code></td>
+      <td><a href="kuechen-mueller-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechenstudio-weber-thun/index.html" target="_blank">Küchenstudio Weber</a></td>
+      <td>kueche</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/kuechenstudio-weber-thun</code></td>
+      <td><a href="kuechenstudio-weber-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechen-schmid-aarau/index.html" target="_blank">Küchen Schmid</a></td>
+      <td>kueche</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/kuechen-schmid-aarau</code></td>
+      <td><a href="kuechen-schmid-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="muster-kuechenbau-frauenfeld/index.html" target="_blank">Muster Küchenbau</a></td>
+      <td>kueche</td>
+      <td>Frauenfeld</td>
+      <td><code>demo.dlm-digital.ch/muster-kuechenbau-frauenfeld</code></td>
+      <td><a href="muster-kuechenbau-frauenfeld/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kuechen-steiner-schaffhausen/index.html" target="_blank">Küchen Steiner</a></td>
+      <td>kueche</td>
+      <td>Schaffhausen</td>
+      <td><code>demo.dlm-digital.ch/kuechen-steiner-schaffhausen</code></td>
+      <td><a href="kuechen-steiner-schaffhausen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="sanitaer-vogel-zuerich/index.html" target="_blank">Sanitär Vogel AG</a></td>
+      <td>sanitaer</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/sanitaer-vogel-zuerich</code></td>
+      <td><a href="sanitaer-vogel-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="heizung-bauer-bern/index.html" target="_blank">Heizung Bauer GmbH</a></td>
+      <td>sanitaer</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/heizung-bauer-bern</code></td>
+      <td><a href="heizung-bauer-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="roth-sanitaer-basel/index.html" target="_blank">Sanitär & Heizung Roth</a></td>
+      <td>sanitaer</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/roth-sanitaer-basel</code></td>
+      <td><a href="roth-sanitaer-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="wasser-waerme-luzern/index.html" target="_blank">Wasser & Wärme AG</a></td>
+      <td>sanitaer</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/wasser-waerme-luzern</code></td>
+      <td><a href="wasser-waerme-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="sanitaer-marti-winterthur/index.html" target="_blank">Sanitär Marti</a></td>
+      <td>sanitaer</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/sanitaer-marti-winterthur</code></td>
+      <td><a href="sanitaer-marti-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="installationen-frei-stgallen/index.html" target="_blank">Installationen Frei</a></td>
+      <td>sanitaer</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/installationen-frei-stgallen</code></td>
+      <td><a href="installationen-frei-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="heizung-kunz-zug/index.html" target="_blank">Heizung Kunz GmbH</a></td>
+      <td>sanitaer</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/heizung-kunz-zug</code></td>
+      <td><a href="heizung-kunz-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="sanitaer-furrer-solothurn/index.html" target="_blank">Sanitär Furrer</a></td>
+      <td>sanitaer</td>
+      <td>Solothurn</td>
+      <td><code>demo.dlm-digital.ch/sanitaer-furrer-solothurn</code></td>
+      <td><a href="sanitaer-furrer-solothurn/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="waermeprofi-olten/index.html" target="_blank">WärmeProfi AG</a></td>
+      <td>sanitaer</td>
+      <td>Olten</td>
+      <td><code>demo.dlm-digital.ch/waermeprofi-olten</code></td>
+      <td><a href="waermeprofi-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="sanitaerplus-luethi-thun/index.html" target="_blank">SanitärPlus Lüthi</a></td>
+      <td>sanitaer</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/sanitaerplus-luethi-thun</code></td>
+      <td><a href="sanitaerplus-luethi-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solar-ag-zuerich/index.html" target="_blank">Solar AG Zürich</a></td>
+      <td>solar</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/solar-ag-zuerich</code></td>
+      <td><a href="solar-ag-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="photovoltaik-bern/index.html" target="_blank">Photovoltaik Bern</a></td>
+      <td>solar</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/photovoltaik-bern</code></td>
+      <td><a href="photovoltaik-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solarpower-basel/index.html" target="_blank">SolarPower Basel</a></td>
+      <td>solar</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/solarpower-basel</code></td>
+      <td><a href="solarpower-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solartechnik-ammann-luzern/index.html" target="_blank">Solartechnik Ammann</a></td>
+      <td>solar</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/solartechnik-ammann-luzern</code></td>
+      <td><a href="solartechnik-ammann-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="suntech-ag-winterthur/index.html" target="_blank">SunTech AG</a></td>
+      <td>solar</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/suntech-ag-winterthur</code></td>
+      <td><a href="suntech-ag-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solaranlage-ost-stgallen/index.html" target="_blank">Solaranlage Ost AG</a></td>
+      <td>solar</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/solaranlage-ost-stgallen</code></td>
+      <td><a href="solaranlage-ost-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solarexperte-zug/index.html" target="_blank">SolarExperte GmbH</a></td>
+      <td>solar</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/solarexperte-zug</code></td>
+      <td><a href="solarexperte-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="pv-nidwalden-stans/index.html" target="_blank">Photovoltaik Nidwalden</a></td>
+      <td>solar</td>
+      <td>Stans</td>
+      <td><code>demo.dlm-digital.ch/pv-nidwalden-stans</code></td>
+      <td><a href="pv-nidwalden-stans/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solarzentrum-frauenfeld/index.html" target="_blank">SolarZentrum AG</a></td>
+      <td>solar</td>
+      <td>Frauenfeld</td>
+      <td><code>demo.dlm-digital.ch/solarzentrum-frauenfeld</code></td>
+      <td><a href="solarzentrum-frauenfeld/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="greensun-schaffhausen/index.html" target="_blank">GreenSun GmbH</a></td>
+      <td>solar</td>
+      <td>Schaffhausen</td>
+      <td><code>demo.dlm-digital.ch/greensun-schaffhausen</code></td>
+      <td><a href="greensun-schaffhausen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="treuhand-meier-zuerich/index.html" target="_blank">Treuhand Meier AG</a></td>
+      <td>treuhand</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/treuhand-meier-zuerich</code></td>
+      <td><a href="treuhand-meier-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="buchhaltung-fischer-bern/index.html" target="_blank">Buchhaltung Fischer</a></td>
+      <td>treuhand</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/buchhaltung-fischer-bern</code></td>
+      <td><a href="buchhaltung-fischer-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="treuhandplus-basel/index.html" target="_blank">TreuhandPlus Basel</a></td>
+      <td>treuhand</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/treuhandplus-basel</code></td>
+      <td><a href="treuhandplus-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="steuer-recht-luzern/index.html" target="_blank">Steuer & Recht Luzern</a></td>
+      <td>treuhand</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/steuer-recht-luzern</code></td>
+      <td><a href="steuer-recht-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="finanzen-keller-winterthur/index.html" target="_blank">Finanzen Keller GmbH</a></td>
+      <td>treuhand</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/finanzen-keller-winterthur</code></td>
+      <td><a href="finanzen-keller-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="treuhand-zuest-stgallen/index.html" target="_blank">Treuhand Züst</a></td>
+      <td>treuhand</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/treuhand-zuest-stgallen</code></td>
+      <td><a href="treuhand-zuest-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="bdo-schaff-schaffhausen/index.html" target="_blank">BDO Schaffhausen</a></td>
+      <td>treuhand</td>
+      <td>Schaffhausen</td>
+      <td><code>demo.dlm-digital.ch/bdo-schaff-schaffhausen</code></td>
+      <td><a href="bdo-schaff-schaffhausen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="revisions-ag-zug/index.html" target="_blank">Revisions AG Zug</a></td>
+      <td>treuhand</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/revisions-ag-zug</code></td>
+      <td><a href="revisions-ag-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="buchhaltungsservice-mueller-aarau/index.html" target="_blank">Buchhaltungs-Service Müller</a></td>
+      <td>treuhand</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/buchhaltungsservice-mueller-aarau</code></td>
+      <td><a href="buchhaltungsservice-mueller-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="treuhandkompass-solothurn/index.html" target="_blank">TreuhandKompass AG</a></td>
+      <td>treuhand</td>
+      <td>Solothurn</td>
+      <td><code>demo.dlm-digital.ch/treuhandkompass-solothurn</code></td>
+      <td><a href="treuhandkompass-solothurn/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="fitlife-zuerich/index.html" target="_blank">FitLife Zürich</a></td>
+      <td>fitness</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/fitlife-zuerich</code></td>
+      <td><a href="fitlife-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="sportstudio-bern/index.html" target="_blank">SportStudio Bern</a></td>
+      <td>fitness</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/sportstudio-bern</code></td>
+      <td><a href="sportstudio-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="goldgym-basel/index.html" target="_blank">GoldGym Basel</a></td>
+      <td>fitness</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/goldgym-basel</code></td>
+      <td><a href="goldgym-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="crossfit-luzern/index.html" target="_blank">CrossFit Luzern</a></td>
+      <td>fitness</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/crossfit-luzern</code></td>
+      <td><a href="crossfit-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="fitcenter-winterthur/index.html" target="_blank">FitCenter Winterthur</a></td>
+      <td>fitness</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/fitcenter-winterthur</code></td>
+      <td><a href="fitcenter-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="activelife-stgallen/index.html" target="_blank">ActiveLife St. Gallen</a></td>
+      <td>fitness</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/activelife-stgallen</code></td>
+      <td><a href="activelife-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="sporthouse-zug/index.html" target="_blank">SportHouse Zug</a></td>
+      <td>fitness</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/sporthouse-zug</code></td>
+      <td><a href="sporthouse-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="pulsegym-olten/index.html" target="_blank">PulseGym Olten</a></td>
+      <td>fitness</td>
+      <td>Olten</td>
+      <td><code>demo.dlm-digital.ch/pulsegym-olten</code></td>
+      <td><a href="pulsegym-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kraftwerk-thun/index.html" target="_blank">KraftWerk Thun</a></td>
+      <td>fitness</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/kraftwerk-thun</code></td>
+      <td><a href="kraftwerk-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="studiofit-aarau/index.html" target="_blank">StudioFit Aarau</a></td>
+      <td>fitness</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/studiofit-aarau</code></td>
+      <td><a href="studiofit-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="garage-schneider-zuerich/index.html" target="_blank">Garage Schneider AG</a></td>
+      <td>autogarage</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/garage-schneider-zuerich</code></td>
+      <td><a href="garage-schneider-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="auto-meier-bern/index.html" target="_blank">Auto Meier Bern</a></td>
+      <td>autogarage</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/auto-meier-bern</code></td>
+      <td><a href="auto-meier-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="garage-huber-basel/index.html" target="_blank">Garage Huber Basel</a></td>
+      <td>autogarage</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/garage-huber-basel</code></td>
+      <td><a href="garage-huber-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="autotechnik-luzern/index.html" target="_blank">Auto Technik Luzern</a></td>
+      <td>autogarage</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/autotechnik-luzern</code></td>
+      <td><a href="autotechnik-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="garage-marti-winterthur/index.html" target="_blank">Garage Marti Winterthur</a></td>
+      <td>autogarage</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/garage-marti-winterthur</code></td>
+      <td><a href="garage-marti-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="autoprofi-stgallen/index.html" target="_blank">AutoProfi St. Gallen</a></td>
+      <td>autogarage</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/autoprofi-stgallen</code></td>
+      <td><a href="autoprofi-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="fahrzeugservice-zug/index.html" target="_blank">Fahrzeug-Service Zug</a></td>
+      <td>autogarage</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/fahrzeugservice-zug</code></td>
+      <td><a href="fahrzeugservice-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="garage-fischer-frauenfeld/index.html" target="_blank">Garage Fischer Frauenfeld</a></td>
+      <td>autogarage</td>
+      <td>Frauenfeld</td>
+      <td><code>demo.dlm-digital.ch/garage-fischer-frauenfeld</code></td>
+      <td><a href="garage-fischer-frauenfeld/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="tiptop-garage-thun/index.html" target="_blank">TipTop Garage Thun</a></td>
+      <td>autogarage</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/tiptop-garage-thun</code></td>
+      <td><a href="tiptop-garage-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="autoplus-aarau/index.html" target="_blank">AutoPlus Aarau</a></td>
+      <td>autogarage</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/autoplus-aarau</code></td>
+      <td><a href="autoplus-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="coiffeur-claudia-zuerich/index.html" target="_blank">Coiffeur Claudia</a></td>
+      <td>coiffeur</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/coiffeur-claudia-zuerich</code></td>
+      <td><a href="coiffeur-claudia-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="hairstyle-bern/index.html" target="_blank">HairStyle Bern</a></td>
+      <td>coiffeur</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/hairstyle-bern</code></td>
+      <td><a href="hairstyle-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="salon-glamour-basel/index.html" target="_blank">Salon Glamour Basel</a></td>
+      <td>coiffeur</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/salon-glamour-basel</code></td>
+      <td><a href="salon-glamour-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="coiffure-elite-luzern/index.html" target="_blank">Coiffure Élite Luzern</a></td>
+      <td>coiffeur</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/coiffure-elite-luzern</code></td>
+      <td><a href="coiffure-elite-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="tophair-winterthur/index.html" target="_blank">TopHair Winterthur</a></td>
+      <td>coiffeur</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/tophair-winterthur</code></td>
+      <td><a href="tophair-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="salon-bella-stgallen/index.html" target="_blank">Salon Bella St. Gallen</a></td>
+      <td>coiffeur</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/salon-bella-stgallen</code></td>
+      <td><a href="salon-bella-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="haar-stil-zug/index.html" target="_blank">Haar & Stil Zug</a></td>
+      <td>coiffeur</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/haar-stil-zug</code></td>
+      <td><a href="haar-stil-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="coiffeur-marcel-olten/index.html" target="_blank">Coiffeur Marcel Olten</a></td>
+      <td>coiffeur</td>
+      <td>Olten</td>
+      <td><code>demo.dlm-digital.ch/coiffeur-marcel-olten</code></td>
+      <td><a href="coiffeur-marcel-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="friseurwelt-thun/index.html" target="_blank">FriseurWelt Thun</a></td>
+      <td>coiffeur</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/friseurwelt-thun</code></td>
+      <td><a href="friseurwelt-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="hairart-aarau/index.html" target="_blank">HairArt Aarau</a></td>
+      <td>coiffeur</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/hairart-aarau</code></td>
+      <td><a href="hairart-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zahnarzt-keller-zuerich/index.html" target="_blank">Zahnarzt Dr. Keller</a></td>
+      <td>zahnarzt</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/zahnarzt-keller-zuerich</code></td>
+      <td><a href="zahnarzt-keller-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zahnarztpraxis-bern/index.html" target="_blank">Zahnarztpraxis Bern</a></td>
+      <td>zahnarzt</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/zahnarztpraxis-bern</code></td>
+      <td><a href="zahnarztpraxis-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="dentalclinic-basel/index.html" target="_blank">Dental Clinic Basel</a></td>
+      <td>zahnarzt</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/dentalclinic-basel</code></td>
+      <td><a href="dentalclinic-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zahnarzt-luzern-zentrum/index.html" target="_blank">Zahnarzt Luzern Zentrum</a></td>
+      <td>zahnarzt</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/zahnarzt-luzern-zentrum</code></td>
+      <td><a href="zahnarzt-luzern-zentrum/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="dentalcare-winterthur/index.html" target="_blank">Dental Care Winterthur</a></td>
+      <td>zahnarzt</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/dentalcare-winterthur</code></td>
+      <td><a href="dentalcare-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zahnarztpraxis-stgallen/index.html" target="_blank">Zahnarztpraxis St. Gallen</a></td>
+      <td>zahnarzt</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/zahnarztpraxis-stgallen</code></td>
+      <td><a href="zahnarztpraxis-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="smilecenter-zug/index.html" target="_blank">Smile Center Zug</a></td>
+      <td>zahnarzt</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/smilecenter-zug</code></td>
+      <td><a href="smilecenter-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zahnklinik-olten/index.html" target="_blank">ZahnKlinik Olten</a></td>
+      <td>zahnarzt</td>
+      <td>Olten</td>
+      <td><code>demo.dlm-digital.ch/zahnklinik-olten</code></td>
+      <td><a href="zahnklinik-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zahnarzt-stoeckli-thun/index.html" target="_blank">Zahnarzt Dr. Stöckli Thun</a></td>
+      <td>zahnarzt</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/zahnarzt-stoeckli-thun</code></td>
+      <td><a href="zahnarzt-stoeckli-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="prodent-aarau/index.html" target="_blank">ProDent Aarau</a></td>
+      <td>zahnarzt</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/prodent-aarau</code></td>
+      <td><a href="prodent-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="restaurant-seeblick-zuerich/index.html" target="_blank">Restaurant Seeblick</a></td>
+      <td>restaurant</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/restaurant-seeblick-zuerich</code></td>
+      <td><a href="restaurant-seeblick-zuerich/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="gasthof-baeren-bern/index.html" target="_blank">Gasthof zum Bären Bern</a></td>
+      <td>restaurant</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/gasthof-baeren-bern</code></td>
+      <td><a href="gasthof-baeren-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="restaurant-rhein-basel/index.html" target="_blank">Restaurant Rhein Basel</a></td>
+      <td>restaurant</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/restaurant-rhein-basel</code></td>
+      <td><a href="restaurant-rhein-basel/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="wirtshaus-pilatus-luzern/index.html" target="_blank">Wirtshaus Pilatus Luzern</a></td>
+      <td>restaurant</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/wirtshaus-pilatus-luzern</code></td>
+      <td><a href="wirtshaus-pilatus-luzern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="alte-post-winterthur/index.html" target="_blank">Restaurant Alte Post Winterthur</a></td>
+      <td>restaurant</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/alte-post-winterthur</code></td>
+      <td><a href="alte-post-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="bistro-klostergarten-stgallen/index.html" target="_blank">Bistro am Klostergarten</a></td>
+      <td>restaurant</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/bistro-klostergarten-stgallen</code></td>
+      <td><a href="bistro-klostergarten-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="restaurant-zugerberg/index.html" target="_blank">Restaurant Zugerberg</a></td>
+      <td>restaurant</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/restaurant-zugerberg</code></td>
+      <td><a href="restaurant-zugerberg/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="gasthaus-sonne-olten/index.html" target="_blank">Gasthaus Sonne Olten</a></td>
+      <td>restaurant</td>
+      <td>Olten</td>
+      <td><code>demo.dlm-digital.ch/gasthaus-sonne-olten</code></td>
+      <td><a href="gasthaus-sonne-olten/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="berggasthaus-niesen-thun/index.html" target="_blank">Berggasthaus Niesen</a></td>
+      <td>restaurant</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/berggasthaus-niesen-thun</code></td>
+      <td><a href="berggasthaus-niesen-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="kronengarten-aarau/index.html" target="_blank">Restaurant Kronengarten</a></td>
+      <td>restaurant</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/kronengarten-aarau</code></td>
+      <td><a href="kronengarten-aarau/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="immobilien-zuerich-ag/index.html" target="_blank">Immobilien Zürich AG</a></td>
+      <td>immobilien</td>
+      <td>Zürich</td>
+      <td><code>demo.dlm-digital.ch/immobilien-zuerich-ag</code></td>
+      <td><a href="immobilien-zuerich-ag/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="wohnraum-bern/index.html" target="_blank">Wohnraum Bern GmbH</a></td>
+      <td>immobilien</td>
+      <td>Bern</td>
+      <td><code>demo.dlm-digital.ch/wohnraum-bern</code></td>
+      <td><a href="wohnraum-bern/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="immobasel-ag/index.html" target="_blank">ImmoBasel AG</a></td>
+      <td>immobilien</td>
+      <td>Basel</td>
+      <td><code>demo.dlm-digital.ch/immobasel-ag</code></td>
+      <td><a href="immobasel-ag/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="luzerner-immobilien/index.html" target="_blank">Luzerner Immobilien</a></td>
+      <td>immobilien</td>
+      <td>Luzern</td>
+      <td><code>demo.dlm-digital.ch/luzerner-immobilien</code></td>
+      <td><a href="luzerner-immobilien/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="immocenter-winterthur/index.html" target="_blank">ImmoCenter Winterthur</a></td>
+      <td>immobilien</td>
+      <td>Winterthur</td>
+      <td><code>demo.dlm-digital.ch/immocenter-winterthur</code></td>
+      <td><a href="immocenter-winterthur/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="ostschweizimmo-stgallen/index.html" target="_blank">OstschweizImmo AG</a></td>
+      <td>immobilien</td>
+      <td>St. Gallen</td>
+      <td><code>demo.dlm-digital.ch/ostschweizimmo-stgallen</code></td>
+      <td><a href="ostschweizimmo-stgallen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="zugimmo-zug/index.html" target="_blank">ZugImmo GmbH</a></td>
+      <td>immobilien</td>
+      <td>Zug</td>
+      <td><code>demo.dlm-digital.ch/zugimmo-zug</code></td>
+      <td><a href="zugimmo-zug/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="solothurnerwohnen/index.html" target="_blank">SolothurnerWohnen</a></td>
+      <td>immobilien</td>
+      <td>Solothurn</td>
+      <td><code>demo.dlm-digital.ch/solothurnerwohnen</code></td>
+      <td><a href="solothurnerwohnen/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="hausvermittlung-thun/index.html" target="_blank">Hausvermittlung Thun</a></td>
+      <td>immobilien</td>
+      <td>Thun</td>
+      <td><code>demo.dlm-digital.ch/hausvermittlung-thun</code></td>
+      <td><a href="hausvermittlung-thun/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr>
+    <tr>
+      <td><a href="immoaarau-ag/index.html" target="_blank">ImmoAarau AG</a></td>
+      <td>immobilien</td>
+      <td>Aarau</td>
+      <td><code>demo.dlm-digital.ch/immoaarau-ag</code></td>
+      <td><a href="immoaarau-ag/index.html" target="_blank" class="btn">Öffnen →</a></td>
+    </tr></tbody>
+  </table>
+</body>
+</html>

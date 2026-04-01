@@ -1,0 +1,16 @@
+{
+  "name": "dlm-sichtbarkeits-check",
+  "version": "1.0.0",
+  "description": "DLM Digital – Google-Sichtbarkeits-Check Lead Magnet Tool",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

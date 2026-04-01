@@ -1,0 +1,101 @@
+firmenname,branche,ort,telefon,email,adresse,slogan,slug
+Küchen Meier AG,kueche,Zürich,044 210 30 50,info@kuechen-meier.ch,Langstrasse 45,Massküchen mit Leidenschaft,kuechen-meier-zuerich
+Küchenstudio Brunner,kueche,Bern,031 302 45 60,info@kuchenstudio-brunner.ch,Marktgasse 12,Ihre Küche – Ihr Zuhause,kuchenstudio-brunner-bern
+Küchenwerkstatt Keller,kueche,Basel,061 271 88 20,info@kuechenwerkstatt-keller.ch,Steinenvorstadt 8,Handwerk trifft Design,kuechenwerkstatt-keller-basel
+Küchen Huber GmbH,kueche,Luzern,041 220 15 90,info@kuechen-huber.ch,Hirschmattstrasse 33,Qualität die bleibt,kuechen-huber-luzern
+KüchenForm AG,kueche,Winterthur,052 212 44 70,info@kuechenform.ch,Marktgasse 21,Küchen die begeistern,kuechenform-winterthur
+Küchen Müller,kueche,St. Gallen,071 222 60 80,info@kuechen-mueller.ch,Vadianstrasse 14,Für die schönsten Momente,kuechen-mueller-stgallen
+Küchenstudio Weber,kueche,Thun,033 221 30 10,info@kuechenstudio-weber.ch,Hauptgasse 7,Küchen mit Charakter,kuechenstudio-weber-thun
+Küchen Schmid,kueche,Aarau,062 821 55 40,info@kuechen-schmid.ch,Bahnhofstrasse 18,Ihr Küchenspezialist,kuechen-schmid-aarau
+Muster Küchenbau,kueche,Frauenfeld,052 721 90 20,info@muster-kuechenbau.ch,Zürcherstrasse 55,Handwerk aus Leidenschaft,muster-kuechenbau-frauenfeld
+Küchen Steiner,kueche,Schaffhausen,052 624 10 30,info@kuechen-steiner.ch,Vorstadt 28,Mehr als nur eine Küche,kuechen-steiner-schaffhausen
+Sanitär Vogel AG,sanitaer,Zürich,044 380 22 44,info@sanitaer-vogel.ch,Badenerstrasse 110,Ihr Sanitärprofi,sanitaer-vogel-zuerich
+Heizung Bauer GmbH,sanitaer,Bern,031 381 66 55,info@heizung-bauer.ch,Schwarztorstrasse 34,Wärme die überzeugt,heizung-bauer-bern
+Sanitär & Heizung Roth,sanitaer,Basel,061 321 77 33,info@roth-sanitaer.ch,Güterstrasse 88,Zuverlässig und kompetent,roth-sanitaer-basel
+Wasser & Wärme AG,sanitaer,Luzern,041 280 44 60,info@wasser-waerme.ch,Inseliquai 22,Rundum-Service für Ihr Heim,wasser-waerme-luzern
+Sanitär Marti,sanitaer,Winterthur,052 233 88 10,info@sanitaer-marti.ch,Technikumstrasse 44,Präzision beim Handwerk,sanitaer-marti-winterthur
+Installationen Frei,sanitaer,St. Gallen,071 278 33 20,info@installationen-frei.ch,Davidstrasse 60,Schnell – sauber – günstig,installationen-frei-stgallen
+Heizung Kunz GmbH,sanitaer,Zug,041 710 55 88,info@heizung-kunz.ch,Baarerstrasse 15,Energieeffizient heizen,heizung-kunz-zug
+Sanitär Furrer,sanitaer,Solothurn,032 621 44 77,info@sanitaer-furrer.ch,Hauptgasse 36,Wir lösen Ihr Sanitärproblem,sanitaer-furrer-solothurn
+WärmeProfi AG,sanitaer,Olten,062 212 33 55,info@waermeprofi.ch,Aarauerstrasse 66,Heizung & Klima aus einer Hand,waermeprofi-olten
+SanitärPlus Lüthi,sanitaer,Thun,033 221 77 44,info@sanitaerplus-luethi.ch,Bälliz 19,Ihr Badspzialist im Berner Oberland,sanitaerplus-luethi-thun
+Solar AG Zürich,solar,Zürich,044 400 11 22,info@solar-ag-zuerich.ch,Seestrasse 120,Solarenergie für Zürich,solar-ag-zuerich
+Photovoltaik Bern,solar,Bern,031 508 22 33,info@photovoltaik-bern.ch,Eigerplatz 4,Sonne tanken – Geld sparen,photovoltaik-bern
+SolarPower Basel,solar,Basel,061 568 33 44,info@solarpower-basel.ch,Münchensteinerstrasse 90,Grüner Strom für Basel,solarpower-basel
+Solartechnik Ammann,solar,Luzern,041 360 44 55,info@solartechnik-ammann.ch,Horwerstrasse 12,Ihr Weg zur Solaranlage,solartechnik-ammann-luzern
+SunTech AG,solar,Winterthur,052 244 55 66,info@suntech-winti.ch,Wülflingerstrasse 38,Photovoltaik mit Zukunft,suntech-ag-winterthur
+Solaranlage Ost AG,solar,St. Gallen,071 288 66 77,info@solaranlage-ost.ch,Rosenbergstrasse 20,Energie von der Sonne,solaranlage-ost-stgallen
+SolarExperte GmbH,solar,Zug,041 720 77 88,info@solarexperte.ch,Zugerbergstrasse 5,Unabhängig durch Solarstrom,solarexperte-zug
+Photovoltaik Nidwalden,solar,Stans,041 610 88 99,info@pv-nidwalden.ch,Engelbergstrasse 3,Solarstrom aus den Bergen,pv-nidwalden-stans
+SolarZentrum AG,solar,Frauenfeld,052 725 99 00,info@solarzentrum.ch,Rheinstrasse 40,Erneuerbare Energie einfach,solarzentrum-frauenfeld
+GreenSun GmbH,solar,Schaffhausen,052 628 10 20,info@greensun.ch,Rheinufer 8,Sonne statt Strom kaufen,greensun-schaffhausen
+Treuhand Meier AG,treuhand,Zürich,044 211 33 55,info@treuhand-meier.ch,Bahnhofstrasse 100,Ihr Steuerberater in Zürich,treuhand-meier-zuerich
+Buchhaltung Fischer,treuhand,Bern,031 312 44 66,info@buchhaltung-fischer.ch,Aarbergergasse 14,Zahlen die für Sie arbeiten,buchhaltung-fischer-bern
+TreuhandPlus Basel,treuhand,Basel,061 272 55 77,info@treuhandplus-basel.ch,Falknerstrasse 3,Steuern sparen – Sicherheit gewinnen,treuhandplus-basel
+Steuer & Recht Luzern,treuhand,Luzern,041 226 66 88,info@steuer-recht-luzern.ch,Pilatusstrasse 12,Kompetenz in Steuer und Recht,steuer-recht-luzern
+Finanzen Keller GmbH,treuhand,Winterthur,052 213 77 99,info@finanzen-keller.ch,Rudolfstrasse 22,Ihre Buchhaltung in besten Händen,finanzen-keller-winterthur
+Treuhand Züst,treuhand,St. Gallen,071 244 88 10,info@treuhand-zuest.ch,Oberer Graben 2,Vertrauen durch Kompetenz,treuhand-zuest-stgallen
+BDO Schaffhausen,treuhand,Schaffhausen,052 630 99 11,info@bdo-schaff.ch,Vorstadt 44,Steuerberatung mit Weitblick,bdo-schaff-schaffhausen
+Revisions AG Zug,treuhand,Zug,041 711 10 22,info@revisions-ag-zug.ch,Baarerstrasse 88,Revision & Beratung aus einer Hand,revisions-ag-zug
+Buchhaltungs-Service Müller,treuhand,Aarau,062 823 11 33,info@buchhaltungsservice-mueller.ch,Kasinostrasse 19,Ihre Zahlen – unser Job,buchhaltungsservice-mueller-aarau
+TreuhandKompass AG,treuhand,Solothurn,032 622 22 44,info@treuhandkompass.ch,Kronengasse 8,Orientierung in Steuern und Recht,treuhandkompass-solothurn
+FitLife Zürich,fitness,Zürich,044 291 55 10,info@fitlife-zuerich.ch,Hardturmstrasse 222,Fitness die Spass macht,fitlife-zuerich
+SportStudio Bern,fitness,Bern,031 351 66 20,info@sportstudio-bern.ch,Laupenstrasse 30,Stärker werden – Tag für Tag,sportstudio-bern
+GoldGym Basel,fitness,Basel,061 362 77 30,info@goldgym-basel.ch,Missionsstrasse 14,Trainieren auf höchstem Niveau,goldgym-basel
+CrossFit Luzern,fitness,Luzern,041 370 88 40,info@crossfit-luzern.ch,Maihofstrasse 55,Grenzen überwinden,crossfit-luzern
+FitCenter Winterthur,fitness,Winterthur,052 235 99 50,info@fitcenter-winterthur.ch,Zürcherstrasse 110,Ihr Fitness-Zuhause,fitcenter-winterthur
+ActiveLife St. Gallen,fitness,St. Gallen,071 255 10 60,info@activelife-sg.ch,Fürstenlandstrasse 66,Bewegung für ein besseres Leben,activelife-stgallen
+SportHouse Zug,fitness,Zug,041 712 21 70,info@sporthouse-zug.ch,Industriestrasse 18,Fitness im Herzen von Zug,sporthouse-zug
+PulseGym Olten,fitness,Olten,062 213 32 80,info@pulsegym-olten.ch,Solothurnerstrasse 44,Voller Einsatz – grosser Erfolg,pulsegym-olten
+KraftWerk Thun,fitness,Thun,033 222 43 90,info@kraftwerk-thun.ch,Allmendstrasse 5,Stark durch Training,kraftwerk-thun
+StudioFit Aarau,fitness,Aarau,062 822 54 00,info@studiofit-aarau.ch,Graben 24,Fitness für jeden Anspruch,studiofit-aarau
+Garage Schneider AG,autogarage,Zürich,044 322 66 11,info@garage-schneider.ch,Albisriederstrasse 200,Ihr Autoexperte in Zürich,garage-schneider-zuerich
+Auto Meier Bern,autogarage,Bern,031 371 77 22,info@auto-meier-bern.ch,Morgartenstrasse 18,Autoservice mit Herz,auto-meier-bern
+Garage Huber Basel,autogarage,Basel,061 382 88 33,info@garage-huber-basel.ch,Reinacherstrasse 70,Für Ihr Auto – immer da,garage-huber-basel
+Auto Technik Luzern,autogarage,Luzern,041 390 99 44,info@autotechnik-luzern.ch,Emmenbrückestrasse 22,Technik die Sie weiterbringt,autotechnik-luzern
+Garage Marti Winterthur,autogarage,Winterthur,052 244 10 55,info@garage-marti-winterthur.ch,Stadlerstrasse 90,Rundum-Service für Ihr Fahrzeug,garage-marti-winterthur
+AutoProfi St. Gallen,autogarage,St. Gallen,071 266 21 66,info@autoprofi-sg.ch,Teufenerstrasse 55,Profis für Ihr Auto,autoprofi-stgallen
+Fahrzeug-Service Zug,autogarage,Zug,041 713 32 77,info@fahrzeugservice-zug.ch,Lorzenstrasse 12,Ihr Servicepartner,fahrzeugservice-zug
+Garage Fischer Frauenfeld,autogarage,Frauenfeld,052 726 43 88,info@garage-fischer-frauenfeld.ch,St. Gallerstrasse 88,Ehrlicher Autoservice,garage-fischer-frauenfeld
+TipTop Garage Thun,autogarage,Thun,033 223 54 99,info@tiptop-garage-thun.ch,Hofstettenstrasse 4,Top-Arbeit zu fairen Preisen,tiptop-garage-thun
+AutoPlus Aarau,autogarage,Aarau,062 824 65 00,info@autoplus-aarau.ch,Hintere Bahnhofstrasse 8,Zuverlässig und schnell,autoplus-aarau
+Coiffeur Claudia,coiffeur,Zürich,044 241 10 20,info@coiffeur-claudia.ch,Langstrasse 88,Schönheit aus Leidenschaft,coiffeur-claudia-zuerich
+HairStyle Bern,coiffeur,Bern,031 322 20 30,info@hairstyle-bern.ch,Kramgasse 44,Ihr Friseur im Herzen Berns,hairstyle-bern
+Salon Glamour Basel,coiffeur,Basel,061 292 30 40,info@salon-glamour-basel.ch,Spalenvorstadt 30,Glanz für Ihr Haar,salon-glamour-basel
+Coiffure Élite Luzern,coiffeur,Luzern,041 251 40 50,info@coiffure-elite-luzern.ch,Hertensteinstrasse 22,Hairstyling auf höchstem Niveau,coiffure-elite-luzern
+TopHair Winterthur,coiffeur,Winterthur,052 212 50 60,info@tophair-winterthur.ch,Technikumstrasse 8,Ihr Hair-Profi,tophair-winterthur
+Salon Bella St. Gallen,coiffeur,St. Gallen,071 223 60 70,info@salon-bella-sg.ch,Marktplatz 6,Schönheit die begeistert,salon-bella-stgallen
+Haar & Stil Zug,coiffeur,Zug,041 711 70 80,info@haar-stil-zug.ch,Bahnhofstrasse 25,Individueller Stil für Sie,haar-stil-zug
+Coiffeur Marcel Olten,coiffeur,Olten,062 212 80 90,info@coiffeur-marcel.ch,Hauptgasse 10,Kreativität trifft Handwerk,coiffeur-marcel-olten
+FriseurWelt Thun,coiffeur,Thun,033 222 90 00,info@friseurrwelt-thun.ch,Obere Hauptgasse 15,Ihr Haar – Unsere Leidenschaft,friseurwelt-thun
+HairArt Aarau,coiffeur,Aarau,062 823 00 10,info@hairart-aarau.ch,Pelzgasse 6,Haarstyling als Kunstform,hairart-aarau
+Zahnarzt Dr. Keller,zahnarzt,Zürich,044 210 15 25,info@zahnarzt-keller.ch,Löwenstrasse 28,Für Ihr schönstes Lächeln,zahnarzt-keller-zuerich
+Zahnarztpraxis Bern,zahnarzt,Bern,031 311 25 35,info@zahnarztpraxis-bern.ch,Bubenbergplatz 1,Zahngesundheit in besten Händen,zahnarztpraxis-bern
+Dental Clinic Basel,zahnarzt,Basel,061 261 35 45,info@dentalclinic-basel.ch,Aeschenvorstadt 55,Ihr Lächeln – unser Auftrag,dentalclinic-basel
+Zahnarzt Luzern Zentrum,zahnarzt,Luzern,041 210 45 55,info@zahnarzt-luzern.ch,Weggisgasse 8,Moderne Zahnmedizin im Herzen Luzerns,zahnarzt-luzern-zentrum
+Dental Care Winterthur,zahnarzt,Winterthur,052 213 55 65,info@dentalcare-winti.ch,Marktgasse 12,Gesunde Zähne – Lebensqualität,dentalcare-winterthur
+Zahnarztpraxis St. Gallen,zahnarzt,St. Gallen,071 222 65 75,info@zahnarztpraxis-sg.ch,Multergasse 17,Zähne in besten Händen,zahnarztpraxis-stgallen
+Smile Center Zug,zahnarzt,Zug,041 710 75 85,info@smilecenter-zug.ch,Poststrasse 14,Ihr Lächeln ist unsere Arbeit,smilecenter-zug
+ZahnKlinik Olten,zahnarzt,Olten,062 212 85 95,info@zahnklinik-olten.ch,Ringstrasse 2,Zahnmedizin mit Herz,zahnklinik-olten
+Zahnarzt Dr. Stöckli Thun,zahnarzt,Thun,033 222 95 05,info@zahnarzt-stoeckli.ch,Bernstrasse 4,Für strahlende Zähne,zahnarzt-stoeckli-thun
+ProDent Aarau,zahnarzt,Aarau,062 824 05 15,info@prodent-aarau.ch,Metzgergasse 12,Professionelle Zahnpflege,prodent-aarau
+Restaurant Seeblick,restaurant,Zürich,044 422 20 30,info@restaurant-seeblick.ch,Seestrasse 330,Geniessen mit Aussicht,restaurant-seeblick-zuerich
+Gasthof zum Bären Bern,restaurant,Bern,031 311 33 44,info@gasthof-baeren.ch,Rathausgasse 75,Schweizer Gastlichkeit seit 1890,gasthof-baeren-bern
+Restaurant Rhein Basel,restaurant,Basel,061 261 44 55,info@restaurant-rhein-basel.ch,Rheingasse 45,Direkt am Rhein – direkt am Herzen,restaurant-rhein-basel
+Wirtshaus Pilatus Luzern,restaurant,Luzern,041 210 55 66,info@wirtshaus-pilatus.ch,Weinmarkt 12,Heimische Küche in Luzern,wirtshaus-pilatus-luzern
+Restaurant Alte Post Winterthur,restaurant,Winterthur,052 212 66 77,info@alte-post-winterthur.ch,Marktgasse 58,Tradition und Genuss,alte-post-winterthur
+Bistro am Klostergarten,restaurant,St. Gallen,071 222 77 88,info@bistro-klostergarten.ch,Gallusstrasse 3,Frisch und saisonal,bistro-klostergarten-stgallen
+Restaurant Zugerberg,restaurant,Zug,041 711 88 99,info@restaurant-zugerberg.ch,Artherstrasse 8,Kulinarik über den Dächern,restaurant-zugerberg
+Gasthaus Sonne Olten,restaurant,Olten,062 213 99 10,info@gasthaus-sonne-olten.ch,Hauptgasse 44,Wo die Sonne kulinarisch scheint,gasthaus-sonne-olten
+Berggasthaus Niesen,restaurant,Thun,033 223 10 20,info@berggasthaus-niesen.ch,Seestrasse 15,Bergflair im Tal,berggasthaus-niesen-thun
+Restaurant Kronengarten,restaurant,Aarau,062 822 20 30,info@kronengarten-aarau.ch,Kronengasse 5,Genuss mit Stil,kronengarten-aarau
+Immobilien Zürich AG,immobilien,Zürich,044 200 40 50,info@immobilien-zuerich.ch,Talstrasse 80,Ihr Immobilienexperte,immobilien-zuerich-ag
+Wohnraum Bern GmbH,immobilien,Bern,031 320 50 60,info@wohnraum-bern.ch,Aarbergergasse 22,Wohnen wo das Herz ist,wohnraum-bern
+ImmoBasel AG,immobilien,Basel,061 270 60 70,info@immobasel.ch,Freie Strasse 90,Immobilien mit Weitblick,immobasel-ag
+Luzerner Immobilien,immobilien,Luzern,041 228 70 80,info@luzerner-immobilien.ch,Alpenquai 4,Ihr Zuhause in Luzern,luzerner-immobilien
+ImmoCenter Winterthur,immobilien,Winterthur,052 222 80 90,info@immocenter-winterthur.ch,Neumarkt 12,Immobilien mit Herz,immocenter-winterthur
+OstschweizImmo AG,immobilien,St. Gallen,071 244 90 00,info@ostschweizimmo.ch,Bohl 8,Immobilien in der Ostschweiz,ostschweizimmo-stgallen
+ZugImmo GmbH,immobilien,Zug,041 715 00 10,info@zugimmo.ch,Grabenstrasse 20,Wohnen und investieren in Zug,zugimmo-zug
+SolothurnerWohnen,immobilien,Solothurn,032 624 10 20,info@solothurnerwohnen.ch,Gurzelngasse 8,Ihr Immobilienmakler,solothurnerwohnen
+Hausvermittlung Thun,immobilien,Thun,033 224 20 30,info@hausvermittlung-thun.ch,Gwattstrasse 4,Ihr Eigenheim im Berner Oberland,hausvermittlung-thun
+ImmoAarau AG,immobilien,Aarau,062 825 30 40,info@immoaarau.ch,Laurenzenvorstadt 15,Immobilien die begeistern,immoaarau-ag

@@ -1,0 +1,18 @@
+{
+  "name": "dlm-email-infra",
+  "version": "1.0.0",
+  "description": "DLM Digital — Inbound email poller, CRM logger, reply-to-Paperclip-task handler",
+  "main": "inbound-poller.js",
+  "scripts": {
+    "start": "node inbound-poller.js",
+    "dev": "node --watch inbound-poller.js"
+  },
+  "dependencies": {
+    "imapflow": "^1.0.162",
+    "mailparser": "^3.7.1",
+    "node-cron": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

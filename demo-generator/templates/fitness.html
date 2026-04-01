@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{FIRMENNAME}} – {{SLOGAN}}. Fitnessstudio & Personal Training in {{ORT}}." />
+  <title>{{FIRMENNAME}} – Fitnessstudio {{ORT}}</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Google Ads Conversion Tracking -->
+  <!-- REPLACE_WITH_GTAG_ID -->
+
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black:        #0a0a0a;
+      --charcoal:     #111111;
+      --charcoal-mid: #1a1a1a;
+      --charcoal-lt:  #242424;
+      --grey-dk:      #2e2e2e;
+      --grey-mid:     #555555;
+      --grey-lt:      #888888;
+      --white:        #ffffff;
+      --off-white:    #f0f0f0;
+      --accent:       #e8000d;
+      --accent-dk:    #b50009;
+      --accent-glow:  rgba(232,0,13,0.18);
+
+      --font:         'Inter', system-ui, -apple-system, sans-serif;
+      --nav-h:        68px;
+      --radius:       4px;
+      --radius-lg:    8px;
+      --transition:   0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul { list-style: none; }
+
+    /* =============================================
+       UTILITY
+    ============================================= */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-subtitle {
+      margin-top: 16px;
+      font-size: 1.05rem;
+      color: var(--grey-lt);
+      max-width: 560px;
+      line-height: 1.65;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dk);
+      box-shadow: 0 0 28px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn-lg {
+      padding: 18px 36px;
+      font-size: 0.95rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(10,10,10,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background var(--transition);
+    }
+
+    .nav.scrolled {
+      background: rgba(10,10,10,0.97);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav__logo-mark {
+      width: 34px;
+      height: 34px;
+      background: var(--accent);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-mark svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--white);
+    }
+
+    .nav__logo-text {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .nav__logo-text small {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      margin-top: 2px;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover { color: var(--white); }
+
+    .nav__cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav__phone {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--grey-lt);
+      transition: color var(--transition);
+    }
+
+    .nav__phone:hover { color: var(--white); }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    /* Mobile nav drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: var(--charcoal);
+      z-index: 999;
+      flex-direction: column;
+      padding: 36px 24px;
+      gap: 28px;
+      overflow-y: auto;
+    }
+
+    .nav__drawer.open { display: flex; }
+
+    .nav__drawer a {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      border-bottom: 1px solid var(--grey-dk);
+      padding-bottom: 18px;
+    }
+
+    .nav__drawer a:last-child { border-bottom: none; }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    /* Geometric background pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          -55deg,
+          rgba(232,0,13,0.04) 0px,
+          rgba(232,0,13,0.04) 1px,
+          transparent 1px,
+          transparent 60px
+        );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(232,0,13,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .hero__title {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+
+    .hero__title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero__subtitle {
+      margin-top: 24px;
+      font-size: 1.1rem;
+      color: var(--grey-lt);
+      max-width: 440px;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 52px;
+      padding-top: 36px;
+      border-top: 1px solid var(--grey-dk);
+      flex-wrap: wrap;
+    }
+
+    .hero__stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero__stat-num span {
+      color: var(--accent);
+    }
+
+    .hero__stat-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      margin-top: 6px;
+    }
+
+    /* Hero visual panel */
+    .hero__visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero__card {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 4/5;
+      background: var(--charcoal-mid);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-dk);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* Placeholder visual using CSS art */
+    .hero__card-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, var(--charcoal-lt) 0%, var(--charcoal-mid) 50%, var(--charcoal) 100%);
+    }
+
+    /* Stylized silhouette blocks */
+    .hero__card-figure {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 85%;
+      background: linear-gradient(180deg, rgba(232,0,13,0.06) 0%, rgba(232,0,13,0.02) 100%);
+      border-top: 2px solid rgba(232,0,13,0.3);
+    }
+
+    .hero__card-figure::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--grey-dk);
+      border: 2px solid var(--grey-mid);
+    }
+
+    .hero__card-figure::after {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 50%;
+      background: var(--grey-dk);
+      border: 1px solid var(--grey-mid);
+    }
+
+    .hero__card-overlay {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+      width: 100%;
+      background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+    }
+
+    .hero__card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero__card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .hero__card-sub {
+      font-size: 0.82rem;
+      color: var(--grey-lt);
+      margin-top: 4px;
+    }
+
+    /* Floating accent card */
+    .hero__float {
+      position: absolute;
+      top: 10%;
+      right: -5%;
+      background: var(--charcoal-lt);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      min-width: 160px;
+    }
+
+    .hero__float-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .hero__float-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--grey-lt);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* =============================================
+       TRUST BAR
+    ============================================= */
+    .trust-bar {
+      background: var(--charcoal-mid);
+      border-top: 1px solid var(--grey-dk);
+      border-bottom: 1px solid var(--grey-dk);
+      padding: 20px 0;
+      overflow: hidden;
+    }
+
+    .trust-bar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    .trust-item__icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-glow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-item__icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .trust-item__text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--off-white);
+      letter-spacing: 0.02em;
+    }
+
+    /* =============================================
+       MEMBERSHIPS
+    ============================================= */
+    .memberships {
+      padding: 100px 0;
+      background: var(--black);
+    }
+
+    .memberships__head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .memberships__head .section-subtitle {
+      margin-inline: auto;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .plan {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      position: relative;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .plan:hover {
+      border-color: var(--grey-mid);
+      transform: translateY(-3px);
+    }
+
+    .plan--featured {
+      background: var(--charcoal-lt);
+      border-color: var(--accent);
+      transform: translateY(-8px);
+    }
+
+    .plan--featured:hover {
+      transform: translateY(-11px);
+      border-color: var(--accent);
+    }
+
+    .plan__badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .plan__name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      margin-bottom: 16px;
+    }
+
+    .plan__price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .plan__currency {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--grey-lt);
+    }
+
+    .plan__amount {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .plan--featured .plan__amount {
+      color: var(--accent);
+    }
+
+    .plan__period {
+      font-size: 0.82rem;
+      color: var(--grey-lt);
+    }
+
+    .plan__tagline {
+      font-size: 0.85rem;
+      color: var(--grey-lt);
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--grey-dk);
+    }
+
+    .plan__features {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-bottom: 32px;
+    }
+
+    .plan__feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: var(--off-white);
+    }
+
+    .plan__feature-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .plan__feature-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .plan__feature--off { color: var(--grey-mid); }
+
+    .plan__feature--off .plan__feature-icon svg {
+      stroke: var(--grey-dk);
+    }
+
+    .plan .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* =============================================
+       CLASSES / SCHEDULE
+    ============================================= */
+    .schedule {
+      padding: 100px 0;
+      background: var(--charcoal);
+    }
+
+    .schedule__head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .schedule__tabs {
+      display: flex;
+      gap: 0;
+      background: var(--charcoal-lt);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .schedule__tab {
+      padding: 10px 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .schedule__tab.active,
+    .schedule__tab:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .schedule__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .class-card {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      transition: border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .class-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .class-card:hover {
+      border-color: var(--grey-mid);
+    }
+
+    .class-card__time {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .class-card__name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .class-card__trainer {
+      font-size: 0.8rem;
+      color: var(--grey-lt);
+    }
+
+    .class-card__meta {
+      text-align: right;
+    }
+
+    .class-card__duration {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--grey-dk);
+      padding: 4px 10px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .class-card__spots {
+      font-size: 0.72rem;
+      color: var(--grey-lt);
+      display: block;
+    }
+
+    .class-card__spots--few {
+      color: #ff9c00;
+    }
+
+    /* =============================================
+       TRAINERS
+    ============================================= */
+    .trainers {
+      padding: 100px 0;
+      background: var(--black);
+    }
+
+    .trainers__head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .trainers__head .section-subtitle {
+      margin-inline: auto;
+    }
+
+    .trainers__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .trainer-card {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .trainer-card:hover {
+      border-color: var(--grey-mid);
+      transform: translateY(-4px);
+    }
+
+    .trainer-card__photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--charcoal-lt);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CSS placeholder figure */
+    .trainer-card__photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .trainer-card__photo-head {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--grey-dk);
+      border: 2px solid var(--grey-mid);
+    }
+
+    .trainer-card__photo-body {
+      width: 90px;
+      height: 60px;
+      background: var(--grey-dk);
+      border-radius: 4px 4px 0 0;
+      margin-top: 6px;
+      border: 2px solid var(--grey-mid);
+      border-bottom: none;
+    }
+
+    .trainer-card__photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(0deg, var(--charcoal-mid) 0%, transparent 100%);
+    }
+
+    .trainer-card__specialty {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    .trainer-card__body {
+      padding: 22px 24px;
+    }
+
+    .trainer-card__name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .trainer-card__role {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .trainer-card__bio {
+      font-size: 0.85rem;
+      color: var(--grey-lt);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .trainer-card__certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .cert-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--grey-dk);
+      color: var(--grey-lt);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* =============================================
+       FACILITIES
+    ============================================= */
+    .facilities {
+      padding: 100px 0;
+      background: var(--charcoal);
+    }
+
+    .facilities__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .facilities__visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .facility-thumb {
+      border-radius: var(--radius-lg);
+      background: var(--charcoal-lt);
+      border: 1px solid var(--grey-dk);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color var(--transition);
+    }
+
+    .facility-thumb:first-child {
+      grid-row: span 2;
+      aspect-ratio: unset;
+    }
+
+    .facility-thumb:hover {
+      border-color: var(--accent);
+    }
+
+    .facility-thumb__icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-glow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .facility-thumb__icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .facility-thumb__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--grey-lt);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .facilities__list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .facility-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .facility-item__num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    .facility-item__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .facility-item__desc {
+      font-size: 0.83rem;
+      color: var(--grey-lt);
+      line-height: 1.5;
+    }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    .testimonials {
+      padding: 100px 0;
+      background: var(--black);
+    }
+
+    .testimonials__head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .testimonials__head .section-subtitle {
+      margin-inline: auto;
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testimonial {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: border-color var(--transition);
+    }
+
+    .testimonial:hover {
+      border-color: var(--grey-mid);
+    }
+
+    .testimonial__stars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .star {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .testimonial__quote {
+      font-size: 0.95rem;
+      color: var(--off-white);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .testimonial__quote::before {
+      content: '"';
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .testimonial__author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--grey-dk);
+    }
+
+    .testimonial__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--grey-dk);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .testimonial__name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .testimonial__meta {
+      font-size: 0.75rem;
+      color: var(--grey-lt);
+      margin-top: 2px;
+    }
+
+    /* =============================================
+       TRIAL CTA SECTION
+    ============================================= */
+    .trial-cta {
+      padding: 80px 0;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trial-cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232,0,13,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .trial-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232,0,13,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .trial-cta__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .trial-cta__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,0,13,0.15);
+      border: 1px solid rgba(232,0,13,0.3);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .trial-cta__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .trial-cta__title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .trial-cta__sub {
+      font-size: 1rem;
+      color: var(--grey-lt);
+      margin-top: 14px;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .trial-cta__offer {
+      background: var(--charcoal-lt);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      min-width: 240px;
+    }
+
+    .trial-cta__offer-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      margin-bottom: 12px;
+    }
+
+    .trial-cta__offer-price {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .trial-cta__offer-price sup {
+      font-size: 1.5rem;
+      font-weight: 700;
+      vertical-align: top;
+      margin-top: 10px;
+    }
+
+    .trial-cta__offer-desc {
+      font-size: 0.8rem;
+      color: var(--grey-lt);
+      margin: 8px 0 20px;
+    }
+
+    /* =============================================
+       CONTACT
+    ============================================= */
+    .contact {
+      padding: 100px 0;
+      background: var(--black);
+    }
+
+    .contact__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .contact__info {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .contact__detail {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .contact__detail-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--charcoal-lt);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact__detail-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact__detail-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      margin-bottom: 4px;
+    }
+
+    .contact__detail-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .contact__hours {
+      margin-top: 36px;
+      background: var(--charcoal-mid);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .contact__hours-title {
+      background: var(--charcoal-lt);
+      border-bottom: 1px solid var(--grey-dk);
+      padding: 14px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--grey-dk);
+      font-size: 0.85rem;
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+
+    .hours-row__day { color: var(--grey-lt); }
+
+    .hours-row__time {
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    /* Contact Form */
+    .contact__form-wrap {
+      background: var(--charcoal-mid);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+
+    .form-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .form-sub {
+      font-size: 0.85rem;
+      color: var(--grey-lt);
+      margin-bottom: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group--full {
+      grid-column: span 2;
+    }
+
+    .form-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: var(--charcoal-lt);
+      border: 1.5px solid var(--grey-dk);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--grey-mid);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background: var(--charcoal-lt);
+      color: var(--white);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .form-checkbox input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--grey-mid);
+      border-radius: 3px;
+      background: var(--charcoal-lt);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .form-checkbox input:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9'%3E%3Cpath d='M1 4l3.5 3.5L11 1' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .form-checkbox-label {
+      font-size: 0.82rem;
+      color: var(--grey-lt);
+      line-height: 1.5;
+    }
+
+    .form-checkbox-label a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .form-submit {
+      margin-top: 24px;
+    }
+
+    .form-submit .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--grey-mid);
+      margin-top: 12px;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: var(--charcoal);
+      border-top: 1px solid var(--grey-dk);
+      padding: 60px 0 32px;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer__brand-desc {
+      font-size: 0.85rem;
+      color: var(--grey-lt);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 260px;
+    }
+
+    .footer__col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: 0.85rem;
+      color: var(--grey-lt);
+      transition: color var(--transition);
+    }
+
+    .footer__links a:hover { color: var(--white); }
+
+    .footer__contact-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      color: var(--grey-lt);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .footer__contact-item span:first-child {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid var(--grey-dk);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer__copy {
+      font-size: 0.78rem;
+      color: var(--grey-mid);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer__legal a {
+      font-size: 0.78rem;
+      color: var(--grey-mid);
+      transition: color var(--transition);
+    }
+
+    .footer__legal a:hover { color: var(--grey-lt); }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      background: var(--charcoal-lt);
+      border: 1px solid var(--grey-dk);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .social-link svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--grey-lt);
+      transition: fill var(--transition);
+    }
+
+    .social-link:hover svg { fill: var(--white); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .trainers__grid,
+      .testimonials__grid { grid-template-columns: repeat(2, 1fr); }
+
+      .footer__top { grid-template-columns: 1fr 1fr; }
+
+      .hero__float { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+
+      .nav__links,
+      .nav__cta .btn { display: none; }
+
+      .nav__phone { display: none; }
+
+      .nav__hamburger { display: flex; }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+      }
+
+      .hero__eyebrow { justify-content: center; }
+
+      .hero__subtitle { margin-inline: auto; }
+
+      .hero__actions { justify-content: center; }
+
+      .hero__stats { justify-content: center; }
+
+      .hero__visual { order: -1; }
+
+      .hero__card { max-width: 340px; margin-inline: auto; }
+
+      .plans {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin-inline: auto;
+      }
+
+      .plan--featured { transform: none; }
+      .plan--featured:hover { transform: translateY(-4px); }
+
+      .schedule__head { flex-direction: column; align-items: flex-start; }
+
+      .trainers__grid { grid-template-columns: 1fr; max-width: 380px; margin-inline: auto; }
+
+      .facilities__inner { grid-template-columns: 1fr; gap: 48px; }
+
+      .testimonials__grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+
+      .trial-cta__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .trial-cta__sub { margin-inline: auto; }
+
+      .trial-cta__offer { max-width: 280px; margin-inline: auto; }
+
+      .contact__inner { grid-template-columns: 1fr; gap: 48px; }
+
+      .contact__form-wrap { padding: 28px 22px; }
+
+      .form-grid { grid-template-columns: 1fr; }
+
+      .form-group--full { grid-column: span 1; }
+
+      .footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+      .footer__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    @media (max-width: 480px) {
+      .trust-bar__inner { gap: 16px; }
+
+      .trust-item__text { font-size: 0.76rem; }
+
+      .footer__top { grid-template-columns: 1fr; }
+
+      .footer__legal { flex-wrap: wrap; gap: 12px; }
+
+      .schedule__tabs { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ====================================================
+       NAVIGATION
+  ==================================================== -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="container">
+      <div class="nav__inner">
+
+        <a href="#" class="nav__logo" aria-label="{{FIRMENNAME}} – Startseite">
+          <div class="nav__logo-mark">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 4v16M18 4v16M6 12h12M2 7h4M18 7h4M2 17h4M18 17h4"/>
+            </svg>
+          </div>
+          <div class="nav__logo-text">
+            {{FIRMENNAME}}
+            <small>{{ORT}}</small>
+          </div>
+        </a>
+
+        <ul class="nav__links" role="list">
+          <li><a href="#mitgliedschaft">Mitgliedschaft</a></li>
+          <li><a href="#kurse">Kurse</a></li>
+          <li><a href="#trainer">Trainer</a></li>
+          <li><a href="#einrichtungen">Einrichtungen</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+
+        <div class="nav__cta">
+          <a href="tel:{{TELEFON}}" class="nav__phone">{{TELEFON}}</a>
+          <a href="#kontakt" class="btn btn-primary">Probetraining</a>
+        </div>
+
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu öffnen" aria-expanded="false" aria-controls="drawer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="nav__drawer" id="drawer" role="dialog" aria-label="Navigation" aria-modal="true">
+    <a href="#mitgliedschaft" class="drawer-link">Mitgliedschaft</a>
+    <a href="#kurse" class="drawer-link">Kurse &amp; Stundenplan</a>
+    <a href="#trainer" class="drawer-link">Trainer</a>
+    <a href="#einrichtungen" class="drawer-link">Einrichtungen</a>
+    <a href="#kontakt" class="drawer-link">Kontakt</a>
+    <a href="#kontakt" class="btn btn-primary btn-lg">Probetraining buchen</a>
+  </div>
+
+  <main>
+
+    <!-- ====================================================
+         HERO
+    ==================================================== -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__inner">
+
+          <div class="hero__content">
+            <span class="hero__eyebrow">{{ORT}} – Premium Fitness</span>
+            <h1 class="hero__title" id="hero-title">
+              Stärker.<br>
+              Schneller.<br>
+              <em>Besser.</em>
+            </h1>
+            <p class="hero__subtitle">
+              {{SLOGAN}}
+            </p>
+            <div class="hero__actions">
+              <a href="#kontakt" class="btn btn-primary btn-lg">Kostenlos testen</a>
+              <a href="#kurse" class="btn btn-outline btn-lg">Kursplan ansehen</a>
+            </div>
+            <div class="hero__stats">
+              <div>
+                <div class="hero__stat-num">12<span>+</span></div>
+                <div class="hero__stat-label">Jahre Erfahrung</div>
+              </div>
+              <div>
+                <div class="hero__stat-num">800<span>+</span></div>
+                <div class="hero__stat-label">Aktive Mitglieder</div>
+              </div>
+              <div>
+                <div class="hero__stat-num">25<span>+</span></div>
+                <div class="hero__stat-label">Kurse pro Woche</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__visual">
+            <div class="hero__card" role="img" aria-label="Fitnessstudio Einrichtung">
+              <div class="hero__card-bg"></div>
+              <div class="hero__card-figure" aria-hidden="true"></div>
+              <div class="hero__card-overlay">
+                <span class="hero__card-badge">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>
+                  Jetzt offen
+                </span>
+                <div class="hero__card-title">{{FIRMENNAME}}</div>
+                <div class="hero__card-sub">{{ADRESSE}}, {{ORT}}</div>
+              </div>
+            </div>
+            <div class="hero__float" aria-hidden="true">
+              <div class="hero__float-num">4.9</div>
+              <div class="hero__float-label">Google Bewertung</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TRUST BAR
+    ==================================================== -->
+    <div class="trust-bar" role="region" aria-label="Vertrauensmerkmale">
+      <div class="container">
+        <div class="trust-bar__inner">
+
+          <div class="trust-item">
+            <div class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span class="trust-item__text">Schweizer Qualitätsstandards</span>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="trust-item__text">Zertifizierte Trainer</span>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="trust-item__text">7 Tage geöffnet</span>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="trust-item__text">Keine Bindung bei Probe</span>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="trust-item__text">Modernste Geräte</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         MEMBERSHIPS
+    ==================================================== -->
+    <section class="memberships" id="mitgliedschaft" aria-labelledby="memberships-title">
+      <div class="container">
+        <div class="memberships__head">
+          <span class="section-label">Mitgliedschaft</span>
+          <h2 class="section-title" id="memberships-title">Das richtige Abo für <span>dich</span></h2>
+          <p class="section-subtitle">Keine versteckten Kosten, keine langen Kündigungsfristen. Starte wann du willst.</p>
+        </div>
+
+        <div class="plans" role="list">
+
+          <!-- Basic -->
+          <div class="plan" role="listitem">
+            <div class="plan__name">Basic</div>
+            <div class="plan__price">
+              <span class="plan__currency">CHF</span>
+              <span class="plan__amount">49</span>
+              <span class="plan__period">/ Monat</span>
+            </div>
+            <p class="plan__tagline">Perfekt zum Einsteigen – Zugang zur Geräteanlage.</p>
+            <ul class="plan__features" role="list">
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Freie Geräteanlage
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Umkleiden &amp; Duschen
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Cardiobereich
+              </li>
+              <li class="plan__feature plan__feature--off">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                Gruppentraining
+              </li>
+              <li class="plan__feature plan__feature--off">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                Personal Training
+              </li>
+            </ul>
+            <a href="#kontakt" class="btn btn-outline">Jetzt starten</a>
+          </div>
+
+          <!-- Pro – Featured -->
+          <div class="plan plan--featured" role="listitem">
+            <span class="plan__badge">Beliebteste Wahl</span>
+            <div class="plan__name">Pro</div>
+            <div class="plan__price">
+              <span class="plan__currency">CHF</span>
+              <span class="plan__amount">79</span>
+              <span class="plan__period">/ Monat</span>
+            </div>
+            <p class="plan__tagline">Vollzugang inkl. Gruppentraining &amp; App.</p>
+            <ul class="plan__features" role="list">
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Freie Geräteanlage
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Umkleiden &amp; Duschen
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Alle Gruppentrainings
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Trainingsplan &amp; App
+              </li>
+              <li class="plan__feature plan__feature--off">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                Personal Training
+              </li>
+            </ul>
+            <a href="#kontakt" class="btn btn-primary">Jetzt starten</a>
+          </div>
+
+          <!-- Elite -->
+          <div class="plan" role="listitem">
+            <div class="plan__name">Elite</div>
+            <div class="plan__price">
+              <span class="plan__currency">CHF</span>
+              <span class="plan__amount">129</span>
+              <span class="plan__period">/ Monat</span>
+            </div>
+            <p class="plan__tagline">Alles inklusive – inkl. monatlichem Personal Training.</p>
+            <ul class="plan__features" role="list">
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Alles aus Pro
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                2x Personal Training / Monat
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Ernährungsberatung
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Priority Kursbuchung
+              </li>
+              <li class="plan__feature">
+                <span class="plan__feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                Körpermessung monatlich
+              </li>
+            </ul>
+            <a href="#kontakt" class="btn btn-outline">Jetzt starten</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SCHEDULE / CLASSES
+    ==================================================== -->
+    <section class="schedule" id="kurse" aria-labelledby="schedule-title">
+      <div class="container">
+        <div class="schedule__head">
+          <div>
+            <span class="section-label">Kursplan</span>
+            <h2 class="section-title" id="schedule-title">Diese Woche <span>live</span></h2>
+          </div>
+          <div class="schedule__tabs" role="tablist" aria-label="Wochentage">
+            <button class="schedule__tab active" role="tab" aria-selected="true">Mo</button>
+            <button class="schedule__tab" role="tab" aria-selected="false">Di</button>
+            <button class="schedule__tab" role="tab" aria-selected="false">Mi</button>
+            <button class="schedule__tab" role="tab" aria-selected="false">Do</button>
+            <button class="schedule__tab" role="tab" aria-selected="false">Fr</button>
+            <button class="schedule__tab" role="tab" aria-selected="false">Sa</button>
+          </div>
+        </div>
+
+        <div class="schedule__grid" role="list">
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">06:30 Uhr</div>
+              <div class="class-card__name">HIIT Morgenpower</div>
+              <div class="class-card__trainer">mit Sarah Müller</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">45 Min</span>
+              <span class="class-card__spots">8 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">08:00 Uhr</div>
+              <div class="class-card__name">Yoga &amp; Mobility</div>
+              <div class="class-card__trainer">mit Lena Brüggemann</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">60 Min</span>
+              <span class="class-card__spots">12 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">10:00 Uhr</div>
+              <div class="class-card__name">Spinning</div>
+              <div class="class-card__trainer">mit Marco Ferrara</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">50 Min</span>
+              <span class="class-card__spots class-card__spots--few">3 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">12:15 Uhr</div>
+              <div class="class-card__name">Body Pump</div>
+              <div class="class-card__trainer">mit Sarah Müller</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">55 Min</span>
+              <span class="class-card__spots">15 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">17:30 Uhr</div>
+              <div class="class-card__name">CrossFit Basics</div>
+              <div class="class-card__trainer">mit David Keller</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">60 Min</span>
+              <span class="class-card__spots class-card__spots--few">2 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">19:00 Uhr</div>
+              <div class="class-card__name">Boxen &amp; Kickboxen</div>
+              <div class="class-card__trainer">mit Marco Ferrara</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">60 Min</span>
+              <span class="class-card__spots">10 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">20:15 Uhr</div>
+              <div class="class-card__name">Pilates</div>
+              <div class="class-card__trainer">mit Lena Brüggemann</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">50 Min</span>
+              <span class="class-card__spots">6 Plätze frei</span>
+            </div>
+          </div>
+
+          <div class="class-card" role="listitem">
+            <div>
+              <div class="class-card__time">20:30 Uhr</div>
+              <div class="class-card__name">Abend-Meditation</div>
+              <div class="class-card__trainer">mit Lena Brüggemann</div>
+            </div>
+            <div class="class-card__meta">
+              <span class="class-card__duration">30 Min</span>
+              <span class="class-card__spots">Keine Buchung nötig</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TRAINERS
+    ==================================================== -->
+    <section class="trainers" id="trainer" aria-labelledby="trainers-title">
+      <div class="container">
+        <div class="trainers__head">
+          <span class="section-label">Unser Team</span>
+          <h2 class="section-title" id="trainers-title">Deine <span>Coaches</span></h2>
+          <p class="section-subtitle">Zertifizierte Trainer mit Leidenschaft für Fitness und individuelle Betreuung.</p>
+        </div>
+
+        <div class="trainers__grid">
+
+          <article class="trainer-card">
+            <div class="trainer-card__photo" role="img" aria-label="Trainerfoto Sarah Müller">
+              <span class="trainer-card__specialty">Head Coach</span>
+              <div class="trainer-card__photo-placeholder" aria-hidden="true">
+                <div class="trainer-card__photo-head"></div>
+                <div class="trainer-card__photo-body"></div>
+              </div>
+            </div>
+            <div class="trainer-card__body">
+              <div class="trainer-card__name">Sarah Müller</div>
+              <div class="trainer-card__role">Personal Training &amp; HIIT</div>
+              <p class="trainer-card__bio">8 Jahre Erfahrung im Leistungssport. Spezialisiert auf funktionelles Training und Gewichtsreduktion.</p>
+              <div class="trainer-card__certs">
+                <span class="cert-tag">BSc Sport</span>
+                <span class="cert-tag">CPT</span>
+                <span class="cert-tag">HIIT</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="trainer-card">
+            <div class="trainer-card__photo" role="img" aria-label="Trainerfoto Marco Ferrara">
+              <span class="trainer-card__specialty">Kampfsport</span>
+              <div class="trainer-card__photo-placeholder" aria-hidden="true">
+                <div class="trainer-card__photo-head"></div>
+                <div class="trainer-card__photo-body"></div>
+              </div>
+            </div>
+            <div class="trainer-card__body">
+              <div class="trainer-card__name">Marco Ferrara</div>
+              <div class="trainer-card__role">Boxen &amp; CrossFit</div>
+              <p class="trainer-card__bio">Ehemaliger Schweizer Meister im Kickboxen. Bringt Technik und Ausdauer perfekt zusammen.</p>
+              <div class="trainer-card__certs">
+                <span class="cert-tag">SF Level 3</span>
+                <span class="cert-tag">CrossFit L2</span>
+                <span class="cert-tag">Box</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="trainer-card">
+            <div class="trainer-card__photo" role="img" aria-label="Trainerfoto Lena Brüggemann">
+              <span class="trainer-card__specialty">Wellness</span>
+              <div class="trainer-card__photo-placeholder" aria-hidden="true">
+                <div class="trainer-card__photo-head"></div>
+                <div class="trainer-card__photo-body"></div>
+              </div>
+            </div>
+            <div class="trainer-card__body">
+              <div class="trainer-card__name">Lena Brüggemann</div>
+              <div class="trainer-card__role">Yoga, Pilates &amp; Mobility</div>
+              <p class="trainer-card__bio">Ausgebildete Yoga-Lehrerin (RYT-500) mit Schwerpunkt auf Körperbewusstsein und Regeneration.</p>
+              <div class="trainer-card__certs">
+                <span class="cert-tag">RYT-500</span>
+                <span class="cert-tag">Pilates</span>
+                <span class="cert-tag">Nutrition</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         FACILITIES
+    ==================================================== -->
+    <section class="facilities" id="einrichtungen" aria-labelledby="facilities-title">
+      <div class="container">
+        <div class="facilities__inner">
+
+          <div class="facilities__visual" aria-hidden="true">
+            <div class="facility-thumb">
+              <div class="facility-thumb__icon">
+                <svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12M2 7h4M18 7h4M2 17h4M18 17h4"/></svg>
+              </div>
+              <span class="facility-thumb__label">Kraftbereich</span>
+            </div>
+            <div class="facility-thumb">
+              <div class="facility-thumb__icon">
+                <svg viewBox="0 0 24 24"><path d="M22 12H18l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <span class="facility-thumb__label">Cardio</span>
+            </div>
+            <div class="facility-thumb">
+              <div class="facility-thumb__icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <span class="facility-thumb__label">Kurssaal</span>
+            </div>
+          </div>
+
+          <div class="facilities__text">
+            <span class="section-label">Einrichtungen</span>
+            <h2 class="section-title" id="facilities-title">Top-Equipment.<br><span>Top-Atmosphäre.</span></h2>
+            <p class="section-subtitle">Modernste Geräte auf 1'200 m² – damit du dich voll auf dein Training konzentrieren kannst.</p>
+
+            <div class="facilities__list" role="list">
+              <div class="facility-item" role="listitem">
+                <span class="facility-item__num">01</span>
+                <div>
+                  <div class="facility-item__title">Freier Gewichtsbereich</div>
+                  <p class="facility-item__desc">Komplette Ausstattung mit Hanteln, Barbells und Kettlebells. Klimmzugstangen und Racks in Premium-Qualität.</p>
+                </div>
+              </div>
+              <div class="facility-item" role="listitem">
+                <span class="facility-item__num">02</span>
+                <div>
+                  <div class="facility-item__title">Cardio-Deck</div>
+                  <p class="facility-item__desc">40+ Cardiogeräte der neuesten Generation: Laufbänder, Rudermaschinen, Assault Bikes und Ski-Ergs.</p>
+                </div>
+              </div>
+              <div class="facility-item" role="listitem">
+                <span class="facility-item__num">03</span>
+                <div>
+                  <div class="facility-item__title">3 Kurssäle</div>
+                  <p class="facility-item__desc">Klimatisierte Räume für Yoga, HIIT, Spinning und Kampfsport – professionell ausgestattet und grosszügig.</p>
+                </div>
+              </div>
+              <div class="facility-item" role="listitem">
+                <span class="facility-item__num">04</span>
+                <div>
+                  <div class="facility-item__title">Lounge &amp; Shake-Bar</div>
+                  <p class="facility-item__desc">Entspanne vor oder nach dem Training in unserer Lounge mit frischen Shakes und gesunden Snacks.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TESTIMONIALS
+    ==================================================== -->
+    <section class="testimonials" id="bewertungen" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="testimonials__head">
+          <span class="section-label">Bewertungen</span>
+          <h2 class="section-title" id="testimonials-title">Was unsere <span>Mitglieder</span> sagen</h2>
+          <p class="section-subtitle">Echte Erfahrungen von echten Menschen aus {{ORT}} und Umgebung.</p>
+        </div>
+
+        <div class="testimonials__grid" role="list">
+
+          <article class="testimonial" role="listitem">
+            <div class="testimonial__stars" aria-label="5 von 5 Sternen">
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+            </div>
+            <p class="testimonial__quote">Ich trainiere seit über zwei Jahren hier und bin begeistert. Die Trainer nehmen sich wirklich Zeit, die Atmosphäre ist motivierend und die Geräte sind immer einwandfrei.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true">TK</div>
+              <div>
+                <div class="testimonial__name">Tobias K.</div>
+                <div class="testimonial__meta">Mitglied seit 2022 · Pro</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial" role="listitem">
+            <div class="testimonial__stars" aria-label="5 von 5 Sternen">
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+            </div>
+            <p class="testimonial__quote">Das Probetraining hat mich sofort überzeugt. Sarah hat mir einen massgeschneiderten Plan erstellt und ich habe in 3 Monaten mein Ziel erreicht. Absolute Empfehlung!</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true">ML</div>
+              <div>
+                <div class="testimonial__name">Miriam L.</div>
+                <div class="testimonial__meta">Mitglied seit 2023 · Elite</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial" role="listitem">
+            <div class="testimonial__stars" aria-label="5 von 5 Sternen">
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+              <span class="star" aria-hidden="true">&#9733;</span>
+            </div>
+            <p class="testimonial__quote">Endlich ein Fitnessstudio in {{ORT}}, das Qualität und Atmosphäre vereint. Die Kurse sind vielseitig, die Zeiten flexibel und das Team immer freundlich. Top!</p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true">AR</div>
+              <div>
+                <div class="testimonial__name">Andreas R.</div>
+                <div class="testimonial__meta">Mitglied seit 2021 · Pro</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TRIAL CTA
+    ==================================================== -->
+    <section class="trial-cta" aria-labelledby="trial-title">
+      <div class="container">
+        <div class="trial-cta__inner">
+
+          <div>
+            <span class="trial-cta__badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Limitiertes Angebot
+            </span>
+            <h2 class="trial-cta__title" id="trial-title">Dein erstes Training<br>ist auf <em>uns</em>.</h2>
+            <p class="trial-cta__sub">Komm einfach vorbei, teste unsere Anlage und lerne dein zukünftiges Team kennen – unverbindlich und kostenlos.</p>
+            <div style="display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;">
+              <a href="#kontakt" class="btn btn-primary btn-lg">Gratis Probetraining buchen</a>
+              <a href="tel:{{TELEFON}}" class="btn btn-outline btn-lg">{{TELEFON}}</a>
+            </div>
+          </div>
+
+          <div class="trial-cta__offer" aria-label="Probetraining kostenlos">
+            <div class="trial-cta__offer-label">Probetraining</div>
+            <div class="trial-cta__offer-price">
+              <sup>CHF</sup>0.–
+            </div>
+            <p class="trial-cta__offer-desc">Voller Zugang · 1 Tag · Kein Abo</p>
+            <a href="#kontakt" class="btn btn-primary" style="width:100%;justify-content:center;">Jetzt buchen</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         CONTACT
+    ==================================================== -->
+    <section class="contact" id="kontakt" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact__inner">
+
+          <div>
+            <span class="section-label">Kontakt</span>
+            <h2 class="section-title" id="contact-title">Komm zu <span>uns</span></h2>
+            <p class="section-subtitle">Wir beantworten deine Fragen persönlich – ruf an oder schreib uns.</p>
+
+            <div class="contact__info" style="margin-top:36px;">
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <div class="contact__detail-label">Adresse</div>
+                  <div class="contact__detail-value">{{ADRESSE}}<br>{{ORT}}</div>
+                </div>
+              </div>
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.58-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <div class="contact__detail-label">Telefon</div>
+                  <div class="contact__detail-value"><a href="tel:{{TELEFON}}" style="color:inherit;">{{TELEFON}}</a></div>
+                </div>
+              </div>
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <div class="contact__detail-label">E-Mail</div>
+                  <div class="contact__detail-value"><a href="mailto:{{EMAIL}}" style="color:inherit;">{{EMAIL}}</a></div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="contact__hours" style="margin-top:36px;">
+              <div class="contact__hours-title">Öffnungszeiten</div>
+              <div class="hours-row">
+                <span class="hours-row__day">Montag – Freitag</span>
+                <span class="hours-row__time">06:00 – 22:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-row__day">Samstag</span>
+                <span class="hours-row__time">08:00 – 20:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-row__day">Sonntag</span>
+                <span class="hours-row__time">09:00 – 18:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-row__day">Feiertage</span>
+                <span class="hours-row__time">10:00 – 16:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__form-wrap">
+            <div class="form-title">Probetraining buchen</div>
+            <p class="form-sub">Kostenlos und unverbindlich – wir melden uns innerhalb von 24 Stunden.</p>
+
+            <form action="#" method="post" novalidate aria-label="Kontaktformular">
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label class="form-label" for="fname">Vorname *</label>
+                  <input class="form-input" type="text" id="fname" name="vorname" placeholder="Max" required autocomplete="given-name" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="lname">Nachname *</label>
+                  <input class="form-input" type="text" id="lname" name="nachname" placeholder="Mustermann" required autocomplete="family-name" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">E-Mail *</label>
+                  <input class="form-input" type="email" id="email" name="email" placeholder="max@beispiel.ch" required autocomplete="email" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="phone">Telefon</label>
+                  <input class="form-input" type="tel" id="phone" name="telefon" placeholder="+41 79 123 45 67" autocomplete="tel" />
+                </div>
+
+                <div class="form-group form-group--full">
+                  <label class="form-label" for="interest">Interesse</label>
+                  <select class="form-select" id="interest" name="interesse">
+                    <option value="" disabled selected>Bitte wählen...</option>
+                    <option value="probe">Probetraining</option>
+                    <option value="mitgliedschaft">Mitgliedschaft</option>
+                    <option value="personal">Personal Training</option>
+                    <option value="kurse">Gruppentraining</option>
+                    <option value="ernaehrung">Ernährungsberatung</option>
+                    <option value="sonstiges">Allgemeine Anfrage</option>
+                  </select>
+                </div>
+
+                <div class="form-group form-group--full">
+                  <label class="form-label" for="message">Nachricht</label>
+                  <textarea class="form-textarea" id="message" name="nachricht" placeholder="Dein Ziel, dein Zeitplan oder deine Fragen..."></textarea>
+                </div>
+
+                <div class="form-group form-group--full">
+                  <label class="form-checkbox">
+                    <input type="checkbox" name="datenschutz" required />
+                    <span class="form-checkbox-label">
+                      Ich stimme der <a href="#" tabindex="0">Datenschutzerklärung</a> zu und bin einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage verwendet werden. *
+                    </span>
+                  </label>
+                </div>
+
+              </div>
+
+              <div class="form-submit">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Anfrage senden
+                </button>
+              </div>
+              <p class="form-note">* Pflichtfelder. Kostenlos &amp; unverbindlich.</p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================
+       FOOTER
+  ==================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+
+        <div>
+          <a href="#" class="nav__logo" aria-label="{{FIRMENNAME}} – Startseite" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:0;">
+            <div class="nav__logo-mark">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 4v16M18 4v16M6 12h12M2 7h4M18 7h4M2 17h4M18 17h4"/>
+              </svg>
+            </div>
+            <div class="nav__logo-text">
+              {{FIRMENNAME}}
+              <small>{{ORT}}</small>
+            </div>
+          </a>
+          <p class="footer__brand-desc">{{SLOGAN}} – Dein Fitnessstudio im Herzen von {{ORT}}.</p>
+          <div class="footer__social" style="margin-top:20px;">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M17.5 6.5h.01"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Navigation</div>
+          <ul class="footer__links" role="list">
+            <li><a href="#mitgliedschaft">Mitgliedschaft</a></li>
+            <li><a href="#kurse">Kursplan</a></li>
+            <li><a href="#trainer">Trainer</a></li>
+            <li><a href="#einrichtungen">Einrichtungen</a></li>
+            <li><a href="#bewertungen">Bewertungen</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Angebote</div>
+          <ul class="footer__links" role="list">
+            <li><a href="#mitgliedschaft">Basic Abo</a></li>
+            <li><a href="#mitgliedschaft">Pro Abo</a></li>
+            <li><a href="#mitgliedschaft">Elite Abo</a></li>
+            <li><a href="#kontakt">Personal Training</a></li>
+            <li><a href="#kontakt">Probetraining</a></li>
+            <li><a href="#kontakt">Ernährungsberatung</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Kontakt</div>
+          <div class="footer__contact-item">
+            <span aria-hidden="true">&#9679;</span>
+            <span>{{ADRESSE}}<br>{{ORT}}</span>
+          </div>
+          <div class="footer__contact-item">
+            <span aria-hidden="true">&#9679;</span>
+            <a href="tel:{{TELEFON}}" style="color:inherit;transition:color 0.2s;">{{TELEFON}}</a>
+          </div>
+          <div class="footer__contact-item">
+            <span aria-hidden="true">&#9679;</span>
+            <a href="mailto:{{EMAIL}}" style="color:inherit;transition:color 0.2s;">{{EMAIL}}</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2025 {{FIRMENNAME}}, {{ORT}}. Alle Rechte vorbehalten.</span>
+        <nav class="footer__legal" aria-label="Rechtliche Links">
+          <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
+          <a href="#">AGB</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       SCRIPTS
+  ==================================================== -->
+  <script>
+    // ── Sticky nav background on scroll ──────────────────
+    (function () {
+      var nav = document.getElementById('nav');
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // ── Mobile hamburger / drawer ─────────────────────────
+    (function () {
+      var btn = document.getElementById('hamburger');
+      var drawer = document.getElementById('drawer');
+      var open = false;
+
+      function toggle() {
+        open = !open;
+        drawer.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      btn.addEventListener('click', toggle);
+
+      // Close on any drawer link click
+      drawer.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (open) toggle();
+        });
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && open) toggle();
+      });
+    })();
+
+    // ── Schedule tab switching ────────────────────────────
+    (function () {
+      var tabs = document.querySelectorAll('.schedule__tab');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+        });
+      });
+    })();
+
+    // ── Smooth scroll for anchor links ───────────────────
+    (function () {
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var target = document.querySelector(a.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            var navH = parseInt(getComputedStyle(document.documentElement)
+              .getPropertyValue('--nav-h')) || 68;
+            var top = target.getBoundingClientRect().top + window.scrollY - navH;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

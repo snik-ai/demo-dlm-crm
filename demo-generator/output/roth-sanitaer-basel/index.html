@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanitär & Heizung Roth – Sanitär & Heizung Basel</title>
+  <meta name="description" content="Sanitär & Heizung Roth – Zuverlässig und kompetent. Sanitär, Heizung und Badezimmerrenovation in Basel. 24h Notfalldienst. Jetzt anrufen." />
+
+  <!-- Google Ads Conversion Tracking Scaffold -->
+  <!-- REPLACE_WITH_GTAG_ID: Replace G-XXXXXXXXXX with your actual Google Tag ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+    // Conversion tracking — call on form submit and phone click
+    function trackConversion(label) {
+      gtag('event', 'conversion', {
+        'send_to': 'G-XXXXXXXXXX/CONVERSION_LABEL', // REPLACE_WITH_CONVERSION_LABEL
+        'event_category': 'Lead',
+        'event_label': label || 'Kontaktformular'
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0f2140;
+      --navy-mid:   #1a3560;
+      --blue:       #1e4da1;
+      --blue-light: #2d6be4;
+      --slate:      #475569;
+      --slate-light:#64748b;
+      --ice:        #e8f0fb;
+      --fog:        #f1f5f9;
+      --offwhite:   #f8fafc;
+      --white:      #ffffff;
+      --red:        #d63c3c;
+      --red-dark:   #b52e2e;
+      --text:       #0f172a;
+      --text-muted: #64748b;
+      --border:     #e2e8f0;
+      --radius:     6px;
+      --radius-lg:  12px;
+      --shadow:     0 1px 12px rgba(15,33,64,.08);
+      --shadow-md:  0 4px 24px rgba(15,33,64,.12);
+      --shadow-lg:  0 12px 48px rgba(15,33,64,.18);
+      --font:       'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── UTILITY ─────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+    .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+    .section--alt { background: var(--fog); }
+    .section--dark { background: var(--navy); color: var(--white); }
+
+    .label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: .75rem;
+    }
+    .section--dark .label { color: #93b8f7; }
+
+    h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      color: var(--navy);
+      margin-bottom: .75rem;
+    }
+    .section--dark h2 { color: var(--white); }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 54ch;
+      line-height: 1.7;
+    }
+    .section--dark .lead { color: #93aac8; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── BUTTONS ─────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1.75rem;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: .9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background .2s, color .2s, border-color .2s, transform .15s, box-shadow .2s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: none; }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+      box-shadow: 0 4px 16px rgba(30,77,161,.3);
+    }
+    .btn-primary:hover {
+      background: var(--blue-light);
+      border-color: var(--blue-light);
+      box-shadow: 0 6px 24px rgba(30,77,161,.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.5);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--white);
+    }
+
+    .btn-emergency {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+      box-shadow: 0 4px 20px rgba(214,60,60,.35);
+      font-size: 1rem;
+      padding: .9rem 2rem;
+    }
+    .btn-emergency:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+      box-shadow: 0 6px 28px rgba(214,60,60,.45);
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -.01em;
+    }
+    .nav-brand-sub {
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--slate-light);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--slate);
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-phone {
+      font-size: .9375rem;
+      font-weight: 700;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: color .18s;
+    }
+    .nav-phone:hover { color: var(--blue-light); }
+    .nav-phone-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: .85rem;
+      flex-shrink: 0;
+      transition: background .18s;
+    }
+    .nav-phone:hover .nav-phone-icon { background: var(--blue-light); }
+
+    @media (max-width: 840px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ────────────────────────────────────────── */
+    #hero {
+      background:
+        linear-gradient(135deg, rgba(15,33,64,.90) 0%, rgba(26,53,96,.80) 60%, rgba(15,33,64,.70) 100%),
+        linear-gradient(180deg, #1a3560 0%, #0f2140 100%);
+      color: var(--white);
+      padding-block: clamp(4rem, 12vw, 8rem);
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(45,107,228,.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(30,77,161,.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 100px;
+      padding: .35rem .9rem;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #93b8f7;
+      margin-bottom: 1.25rem;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    h1.hero-title {
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: .75rem;
+      letter-spacing: -.02em;
+    }
+    .hero-title span {
+      background: linear-gradient(90deg, #93b8f7, #5d9cf5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #93aac8;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+      max-width: 48ch;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .825rem;
+      color: #93aac8;
+      font-weight: 500;
+    }
+    .hero-trust-item svg { color: #5d9cf5; flex-shrink: 0; }
+
+    /* Emergency card */
+    .emergency-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .emergency-card-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .emergency-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--red);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(214,60,60,.4);
+    }
+    .emergency-card h3 {
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .emergency-card p {
+      font-size: .8rem;
+      color: #93aac8;
+    }
+    .emergency-number {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -.02em;
+      margin-bottom: .25rem;
+      display: block;
+    }
+    .emergency-number-label {
+      font-size: .8rem;
+      color: #93aac8;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .emergency-hours {
+      background: rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      font-size: .8rem;
+      color: #93aac8;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+    .emergency-hours strong { color: #5d9cf5; display: block; margin-bottom: .15rem; }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .emergency-card { max-width: 480px; }
+    }
+
+    /* ── STATS STRIP ─────────────────────────────────── */
+    #stats {
+      background: var(--navy);
+      padding-block: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -.03em;
+      display: block;
+    }
+    .stat-label {
+      font-size: .8rem;
+      color: #93aac8;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-top: .25rem;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.08); }
+    }
+
+    /* ── SERVICES ────────────────────────────────────── */
+    .services-header { margin-bottom: 2.75rem; }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+    .service-card:hover {
+      border-color: rgba(30,77,161,.2);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--ice);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      transition: background .2s;
+    }
+    .service-card:hover .service-icon { background: var(--blue); }
+    .service-card:hover .service-icon svg { color: white; }
+    .service-icon svg { color: var(--blue); transition: color .2s; }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .service-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .service-list li {
+      font-size: .85rem;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .service-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      flex-shrink: 0;
+    }
+
+    /* ── GALLERY ─────────────────────────────────────── */
+    #gallery { background: var(--fog); }
+    .gallery-header { margin-bottom: 2.75rem; }
+    .gallery-grid { gap: 1rem; }
+
+    .gallery-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item:first-child { grid-column: span 2; aspect-ratio: 16/9; }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      transition: transform .3s;
+    }
+    .gallery-item:hover .gallery-placeholder { transform: scale(1.04); }
+
+    .gallery-placeholder-1 {
+      background: linear-gradient(135deg, #0f2140 0%, #1e4da1 50%, #2d6be4 100%);
+    }
+    .gallery-placeholder-2 {
+      background: linear-gradient(135deg, #1a3560 0%, #0f4c75 50%, #1b6ca8 100%);
+    }
+    .gallery-placeholder-3 {
+      background: linear-gradient(135deg, #1e4da1 0%, #2563eb 60%, #3b82f6 100%);
+    }
+    .gallery-placeholder-4 {
+      background: linear-gradient(135deg, #0f2140 0%, #1e3a5f 40%, #1a3560 100%);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15,33,64,.0);
+      transition: background .25s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(15,33,64,.45); }
+
+    .gallery-label {
+      color: white;
+      font-size: .875rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .25s, transform .25s;
+    }
+    .gallery-item:hover .gallery-label { opacity: 1; transform: none; }
+
+    .gallery-icon {
+      font-size: 2.5rem;
+      opacity: .35;
+      color: white;
+    }
+    .gallery-caption {
+      font-size: .8rem;
+      color: rgba(255,255,255,.6);
+      font-weight: 400;
+    }
+
+    @media (max-width: 700px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-column: span 1; aspect-ratio: 4/3; }
+    }
+
+    /* ── ABOUT / TRUST ───────────────────────────────── */
+    .about-content { padding-left: 2.5rem; }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .trust-item {
+      background: var(--fog);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+    .trust-item-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--ice);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .trust-item h4 {
+      font-size: .9rem;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+    .trust-item p {
+      font-size: .8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .about-visual {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(160deg, #0f2140 0%, #1a3560 40%, #1e4da1 75%, #2d6be4 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+      text-align: center;
+      color: white;
+      gap: 1rem;
+    }
+    .about-visual-badge {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,.12);
+      border: 2px solid rgba(255,255,255,.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-visual-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: rgba(255,255,255,.9);
+    }
+    .about-visual-sub {
+      font-size: .85rem;
+      color: rgba(255,255,255,.55);
+    }
+
+    @media (max-width: 900px) {
+      .about-content { padding-left: 0; }
+      .about-visual { aspect-ratio: 16/9; }
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────────── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.75rem;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+    .stars {
+      display: flex;
+      gap: .2rem;
+      margin-bottom: 1rem;
+      color: #fbbf24;
+      font-size: 1rem;
+    }
+    .testimonial-text {
+      font-size: .925rem;
+      color: #c8d8ef;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1.25rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      font-weight: 700;
+      color: #93b8f7;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .author-location {
+      font-size: .775rem;
+      color: #93aac8;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    #contact { background: var(--fog); }
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .contact-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--ice);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .contact-info-item h4 {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .25rem;
+    }
+    .contact-info-item a,
+    .contact-info-item p {
+      font-size: .975rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .contact-info-item a:hover { color: var(--blue); }
+
+    /* Form */
+    .contact-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow);
+    }
+    .contact-form-card h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: .35rem;
+    }
+    .form-sub {
+      font-size: .875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--slate);
+      letter-spacing: .02em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--font);
+      font-size: .9375rem;
+      color: var(--text);
+      background: var(--offwhite);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: .7rem .95rem;
+      transition: border-color .18s, box-shadow .18s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(30,77,161,.12);
+      background: var(--white);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { appearance: none; cursor: pointer; }
+
+    .form-submit-row {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      margin-top: .5rem;
+    }
+    .form-submit-row .btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding: .95rem;
+      font-size: 1rem;
+    }
+    .form-legal {
+      font-size: .75rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── FLOATING EMERGENCY ──────────────────────────── */
+    .float-emergency {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .5rem;
+    }
+    .float-emergency-label {
+      background: var(--navy);
+      color: white;
+      font-size: .72rem;
+      font-weight: 600;
+      padding: .3rem .7rem;
+      border-radius: 100px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow);
+    }
+    .float-emergency-btn {
+      width: 58px;
+      height: 58px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(214,60,60,.5);
+      color: white;
+      font-size: 1.5rem;
+      transition: background .2s, transform .2s;
+      animation: bounce-gentle 3s ease-in-out infinite;
+      text-decoration: none;
+    }
+    .float-emergency-btn:hover {
+      background: var(--red-dark);
+      transform: scale(1.08);
+      animation: none;
+    }
+    @keyframes bounce-gentle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #07131f;
+      color: rgba(255,255,255,.65);
+      padding-block: 3rem 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .4rem;
+    }
+    .footer-brand-desc {
+      font-size: .84rem;
+      line-height: 1.65;
+      margin-top: .5rem;
+      max-width: 28ch;
+    }
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(214,60,60,.15);
+      border: 1px solid rgba(214,60,60,.25);
+      border-radius: 100px;
+      padding: .3rem .75rem;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #f87171;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-top: 1rem;
+    }
+    .footer-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 2s infinite;
+    }
+
+    .footer-col h4 {
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .footer-col ul a {
+      font-size: .84rem;
+      color: rgba(255,255,255,.5);
+      transition: color .18s;
+    }
+    .footer-col ul a:hover { color: rgba(255,255,255,.9); }
+    .footer-col p {
+      font-size: .84rem;
+      line-height: 1.7;
+    }
+    .footer-col a { transition: color .18s; }
+    .footer-col a:hover { color: rgba(255,255,255,.9); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: .8rem; }
+    .footer-bottom-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-bottom-links a {
+      font-size: .8rem;
+      color: rgba(255,255,255,.4);
+      transition: color .18s;
+    }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,.8); }
+
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── SECTION DIVIDER ─────────────────────────────── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+    .section--dark .divider { background: linear-gradient(90deg, #5d9cf5, #93b8f7); }
+  </style>
+</head>
+<body>
+
+<!-- ░░░ FLOATING EMERGENCY BUTTON ░░░ -->
+<div class="float-emergency">
+  <span class="float-emergency-label">24h Notfall</span>
+  <a href="tel:061 321 77 33"
+     class="float-emergency-btn"
+     onclick="trackConversion('Notfall Float Button')"
+     aria-label="Notfall anrufen">
+    📞
+  </a>
+</div>
+
+<!-- ░░░ NAVIGATION ░░░ -->
+<nav role="navigation" aria-label="Hauptnavigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand" aria-label="Sanitär & Heizung Roth – Startseite">
+        <span class="nav-brand-name">Sanitär & Heizung Roth</span>
+        <span class="nav-brand-sub">Sanitär &amp; Heizung · Basel</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#galerie">Referenzen</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+
+      <a href="tel:061 321 77 33"
+         class="nav-phone"
+         onclick="trackConversion('Nav Phone Click')"
+         aria-label="Jetzt anrufen: 061 321 77 33">
+        <span class="nav-phone-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.72-.72a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </span>
+        061 321 77 33
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ░░░ HERO ░░░ -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          24h Notfalldienst verfügbar
+        </div>
+
+        <h1 class="hero-title" id="hero-heading">
+          Ihr Sanitär &amp;<br>
+          <span>Heizungsprofi</span><br>
+          in Basel
+        </h1>
+
+        <p class="hero-sub">Zuverlässig und kompetent</p>
+
+        <div class="hero-ctas">
+          <a href="#kontakt" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Offerte anfragen
+          </a>
+          <a href="tel:061 321 77 33"
+             class="btn btn-outline"
+             onclick="trackConversion('Hero Phone Click')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.72-.72a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            061 321 77 33
+          </a>
+        </div>
+
+        <div class="hero-trust" role="list" aria-label="Vertrauenssignale">
+          <div class="hero-trust-item" role="listitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Suissetec-Mitglied
+          </div>
+          <div class="hero-trust-item" role="listitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            15 Jahre Erfahrung
+          </div>
+          <div class="hero-trust-item" role="listitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            5 Jahre Garantie
+          </div>
+          <div class="hero-trust-item" role="listitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Festpreisgarantie
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency card -->
+      <div class="emergency-card" role="complementary" aria-label="Notfalldienst">
+        <div class="emergency-card-header">
+          <div class="emergency-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div>
+            <h3>Notfalldienst</h3>
+            <p>Wir sind immer erreichbar</p>
+          </div>
+        </div>
+
+        <a href="tel:061 321 77 33"
+           onclick="trackConversion('Emergency Card Click')"
+           style="text-decoration:none;">
+          <span class="emergency-number">061 321 77 33</span>
+        </a>
+        <span class="emergency-number-label">Direkt zum Notfalldienst</span>
+
+        <div class="emergency-hours">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5d9cf5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <div>
+            <strong>24 Stunden, 7 Tage</strong>
+            Wasserrohrbruch · Heizungsausfall · Verstopfung · Gasgeruch
+          </div>
+        </div>
+
+        <a href="tel:061 321 77 33"
+           class="btn btn-emergency"
+           onclick="trackConversion('Emergency Card Button')"
+           style="width:100%;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.72-.72a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Jetzt Notfall anrufen
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ STATS STRIP ░░░ -->
+<section id="stats" aria-label="Zahlen und Fakten">
+  <div class="container">
+    <div class="stats-grid" role="list">
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">15+</span>
+        <span class="stat-label">Jahre Erfahrung</span>
+      </div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">800+</span>
+        <span class="stat-label">Projekte abgeschlossen</span>
+      </div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Notfalldienst</span>
+      </div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">5J.</span>
+        <span class="stat-label">Garantie auf Arbeiten</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ SERVICES ░░░ -->
+<section id="leistungen" class="section" aria-labelledby="services-heading">
+  <div class="container">
+    <header class="services-header">
+      <div class="label" aria-hidden="true">Leistungen</div>
+      <div class="divider" aria-hidden="true"></div>
+      <h2 id="services-heading">Unsere Fachgebiete</h2>
+      <p class="lead">Von der Erstinstallation über Reparaturen bis zur vollständigen Renovation — alles aus einer Hand.</p>
+    </header>
+
+    <div class="grid-3" role="list" aria-label="Dienstleistungen">
+
+      <!-- Sanitär -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path><path d="M12 6v6l4 2"></path></svg>
+        </div>
+        <h3>Sanitärinstallationen</h3>
+        <p>Professionelle Sanitärarbeiten für Neubauten, Umbauten und Reparaturen. Schnell, sauber und termingerecht.</p>
+        <ul class="service-list" role="list">
+          <li>Rohrleitungen & Anschlüsse</li>
+          <li>WC, Lavabo, Duschen</li>
+          <li>Wasseraufbereitung</li>
+          <li>Rohrbruch & Notfalldienst</li>
+          <li>Kanalisationsreinigung</li>
+        </ul>
+      </article>
+
+      <!-- Heizung -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"></path><path d="M12 6v6l4 2"></path><line x1="18" y1="2" x2="22" y2="6"></line><line x1="22" y1="2" x2="18" y2="6"></line></svg>
+        </div>
+        <h3>Heizungsanlagen</h3>
+        <p>Moderne Heizsysteme für mehr Effizienz und Komfort — vom Service bis zur Neuinstallation energieeffizienter Anlagen.</p>
+        <ul class="service-list" role="list">
+          <li>Wärmepumpen</li>
+          <li>Gas- & Ölheizungen</li>
+          <li>Pelletheizungen</li>
+          <li>Fussbodenheizung</li>
+          <li>Heizungsservice & Wartung</li>
+        </ul>
+      </article>
+
+      <!-- Badezimmer -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M6 12V5a2 2 0 0 1 2-2h2v2"></path><circle cx="18" cy="18" r="4"></circle><path d="M18 14v4l2 2"></path></svg>
+        </div>
+        <h3>Badezimmerrenovation</h3>
+        <p>Ihr Traumbad — von der Planung bis zur schlüsselfertigen Übergabe. Barrierefreiheit und moderne Designs auf Mass.</p>
+        <ul class="service-list" role="list">
+          <li>Komplettbad aus einer Hand</li>
+          <li>Planung & 3D-Visualisierung</li>
+          <li>Wellness-Duschen & Badewannen</li>
+          <li>Barrierefreie Umbau</li>
+          <li>Armaturen & Accessoires</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ GALLERY ░░░ -->
+<section id="galerie" class="section" aria-labelledby="gallery-heading">
+  <div class="container">
+    <header class="gallery-header">
+      <div class="label" aria-hidden="true">Referenzen</div>
+      <div class="divider" aria-hidden="true"></div>
+      <h2 id="gallery-heading">Ausgewählte Projekte</h2>
+      <p class="lead">Einblick in unsere handwerkliche Arbeit — Qualität, die man sieht und spürt.</p>
+    </header>
+
+    <div class="grid-4 gallery-grid" role="list" aria-label="Projektgalerie">
+
+      <article class="gallery-item" role="listitem" style="grid-column: span 2; aspect-ratio: 16/9;">
+        <div class="gallery-placeholder gallery-placeholder-1" aria-hidden="true">
+          <div class="gallery-icon">🚿</div>
+          <div style="text-align:center;color:rgba(255,255,255,.5);">
+            <div style="font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Referenzbild hier einfügen</div>
+            <div class="gallery-caption" style="margin-top:.25rem;">Badezimmerrenovation · 1200px × 675px empfohlen</div>
+          </div>
+        </div>
+        <div class="gallery-overlay">
+          <span class="gallery-label">Luxusbad · Basel, 2024</span>
+        </div>
+      </article>
+
+      <article class="gallery-item" role="listitem">
+        <div class="gallery-placeholder gallery-placeholder-2" aria-hidden="true">
+          <div class="gallery-icon">🔧</div>
+          <div style="text-align:center;color:rgba(255,255,255,.5);">
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Bild einfügen</div>
+            <div class="gallery-caption" style="margin-top:.2rem;">800px × 600px</div>
+          </div>
+        </div>
+        <div class="gallery-overlay">
+          <span class="gallery-label">Heizungsanlage · Neubau</span>
+        </div>
+      </article>
+
+      <article class="gallery-item" role="listitem">
+        <div class="gallery-placeholder gallery-placeholder-3" aria-hidden="true">
+          <div class="gallery-icon">🌡️</div>
+          <div style="text-align:center;color:rgba(255,255,255,.5);">
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Bild einfügen</div>
+            <div class="gallery-caption" style="margin-top:.2rem;">800px × 600px</div>
+          </div>
+        </div>
+        <div class="gallery-overlay">
+          <span class="gallery-label">Wärmepumpe · Einfamilienhaus</span>
+        </div>
+      </article>
+
+      <article class="gallery-item" role="listitem">
+        <div class="gallery-placeholder gallery-placeholder-4" aria-hidden="true">
+          <div class="gallery-icon">🪠</div>
+          <div style="text-align:center;color:rgba(255,255,255,.5);">
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Bild einfügen</div>
+            <div class="gallery-caption" style="margin-top:.2rem;">800px × 600px</div>
+          </div>
+        </div>
+        <div class="gallery-overlay">
+          <span class="gallery-label">Sanitärinstallation · Umbau</span>
+        </div>
+      </article>
+
+      <article class="gallery-item" role="listitem">
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#0c1f3d 0%,#162f5e 50%,#1a3a7a 100%);" aria-hidden="true">
+          <div class="gallery-icon">🛁</div>
+          <div style="text-align:center;color:rgba(255,255,255,.5);">
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Bild einfügen</div>
+            <div class="gallery-caption" style="margin-top:.2rem;">800px × 600px</div>
+          </div>
+        </div>
+        <div class="gallery-overlay">
+          <span class="gallery-label">Wellness-Bad · Privathaus</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ ABOUT / TRUST ░░░ -->
+<section id="ueber-uns" class="section section--alt" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="grid-2">
+
+      <div class="about-visual" aria-hidden="true">
+        <div class="about-visual-badge">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="about-visual-text">Zertifizierter<br>Fachbetrieb</div>
+        <div class="about-visual-sub">Suissetec-Mitglied<br>seit über 10 Jahren</div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);width:100%;">
+          <div style="display:flex;justify-content:space-around;">
+            <div style="text-align:center;">
+              <div style="font-size:1.6rem;font-weight:700;color:white;">800+</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em;">Projekte</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.6rem;font-weight:700;color:white;">15+</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em;">Jahre</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.6rem;font-weight:700;color:white;">5J.</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em;">Garantie</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <div class="label" aria-hidden="true">Über uns</div>
+        <div class="divider" aria-hidden="true"></div>
+        <h2 id="about-heading">Handwerk mit Haltung. Qualität mit Garantie.</h2>
+        <p class="lead" style="margin-bottom:1.25rem;">
+          Sanitär & Heizung Roth steht seit über 15 Jahren für zuverlässige Sanitär- und Heizungsarbeiten in Basel und Umgebung. Als Suissetec-zertifizierter Fachbetrieb garantieren wir Qualität nach Schweizer Standard.
+        </p>
+        <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;">
+          Ob Notfall um Mitternacht oder sorgfältig geplante Badezimmerrenovation — unser Team ist mit vollem Einsatz dabei. Wir arbeiten transparent, pünktlich und mit Fixpreisgarantie.
+        </p>
+
+        <div class="trust-grid" role="list" aria-label="Vertrauensmerkmale">
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h4>Suissetec-Mitglied</h4>
+              <p>Anerkannter Fachbetrieb mit geprüfter Qualifikation</p>
+            </div>
+          </div>
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div>
+              <h4>24/7 Notfalldienst</h4>
+              <p>Schnelle Reaktionszeit, auch an Feiertagen</p>
+            </div>
+          </div>
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div>
+              <h4>Fixpreisgarantie</h4>
+              <p>Keine versteckten Kosten — Preis ist Preis</p>
+            </div>
+          </div>
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>
+              <h4>5 Jahre Garantie</h4>
+              <p>Auf alle ausgeführten Arbeiten und Materialien</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ TESTIMONIALS ░░░ -->
+<section id="referenzen" class="section section--dark" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="label" aria-hidden="true">Kundenstimmen</div>
+    <div class="divider" aria-hidden="true"></div>
+    <h2 id="testimonials-heading">Was unsere Kunden sagen</h2>
+    <p class="lead">Über 800 zufriedene Kunden in Basel und Umgebung — das ist unser bestes Zeugnis.</p>
+
+    <div class="testimonials-grid" role="list" aria-label="Kundenbewertungen">
+
+      <article class="testimonial-card" role="listitem">
+        <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+        <p class="testimonial-text">"Wasserrohrbruch am Sonntagabend — innerhalb einer Stunde war das Team vor Ort. Schnell, kompetent und sauber. Nie wieder einen anderen Sanitärdienst."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">TH</div>
+          <div>
+            <div class="author-name">Thomas H.</div>
+            <div class="author-location">Basel</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testimonial-card" role="listitem">
+        <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+        <p class="testimonial-text">"Unser Badezimmer wurde komplett renoviert — von der Planung bis zur Übergabe war alles perfekt organisiert. Qualität und Preis stimmen. Sehr empfehlenswert!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">SM</div>
+          <div>
+            <div class="author-name">Sandra M.</div>
+            <div class="author-location">Basel Umgebung</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testimonial-card" role="listitem">
+        <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+        <p class="testimonial-text">"Wärmepumpe installieren lassen. Das Team hat alles erklärt, termingerecht gearbeitet und der Preis entsprach exakt der Offerte. Keinerlei Überraschungen."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">RK</div>
+          <div>
+            <div class="author-name">Roland K.</div>
+            <div class="author-location">Basel</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CONTACT ░░░ -->
+<section id="kontakt" class="section" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-wrapper">
+
+      <div>
+        <div class="label" aria-hidden="true">Kontakt</div>
+        <div class="divider" aria-hidden="true"></div>
+        <h2 id="contact-heading">Jetzt Offerte anfragen</h2>
+        <p class="lead">Beschreiben Sie uns Ihr Anliegen — wir melden uns innert 24 Stunden mit einer unverbindlichen Offerte.</p>
+
+        <div class="contact-info-block">
+          <div class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.72-.72a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div>
+              <h4>Telefon</h4>
+              <a href="tel:061 321 77 33" onclick="trackConversion('Contact Info Phone')">061 321 77 33</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div>
+              <h4>E-Mail</h4>
+              <a href="mailto:info@roth-sanitaer.ch">info@roth-sanitaer.ch</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>
+              <h4>Adresse</h4>
+              <p>Güterstrasse 88, Basel</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emergency CTA block -->
+        <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:rgba(214,60,60,.06);border:1px solid rgba(214,60,60,.15);border-radius:var(--radius-lg);display:flex;align-items:center;gap:1rem;">
+          <div style="width:44px;height:44px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;">Notfall?</div>
+            <div style="font-size:.875rem;color:var(--slate);">Jetzt direkt anrufen — 24 Stunden erreichbar.</div>
+          </div>
+          <a href="tel:061 321 77 33"
+             class="btn btn-emergency"
+             onclick="trackConversion('Contact Emergency Button')"
+             style="margin-left:auto;white-space:nowrap;padding:.65rem 1.25rem;font-size:.875rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.72-.72a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Anrufen
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <div class="contact-form-card">
+        <h3>Kostenlose Offerte anfragen</h3>
+        <p class="form-sub">Unverbindlich · Antwort innert 24h · Kein Auftrag, keine Kosten</p>
+
+        <form
+          id="kontakt-formular"
+          action="#"
+          method="POST"
+          onsubmit="trackConversion('Kontaktformular Absenden'); return false;"
+          aria-label="Kontaktformular"
+          novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vorname">Vorname *</label>
+              <input type="text" id="vorname" name="vorname" placeholder="Max" required autocomplete="given-name" />
+            </div>
+            <div class="form-group">
+              <label for="nachname">Nachname *</label>
+              <input type="text" id="nachname" name="nachname" placeholder="Mustermann" required autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telefon">Telefon *</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="+41 79 000 00 00" required autocomplete="tel" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" placeholder="max@beispiel.ch" autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label for="leistung">Gewünschte Leistung *</label>
+            <select id="leistung" name="leistung" required>
+              <option value="" disabled selected>Bitte wählen…</option>
+              <option value="sanitaer">Sanitärinstallation / Reparatur</option>
+              <option value="heizung">Heizung / Wärmepumpe</option>
+              <option value="bad">Badezimmerrenovation</option>
+              <option value="notfall">Notfalldienst</option>
+              <option value="service">Service / Wartung</option>
+              <option value="anderes">Anderes</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nachricht">Ihr Anliegen</label>
+            <textarea id="nachricht" name="nachricht" placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihren Defekt…" rows="4"></textarea>
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              Offerte anfordern
+            </button>
+            <p class="form-legal">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zur Bearbeitung Ihrer Anfrage zu. <a href="#" style="color:var(--blue);">Datenschutz</a></p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand-name">Sanitär & Heizung Roth</div>
+        <div style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">Sanitär &amp; Heizung · Basel</div>
+        <p class="footer-brand-desc">Zuverlässig und kompetent</p>
+        <div class="footer-badge">
+          <span class="footer-badge-dot" aria-hidden="true"></span>
+          24h Notfall: <a href="tel:061 321 77 33" style="color:#f87171;margin-left:.25rem;">061 321 77 33</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul role="list">
+          <li><a href="#leistungen">Sanitärinstallationen</a></li>
+          <li><a href="#leistungen">Heizungsanlagen</a></li>
+          <li><a href="#leistungen">Badezimmerrenovation</a></li>
+          <li><a href="#leistungen">Wärmepumpen</a></li>
+          <li><a href="#leistungen">Notfalldienst 24/7</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul role="list">
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#galerie">Referenzen</a></li>
+          <li><a href="#referenzen">Kundenstimmen</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p>
+          Güterstrasse 88<br>
+          Basel<br><br>
+          <a href="tel:061 321 77 33" style="display:block;margin-bottom:.25rem;">061 321 77 33</a>
+          <a href="mailto:info@roth-sanitaer.ch">info@roth-sanitaer.ch</a>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="footer-year">2024</span> Sanitär & Heizung Roth. Alle Rechte vorbehalten.</p>
+      <ul class="footer-bottom-links" role="list">
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">AGB</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dynamic year in footer
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // Smooth active nav link highlight on scroll
+  (function() {
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-links a');
+
+    function onScroll() {
+      var scrollY = window.pageYOffset;
+      sections.forEach(function(section) {
+        var top = section.offsetTop - 80;
+        var bottom = top + section.offsetHeight;
+        var id = section.getAttribute('id');
+        if (scrollY >= top && scrollY < bottom) {
+          navLinks.forEach(function(a) {
+            a.style.color = '';
+          });
+          var active = document.querySelector('.nav-links a[href="#' + id + '"]');
+          if (active) active.style.color = '#0f2140';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
